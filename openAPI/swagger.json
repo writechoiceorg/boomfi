@@ -1,0 +1,2234 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "The BoomFi Merchants API provides a set of endpoints for merchants to manage their accounts, transactions, and more.",
+        "title": "BoomFi Merchants API",
+        "contact": {
+            "name": "API Support",
+            "email": "support@boomfi.xyz"
+        },
+        "version": "1.0"
+    },
+    "host": "mapi.boomfi.xyz",
+    "paths": {
+        "/customers": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieve a paginated list of customers for a given organization, with optional sorting and filtering parameters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "List customers",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "itemsPerPage",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "search",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "first-time",
+                            "repeat"
+                        ],
+                        "type": "string",
+                        "name": "type",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.PaginatedResponse-customers_ResponseCustomer"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create a customer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Create a customer",
+                "parameters": [
+                    {
+                        "description": "Create Customer Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/customers.CreateCustomerRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/customers.ResponseCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/{customerID}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get customer",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Get customer",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer ID",
+                        "name": "customerID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-customers_ResponseCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Delete customer",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Delete customer",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer ID",
+                        "name": "customerID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieve a paginated list of events for a given organization, with optional sorting and filtering parameters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Events"
+                ],
+                "summary": "List events for an organization",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "after",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "before",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "since",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "until",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
+                        }
+                    }
+                }
+            }
+        },
+        "/integrations": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get all integrations",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Get all integrations",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/integrations.IntegrationsResponseItem"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/integrations/_templates": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get all integrations",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Get all integration templates",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/integrations.IntegrationsResponseItem"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/integrations/{name}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Enable integration.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Enable integration.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Integration name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Org V1 ID",
+                        "name": "X-Org-Id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Disable an integration",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Disable an integration",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "integration name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/integrations/{name}/{orgID}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Webhook",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Webhook",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "integration name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "BoomFi organization ID",
+                        "name": "orgID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/orgs": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get org.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Get org.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Org"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Update org.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Update org.",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/orgs.UpdateOrgRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Org"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/orgs/settlement-address": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create settlement address.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Create settlement address.",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/orgs.SettlementAddressCreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.OrgSettlementAccount"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/orgs/settlement-address/verify/{address}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Verify settlement address.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Verify settlement address.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "address",
+                        "name": "address",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/orgs.SettlementAddressVerifyResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/orgs/settlement-address/{address}": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Update settlement address.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Update settlement address.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "address",
+                        "name": "address",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/orgs.SettlementAddressUpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.OrgSettlementAccount"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Delete settlement address.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Delete settlement address.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "address",
+                        "name": "address",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/plans": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "List plans",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Plans"
+                ],
+                "summary": "List plans.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "after",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "before",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "since",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "until",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.PaginatedResponse-plan_PlanResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create plan.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Plans"
+                ],
+                "summary": "Create plan.",
+                "parameters": [
+                    {
+                        "description": "Create Plan Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/plan.CreatePlanRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-plan_PlanResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/plans/{planId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get plan.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Plans"
+                ],
+                "summary": "Get plan.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Plan ID",
+                        "name": "planId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-plan_PlanResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Update plan.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Plans"
+                ],
+                "summary": "Update plan.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Plan ID",
+                        "name": "planId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/plan.UpdatePlanRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-plan_CreatePlanResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Delete plan.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Plans"
+                ],
+                "summary": "Delete plan.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Plan ID",
+                        "name": "planId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "customers.CreateCustomerRequest": {
+            "type": "object",
+            "properties": {
+                "customer_ident": {
+                    "type": "string"
+                },
+                "discord": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "twitter": {
+                    "type": "string"
+                },
+                "wallet_address": {
+                    "type": "string"
+                }
+            }
+        },
+        "customers.ResponseCustomer": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "customer_ident": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "guest": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_deleted": {
+                    "type": "boolean"
+                },
+                "last_payment_date": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "name": {
+                    "type": "string"
+                },
+                "organisation_id": {
+                    "type": "string"
+                },
+                "payments_count": {
+                    "type": "integer"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "wallet_address": {
+                    "type": "string"
+                }
+            }
+        },
+        "events.Event": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "integrations.IntegrationsResponseItem": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "last_error": {
+                    "type": "string"
+                },
+                "last_sync_time": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "org_id": {
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "status": {
+                    "$ref": "#/definitions/models.OrgIntegrationStatus"
+                },
+                "template_name": {
+                    "type": "string"
+                },
+                "type": {
+                    "description": "type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.OrgIntegrationType"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/internal.ErrorStruct"
+                }
+            }
+        },
+        "internal.ErrorStruct": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "Error code\nExample: 400",
+                    "type": "integer",
+                    "example": 400
+                },
+                "errors": {
+                    "description": "List of errors",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/internal.SingleError"
+                    }
+                },
+                "message": {
+                    "description": "Error message\nExample: Insufficient quantity",
+                    "type": "string",
+                    "example": "Insufficient quantity"
+                }
+            }
+        },
+        "internal.PaginatedItems-customers_ResponseCustomer": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/customers.ResponseCustomer"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
+        "internal.PaginatedItems-events_Event": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/events.Event"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
+        "internal.PaginatedItems-plan_PlanResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/plan.PlanResponse"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
+        "internal.PaginatedResponse-customers_ResponseCustomer": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-customers_ResponseCustomer"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.PaginatedResponse-events_Event": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-events_Event"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.PaginatedResponse-plan_PlanResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-plan_PlanResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.Response-customers_ResponseCustomer": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/customers.ResponseCustomer"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.Response-plan_CreatePlanResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/plan.CreatePlanResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.Response-plan_PlanResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/plan.PlanResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.SingleError": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "description": "Domain\nExample: orders",
+                    "type": "string",
+                    "example": "orders"
+                },
+                "reason": {
+                    "description": "Error Reason\nExample: InsufficientQuantity",
+                    "type": "string",
+                    "example": "InsufficientQuantity"
+                }
+            }
+        },
+        "models.AccountProvider": {
+            "type": "integer",
+            "enum": [
+                1
+            ],
+            "x-enum-varnames": [
+                "AccountProviderSpreedly"
+            ]
+        },
+        "models.AccountType": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3
+            ],
+            "x-enum-varnames": [
+                "AccountTypeCrypto",
+                "AccountTypeBank",
+                "AccountTypeCard"
+            ]
+        },
+        "models.BillingScheme": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "x-enum-varnames": [
+                "BillingSchemeFlatfee",
+                "BillingSchemePerunit",
+                "BillingSchemeGraduated",
+                "BillingSchemeVolume"
+            ]
+        },
+        "models.BillingSource": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "x-enum-varnames": [
+                "BillingSourceLago",
+                "BillingSourceBoomfi",
+                "BillingSourceStripe",
+                "BillingSourceChargebee"
+            ]
+        },
+        "models.NullAccountProvider": {
+            "type": "object",
+            "properties": {
+                "accountProvider": {
+                    "$ref": "#/definitions/models.AccountProvider"
+                },
+                "valid": {
+                    "description": "Valid is true if [AccountProvider] is not null.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.Org": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "credits_usd": {
+                    "description": "credits_usd",
+                    "type": "number"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "logo_url": {
+                    "description": "logo_url",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "offramp_fee_pct": {
+                    "description": "offramp_fee_pct",
+                    "type": "number"
+                },
+                "owner_user_id": {
+                    "description": "owner_user_id",
+                    "type": "string"
+                },
+                "payment_fee_pct": {
+                    "description": "payment_fee_pct",
+                    "type": "number"
+                },
+                "properties": {
+                    "description": "properties",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "swap_fee_pct": {
+                    "description": "swap_fee_pct",
+                    "type": "number"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "v1": {
+                    "description": "v1",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "webhook_url": {
+                    "description": "webhook_url",
+                    "type": "string"
+                }
+            }
+        },
+        "models.OrgIntegrationStatus": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "x-enum-varnames": [
+                "OrgIntegrationStatusUnknown",
+                "OrgIntegrationStatusUpdating",
+                "OrgIntegrationStatusReady",
+                "OrgIntegrationStatusDisabling",
+                "OrgIntegrationStatusDisabled"
+            ]
+        },
+        "models.OrgIntegrationType": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "x-enum-varnames": [
+                "OrgIntegrationTypeUnknown",
+                "OrgIntegrationTypeBilling",
+                "OrgIntegrationTypeEcommerce",
+                "OrgIntegrationTypeAccounting",
+                "OrgIntegrationTypeWorkflow"
+            ]
+        },
+        "models.OrgSettlementAccount": {
+            "type": "object",
+            "properties": {
+                "account_number": {
+                    "description": "account_number",
+                    "type": "string"
+                },
+                "account_type": {
+                    "description": "account_type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.AccountType"
+                        }
+                    ]
+                },
+                "address": {
+                    "description": "address",
+                    "type": "string"
+                },
+                "chain_id": {
+                    "description": "chain_id",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "currencies": {
+                    "description": "currencies",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "properties",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "provider": {
+                    "description": "provider",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.NullAccountProvider"
+                        }
+                    ]
+                },
+                "sort_code": {
+                    "description": "sort_code",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                }
+            }
+        },
+        "models.PaymentLink": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "customer_ident_collection": {
+                    "description": "customer_ident_collection",
+                    "type": "boolean"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "invoice_id": {
+                    "description": "invoice_id",
+                    "type": "string"
+                },
+                "metadata": {
+                    "description": "metadata",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "plan_id": {
+                    "description": "plan_id",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "properties",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "shipping_address_collection": {
+                    "description": "shipping_address_collection",
+                    "type": "boolean"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "tax_ident_collection": {
+                    "description": "tax_ident_collection",
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "updated_by": {
+                    "description": "updated_by",
+                    "type": "string"
+                }
+            }
+        },
+        "models.PlanType": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3
+            ],
+            "x-enum-varnames": [
+                "PlanTypeUnknown",
+                "PlanTypeOnetime",
+                "PlanTypeRecurring"
+            ]
+        },
+        "models.RecurringInterval": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "x-enum-varnames": [
+                "RecurringIntervalUnknown",
+                "RecurringIntervalMinute",
+                "RecurringIntervalHour",
+                "RecurringIntervalDay",
+                "RecurringIntervalWeek",
+                "RecurringIntervalMonth",
+                "RecurringIntervalYear"
+            ]
+        },
+        "models.RecurringUsageType": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3
+            ],
+            "x-enum-varnames": [
+                "RecurringUsageTypeUnknown",
+                "RecurringUsageTypeLicensed",
+                "RecurringUsageTypeMetered"
+            ]
+        },
+        "orgs.SettlementAddressCreateRequest": {
+            "type": "object",
+            "required": [
+                "account_type",
+                "address",
+                "address_type",
+                "chain_id",
+                "name"
+            ],
+            "properties": {
+                "account_type": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "address_type": {
+                    "type": "string"
+                },
+                "chain_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "orgs.SettlementAddressUpdateRequest": {
+            "type": "object",
+            "required": [
+                "settlement_address"
+            ],
+            "properties": {
+                "settlement_address": {
+                    "type": "string"
+                }
+            }
+        },
+        "orgs.SettlementAddressVerifyResponse": {
+            "type": "object",
+            "properties": {
+                "address_type": {
+                    "type": "string"
+                },
+                "chain_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "orgs.UpdateOrgRequest": {
+            "type": "object",
+            "required": [
+                "logo_url",
+                "name",
+                "webhook_url"
+            ],
+            "properties": {
+                "logo_url": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "webhook_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "plan.CreatePlanRequest": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "interval": {
+                    "$ref": "#/definitions/models.RecurringInterval"
+                },
+                "intervalCount": {
+                    "type": "integer"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "trial_period": {
+                    "type": "string"
+                }
+            }
+        },
+        "plan.CreatePlanResponse": {
+            "type": "object",
+            "properties": {
+                "available_quantity": {
+                    "description": "available_quantity",
+                    "type": "integer"
+                },
+                "billing_scheme": {
+                    "description": "billing_scheme",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingScheme"
+                        }
+                    ]
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "currency",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "payment_link": {
+                    "$ref": "#/definitions/models.PaymentLink"
+                },
+                "price": {
+                    "description": "price",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "recurring_interval": {
+                    "description": "recurring_interval",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.RecurringInterval"
+                        }
+                    ]
+                },
+                "recurring_interval_count": {
+                    "description": "recurring_interval_count",
+                    "type": "integer"
+                },
+                "recurring_usage_type": {
+                    "description": "recurring_usage_type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.RecurringUsageType"
+                        }
+                    ]
+                },
+                "reference": {
+                    "description": "reference",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "trial_period": {
+                    "description": "trial_period",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.PlanType"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "v1": {
+                    "description": "exclude"
+                }
+            }
+        },
+        "plan.PaymentLinkResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "customer_ident_collection": {
+                    "description": "customer_ident_collection",
+                    "type": "boolean"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "invoice_id": {
+                    "description": "invoice_id",
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "plan_id": {
+                    "description": "plan_id",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "shipping_address_collection": {
+                    "description": "shipping_address_collection",
+                    "type": "boolean"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "tax_ident_collection": {
+                    "description": "tax_ident_collection",
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "updated_by": {
+                    "description": "updated_by",
+                    "type": "string"
+                }
+            }
+        },
+        "plan.PlanResponse": {
+            "type": "object",
+            "properties": {
+                "available_quantity": {
+                    "description": "available_quantity",
+                    "type": "integer"
+                },
+                "billing_scheme": {
+                    "description": "billing_scheme",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingScheme"
+                        }
+                    ]
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "currency",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "payment_link": {
+                    "$ref": "#/definitions/plan.PaymentLinkResponse"
+                },
+                "price": {
+                    "description": "price",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "recurring_interval": {
+                    "description": "recurring_interval",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.RecurringInterval"
+                        }
+                    ]
+                },
+                "recurring_interval_count": {
+                    "description": "recurring_interval_count",
+                    "type": "integer"
+                },
+                "recurring_usage_type": {
+                    "description": "recurring_usage_type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.RecurringUsageType"
+                        }
+                    ]
+                },
+                "reference": {
+                    "description": "reference",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "trial_period": {
+                    "description": "trial_period",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.PlanType"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "v1": {
+                    "description": "v1",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "plan.UpdatePlanRequest": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "X-API-KEY",
+            "in": "header"
+        }
+    }
+}

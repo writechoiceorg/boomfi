@@ -73,14 +73,14 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Create a customer
+      description: This endpoint is used to create a new customer. It requires a payload containing details about the customer.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Customers
-      summary: Create a customer
+      summary: Create a Customer
       parameters:
       - description: Create Customer Request
         name: request
@@ -911,18 +911,25 @@ definitions:
     properties:
       customer_ident:
         type: string
+        description: Unique identifier for a customer.
       discord:
         type: string
+        description: Discord username or identifier associated with a customer, allowing for communication and linkage to Discord-based interactions.
       email:
         type: string
+        description: Customer's email address.
       name:
         type: string
+        description: Customer's name.
       number:
         type: string
+        description: Numeric identifier or contact number associated with the customer.
       twitter:
         type: string
+        description: Twitter handle associated with the customer.
       wallet_address:
         type: string
+        description: Unique address associated with a customer's wallet.
   customers.CustomerResponse:
     type: object
     properties:

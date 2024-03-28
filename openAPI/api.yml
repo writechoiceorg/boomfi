@@ -275,12 +275,12 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get all integrations
+      description: This endpoint is used to retrieve a list of all integrations associated with a organization. 
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Get all integrations
+      summary: Get All Integrations
       responses:
         '200':
           description: OK
@@ -295,7 +295,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/integrations/_templates":
     get:
       security:
@@ -1082,40 +1082,64 @@ definitions:
     properties:
       created_at:
         type: string
+        description: The timestamp indicating when the integration was created.
+        example: '2023-01-01T12:00:00Z'
       created_by:
         type: string
+        description: The user or entity that created the integration.
+        example: "user123"
       description:
-        description: description
         type: string
+        description: The description of the integration.
+        example: "Integration for data synchronization"
       enabled:
         type: boolean
+        description: Indicates whether the integration is enabled.
+        example: true
       id:
         type: integer
+        description: The unique identifier of the integration.
+        example: 123456
       last_error:
         type: string
+        description: The last error message encountered during synchronization.
+        example: "Connection timeout"
       last_sync_time:
         type: string
+        description: The timestamp indicating when the last synchronization occurred.
+        example: '2023-01-02T08:30:00Z'
       name:
-        description: name
         type: string
+        description: The name of the integration.
+        example: "Data Sync"
       org_id:
         type: string
+        description: The identifier of the organization associated with the integration.
+        example: "org123"
       properties:
         type: object
         additionalProperties: {}
+        description: Additional properties associated with the integration.
       schema:
         type: object
         additionalProperties: {}
+        description: The schema of the integration.
       status:
         "$ref": "#/definitions/models.OrgIntegrationStatus"
+        description: The status of the integration.
       template_name:
         type: string
+        description: The template name of the integration.
+        example: "Data Sync Template"
       type:
-        description: type
         allOf:
-        - "$ref": "#/definitions/models.OrgIntegrationType"
+          - "$ref": "#/definitions/models.OrgIntegrationType"
+        description: The type of the integration.
       updated_at:
         type: string
+        description: The timestamp indicating when the integration was last updated.
+        example: '2023-01-03T10:45:00Z'
+
   internal.ErrorResponse:
     type: object
     properties:

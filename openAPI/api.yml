@@ -300,12 +300,12 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get all integrations
+      description: This endpoint is used to retrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Get all integration templates
+      summary: Get All Integration Templates
       responses:
         '200':
           description: OK
@@ -320,22 +320,22 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/integrations/{name}":
     post:
       security:
       - ApiKeyAuth: []
-      description: Enable integration.
+      description: This endpoint is used to enable a specific integration identified by its unique `name`.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Enable integration.
+      summary: Enable Integration
       parameters:
       - type: string
-        description: Integration name
+        description: The name of the integration to be enabled. 
         name: name
         in: path
         required: true
@@ -355,15 +355,15 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Disable an integration
+      description: This endpoint is used to disable a specific integration identified by its unique `name`.
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Disable an integration
+      summary: Disable an Integration
       parameters:
       - type: string
-        description: integration name
+        description: The name of the integration to be disabled.
         name: name
         in: path
         required: true
@@ -377,27 +377,27 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/integrations/{name}/{orgID}":
     post:
       security:
       - ApiKeyAuth: []
-      description: Webhook
+      description: This endpoint is used to create a new webhook. It requires a payload containing details about the webhook.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Webhook
+      summary: Create Webhook
       parameters:
       - type: string
-        description: integration name
+        description: The name of the integration to bea associated to the new webhook.
         name: name
         in: path
         required: true
       - type: string
-        description: BoomFi organization ID
+        description: The unique identifier of your organization in BoomFi.
         name: orgID
         in: path
         required: true

@@ -234,30 +234,37 @@ paths:
       parameters:
       - type: string
         name: after
+        description: Filters events to include only those that occurred after the specified timestamp. 
         in: query
       - type: string
         name: before
+        description: Filters events to include only those that occurred before the specified timestamp. 
         in: query
       - maximum: 100
         minimum: 1
         type: integer
         name: limit
+        description: Specifies the maximum number of events to be included in the API response. 
         in: query
       - minimum: 1
         type: integer
         name: page
+        description: Indicates the page number of the results to be retrieved.
         in: query
       - type: string
         name: since
+        description: Filters events to include only those that occurred on or after the specified timestamp.
         in: query
       - enum:
         - asc
         - desc
         type: string
         name: sort
+        description: Specifies the sorting order for the returned events.
         in: query
       - type: string
         name: until
+        description: Filters events to include only those that occurred on or before the specified timestamp. 
         in: query
       responses:
         '200':
@@ -1047,21 +1054,29 @@ definitions:
         type: string
         description: The wallet address associated with the customer for cryptocurrency transactions.
         example: "0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520"
-
   events.Event:
     type: object
     properties:
       action:
         type: string
+        description: The action associated with the event.
+        example: "create"
       data:
         type: object
         additionalProperties: {}
+        description: Additional data associated with the event.
       id:
         type: string
+        description: The unique identifier of the event.
+        example: "event123"
       timestamp:
         type: string
+        description: The timestamp indicating when the event occurred.
+        example: "2023-01-01T12:00:00Z"
       type:
         type: string
+        description: The type or category of the event.
+        example: "user_activity"
   integrations.IntegrationsResponseItem:
     type: object
     properties:
@@ -1198,12 +1213,15 @@ definitions:
           "$ref": "#/definitions/events.Event"
       last_update:
         type: string
+        description: The timestamp indicating when the data was last updated.
         example: '2021-01-01T00:00:00Z'
       next:
         type: integer
+        description: The index indicating the next page of items.
         example: 10
       total:
         type: integer
+        description: The total number of items across all pages.
         example: 10
   internal.PaginatedItems-paylinks_PaymentLinkResponse:
     type: object

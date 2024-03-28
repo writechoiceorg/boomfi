@@ -508,34 +508,34 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Generate a variant URL for a payment link
+      description: Use this endpoint to generate a variant URL of an existing payment link.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Paylinks
-      summary: Generate variant URL
+      summary: Generate Variant Pay Link URL
       parameters:
       - type: string
-        description: Payment link ID
+        description: Unique identifier of the payment link.
         name: paylinkId
         in: path
         required: true
       - type: string
-        description: Amount
+        description: Amount to be associated with the payment link variant.
         name: amount
         in: query
       - type: string
-        description: Currency
+        description: Currency to be associated with the payment link variant.
         name: currency
         in: query
       - type: string
-        description: Customer identifier to record as customer.reference
+        description: Customer identifier to record as `customer.reference`.
         name: customer_ident
         in: query
       - type: string
-        description: Redirect to URL after successful payment
+        description: URL to redirect customer after a successful payment.
         name: redirect_to
         in: query
       responses:
@@ -1827,18 +1827,21 @@ definitions:
       type:
         type: string
         description: The type of the payment link.
-
   paylinks.GenerateVariantURLResponse:
     type: object
     properties:
+      url:
+        type: string
+        description: The generated variant URL.
+        example: "https://pay-test.boomfi.xyz/2bm4YuFSaw011jTWbevVPA3137q?amount=20&currency=EUR"
       created_by:
         type: string
+        description: The user who created the variant URL.
+        example: "user123"
       payment_link:
         "$ref": "#/definitions/paylinks.PaymentLinkResponse"
       plan:
         "$ref": "#/definitions/plan.PlanResponse"
-      url:
-        type: string
   paylinks.PaymentLinkResponse:
     type: object
     properties:

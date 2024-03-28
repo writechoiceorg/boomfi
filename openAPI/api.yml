@@ -746,15 +746,15 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get plan.
+      description: This endpoint retrieves details about a specific plan identified by the plan's unique identifier.
       produces:
       - application/json
       tags:
       - Plans
-      summary: Get plan.
+      summary: Get Plan by ID
       parameters:
       - type: string
-        description: Plan ID
+        description: The unique identifier of the plan.
         name: planId
         in: path
         required: true

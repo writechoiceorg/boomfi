@@ -10,6 +10,70 @@ info:
   version: '1.0'
 host: mapi.boomfi.xyz
 paths:
+  "/orgs":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint retrieves information about the organization.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Organization
+      summary: Get Organization
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/models.Org"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '401':
+          description: Unauthorized
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+    put:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint updates information about an organization.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Organization
+      summary: Update Organization
+      parameters:
+      - description: body
+        name: body
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/orgs.UpdateOrgRequest"
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/models.Org"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '401':
+          description: Unauthorized
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/accounts":
     get:
       security:
@@ -343,70 +407,6 @@ paths:
           description: Internal Server Error
           schema:
             type: string
-  "/orgs":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Get org.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Organization
-      summary: Get org.
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/models.Org"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '401':
-          description: Unauthorized
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-    put:
-      security:
-      - ApiKeyAuth: []
-      description: Update org.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Organization
-      summary: Update org.
-      parameters:
-      - description: body
-        name: body
-        in: body
-        required: true
-        schema:
-          "$ref": "#/definitions/orgs.UpdateOrgRequest"
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/models.Org"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '401':
-          description: Unauthorized
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
   "/paylinks":
     get:
       security:
@@ -1464,47 +1464,47 @@ definitions:
     type: object
     properties:
       created_at:
-        description: created_at
+        description: The timestamp indicating when the organization was created.
         type: string
       credits_usd:
-        description: credits_usd
+        description: The amount of credits in USD associated with the organization.
         type: number
       id:
-        description: id
+        description: The unique identifier of the organization.
         type: string
       logo_url:
-        description: logo_url
+        description: The URL of the organization's logo.
         type: string
       name:
-        description: name
+        description: The name of the organization.
         type: string
       offramp_fee_pct:
-        description: offramp_fee_pct
+        description: The off-ramp fee percentage applied by the organization.
         type: number
       owner_user_id:
-        description: owner_user_id
+        description: The user ID of the owner of the organization.
         type: string
       payment_fee_pct:
-        description: payment_fee_pct
+        description: The payment fee percentage applied by the organization.
         type: number
       properties:
-        description: properties
+        description: Additional properties associated with the organization.
         type: array
         items:
           type: integer
       swap_fee_pct:
-        description: swap_fee_pct
+        description: The swap fee percentage applied by the organization.
         type: number
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the organization was last updated.
         type: string
       v1:
-        description: v1
+        description: Additional data associated with the organization.
         type: array
         items:
           type: integer
       webhook_url:
-        description: webhook_url
+        description: The URL used for webhooks related to the organization.
         type: string
   models.OrgIntegrationStatus:
     type: integer
@@ -1675,16 +1675,20 @@ definitions:
   orgs.UpdateOrgRequest:
     type: object
     required:
-    - logo_url
-    - name
-    - webhook_url
+      - logo_url
+      - name
+      - webhook_url
     properties:
       logo_url:
         type: string
+        description: The URL of the organization's logo.
       name:
         type: string
+        description: The updated name of the organization.
       webhook_url:
         type: string
+        description: The updated webhook URL for the organization.
+
   paylinks.CreatePaymentLinkRequest:
     type: object
     properties:

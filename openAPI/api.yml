@@ -1053,26 +1053,51 @@ definitions:
     properties:
       error:
         "$ref": "#/definitions/internal.ErrorStruct"
+  internal.ErrorResponse500:
+    type: object
+    properties:
+      error:
+        "$ref": "#/definitions/internal.ErrorStruct500"
   internal.ErrorStruct:
     type: object
     properties:
       code:
         description: |-
-          Error code
+          The error code returned by the server.
           Example: 400
         type: integer
         example: 400
       errors:
-        description: List of errors
+        description: A list of detailed error objects.
         type: array
         items:
           "$ref": "#/definitions/internal.SingleError"
       message:
         description: |-
-          Error message
+          A descriptive message explaining the error.
           Example: Insufficient quantity
         type: string
         example: Insufficient quantity
+  internal.ErrorStruct500:
+    type: object
+    properties:
+      code:
+        description: |-
+          The error code returned by the server.
+          Example: 500
+        type: integer
+        example: 500
+      errors:
+        description: A list of detailed error objects.
+        type: array
+        items:
+          "$ref": "#/definitions/internal.SingleError500"
+      message:
+        description: |-
+          A descriptive message explaining the error.
+          Example: Internal server error
+        type: string
+        example: Internal server error
   internal.PaginatedItems-accounts_OrgSettlementAccountResponse:
     type: object
     properties:
@@ -1082,12 +1107,15 @@ definitions:
           "$ref": "#/definitions/accounts.OrgSettlementAccountResponse"
       last_update:
         type: string
+        description: The timestamp indicating when the pagination data was last updated.
         example: '2021-01-01T00:00:00Z'
       next:
         type: integer
+        description: The index indicating the next page of items.
         example: 10
       total:
         type: integer
+        description: The total number of items across all pages.
         example: 10
   internal.PaginatedItems-customers_ResponseCustomer:
     type: object
@@ -1274,16 +1302,31 @@ definitions:
     properties:
       domain:
         description: |-
-          Domain
+          The domain associated with the error.
           Example: orders
         type: string
         example: orders
       reason:
         description: |-
-          Error Reason
+          The reason for the error.
           Example: InsufficientQuantity
         type: string
         example: InsufficientQuantity
+  internal.SingleError500:
+    type: object
+    properties:
+      domain:
+        description: |-
+          The domain associated with the error.
+          Example: orders
+        type: string
+        example: orders
+      reason:
+        description: |-
+          The reason for the error.
+          Example: Internal
+        type: string
+        example: Internal
   models.AccountProvider:
     description: The account provider.
     type: integer

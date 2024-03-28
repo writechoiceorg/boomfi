@@ -618,7 +618,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/payments/{paymentId}":
     get:
       security:
@@ -651,46 +651,53 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/plan":
     get:
       security:
       - ApiKeyAuth: []
-      description: List plans
+      description: Retrieves a list of plans available in the system.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Plans
-      summary: List plans.
+      summary: List Plans
       parameters:
       - type: string
         name: after
+        description: Filters plans to include only those created after the specified timestamp. 
         in: query
       - type: string
         name: before
+        description: Filters plans to include only those created before the specified timestamp. 
         in: query
       - maximum: 100
         minimum: 1
         type: integer
         name: limit
+        description: Specifies the maximum number of plans to be included in the API response. 
         in: query
       - minimum: 1
         type: integer
         name: page
+        description: Indicates the page number of the results to be retrieved.
         in: query
       - type: string
         name: since
+        description: Filters plans to include only those created on or after the specified timestamp. 
         in: query
       - enum:
         - asc
         - desc
         type: string
         name: sort
+        description: Specifies the sorting order for the returned plans.
         in: query
       - type: string
         name: until
+        description: Filters plans to include only those created on or before the specified timestamp. 
         in: query
       responses:
         '200':
@@ -704,21 +711,20 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
     post:
       security:
       - ApiKeyAuth: []
-      description: Create plan.
+      description: This endpoint is used to create a new plan. It requires a payload containing the details of the plan.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Plans
-      summary: Create plan.
+      summary: Create Plan
       parameters:
-      - description: Create Plan Request
-        name: request
+      - name: request
         in: body
         required: true
         schema:
@@ -735,7 +741,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/plan/{planId}":
     get:
       security:
@@ -2014,23 +2020,31 @@ definitions:
     properties:
       amount:
         type: string
+        description: The amount associated with the plan, specified as a string. This parameter represents the cost or price of the plan.
       currency:
         type: string
+        description: The currency in which the plan amount is expressed. 
       description:
         type: string
+        description:  A brief description or summary of the plan. This parameter provides additional information about the purpose or features of the plan.
       interval:
         "$ref": "#/definitions/models.RecurringInterval"
       intervalCount:
         type: integer
+        description: The number of intervals between each billing cycle. This parameter determines how often the plan is billed within the specified interval.
       metadata:
         type: object
+        description: An object containing additional metadata associated with the plan. 
         additionalProperties: {}
       name:
         type: string
+        description: A name or label associated with the plan. This parameter represents a identifier or title for the plan.
       reference:
         type: string
+        description: A reference identifier associated with the plan. This parameter allows for linking the plan to external identifiers.
       trial_period:
         type: string
+        description: Specifies the trial period duration for the plan, if applicable. This parameter represents the duration of any trial period associated with the plan.
   plan.PaymentLinkResponse:
     type: object
     properties:

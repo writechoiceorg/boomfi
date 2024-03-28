@@ -1472,13 +1472,22 @@ definitions:
         type: string
         example: Internal
   models.AccountProvider:
-    description: The account provider.
+    description: >-
+      The account provider.
+
+      - 1 = Spreedly
     type: integer
     enum:
     - 1
     x-enum-varnames:
     - AccountProviderSpreedly
   models.AccountType:
+    description: >-
+      The type of the current account.
+
+      - 1 = Crypto
+      - 2 = Bank
+      - 3 = Card
     type: integer
     enum:
     - 1
@@ -1489,13 +1498,19 @@ definitions:
     - AccountTypeBank
     - AccountTypeCard
   models.BillingScheme:
-    description: The billing scheme determines how the charges are calculated for the subscription.
+    description: >- 
+      The billing scheme determines how the charges are calculated for the subscription.
+
+      - 1 = Flatfee
+      - 2 = Perunit
+      - 3 = Graduated
+      - 4 = Volume
     type: integer
     enum:
-    - 1: BillingSchemeFlatfee
-    - 2: BillingSchemePerunit
-    - 3: BillingSchemeGraduated
-    - 4: BillingSchemeVolume
+    - 1
+    - 2
+    - 3
+    - 4
     x-enum-varnames:
     - BillingSchemeFlatfee
     - BillingSchemePerunit
@@ -1515,10 +1530,10 @@ definitions:
 
     type: integer
     enum:
-    - 1: Lago
-    - 2: Boomfi
-    - 3: Stripe
-    - 4: Chargebee
+    - 1
+    - 2
+    - 3
+    - 4
     x-enum-varnames:
     - BillingSourceLago
     - BillingSourceBoomfi
@@ -1638,6 +1653,18 @@ definitions:
         example: "https://example.com/webhook"
 
   models.OrgIntegrationStatus:
+    description: >-
+      The current status of the organization integration:
+
+      - 1 = Unknown
+      
+      - 2 = Updating
+      
+      - 3 = Ready
+      
+      - 4 = Disabling
+      
+      - 5 = Disabled
     type: integer
     enum:
     - 1
@@ -1652,6 +1679,18 @@ definitions:
     - OrgIntegrationStatusDisabling
     - OrgIntegrationStatusDisabled
   models.OrgIntegrationType:
+    description: >-
+      The integration type of the organization:
+
+      - 1 = TypeUnknown
+
+      - 2 = TypeBilling
+
+      - 3 = TypeEcommerce
+
+      - 4 = TypeAccounting
+
+      - 5 = TypeWorkflow
     type: integer
     enum:
     - 1
@@ -1666,6 +1705,30 @@ definitions:
     - OrgIntegrationTypeAccounting
     - OrgIntegrationTypeWorkflow
   models.PaymentMethod:
+    description: >-
+      The payment method:
+
+      - 1 = Unknown
+
+      - 2 = Merchantcontract
+
+      - 3 = Proxywallet
+
+      - 4 = Unblock
+
+      - 5 = Card
+
+      - 6 = Googlepay
+
+      - 7 = Applepay
+
+      - 8 = Paypal
+
+      - 9 = Directdebit
+
+      - 10 = Ramp
+
+      - 11 = Rampcryptosettlement
     type: integer
     enum:
     - 1
@@ -1692,6 +1755,24 @@ definitions:
     - PaymentMethodRamp
     - PaymentMethodRampcryptosettlement
   models.PaymentStatus:
+    description: >-
+      The current status of the payment_id:
+
+      - 1 = Unknown
+
+      - 2 = Requirespaymentmethod
+
+      - 3 = Requiresconfirmation
+
+      - 4 = Requiresaction
+
+      - 5 = Processing
+
+      - 6 = Succeeded
+
+      - 7 = Canceled
+
+      - 8 = Failed
     type: integer
     enum:
     - 1
@@ -1712,6 +1793,14 @@ definitions:
     - PaymentStatusCanceled
     - PaymentStatusFailed
   models.PlanType:
+    description: >-
+      The type of the plan:
+
+      - 1 = Unknown
+
+      - 2 = Onetime
+
+      - 3 = Recurring
     type: integer
     enum:
     - 1
@@ -1726,19 +1815,19 @@ definitions:
     description: >-
           The recurring interval for the payment link.
 
-          - 1 = RecurringIntervalUnknown
+          - 1 = Unknown
 
-          - 2 = RecurringIntervalMinute
+          - 2 = Minute
           
-          - 3 = RecurringIntervalHour
+          - 3 = Hour
           
-          - 4 = RecurringIntervalDay
+          - 4 = Day
           
-          - 5 = RecurringIntervalWeek
+          - 5 = Week
           
-          - 6 = RecurringIntervalMonth
+          - 6 = Month
           
-          - 7 = RecurringIntervalYear
+          - 7 = Year
           
     enum:
     - 1
@@ -1805,6 +1894,15 @@ definitions:
     - SubscriptionStatusExpired
     - SubscriptionStatusCanceled
   models.TransactionStatus:
+    description: >-
+      The transaction's current models.PaymentStatus:
+
+      - 1 = Pending
+
+      - 2 = Success
+
+      - 3 = Failed
+
     type: integer
     enum:
     - 1
@@ -1815,6 +1913,28 @@ definitions:
     - TransactionStatusSuccess
     - TransactionStatusFailed
   models.TransactionType:
+    description: >-
+      The type of the transaction:
+
+      - 1 = Unknown
+
+      - 2 = Approval
+
+      - 3 = Deposit
+
+      - 4 = Withdraw
+
+      - 5 = Payment
+
+      - 6 = Refund
+
+      - 7 = Subscribe
+
+      - 8 = Unsubscribe
+
+      - 9 = Internal
+
+      - 10 = Swap
     type: integer
     enum:
     - 1
@@ -1871,15 +1991,6 @@ definitions:
         "$ref": "#/definitions/models.RecurringInterval"
         description: >-
           The recurring interval for the payment link.
-          | Enum Value | Enum Name                |
-          |------------|--------------------------|
-          | 1          | RecurringIntervalUnknown |
-          | 2          | RecurringIntervalMinute  |
-          | 3          | RecurringIntervalHour    |
-          | 4          | RecurringIntervalDay     |
-          | 5          | RecurringIntervalWeek    |
-          | 6          | RecurringIntervalMonth   |
-          | 7          | RecurringIntervalYear    |
       intervalCount:
         type: integer
         description: The number of intervals for the recurring payment link.

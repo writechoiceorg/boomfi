@@ -473,21 +473,20 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
     post:
       security:
       - ApiKeyAuth: []
-      description: Create payment link.
+      description: Use this endpoint to generate a new payment link in BoomFi.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Paylinks
-      summary: Create payment link.
+      summary: Create Payment Link
       parameters:
-      - description: Create Payment Link Request
-        name: request
+      - name: request
         in: body
         required: true
         schema:
@@ -1772,25 +1771,46 @@ definitions:
     properties:
       amount:
         type: string
+        description: The amount associated with the payment link.
       currency:
         type: string
+        description: The currency of the payment link.
       description:
         type: string
+        description: A description of the payment link.
       interval:
         "$ref": "#/definitions/models.RecurringInterval"
+        description: >-
+          The recurring interval for the payment link.
+          | Enum Value | Enum Name                |
+          |------------|--------------------------|
+          | 1          | RecurringIntervalUnknown |
+          | 2          | RecurringIntervalMinute  |
+          | 3          | RecurringIntervalHour    |
+          | 4          | RecurringIntervalDay     |
+          | 5          | RecurringIntervalWeek    |
+          | 6          | RecurringIntervalMonth   |
+          | 7          | RecurringIntervalYear    |
       intervalCount:
         type: integer
+        description: The number of intervals for the recurring payment link.
       metadata:
         type: object
-        additionalProperties: {}
+        additionalProperties: true
+        description: Additional metadata associated with the payment link.
       name:
         type: string
+        description: The name of the payment link.
       reference:
         type: string
+        description: The reference for the payment link.
       trial_period:
         type: string
+        description: The trial period for the payment link.
       type:
         type: string
+        description: The type of the payment link.
+
   paylinks.GenerateVariantURLResponse:
     type: object
     properties:

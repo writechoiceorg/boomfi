@@ -558,47 +558,54 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/payments":
     get:
       security:
       - ApiKeyAuth: []
-      description: List payments
+      description: Retrieve a list of payments.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Payments
-      summary: List payments.
+      summary: List Payments
       parameters:
-      - type: string
-        name: after
+      - name: after
         in: query
-      - type: string
-        name: before
-        in: query
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        in: query
-      - minimum: 1
-        type: integer
-        name: page
-        in: query
-      - type: string
-        name: since
-        in: query
-      - enum:
-        - asc
-        - desc
+        description: Retrieve payments after this timestamp.
         type: string
-        name: sort
+      - name: before
         in: query
-      - type: string
-        name: until
+        description: Retrieve payments before this timestamp.
+        type: string
+      - name: limit
         in: query
+        description: The maximum number of payments to retrieve (default=100, maximum=100).
+        type: integer
+        minimum: 1
+        maximum: 100
+      - name: page
+        in: query
+        description: The page number of results to retrieve.
+        type: integer
+        minimum: 1
+      - name: since
+        in: query
+        description: Retrieve payments since this timestamp.
+        type: string
+      - name: sort
+        in: query
+        description: Sort order for payments (asc=ascending, desc=descending).
+        type: string
+        enum:
+          - asc
+          - desc
+      - name: until
+        in: query
+        description: Retrieve payments until this timestamp.
+        type: string
       responses:
         '200':
           description: OK
@@ -961,42 +968,53 @@ definitions:
     type: object
     properties:
       created_at:
-        description: created_at
+        description: The timestamp indicating when the customer was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       deleted_at:
-        description: deleted_at
+        description: The timestamp indicating when the customer was deleted, if applicable.
         type: string
+        example: '2023-01-05T10:00:00Z'
       email:
-        description: email
+        description: The email address of the customer.
         type: string
+        example: customer@example.com
       id:
-        description: id
+        description: The unique identifier of the customer.
         type: string
+        example: customer123
       metadata:
         type: object
         additionalProperties: {}
       name:
-        description: name
+        description: The name of the customer.
         type: string
+        example: John Doe
       org_id:
-        description: org_id
+        description: The identifier representing the organization associated with the customer.
         type: string
+        example: org123
       phone:
-        description: phone
+        description: The phone number of the customer.
         type: string
+        example: +1234567890
       properties:
+        description: Additional properties associated with the customer.
         type: object
         additionalProperties: {}
       reference:
-        description: reference
+        description: The reference associated with the customer.
         type: string
+        example: REF-123456
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the customer was last updated.
         type: string
+        example: '2023-01-02T09:00:00Z'
       v1: {}
       wallet_address:
-        description: wallet_address
+        description: The wallet address associated with the customer.
         type: string
+        example: 0x0123456789abcdef0123456789abcdef0123456
   customers.ResponseCustomer:
     type: object
     properties:
@@ -1281,12 +1299,15 @@ definitions:
           "$ref": "#/definitions/payments.PaymentResponse"
       last_update:
         type: string
+        description: The timestamp indicating the last update time.
         example: '2021-01-01T00:00:00Z'
       next:
         type: integer
+        description: The number of the next page of results.
         example: 10
       total:
         type: integer
+        description: The total number of items in the response.
         example: 10
   internal.PaginatedItems-plan_PlanResponse:
     type: object
@@ -1479,44 +1500,49 @@ definitions:
     type: object
     properties:
       chain_id:
-        description: chain_id
+        description: The unique identifier representing a blockchain network or chain.
         type: integer
+        example: 1
       created_at:
-        description: created_at
+        description: The timestamp indicating when the crypto transaction was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       id:
-        description: id
+        description: The unique identifier of the crypto transaction.
         type: integer
       payment_id:
-        description: payment_id
+        description: The ID of the payment associated with the crypto transaction.
         allOf:
         - "$ref": "#/definitions/sql.NullString"
       raw:
-        description: raw
+        description: Additional raw data associated with the crypto transaction.
         type: array
         items:
           type: integer
       sequence:
-        description: sequence
+        description: The sequence number of the crypto transaction.
         type: string
+        example: "123456789"
       source:
-        description: source
+        description: Details of the source of the crypto transaction.
         allOf:
         - "$ref": "#/definitions/models.PaymentMethod"
       status:
-        description: status
+        description: The status of the crypto transaction.
         allOf:
         - "$ref": "#/definitions/models.TransactionStatus"
       transaction_hash:
-        description: transaction_hash
+        description: The transaction hash of the crypto transaction.
         type: string
+        example: "0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
       type:
-        description: type
+        description: The type of the crypto transaction.
         allOf:
         - "$ref": "#/definitions/models.TransactionType"
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the crypto transaction was last updated.
         type: string
+        example: '2023-01-01T12:30:00Z'
   models.NullAccountProvider:
     type: object
     properties:
@@ -1914,58 +1940,69 @@ definitions:
     type: object
     properties:
       amount:
-        description: amount
+        description: The amount associated with the payment.
         type: string
+        example: "100.00"
       created_at:
-        description: created_at
+        description: The timestamp indicating when the payment was created.
         type: string
+        example: "2023-01-01T12:00:00Z"
       crypto_transaction:
         "$ref": "#/definitions/models.CryptoTransaction"
       currency:
-        description: currency
+        description: The currency of the payment.
         type: string
+        example: "USD"
       customer:
         "$ref": "#/definitions/customers.CustomerResponse"
       customer_id:
-        description: customer_id
+        description: The ID of the customer associated with the payment.
         type: string
+        example: "customer123"
       id:
-        description: id
+        description: The unique identifier of the payment.
         type: string
+        example: "payment123"
       invoice_id:
-        description: invoice_id
+        description: The ID of the invoice associated with the payment.
         type: string
+        example: "invoice123"
       next_action:
-        description: next_action
+        description: The next action related to the payment.
         type: string
+        example: "verify_payment"
       org_id:
-        description: org_id
+        description: The ID of the organization associated with the payment.
         type: string
+        example: "org123"
       parent_id:
-        description: parent_id
+        description: The ID of the parent payment if this payment is a part of a larger transaction.
         type: string
+        example: "parent_payment123"
       payment_link:
         "$ref": "#/definitions/paylinks.PaymentLinkResponse"
       payment_method:
-        description: payment_method
+        description: Details of the payment method used for the payment.
         allOf:
         - "$ref": "#/definitions/models.PaymentMethod"
       properties:
+        description: Additional properties associated with the payment.
         type: object
         additionalProperties: {}
       scheduled_time:
-        description: scheduled_time
+        description: The scheduled time for the payment.
         type: integer
+        example: 1643712000
       source:
-        description: source
+        description: Details of the billing source associated with the payment.
         allOf:
         - "$ref": "#/definitions/models.BillingSource"
       status:
-        description: status
+        description: The status of the payment.
         allOf:
         - "$ref": "#/definitions/models.PaymentStatus"
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the payment was last updated.
         type: string
       v1:
         description: v1

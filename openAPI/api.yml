@@ -1285,6 +1285,7 @@ definitions:
         type: string
         example: InsufficientQuantity
   models.AccountProvider:
+    description: The account provider.
     type: integer
     enum:
     - 1

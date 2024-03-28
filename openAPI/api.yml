@@ -835,15 +835,15 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Cancel subscription
+      description: Cancels the subscription identified by the provided subscription ID.
       produces:
       - application/json
       tags:
       - Subscriptions
-      summary: Cancel subscription
+      summary: Cancel Subscription
       parameters:
       - type: string
-        description: Subscription ID
+        description: The unique identifier of the subscription to be canceled.
         name: subscriptionID
         in: path
         required: true
@@ -863,7 +863,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
 definitions:
   accounts.ChainResponse:
     type: object
@@ -1657,13 +1657,13 @@ definitions:
       The current status of the organization integration:
 
       - 1 = Unknown
-      
+
       - 2 = Updating
-      
+
       - 3 = Ready
-      
+
       - 4 = Disabling
-      
+
       - 5 = Disabled
     type: integer
     enum:

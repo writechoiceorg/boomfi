@@ -99,321 +99,6 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/customers":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve a paginated list of customers for a given organization, with optional sorting and filtering parameters.
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: List Customers
-      parameters:
-      - type: integer
-        name: itemsPerPage
-        description: The number of items to be included in each page of the API response. 
-        in: query
-      - type: integer
-        name: page
-        description: The page number of the results to be retrieved. 
-        in: query
-      - type: string
-        name: search
-        description: The search query or keyword that filters the results returned by the API. 
-        in: query
-      - enum:
-        - first-time
-        - repeat
-        type: string
-        description: Specifies a type or category for filtering the results.
-        name: type
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-customers_ResponseCustomer"
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to create a new customer. It requires a payload containing details about the customer.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: Create a Customer
-      parameters:
-      - description: Create Customer Request
-        name: request
-        in: body
-        required: true
-        schema:
-          "$ref": "#/definitions/customers.CreateCustomerRequest"
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/customers.ResponseCustomer"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/customers/{customerID}":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to retrieve a specific customer identified by its unique `customerID`. 
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: Get Customer by ID
-      parameters:
-      - type: string
-        description: Unique identifier of the customer.
-        name: customerID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-customers_ResponseCustomer"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-    delete:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to delete a specific customer identified by its unique `customerID`. 
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: Delete Customer
-      parameters:
-      - type: string
-        description: Unique identifier of the customer.
-        name: customerID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/events":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve a paginated list of events for a given organization, with
-        optional sorting and filtering parameters
-      produces:
-      - application/json
-      tags:
-      - Events
-      summary: List events for an organization
-      parameters:
-      - type: string
-        name: after
-        description: Filters events to include only those that occurred after the specified timestamp. 
-        in: query
-      - type: string
-        name: before
-        description: Filters events to include only those that occurred before the specified timestamp. 
-        in: query
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        description: Specifies the maximum number of events to be included in the API response. 
-        in: query
-      - minimum: 1
-        type: integer
-        name: page
-        description: Indicates the page number of the results to be retrieved.
-        in: query
-      - type: string
-        name: since
-        description: Filters events to include only those that occurred on or after the specified timestamp.
-        in: query
-      - enum:
-        - asc
-        - desc
-        type: string
-        name: sort
-        description: Specifies the sorting order for the returned events.
-        in: query
-      - type: string
-        name: until
-        description: Filters events to include only those that occurred on or before the specified timestamp. 
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
-  "/integrations":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to retrieve a list of all integrations associated with a organization. 
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Get All Integrations
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations/_templates":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to retrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Get All Integration Templates
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations/{name}":
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to enable a specific integration identified by its unique `name`.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Enable Integration
-      parameters:
-      - type: string
-        description: The name of the integration to be enabled. 
-        name: name
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '400':
-          description: Bad Request
-          schema:
-            type: string
-        '500':
-          description: Internal Server Error
-          schema:
-            type: string
-    delete:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to disable a specific integration identified by its unique `name`.
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Disable an Integration
-      parameters:
-      - type: string
-        description: The name of the integration to be disabled.
-        name: name
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations/{name}/{orgID}":
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to create a new webhook. It requires a payload containing details about the webhook.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Create Webhook
-      parameters:
-      - type: string
-        description: The name of the integration to bea associated to the new webhook.
-        name: name
-        in: path
-        required: true
-      - type: string
-        description: The unique identifier of your organization in BoomFi.
-        name: orgID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '400':
-          description: Bad Request
-          schema:
-            type: string
-        '500':
-          description: Internal Server Error
-          schema:
-            type: string
   "/paylinks":
     get:
       security:
@@ -559,6 +244,57 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
+  "/events":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Retrieve a paginated list of events for a given organization, with
+        optional sorting and filtering parameters
+      produces:
+      - application/json
+      tags:
+      - Events
+      summary: List events for an organization
+      parameters:
+      - type: string
+        name: after
+        description: Filters events to include only those that occurred after the specified timestamp. 
+        in: query
+      - type: string
+        name: before
+        description: Filters events to include only those that occurred before the specified timestamp. 
+        in: query
+      - maximum: 100
+        minimum: 1
+        type: integer
+        name: limit
+        description: Specifies the maximum number of events to be included in the API response. 
+        in: query
+      - minimum: 1
+        type: integer
+        name: page
+        description: Indicates the page number of the results to be retrieved.
+        in: query
+      - type: string
+        name: since
+        description: Filters events to include only those that occurred on or after the specified timestamp.
+        in: query
+      - enum:
+        - asc
+        - desc
+        type: string
+        name: sort
+        description: Specifies the sorting order for the returned events.
+        in: query
+      - type: string
+        name: until
+        description: Filters events to include only those that occurred on or before the specified timestamp. 
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
   "/payments":
     get:
       security:
@@ -864,6 +600,271 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
+  "/customers":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Retrieve a paginated list of customers for a given organization, with optional sorting and filtering parameters.
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: List Customers
+      parameters:
+      - type: integer
+        name: itemsPerPage
+        description: The number of items to be included in each page of the API response. 
+        in: query
+      - type: integer
+        name: page
+        description: The page number of the results to be retrieved. 
+        in: query
+      - type: string
+        name: search
+        description: The search query or keyword that filters the results returned by the API. 
+        in: query
+      - enum:
+        - first-time
+        - repeat
+        type: string
+        description: Specifies a type or category for filtering the results.
+        name: type
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-customers_ResponseCustomer"
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to create a new customer. It requires a payload containing details about the customer.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: Create a Customer
+      parameters:
+      - description: Create Customer Request
+        name: request
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/customers.CreateCustomerRequest"
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/customers.ResponseCustomer"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/customers/{customerID}":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to retrieve a specific customer identified by its unique `customerID`. 
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: Get Customer by ID
+      parameters:
+      - type: string
+        description: Unique identifier of the customer.
+        name: customerID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-customers_ResponseCustomer"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to delete a specific customer identified by its unique `customerID`. 
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: Delete Customer
+      parameters:
+      - type: string
+        description: Unique identifier of the customer.
+        name: customerID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/integrations":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to retrieve a list of all integrations associated with a organization. 
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Get All Integrations
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/integrations/_templates":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to retrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Get All Integration Templates
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/integrations/{name}":
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to enable a specific integration identified by its unique `name`.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Enable Integration
+      parameters:
+      - type: string
+        description: The name of the integration to be enabled. 
+        name: name
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to disable a specific integration identified by its unique `name`.
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Disable an Integration
+      parameters:
+      - type: string
+        description: The name of the integration to be disabled.
+        name: name
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/integrations/{name}/{orgID}":
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to create a new webhook. It requires a payload containing details about the webhook.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Create Webhook
+      parameters:
+      - type: string
+        description: The name of the integration to bea associated to the new webhook.
+        name: name
+        in: path
+        required: true
+      - type: string
+        description: The unique identifier of your organization in BoomFi.
+        name: orgID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  
 definitions:
   accounts.ChainResponse:
     type: object

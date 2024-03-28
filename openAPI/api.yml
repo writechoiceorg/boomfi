@@ -834,14 +834,19 @@ definitions:
     properties:
       category:
         type: string
+        description: The category or classification of the chain.
       code:
         type: string
+        description: The code or abbreviation associated with the chain.
       is_testnet:
         type: boolean
+        description: Indicates whether the chain is a testnet (true) or not (false).
       name:
         type: string
+        description: The name or title associated with the chain.
       native_currency_symbol:
         type: string
+        description: The symbol representing the native currency of the chain.
   accounts.OrgSettlementAccountResponse:
     type: object
     properties:
@@ -853,49 +858,50 @@ definitions:
         allOf:
         - "$ref": "#/definitions/models.AccountType"
       address:
-        description: address
+        description: The cryptocurrency wallet address associated with a specific account
         type: string
       chain:
         "$ref": "#/definitions/accounts.ChainResponse"
       chain_id:
-        description: chain_id
+        description: The unique identifier representing a blockchain network or chain.
         type: integer
       created_at:
-        description: created_at
+        description: The timestamp indicating when the entity was created.
         type: string
       created_by:
-        description: created_by
+        description: Information about the user or entity that created the entry.
         type: string
       currencies:
-        description: currencies
+        description: An array containing the names or symbols of the currencies supported.
         type: array
         items:
           type: string
       deleted_at:
-        description: deleted_at
+        description: The timestamp indicating when the account was deleted.
         type: string
       enabled:
-        description: enabled
+        description: Indicates whether the account is currently enabled.
         type: boolean
       id:
-        description: id
+        description: The unique identifier for the account.
         type: integer
       name:
-        description: name
+        description: The name or title associated with the account.
         type: string
       org_id:
-        description: org_id
+        description: The identifier representing the organization associated with the account.
         type: string
       properties:
         type: object
         additionalProperties: {}
       provider:
+        description: The account provider associated with the account.
         "$ref": "#/definitions/models.AccountProvider"
       sort_code:
-        description: sort_code
+        description: The sort code associated with the account.
         type: string
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the entity was last updated.
         type: string
   customers.CreateCustomerRequest:
     type: object

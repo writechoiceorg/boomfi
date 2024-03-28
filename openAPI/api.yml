@@ -34,7 +34,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/customers":
     get:
       security:

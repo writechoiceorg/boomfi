@@ -503,7 +503,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/paylinks/generate-variant/{paylinkId}":
     get:
       security:
@@ -1669,6 +1669,17 @@ definitions:
     - PlanTypeRecurring
   models.RecurringInterval:
     type: integer
+    description: >-
+          The recurring interval for the payment link.
+          | Enum Value | Enum Name                |
+          |------------|--------------------------|
+          | 1          | RecurringIntervalUnknown |
+          | 2          | RecurringIntervalMinute  |
+          | 3          | RecurringIntervalHour    |
+          | 4          | RecurringIntervalDay     |
+          | 5          | RecurringIntervalWeek    |
+          | 6          | RecurringIntervalMonth   |
+          | 7          | RecurringIntervalYear    |
     enum:
     - 1
     - 2

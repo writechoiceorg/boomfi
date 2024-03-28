@@ -856,44 +856,55 @@ definitions:
       account_number:
         description: The account number.
         type: string
+        example: "123456789"
       account_type:
         description: The type of the account.
         allOf:
-        - "$ref": "#/definitions/models.AccountType"
+          - "$ref": "#/definitions/models.AccountType"
       address:
-        description: The cryptocurrency wallet address associated with a specific account
+        description: The cryptocurrency wallet address associated with a specific account.
         type: string
+        example: "0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520"
       chain:
         "$ref": "#/definitions/accounts.ChainResponse"
       chain_id:
         description: The unique identifier representing a blockchain network or chain.
         type: integer
+        example: 1
       created_at:
         description: The timestamp indicating when the entity was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       created_by:
         description: Information about the user or entity that created the entry.
         type: string
+        example: "user123"
       currencies:
         description: An array containing the names or symbols of the currencies supported.
         type: array
         items:
           type: string
+        example: ["BTC", "ETH", "USD"]
       deleted_at:
         description: The timestamp indicating when the account was deleted.
         type: string
+        example: '2023-01-02T08:30:00Z'
       enabled:
         description: Indicates whether the account is currently enabled.
         type: boolean
+        example: true
       id:
         description: The unique identifier for the account.
         type: integer
+        example: 123456
       name:
         description: The name or title associated with the account.
         type: string
+        example: "Primary Account"
       org_id:
         description: The identifier representing the organization associated with the account.
         type: string
+        example: "org123"
       properties:
         type: object
         additionalProperties: {}
@@ -903,9 +914,12 @@ definitions:
       sort_code:
         description: The sort code associated with the account.
         type: string
+        example: "123456"
       updated_at:
         description: The timestamp indicating when the entity was last updated.
         type: string
+        example: '2023-01-03T10:45:00Z'
+
   customers.CreateCustomerRequest:
     type: object
     properties:

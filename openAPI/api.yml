@@ -968,36 +968,65 @@ definitions:
     properties:
       created_at:
         type: string
+        description: The timestamp indicating when the customer record was created.
+        example: '2023-03-15T08:30:00Z'
       customer_ident:
         type: string
+        description: The unique identifier for the customer.
+        example: "CUST123"
       email:
         type: string
+        description: The email address associated with the customer.
+        example: example@email.com
       guest:
         type: boolean
+        description: Indicates whether the customer is a guest (true) or not (false).
+        example: false
       id:
         type: string
+        description: The unique identifier for the customer.
+        example: "123456789"
       is_deleted:
         type: boolean
+        description: Indicates whether the customer has been deleted (true) or not (false).
+        example: false
       last_payment_date:
         type: string
+        description: The timestamp indicating the date of the last payment made by the customer.
+        example: '2023-03-20T12:00:00Z'
       metadata:
         type: object
+        description: Additional metadata associated with the customer.
         additionalProperties: {}
       name:
         type: string
+        description: The name of the customer.
+        example: John Doe
       organisation_id:
         type: string
+        description: The identifier of the organization to which the customer belongs.
+        example: "ORG123"
       payments_count:
         type: integer
+        description: The total count of payments made by the customer.
+        example: 5
       phone:
         type: string
+        description: The phone number associated with the customer.
+        example: +1234567890
       properties:
         type: object
+        description: Additional custom properties associated with the customer.
         additionalProperties: {}
       updated_at:
         type: string
+        description: The timestamp indicating when the customer record was last updated.
+        example: '2023-03-25T10:45:00Z'
       wallet_address:
         type: string
+        description: The wallet address associated with the customer for cryptocurrency transactions.
+        example: "0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520"
+
   events.Event:
     type: object
     properties:
@@ -1129,12 +1158,15 @@ definitions:
           "$ref": "#/definitions/customers.ResponseCustomer"
       last_update:
         type: string
+        description: The timestamp indicating when the data was last updated.
         example: '2021-01-01T00:00:00Z'
       next:
         type: integer
+        description: The index indicating the next page of items.
         example: 10
       total:
         type: integer
+        description: The total number of items across all pages.
         example: 10
   internal.PaginatedItems-events_Event:
     type: object

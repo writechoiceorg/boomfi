@@ -1671,15 +1671,14 @@ definitions:
     type: integer
     description: >-
           The recurring interval for the payment link.
-          | Enum Value | Enum Name                |
-          |------------|--------------------------|
-          | 1          | RecurringIntervalUnknown |
-          | 2          | RecurringIntervalMinute  |
-          | 3          | RecurringIntervalHour    |
-          | 4          | RecurringIntervalDay     |
-          | 5          | RecurringIntervalWeek    |
-          | 6          | RecurringIntervalMonth   |
-          | 7          | RecurringIntervalYear    |
+
+          - 1 = RecurringIntervalUnknown
+          - 2 = RecurringIntervalMinute
+          - 3 = RecurringIntervalHour
+          - 4 = RecurringIntervalDay
+          - 5 = RecurringIntervalWeek
+          - 6 = RecurringIntervalMonth
+          - 7 = RecurringIntervalYear
     enum:
     - 1
     - 2

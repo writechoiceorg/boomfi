@@ -100,20 +100,20 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/customers/{customerID}":
     get:
       security:
       - ApiKeyAuth: []
-      description: Get customer
+      description: This endpoint is used to retrieve a specific customer identified by its unique `customerID`. 
       produces:
       - application/json
       tags:
       - Customers
-      summary: Get customer
+      summary: Get Customer by ID
       parameters:
       - type: string
-        description: Customer ID
+        description: Unique identifier of the customer.
         name: customerID
         in: path
         required: true
@@ -129,19 +129,19 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
     delete:
       security:
       - ApiKeyAuth: []
-      description: Delete customer
+      description: This endpoint is used to delete a specific customer identified by its unique `customerID`. 
       produces:
       - application/json
       tags:
       - Customers
-      summary: Delete customer
+      summary: Delete Customer
       parameters:
       - type: string
-        description: Customer ID
+        description: Unique identifier of the customer.
         name: customerID
         in: path
         required: true
@@ -155,7 +155,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/events":
     get:
       security:

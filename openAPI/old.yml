@@ -10,56 +10,35 @@ info:
   version: '1.0'
 host: mapi.boomfi.xyz
 paths:
-  "/accounts":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve all available accounts on the system.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Accounts
-      summary: List Accounts
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-accounts_OrgSettlementAccountResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
   "/customers":
     get:
       security:
       - ApiKeyAuth: []
       description: Retrieve a paginated list of customers for a given organization,
-        with optional sorting and filtering parameters
+        with optional sorting and filtering parameters.
       produces:
       - application/json
       tags:
       - Customers
-      summary: List customers
+      summary: List Customers
       parameters:
       - type: integer
         name: itemsPerPage
+        description: The number of items to be included in each page of the API response. 
         in: query
       - type: integer
         name: page
+        description: The page number of the results to be retrieved. 
         in: query
       - type: string
         name: search
+        description: The search query or keyword that filters the results returned by the API. 
         in: query
       - enum:
         - first-time
         - repeat
         type: string
+        description: Specifies a type or category for filtering the results.
         name: type
         in: query
       responses:
@@ -70,14 +49,14 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Create a customer
+      description: This endpoint is used to create a new customer. It requires a payload containing details about the customer.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Customers
-      summary: Create a customer
+      summary: Create a Customer
       parameters:
       - description: Create Customer Request
         name: request
@@ -102,15 +81,15 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get customer
+      description: This endpoint is used to retrieve a specific customer identified by its unique `customerID`. 
       produces:
       - application/json
       tags:
       - Customers
-      summary: Get customer
+      summary: Get Customer by ID
       parameters:
       - type: string
-        description: Customer ID
+        description: Unique identifier for a customer.
         name: customerID
         in: path
         required: true
@@ -130,15 +109,15 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Delete customer
+      description: This endpoint is used to delete a specific customer identified by its unique `customerID`. 
       produces:
       - application/json
       tags:
       - Customers
-      summary: Delete customer
+      summary: Delete Customer
       parameters:
       - type: string
-        description: Customer ID
+        description: Unique identifier for a customer.
         name: customerID
         in: path
         required: true
@@ -158,39 +137,46 @@ paths:
       security:
       - ApiKeyAuth: []
       description: Retrieve a paginated list of events for a given organization, with
-        optional sorting and filtering parameters
+        optional sorting and filtering parameters.
       produces:
       - application/json
       tags:
       - Events
-      summary: List events for an organization
+      summary: List Events for an Organization
       parameters:
       - type: string
         name: after
+        description: Filters events to include only those that occurred after the specified timestamp. 
         in: query
       - type: string
         name: before
+        description: Filters events to include only those that occurred before the specified timestamp. 
         in: query
       - maximum: 100
         minimum: 1
         type: integer
         name: limit
+        description: Specifies the maximum number of events to be included in the API response. 
         in: query
       - minimum: 1
         type: integer
         name: page
+        description: Indicates the page number of the results to be retrieved.
         in: query
       - type: string
         name: since
+        description: Filters events to include only those that occurred on or after the specified timestamp.
         in: query
       - enum:
         - asc
         - desc
         type: string
         name: sort
+        description: Specifies the sorting order for the returned events.
         in: query
       - type: string
         name: until
+        description: Filters events to include only those that occurred on or before the specified timestamp. 
         in: query
       responses:
         '200':
@@ -201,12 +187,12 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get all integrations
+      description: This endpoint is used to retrieve a list of all integrations associated with a organization. 
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Get all integrations
+      summary: Get All Integrations
       responses:
         '200':
           description: OK
@@ -226,12 +212,12 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get all integrations
+      description: This endpoint is used to retrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Get all integration templates
+      summary: Get All Integration Templates
       responses:
         '200':
           description: OK
@@ -251,19 +237,24 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Enable integration.
+      description: This endpoint is used to enable a specific integration identified by its unique `name`. 
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Enable integration.
+      summary: Enable Integration
       parameters:
       - type: string
-        description: Integration name
+        description: User-defined identifier for the integration. 
         name: name
         in: path
+        required: true
+      - type: string
+        description: Represents the organizational unique identifier for version 1.
+        name: X-Org-Id
+        in: header
         required: true
       responses:
         '200':
@@ -281,15 +272,15 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Disable an integration
+      description: This endpoint is used to disable a specific integration identified by its unique `name`. 
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Disable an integration
+      summary: Disable an Integration
       parameters:
       - type: string
-        description: integration name
+        description: User-defined identifier for the integration. 
         name: name
         in: path
         required: true
@@ -308,22 +299,22 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Webhook
+      description: This endpoint is used to create a new webhook. It requires a payload containing details about the webhook.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Integrations
-      summary: Webhook
+      summary: Create Webhook
       parameters:
       - type: string
-        description: integration name
+        description:  User-defined identifier for the integration.
         name: name
         in: path
         required: true
       - type: string
-        description: BoomFi organization ID
+        description: The unique identifier of your organization associated with BoomFi.
         name: orgID
         in: path
         required: true
@@ -344,14 +335,14 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get org.
+      description: This endpoint is used to retrieve details about your organization.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Organization
-      summary: Get org.
+      summary: Get Organization
       responses:
         '200':
           description: OK
@@ -372,14 +363,14 @@ paths:
     put:
       security:
       - ApiKeyAuth: []
-      description: Update org.
+      description: This endpoint is used to update the details of your organization.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Organization
-      summary: Update org.
+      summary: Update Organization
       parameters:
       - description: body
         name: body
@@ -404,270 +395,198 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-  "/paylinks":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: List paylinks
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Paylinks
-      summary: List paylinks.
-      parameters:
-      - type: string
-        name: after
-        in: query
-      - type: string
-        name: before
-        in: query
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        in: query
-      - minimum: 1
-        type: integer
-        name: page
-        in: query
-      - type: string
-        name: since
-        in: query
-      - enum:
-        - asc
-        - desc
-        type: string
-        name: sort
-        in: query
-      - type: string
-        name: until
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-paylinks_PaymentLinkResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+  "/orgs/settlement-address":
     post:
       security:
       - ApiKeyAuth: []
-      description: Create payment link.
+      description: This endpoint is used to create a new settlement address. It requires a payload containing details of the address to be created.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
-      - Paylinks
-      summary: Create payment link.
+      - Organization
+      summary: Create Settlement Address
       parameters:
-      - description: Create Payment Link Request
-        name: request
+      - description: body
+        name: body
         in: body
         required: true
         schema:
-          "$ref": "#/definitions/paylinks.CreatePaymentLinkRequest"
+          "$ref": "#/definitions/orgs.SettlementAddressCreateRequest"
       responses:
         '200':
           description: OK
           schema:
-            "$ref": "#/definitions/internal.Response-paylinks_PaymentLinkResponse"
+            "$ref": "#/definitions/models.OrgSettlementAccount"
         '400':
           description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '401':
+          description: Unauthorized
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-  "/paylinks/generate-variant/{paylinkId}":
+  "/orgs/settlement-address/verify/{address}":
     get:
       security:
       - ApiKeyAuth: []
-      description: Generate a variant URL for a payment link
+      description: This endpoint is used to verify the validity of a settlement address.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
-      - Paylinks
-      summary: Generate variant URL
+      - Organization
+      summary: Verify Settlement Address
       parameters:
       - type: string
-        description: Payment link ID
-        name: paylinkId
-        in: path
-        required: true
-      - type: string
-        description: Amount
-        name: amount
-        in: query
-      - type: string
-        description: Currency
-        name: currency
-        in: query
-      - type: string
-        description: Customer identifier to record as customer.reference
-        name: customer_ident
-        in: query
-      - type: string
-        description: Redirect to URL after successful payment
-        name: redirect_to
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/paylinks.GenerateVariantURLResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '403':
-          description: Forbidden
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '404':
-          description: Not Found
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-  "/payments":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: List payments
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Payments
-      summary: List payments.
-      parameters:
-      - type: string
-        name: after
-        in: query
-      - type: string
-        name: before
-        in: query
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        in: query
-      - minimum: 1
-        type: integer
-        name: page
-        in: query
-      - type: string
-        name: since
-        in: query
-      - enum:
-        - asc
-        - desc
-        type: string
-        name: sort
-        in: query
-      - type: string
-        name: until
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-payments_PaymentResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-  "/payments/{paymentId}":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Get payment
-      produces:
-      - application/json
-      tags:
-      - Payments
-      summary: Get payment
-      parameters:
-      - type: string
-        description: Payment ID
-        name: paymentId
+        description: Represents the address associated with the setlement account.
+        name: address
         in: path
         required: true
       responses:
         '200':
           description: OK
           schema:
-            "$ref": "#/definitions/internal.Response-payments_PaymentResponse"
+            "$ref": "#/definitions/orgs.SettlementAddressVerifyResponse"
         '400':
           description: Bad Request
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-        '404':
-          description: Not Found
+        '401':
+          description: Unauthorized
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-  "/plan":
+  "/orgs/settlement-address/{address}":
+    put:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to update a settlement address identified by its unique address ID. 
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Organization
+      summary: Update Settlement Address
+      parameters:
+      - type: string
+        description: Represents the address associated with the setlement account.
+        name: address
+        in: path
+        required: true
+      - description: body
+        name: body
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/orgs.SettlementAddressUpdateRequest"
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/models.OrgSettlementAccount"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '401':
+          description: Unauthorized
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: This endpoint is used to delete a settlement address identified by its unique address ID. 
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Organization
+      summary: Delete Settlement Address
+      parameters:
+      - type: string
+        description: The settlement address to be deleted from the account.
+        name: address
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '401':
+          description: Unauthorized
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+  "/plans":
     get:
       security:
       - ApiKeyAuth: []
-      description: List plans
+      description: This endpoint retrieves a list of plans available in the system.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Plans
-      summary: List plans.
+      summary: List Plans
       parameters:
       - type: string
         name: after
+        description: Filters plans to include only those created after the specified timestamp. 
         in: query
       - type: string
         name: before
+        description: Filters plans to include only those created before the specified timestamp. 
         in: query
       - maximum: 100
         minimum: 1
         type: integer
         name: limit
+        description: Specifies the maximum number of plans to be included in the API response. 
         in: query
       - minimum: 1
         type: integer
         name: page
+        description: Indicates the page number of the results to be retrieved.
         in: query
       - type: string
         name: since
+        description: Filters plans to include only those created on or after the specified timestamp. 
         in: query
       - enum:
         - asc
         - desc
         type: string
         name: sort
+        description: Specifies the sorting order for the returned plans.
         in: query
       - type: string
         name: until
+        description: Filters plans to include only those created on or before the specified timestamp. 
         in: query
       responses:
         '200':
@@ -685,14 +604,14 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Create plan.
+      description: This endpoint is used to create a new plan. It requires a payload containing the details of the plan.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Plans
-      summary: Create plan.
+      summary: Create Plan
       parameters:
       - description: Create Plan Request
         name: request
@@ -713,19 +632,19 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-  "/plan/{planId}":
+  "/plans/{planId}":
     get:
       security:
       - ApiKeyAuth: []
-      description: Get plan.
+      description: This endpoint retrieves details about a specific plan identified by its unique Plan ID.
       produces:
       - application/json
       tags:
       - Plans
-      summary: Get plan.
+      summary: Get Plan by ID
       parameters:
       - type: string
-        description: Plan ID
+        description: The unique identifier for the plan.
         name: planId
         in: path
         required: true
@@ -742,51 +661,34 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-  "/subscriptions":
-    get:
+    put:
       security:
       - ApiKeyAuth: []
-      description: List subscriptions
+      description: This endpoint is used to update a specific plan identified by its unique Plan ID. 
       consumes:
       - application/json
       produces:
       - application/json
       tags:
-      - Subscriptions
-      summary: List subscriptions.
+      - Plans
+      summary: Update Plan
       parameters:
       - type: string
-        name: after
-        in: query
-      - type: string
-        name: before
-        in: query
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        in: query
-      - minimum: 1
-        type: integer
-        name: page
-        in: query
-      - type: string
-        name: since
-        in: query
-      - enum:
-        - asc
-        - desc
-        type: string
-        name: sort
-        in: query
-      - type: string
-        name: until
-        in: query
+        description: The unique identifier of the plan being updated.
+        name: planId
+        in: path
+        required: true
+      - description: body
+        name: body
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/plan.UpdatePlanRequest"
       responses:
         '200':
           description: OK
           schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-subscriptions_SubscriptionResponse"
+            "$ref": "#/definitions/internal.Response-plan_CreatePlanResponse"
         '400':
           description: Bad Request
           schema:
@@ -795,33 +697,28 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
-  "/subscriptions/{subscriptionID}":
     delete:
       security:
       - ApiKeyAuth: []
-      description: Cancel subscription
+      description: This endpoint is used to delete a specific plan identified by its unique Plan ID. 
+      consumes:
+      - application/json
       produces:
       - application/json
       tags:
-      - Subscriptions
-      summary: Cancel subscription
+      - Plans
+      summary: Delete Plan
       parameters:
       - type: string
-        description: Subscription ID
-        name: subscriptionID
+        description: The unique identifier of the plan being deleted.
+        name: planId
         in: path
         required: true
       responses:
         '200':
           description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-subscriptions_SubscriptionResponse"
         '400':
           description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '404':
-          description: Not Found
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
         '500':
@@ -829,131 +726,30 @@ paths:
           schema:
             "$ref": "#/definitions/internal.ErrorResponse"
 definitions:
-  accounts.ChainResponse:
-    type: object
-    properties:
-      category:
-        type: string
-      code:
-        type: string
-      is_testnet:
-        type: boolean
-      name:
-        type: string
-      native_currency_symbol:
-        type: string
-  accounts.OrgSettlementAccountResponse:
-    type: object
-    properties:
-      account_number:
-        description: The account number.
-        type: string
-      account_type:
-        description: The type of the account.
-        allOf:
-        - "$ref": "#/definitions/models.AccountType"
-      address:
-        description: address
-        type: string
-      chain:
-        "$ref": "#/definitions/accounts.ChainResponse"
-      chain_id:
-        description: chain_id
-        type: integer
-      created_at:
-        description: created_at
-        type: string
-      created_by:
-        description: created_by
-        type: string
-      currencies:
-        description: currencies
-        type: array
-        items:
-          type: string
-      deleted_at:
-        description: deleted_at
-        type: string
-      enabled:
-        description: enabled
-        type: boolean
-      id:
-        description: id
-        type: integer
-      name:
-        description: name
-        type: string
-      org_id:
-        description: org_id
-        type: string
-      properties:
-        type: object
-        additionalProperties: {}
-      provider:
-        "$ref": "#/definitions/models.AccountProvider"
-      sort_code:
-        description: sort_code
-        type: string
-      updated_at:
-        description: updated_at
-        type: string
   customers.CreateCustomerRequest:
     type: object
     properties:
       customer_ident:
         type: string
+        description: Unique identifier for a customer.
       discord:
         type: string
+        description: Discord username or identifier associated with a customer, allowing for communication and linkage to Discord-based interactions.
       email:
         type: string
+        description: Customer's email address.
       name:
         type: string
+        description: Customer's name.
       number:
         type: string
+        description: Numeric identifier or contact number associated with the customer.
       twitter:
         type: string
+        description: Twitter handle associated with the customer.
       wallet_address:
         type: string
-  customers.CustomerResponse:
-    type: object
-    properties:
-      created_at:
-        description: created_at
-        type: string
-      deleted_at:
-        description: deleted_at
-        type: string
-      email:
-        description: email
-        type: string
-      id:
-        description: id
-        type: string
-      metadata:
-        type: object
-        additionalProperties: {}
-      name:
-        description: name
-        type: string
-      org_id:
-        description: org_id
-        type: string
-      phone:
-        description: phone
-        type: string
-      properties:
-        type: object
-        additionalProperties: {}
-      reference:
-        description: reference
-        type: string
-      updated_at:
-        description: updated_at
-        type: string
-      v1: {}
-      wallet_address:
-        description: wallet_address
-        type: string
+        description: Unique address associated with a customer's wallet.
   customers.ResponseCustomer:
     type: object
     properties:
@@ -982,9 +778,6 @@ definitions:
         type: integer
       phone:
         type: string
-      properties:
-        type: object
-        additionalProperties: {}
       updated_at:
         type: string
       wallet_address:
@@ -1067,22 +860,6 @@ definitions:
           Example: Insufficient quantity
         type: string
         example: Insufficient quantity
-  internal.PaginatedItems-accounts_OrgSettlementAccountResponse:
-    type: object
-    properties:
-      items:
-        type: array
-        items:
-          "$ref": "#/definitions/accounts.OrgSettlementAccountResponse"
-      last_update:
-        type: string
-        example: '2021-01-01T00:00:00Z'
-      next:
-        type: integer
-        example: 10
-      total:
-        type: integer
-        example: 10
   internal.PaginatedItems-customers_ResponseCustomer:
     type: object
     properties:
@@ -1115,38 +892,6 @@ definitions:
       total:
         type: integer
         example: 10
-  internal.PaginatedItems-paylinks_PaymentLinkResponse:
-    type: object
-    properties:
-      items:
-        type: array
-        items:
-          "$ref": "#/definitions/paylinks.PaymentLinkResponse"
-      last_update:
-        type: string
-        example: '2021-01-01T00:00:00Z'
-      next:
-        type: integer
-        example: 10
-      total:
-        type: integer
-        example: 10
-  internal.PaginatedItems-payments_PaymentResponse:
-    type: object
-    properties:
-      items:
-        type: array
-        items:
-          "$ref": "#/definitions/payments.PaymentResponse"
-      last_update:
-        type: string
-        example: '2021-01-01T00:00:00Z'
-      next:
-        type: integer
-        example: 10
-      total:
-        type: integer
-        example: 10
   internal.PaginatedItems-plan_PlanResponse:
     type: object
     properties:
@@ -1163,29 +908,6 @@ definitions:
       total:
         type: integer
         example: 10
-  internal.PaginatedItems-subscriptions_SubscriptionResponse:
-    type: object
-    properties:
-      items:
-        type: array
-        items:
-          "$ref": "#/definitions/subscriptions.SubscriptionResponse"
-      last_update:
-        type: string
-        example: '2021-01-01T00:00:00Z'
-      next:
-        type: integer
-        example: 10
-      total:
-        type: integer
-        example: 10
-  internal.PaginatedResponse-accounts_OrgSettlementAccountResponse:
-    type: object
-    properties:
-      data:
-        "$ref": "#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse"
-      error:
-        type: boolean
   internal.PaginatedResponse-customers_ResponseCustomer:
     type: object
     properties:
@@ -1200,32 +922,11 @@ definitions:
         "$ref": "#/definitions/internal.PaginatedItems-events_Event"
       error:
         type: boolean
-  internal.PaginatedResponse-paylinks_PaymentLinkResponse:
-    type: object
-    properties:
-      data:
-        "$ref": "#/definitions/internal.PaginatedItems-paylinks_PaymentLinkResponse"
-      error:
-        type: boolean
-  internal.PaginatedResponse-payments_PaymentResponse:
-    type: object
-    properties:
-      data:
-        "$ref": "#/definitions/internal.PaginatedItems-payments_PaymentResponse"
-      error:
-        type: boolean
   internal.PaginatedResponse-plan_PlanResponse:
     type: object
     properties:
       data:
         "$ref": "#/definitions/internal.PaginatedItems-plan_PlanResponse"
-      error:
-        type: boolean
-  internal.PaginatedResponse-subscriptions_SubscriptionResponse:
-    type: object
-    properties:
-      data:
-        "$ref": "#/definitions/internal.PaginatedItems-subscriptions_SubscriptionResponse"
       error:
         type: boolean
   internal.Response-customers_ResponseCustomer:
@@ -1235,18 +936,11 @@ definitions:
         "$ref": "#/definitions/customers.ResponseCustomer"
       error:
         type: boolean
-  internal.Response-paylinks_PaymentLinkResponse:
+  internal.Response-plan_CreatePlanResponse:
     type: object
     properties:
       data:
-        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
-      error:
-        type: boolean
-  internal.Response-payments_PaymentResponse:
-    type: object
-    properties:
-      data:
-        "$ref": "#/definitions/payments.PaymentResponse"
+        "$ref": "#/definitions/plan.CreatePlanResponse"
       error:
         type: boolean
   internal.Response-plan_PlanResponse:
@@ -1254,13 +948,6 @@ definitions:
     properties:
       data:
         "$ref": "#/definitions/plan.PlanResponse"
-      error:
-        type: boolean
-  internal.Response-subscriptions_SubscriptionResponse:
-    type: object
-    properties:
-      data:
-        "$ref": "#/definitions/subscriptions.SubscriptionResponse"
       error:
         type: boolean
   internal.SingleError:
@@ -1318,48 +1005,6 @@ definitions:
     - BillingSourceBoomfi
     - BillingSourceStripe
     - BillingSourceChargebee
-  models.CryptoTransaction:
-    type: object
-    properties:
-      chain_id:
-        description: chain_id
-        type: integer
-      created_at:
-        description: created_at
-        type: string
-      id:
-        description: id
-        type: integer
-      payment_id:
-        description: payment_id
-        allOf:
-        - "$ref": "#/definitions/sql.NullString"
-      raw:
-        description: raw
-        type: array
-        items:
-          type: integer
-      sequence:
-        description: sequence
-        type: string
-      source:
-        description: source
-        allOf:
-        - "$ref": "#/definitions/models.PaymentMethod"
-      status:
-        description: status
-        allOf:
-        - "$ref": "#/definitions/models.TransactionStatus"
-      transaction_hash:
-        description: transaction_hash
-        type: string
-      type:
-        description: type
-        allOf:
-        - "$ref": "#/definitions/models.TransactionType"
-      updated_at:
-        description: updated_at
-        type: string
   models.NullAccountProvider:
     type: object
     properties:
@@ -1442,52 +1087,116 @@ definitions:
     - OrgIntegrationTypeEcommerce
     - OrgIntegrationTypeAccounting
     - OrgIntegrationTypeWorkflow
-  models.PaymentMethod:
-    type: integer
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    x-enum-varnames:
-    - PaymentMethodUnknown
-    - PaymentMethodMerchantcontract
-    - PaymentMethodProxywallet
-    - PaymentMethodUnblock
-    - PaymentMethodCard
-    - PaymentMethodGooglepay
-    - PaymentMethodApplepay
-    - PaymentMethodPaypal
-    - PaymentMethodDirectdebit
-    - PaymentMethodRamp
-    - PaymentMethodRampcryptosettlement
-  models.PaymentStatus:
-    type: integer
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    x-enum-varnames:
-    - PaymentStatusUnknown
-    - PaymentStatusRequirespaymentmethod
-    - PaymentStatusRequiresconfirmation
-    - PaymentStatusRequiresaction
-    - PaymentStatusProcessing
-    - PaymentStatusSucceeded
-    - PaymentStatusCanceled
-    - PaymentStatusFailed
+  models.OrgSettlementAccount:
+    type: object
+    properties:
+      account_number:
+        description: account_number
+        type: string
+      account_type:
+        description: account_type
+        allOf:
+        - "$ref": "#/definitions/models.AccountType"
+      address:
+        description: address
+        type: string
+      chain_id:
+        description: chain_id
+        type: integer
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        description: created_by
+        type: string
+      currencies:
+        description: currencies
+        type: array
+        items:
+          type: string
+      deleted_at:
+        description: deleted_at
+        type: string
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: integer
+      name:
+        description: name
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      properties:
+        description: properties
+        type: array
+        items:
+          type: integer
+      provider:
+        description: provider
+        allOf:
+        - "$ref": "#/definitions/models.NullAccountProvider"
+      sort_code:
+        description: sort_code
+        type: string
+      updated_at:
+        description: updated_at
+        type: string
+  models.PaymentLink:
+    type: object
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        description: created_by
+        type: string
+      customer_ident_collection:
+        description: customer_ident_collection
+        type: boolean
+      deleted_at:
+        description: deleted_at
+        type: string
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      metadata:
+        description: metadata
+        type: array
+        items:
+          type: integer
+      plan_id:
+        description: plan_id
+        type: string
+      properties:
+        description: properties
+        type: array
+        items:
+          type: integer
+      shipping_address_collection:
+        description: shipping_address_collection
+        type: boolean
+      source:
+        description: source
+        allOf:
+        - "$ref": "#/definitions/models.BillingSource"
+      tax_ident_collection:
+        description: tax_ident_collection
+        type: boolean
+      updated_at:
+        description: updated_at
+        type: string
+      updated_by:
+        description: updated_by
+        type: string
   models.PlanType:
     type: integer
     enum:
@@ -1500,6 +1209,7 @@ definitions:
     - PlanTypeRecurring
   models.RecurringInterval:
     type: integer
+    description: The time interval between plan billing cycles, represented as an integer.
     enum:
     - 1
     - 2
@@ -1526,60 +1236,45 @@ definitions:
     - RecurringUsageTypeUnknown
     - RecurringUsageTypeLicensed
     - RecurringUsageTypeMetered
-  models.SubscriptionStatus:
-    type: integer
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    x-enum-varnames:
-    - SubscriptionStatusUnknown
-    - SubscriptionStatusPending
-    - SubscriptionStatusFuture
-    - SubscriptionStatusIntrial
-    - SubscriptionStatusActive
-    - SubscriptionStatusPaused
-    - SubscriptionStatusExpired
-    - SubscriptionStatusCanceled
-  models.TransactionStatus:
-    type: integer
-    enum:
-    - 1
-    - 2
-    - 3
-    x-enum-varnames:
-    - TransactionStatusPending
-    - TransactionStatusSuccess
-    - TransactionStatusFailed
-  models.TransactionType:
-    type: integer
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    x-enum-varnames:
-    - TransactionTypeUnknown
-    - TransactionTypeApproval
-    - TransactionTypeDeposit
-    - TransactionTypeWithdraw
-    - TransactionTypePayment
-    - TransactionTypeRefund
-    - TransactionTypeSubscribe
-    - TransactionTypeUnsubscribe
-    - TransactionTypeInternal
-    - TransactionTypeSwap
+  orgs.SettlementAddressCreateRequest:
+    type: object
+    required:
+    - account_type
+    - address
+    - address_type
+    - chain_id
+    - name
+    properties:
+      account_type:
+        type: string
+        description: Defines the category or classification of the account within the system.
+      address:
+        type: string
+        description:  Represents the address associated with the setlement account.
+      address_type:
+        type: string
+        description: Specifies the type or category of the address. 
+      chain_id:
+        type: integer
+        description: Represents a numerical identifier for the blockchain within the system.
+      name:
+        type: string
+        description: User-defined identifier for the account.
+  orgs.SettlementAddressUpdateRequest:
+    type: object
+    required:
+    - settlement_address
+    properties:
+      settlement_address:
+        description: The new settlement address to be associated with the account.
+        type: string
+  orgs.SettlementAddressVerifyResponse:
+    type: object
+    properties:
+      address_type:
+        type: string
+      chain_id:
+        type: integer
   orgs.UpdateOrgRequest:
     type: object
     required:
@@ -1589,57 +1284,62 @@ definitions:
     properties:
       logo_url:
         type: string
+        description: The URL pointing to the logo image for the integration. 
       name:
         type: string
+        description: User-defined identifier for the organization.
       webhook_url:
         type: string
-  paylinks.CreatePaymentLinkRequest:
+        description: The URL where webhook notifications or data will be sent. 
+  plan.CreatePlanRequest:
     type: object
     properties:
       amount:
         type: string
+        description: The amount associated with the plan, specified as a string. This parameter represents the cost or price of the plan.
       currency:
         type: string
+        description: The currency in which the plan amount is expressed. 
       description:
         type: string
+        description:  A brief description or summary of the plan. This parameter provides additional information about the purpose or features of the plan.
       interval:
         "$ref": "#/definitions/models.RecurringInterval"
       intervalCount:
         type: integer
+        description: The number of intervals between each billing cycle. This parameter determines how often the plan is billed within the specified interval.
       metadata:
         type: object
+        description: An object containing additional metadata associated with the plan. 
         additionalProperties: {}
       name:
         type: string
+        description: A name or label associated with the plan. This parameter represents a identifier or title for the plan.
       reference:
         type: string
+        description: A reference identifier associated with the plan. This parameter allows for linking the plan to external identifiers.
       trial_period:
         type: string
-      type:
-        type: string
-  paylinks.GenerateVariantURLResponse:
+        description: Specifies the trial period duration for the plan, if applicable. This parameter represents the duration of any trial period associated with the plan.
+  plan.CreatePlanResponse:
     type: object
     properties:
-      created_by:
-        type: string
-      payment_link:
-        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
-      plan:
-        "$ref": "#/definitions/plan.PlanResponse"
-      url:
-        type: string
-  paylinks.PaymentLinkResponse:
-    type: object
-    properties:
+      available_quantity:
+        description: available_quantity
+        type: integer
+      billing_scheme:
+        description: billing_scheme
+        allOf:
+        - "$ref": "#/definitions/models.BillingScheme"
       created_at:
         description: created_at
         type: string
       created_by:
         description: created_by
         type: string
-      customer_ident_collection:
-        description: customer_ident_collection
-        type: boolean
+      currency:
+        description: currency
+        type: string
       deleted_at:
         description: deleted_at
         type: string
@@ -1649,120 +1349,53 @@ definitions:
       id:
         description: id
         type: string
-      invoice_id:
-        description: invoice_id
-        type: string
-      metadata:
-        type: object
-        additionalProperties: {}
-      plan:
-        "$ref": "#/definitions/plan.PlanResponse"
-      plan_id:
-        description: plan_id
-        type: string
-      properties:
-        type: object
-        additionalProperties: {}
-      shipping_address_collection:
-        description: shipping_address_collection
-        type: boolean
-      source:
-        description: source
-        allOf:
-        - "$ref": "#/definitions/models.BillingSource"
-      tax_ident_collection:
-        description: tax_ident_collection
-        type: boolean
-      updated_at:
-        description: updated_at
-        type: string
-      updated_by:
-        description: updated_by
-        type: string
-  payments.PaymentResponse:
-    type: object
-    properties:
-      amount:
-        description: amount
-        type: string
-      created_at:
-        description: created_at
-        type: string
-      crypto_transaction:
-        "$ref": "#/definitions/models.CryptoTransaction"
-      currency:
-        description: currency
-        type: string
-      customer:
-        "$ref": "#/definitions/customers.CustomerResponse"
-      customer_id:
-        description: customer_id
-        type: string
-      id:
-        description: id
-        type: string
-      invoice_id:
-        description: invoice_id
-        type: string
-      next_action:
-        description: next_action
-        type: string
-      org_id:
-        description: org_id
-        type: string
-      parent_id:
-        description: parent_id
-        type: string
-      payment_link:
-        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
-      payment_method:
-        description: payment_method
-        allOf:
-        - "$ref": "#/definitions/models.PaymentMethod"
-      properties:
-        type: object
-        additionalProperties: {}
-      scheduled_time:
-        description: scheduled_time
-        type: integer
-      source:
-        description: source
-        allOf:
-        - "$ref": "#/definitions/models.BillingSource"
-      status:
-        description: status
-        allOf:
-        - "$ref": "#/definitions/models.PaymentStatus"
-      updated_at:
-        description: updated_at
-        type: string
-      v1:
-        description: v1
-        type: array
-        items:
-          type: integer
-  plan.CreatePlanRequest:
-    type: object
-    properties:
-      amount:
-        type: string
-      currency:
-        type: string
-      description:
-        type: string
-      interval:
-        "$ref": "#/definitions/models.RecurringInterval"
-      intervalCount:
-        type: integer
       metadata:
         type: object
         additionalProperties: {}
       name:
+        description: name
         type: string
+      org_id:
+        description: org_id
+        type: string
+      payment_link:
+        "$ref": "#/definitions/models.PaymentLink"
+      price:
+        description: price
+        type: string
+      properties:
+        type: object
+        additionalProperties: {}
+      recurring_interval:
+        description: recurring_interval
+        allOf:
+        - "$ref": "#/definitions/models.RecurringInterval"
+      recurring_interval_count:
+        description: recurring_interval_count
+        type: integer
+      recurring_usage_type:
+        description: recurring_usage_type
+        allOf:
+        - "$ref": "#/definitions/models.RecurringUsageType"
       reference:
+        description: reference
         type: string
+      source:
+        description: source
+        allOf:
+        - "$ref": "#/definitions/models.BillingSource"
       trial_period:
+        description: trial_period
         type: string
+      type:
+        description: type
+        allOf:
+        - "$ref": "#/definitions/models.PlanType"
+      updated_at:
+        description: updated_at
+        type: string
+      v1:
+        description: exclude
   plan.PaymentLinkResponse:
     type: object
     properties:
@@ -1890,96 +1523,12 @@ definitions:
         type: array
         items:
           type: integer
-  sql.NullString:
+  plan.UpdatePlanRequest:
     type: object
     properties:
-      string:
-        type: string
-      valid:
-        description: Valid is true if String is not NULL
-        type: boolean
-  subscriptions.SubscriptionItem:
-    type: object
-    properties:
-      created_at:
-        description: created_at
-        type: string
-      id:
-        description: id
-        type: string
-      plan_id:
-        description: plan_id
-        type: string
-      properties:
-        type: object
-        additionalProperties: {}
-      subscription_id:
-        description: subscription_id
-        type: string
-      updated_at:
-        description: updated_at
-        type: string
-  subscriptions.SubscriptionResponse:
-    type: object
-    properties:
-      cancel_at_period_end:
-        description: cancel_at_period_end
-        type: boolean
-      created_at:
-        description: created_at
-        type: string
-      currency:
-        description: currency
-        type: string
-      customer:
-        "$ref": "#/definitions/customers.CustomerResponse"
-      customer_id:
-        description: customer_id
-        type: string
-      id:
-        description: id
-        type: string
-      items:
-        type: array
-        items:
-          "$ref": "#/definitions/subscriptions.SubscriptionItem"
-      metadata:
-        description: metadata
-        type: array
-        items:
-          type: integer
-      org_id:
-        description: org_id
-        type: string
-      payment_method:
-        description: payment_method
-        allOf:
-        - "$ref": "#/definitions/models.PaymentMethod"
-      properties:
-        type: object
-        additionalProperties: {}
-      reference:
-        description: reference
-        type: string
-      source:
-        description: source
-        allOf:
-        - "$ref": "#/definitions/models.BillingSource"
-      start_at:
-        description: start_at
-        type: string
       status:
-        description: status
-        allOf:
-        - "$ref": "#/definitions/models.SubscriptionStatus"
-      updated_at:
-        description: updated_at
+        description: The status of the plan.
         type: string
-      v1:
-        description: v1
-        type: array
-        items:
-          type: integer
 securityDefinitions:
   ApiKeyAuth:
     type: apiKey

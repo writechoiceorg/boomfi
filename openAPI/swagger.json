@@ -11,6 +11,46 @@
     },
     "host": "mapi.boomfi.xyz",
     "paths": {
+        "/accounts": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "List accounts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "List accounts.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.PaginatedResponse-accounts_OrgSettlementAccountResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/customers": {
             "get": {
                 "security": [
@@ -372,13 +412,6 @@
                         "name": "name",
                         "in": "path",
                         "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Org V1 ID",
-                        "name": "X-Org-Id",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -601,71 +634,14 @@
                 }
             }
         },
-        "/orgs/settlement-address": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Create settlement address.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Organization"
-                ],
-                "summary": "Create settlement address.",
-                "parameters": [
-                    {
-                        "description": "body",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/orgs.SettlementAddressCreateRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.OrgSettlementAccount"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/orgs/settlement-address/verify/{address}": {
+        "/paylinks": {
             "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Verify settlement address.",
+                "description": "List paylinks",
                 "consumes": [
                     "application/json"
                 ],
@@ -673,100 +649,62 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Organization"
+                    "Paylinks"
                 ],
-                "summary": "Verify settlement address.",
+                "summary": "List paylinks.",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "address",
-                        "name": "address",
-                        "in": "path",
-                        "required": true
+                        "name": "after",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "before",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "since",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "until",
+                        "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/orgs.SettlementAddressVerifyResponse"
+                            "$ref": "#/definitions/internal.PaginatedResponse-paylinks_PaymentLinkResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/orgs/settlement-address/{address}": {
-            "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Update settlement address.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Organization"
-                ],
-                "summary": "Update settlement address.",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "address",
-                        "name": "address",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "body",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/orgs.SettlementAddressUpdateRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/models.OrgSettlementAccount"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
                         "schema": {
                             "$ref": "#/definitions/internal.ErrorResponse"
                         }
@@ -779,13 +717,13 @@
                     }
                 }
             },
-            "delete": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Delete settlement address.",
+                "description": "Create payment link.",
                 "consumes": [
                     "application/json"
                 ],
@@ -793,30 +731,29 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Organization"
+                    "Paylinks"
                 ],
-                "summary": "Delete settlement address.",
+                "summary": "Create payment link.",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "address",
-                        "name": "address",
-                        "in": "path",
-                        "required": true
+                        "description": "Create Payment Link Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/paylinks.CreatePaymentLinkRequest"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-paylinks_PaymentLinkResponse"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
                         "schema": {
                             "$ref": "#/definitions/internal.ErrorResponse"
                         }
@@ -830,7 +767,228 @@
                 }
             }
         },
-        "/plans": {
+        "/paylinks/generate-variant/{paylinkId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Generate a variant URL for a payment link",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Paylinks"
+                ],
+                "summary": "Generate variant URL",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Payment link ID",
+                        "name": "paylinkId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Amount",
+                        "name": "amount",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Currency",
+                        "name": "currency",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Customer identifier to record as customer.reference",
+                        "name": "customer_ident",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Redirect to URL after successful payment",
+                        "name": "redirect_to",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/paylinks.GenerateVariantURLResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/payments": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "List payments",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "List payments.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "after",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "before",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "since",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "until",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.PaginatedResponse-payments_PaymentResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/payments/{paymentId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get payment",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Get payment",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Payment ID",
+                        "name": "paymentId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-payments_PaymentResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/plan": {
             "get": {
                 "security": [
                     {
@@ -963,7 +1121,7 @@
                 }
             }
         },
-        "/plans/{planId}": {
+        "/plan/{planId}": {
             "get": {
                 "security": [
                     {
@@ -1007,14 +1165,16 @@
                         }
                     }
                 }
-            },
-            "put": {
+            }
+        },
+        "/subscriptions": {
+            "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Update plan.",
+                "description": "List subscriptions",
                 "consumes": [
                     "application/json"
                 ],
@@ -1022,77 +1182,59 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Plans"
+                    "Subscriptions"
                 ],
-                "summary": "Update plan.",
+                "summary": "List subscriptions.",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Plan ID",
-                        "name": "planId",
-                        "in": "path",
-                        "required": true
+                        "name": "after",
+                        "in": "query"
                     },
                     {
-                        "description": "body",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/plan.UpdatePlanRequest"
-                        }
+                        "type": "string",
+                        "name": "before",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "since",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "type": "string",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "until",
+                        "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal.Response-plan_CreatePlanResponse"
+                            "$ref": "#/definitions/internal.PaginatedResponse-subscriptions_SubscriptionResponse"
                         }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/internal.ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Delete plan.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Plans"
-                ],
-                "summary": "Delete plan.",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Plan ID",
-                        "name": "planId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1108,9 +1250,159 @@
                     }
                 }
             }
+        },
+        "/subscriptions/{subscriptionID}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Cancel subscription",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Cancel subscription",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Subscription ID",
+                        "name": "subscriptionID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.Response-subscriptions_SubscriptionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "accounts.ChainResponse": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "is_testnet": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "native_currency_symbol": {
+                    "type": "string"
+                }
+            }
+        },
+        "accounts.OrgSettlementAccountResponse": {
+            "type": "object",
+            "properties": {
+                "account_number": {
+                    "description": "account_number",
+                    "type": "string"
+                },
+                "account_type": {
+                    "description": "account_type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.AccountType"
+                        }
+                    ]
+                },
+                "address": {
+                    "description": "address",
+                    "type": "string"
+                },
+                "chain": {
+                    "$ref": "#/definitions/accounts.ChainResponse"
+                },
+                "chain_id": {
+                    "description": "chain_id",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "currencies": {
+                    "description": "currencies",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "provider": {
+                    "$ref": "#/definitions/models.AccountProvider"
+                },
+                "sort_code": {
+                    "description": "sort_code",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                }
+            }
+        },
         "customers.CreateCustomerRequest": {
             "type": "object",
             "properties": {
@@ -1133,6 +1425,60 @@
                     "type": "string"
                 },
                 "wallet_address": {
+                    "type": "string"
+                }
+            }
+        },
+        "customers.CustomerResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "phone",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "reference": {
+                    "description": "reference",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "v1": {},
+                "wallet_address": {
+                    "description": "wallet_address",
                     "type": "string"
                 }
             }
@@ -1176,6 +1522,10 @@
                 },
                 "phone": {
                     "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
                 },
                 "updated_at": {
                     "type": "string"
@@ -1295,6 +1645,29 @@
                 }
             }
         },
+        "internal.PaginatedItems-accounts_OrgSettlementAccountResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/accounts.OrgSettlementAccountResponse"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
         "internal.PaginatedItems-customers_ResponseCustomer": {
             "type": "object",
             "properties": {
@@ -1341,6 +1714,52 @@
                 }
             }
         },
+        "internal.PaginatedItems-paylinks_PaymentLinkResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
+        "internal.PaginatedItems-payments_PaymentResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/payments.PaymentResponse"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
         "internal.PaginatedItems-plan_PlanResponse": {
             "type": "object",
             "properties": {
@@ -1361,6 +1780,40 @@
                 "total": {
                     "type": "integer",
                     "example": 10
+                }
+            }
+        },
+        "internal.PaginatedItems-subscriptions_SubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/subscriptions.SubscriptionResponse"
+                    }
+                },
+                "last_update": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "next": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "total": {
+                    "type": "integer",
+                    "example": 10
+                }
+            }
+        },
+        "internal.PaginatedResponse-accounts_OrgSettlementAccountResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse"
+                },
+                "error": {
+                    "type": "boolean"
                 }
             }
         },
@@ -1386,11 +1839,44 @@
                 }
             }
         },
+        "internal.PaginatedResponse-paylinks_PaymentLinkResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-paylinks_PaymentLinkResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.PaginatedResponse-payments_PaymentResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-payments_PaymentResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
         "internal.PaginatedResponse-plan_PlanResponse": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/internal.PaginatedItems-plan_PlanResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.PaginatedResponse-subscriptions_SubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal.PaginatedItems-subscriptions_SubscriptionResponse"
                 },
                 "error": {
                     "type": "boolean"
@@ -1408,11 +1894,22 @@
                 }
             }
         },
-        "internal.Response-plan_CreatePlanResponse": {
+        "internal.Response-paylinks_PaymentLinkResponse": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/plan.CreatePlanResponse"
+                    "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.Response-payments_PaymentResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/payments.PaymentResponse"
                 },
                 "error": {
                     "type": "boolean"
@@ -1424,6 +1921,17 @@
             "properties": {
                 "data": {
                     "$ref": "#/definitions/plan.PlanResponse"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal.Response-subscriptions_SubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/subscriptions.SubscriptionResponse"
                 },
                 "error": {
                     "type": "boolean"
@@ -1496,6 +2004,74 @@
                 "BillingSourceStripe",
                 "BillingSourceChargebee"
             ]
+        },
+        "models.CryptoTransaction": {
+            "type": "object",
+            "properties": {
+                "chain_id": {
+                    "description": "chain_id",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "integer"
+                },
+                "payment_id": {
+                    "description": "payment_id",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/sql.NullString"
+                        }
+                    ]
+                },
+                "raw": {
+                    "description": "raw",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "sequence": {
+                    "description": "sequence",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.PaymentMethod"
+                        }
+                    ]
+                },
+                "status": {
+                    "description": "status",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.TransactionStatus"
+                        }
+                    ]
+                },
+                "transaction_hash": {
+                    "description": "transaction_hash",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "type",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.TransactionType"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                }
+            }
         },
         "models.NullAccountProvider": {
             "type": "object",
@@ -1606,163 +2182,57 @@
                 "OrgIntegrationTypeWorkflow"
             ]
         },
-        "models.OrgSettlementAccount": {
-            "type": "object",
-            "properties": {
-                "account_number": {
-                    "description": "account_number",
-                    "type": "string"
-                },
-                "account_type": {
-                    "description": "account_type",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.AccountType"
-                        }
-                    ]
-                },
-                "address": {
-                    "description": "address",
-                    "type": "string"
-                },
-                "chain_id": {
-                    "description": "chain_id",
-                    "type": "integer"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string"
-                },
-                "created_by": {
-                    "description": "created_by",
-                    "type": "string"
-                },
-                "currencies": {
-                    "description": "currencies",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "deleted_at": {
-                    "description": "deleted_at",
-                    "type": "string"
-                },
-                "enabled": {
-                    "description": "enabled",
-                    "type": "boolean"
-                },
-                "id": {
-                    "description": "id",
-                    "type": "integer"
-                },
-                "name": {
-                    "description": "name",
-                    "type": "string"
-                },
-                "org_id": {
-                    "description": "org_id",
-                    "type": "string"
-                },
-                "properties": {
-                    "description": "properties",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "provider": {
-                    "description": "provider",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.NullAccountProvider"
-                        }
-                    ]
-                },
-                "sort_code": {
-                    "description": "sort_code",
-                    "type": "string"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string"
-                }
-            }
+        "models.PaymentMethod": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+            ],
+            "x-enum-varnames": [
+                "PaymentMethodUnknown",
+                "PaymentMethodMerchantcontract",
+                "PaymentMethodProxywallet",
+                "PaymentMethodUnblock",
+                "PaymentMethodCard",
+                "PaymentMethodGooglepay",
+                "PaymentMethodApplepay",
+                "PaymentMethodPaypal",
+                "PaymentMethodDirectdebit",
+                "PaymentMethodRamp",
+                "PaymentMethodRampcryptosettlement"
+            ]
         },
-        "models.PaymentLink": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string"
-                },
-                "created_by": {
-                    "description": "created_by",
-                    "type": "string"
-                },
-                "customer_ident_collection": {
-                    "description": "customer_ident_collection",
-                    "type": "boolean"
-                },
-                "deleted_at": {
-                    "description": "deleted_at",
-                    "type": "string"
-                },
-                "enabled": {
-                    "description": "enabled",
-                    "type": "boolean"
-                },
-                "id": {
-                    "description": "id",
-                    "type": "string"
-                },
-                "invoice_id": {
-                    "description": "invoice_id",
-                    "type": "string"
-                },
-                "metadata": {
-                    "description": "metadata",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "plan_id": {
-                    "description": "plan_id",
-                    "type": "string"
-                },
-                "properties": {
-                    "description": "properties",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "shipping_address_collection": {
-                    "description": "shipping_address_collection",
-                    "type": "boolean"
-                },
-                "source": {
-                    "description": "source",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.BillingSource"
-                        }
-                    ]
-                },
-                "tax_ident_collection": {
-                    "description": "tax_ident_collection",
-                    "type": "boolean"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string"
-                },
-                "updated_by": {
-                    "description": "updated_by",
-                    "type": "string"
-                }
-            }
+        "models.PaymentStatus": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+            ],
+            "x-enum-varnames": [
+                "PaymentStatusUnknown",
+                "PaymentStatusRequirespaymentmethod",
+                "PaymentStatusRequiresconfirmation",
+                "PaymentStatusRequiresaction",
+                "PaymentStatusProcessing",
+                "PaymentStatusSucceeded",
+                "PaymentStatusCanceled",
+                "PaymentStatusFailed"
+            ]
         },
         "models.PlanType": {
             "type": "integer",
@@ -1811,54 +2281,68 @@
                 "RecurringUsageTypeMetered"
             ]
         },
-        "orgs.SettlementAddressCreateRequest": {
-            "type": "object",
-            "required": [
-                "account_type",
-                "address",
-                "address_type",
-                "chain_id",
-                "name"
+        "models.SubscriptionStatus": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
             ],
-            "properties": {
-                "account_type": {
-                    "type": "string"
-                },
-                "address": {
-                    "type": "string"
-                },
-                "address_type": {
-                    "type": "string"
-                },
-                "chain_id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
+            "x-enum-varnames": [
+                "SubscriptionStatusUnknown",
+                "SubscriptionStatusPending",
+                "SubscriptionStatusFuture",
+                "SubscriptionStatusIntrial",
+                "SubscriptionStatusActive",
+                "SubscriptionStatusPaused",
+                "SubscriptionStatusExpired",
+                "SubscriptionStatusCanceled"
+            ]
         },
-        "orgs.SettlementAddressUpdateRequest": {
-            "type": "object",
-            "required": [
-                "settlement_address"
+        "models.TransactionStatus": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3
             ],
-            "properties": {
-                "settlement_address": {
-                    "type": "string"
-                }
-            }
+            "x-enum-varnames": [
+                "TransactionStatusPending",
+                "TransactionStatusSuccess",
+                "TransactionStatusFailed"
+            ]
         },
-        "orgs.SettlementAddressVerifyResponse": {
-            "type": "object",
-            "properties": {
-                "address_type": {
-                    "type": "string"
-                },
-                "chain_id": {
-                    "type": "integer"
-                }
-            }
+        "models.TransactionType": {
+            "type": "integer",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "x-enum-varnames": [
+                "TransactionTypeUnknown",
+                "TransactionTypeApproval",
+                "TransactionTypeDeposit",
+                "TransactionTypeWithdraw",
+                "TransactionTypePayment",
+                "TransactionTypeRefund",
+                "TransactionTypeSubscribe",
+                "TransactionTypeUnsubscribe",
+                "TransactionTypeInternal",
+                "TransactionTypeSwap"
+            ]
         },
         "orgs.UpdateOrgRequest": {
             "type": "object",
@@ -1876,6 +2360,224 @@
                 },
                 "webhook_url": {
                     "type": "string"
+                }
+            }
+        },
+        "paylinks.CreatePaymentLinkRequest": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "interval": {
+                    "$ref": "#/definitions/models.RecurringInterval"
+                },
+                "intervalCount": {
+                    "type": "integer"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "trial_period": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "paylinks.GenerateVariantURLResponse": {
+            "type": "object",
+            "properties": {
+                "created_by": {
+                    "type": "string"
+                },
+                "payment_link": {
+                    "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+                },
+                "plan": {
+                    "$ref": "#/definitions/plan.PlanResponse"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "paylinks.PaymentLinkResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "created_by",
+                    "type": "string"
+                },
+                "customer_ident_collection": {
+                    "description": "customer_ident_collection",
+                    "type": "boolean"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "enabled",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "invoice_id": {
+                    "description": "invoice_id",
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "plan": {
+                    "$ref": "#/definitions/plan.PlanResponse"
+                },
+                "plan_id": {
+                    "description": "plan_id",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "shipping_address_collection": {
+                    "description": "shipping_address_collection",
+                    "type": "boolean"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "tax_ident_collection": {
+                    "description": "tax_ident_collection",
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "updated_by": {
+                    "description": "updated_by",
+                    "type": "string"
+                }
+            }
+        },
+        "payments.PaymentResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "amount",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "crypto_transaction": {
+                    "$ref": "#/definitions/models.CryptoTransaction"
+                },
+                "currency": {
+                    "description": "currency",
+                    "type": "string"
+                },
+                "customer": {
+                    "$ref": "#/definitions/customers.CustomerResponse"
+                },
+                "customer_id": {
+                    "description": "customer_id",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "invoice_id": {
+                    "description": "invoice_id",
+                    "type": "string"
+                },
+                "next_action": {
+                    "description": "next_action",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "parent_id": {
+                    "description": "parent_id",
+                    "type": "string"
+                },
+                "payment_link": {
+                    "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+                },
+                "payment_method": {
+                    "description": "payment_method",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.PaymentMethod"
+                        }
+                    ]
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "scheduled_time": {
+                    "description": "scheduled_time",
+                    "type": "integer"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "status": {
+                    "description": "status",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.PaymentStatus"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "v1": {
+                    "description": "v1",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 }
             }
         },
@@ -1909,121 +2611,6 @@
                 },
                 "trial_period": {
                     "type": "string"
-                }
-            }
-        },
-        "plan.CreatePlanResponse": {
-            "type": "object",
-            "properties": {
-                "available_quantity": {
-                    "description": "available_quantity",
-                    "type": "integer"
-                },
-                "billing_scheme": {
-                    "description": "billing_scheme",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.BillingScheme"
-                        }
-                    ]
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string"
-                },
-                "created_by": {
-                    "description": "created_by",
-                    "type": "string"
-                },
-                "currency": {
-                    "description": "currency",
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "description": "deleted_at",
-                    "type": "string"
-                },
-                "enabled": {
-                    "description": "enabled",
-                    "type": "boolean"
-                },
-                "id": {
-                    "description": "id",
-                    "type": "string"
-                },
-                "metadata": {
-                    "type": "object",
-                    "additionalProperties": {}
-                },
-                "name": {
-                    "description": "name",
-                    "type": "string"
-                },
-                "org_id": {
-                    "description": "org_id",
-                    "type": "string"
-                },
-                "payment_link": {
-                    "$ref": "#/definitions/models.PaymentLink"
-                },
-                "price": {
-                    "description": "price",
-                    "type": "string"
-                },
-                "properties": {
-                    "type": "object",
-                    "additionalProperties": {}
-                },
-                "recurring_interval": {
-                    "description": "recurring_interval",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.RecurringInterval"
-                        }
-                    ]
-                },
-                "recurring_interval_count": {
-                    "description": "recurring_interval_count",
-                    "type": "integer"
-                },
-                "recurring_usage_type": {
-                    "description": "recurring_usage_type",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.RecurringUsageType"
-                        }
-                    ]
-                },
-                "reference": {
-                    "description": "reference",
-                    "type": "string"
-                },
-                "source": {
-                    "description": "source",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.BillingSource"
-                        }
-                    ]
-                },
-                "trial_period": {
-                    "description": "trial_period",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "type",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/models.PlanType"
-                        }
-                    ]
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string"
-                },
-                "v1": {
-                    "description": "exclude"
                 }
             }
         },
@@ -2215,11 +2802,136 @@
                 }
             }
         },
-        "plan.UpdatePlanRequest": {
+        "sql.NullString": {
             "type": "object",
             "properties": {
-                "status": {
+                "string": {
                     "type": "string"
+                },
+                "valid": {
+                    "description": "Valid is true if String is not NULL",
+                    "type": "boolean"
+                }
+            }
+        },
+        "subscriptions.SubscriptionItem": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "plan_id": {
+                    "description": "plan_id",
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "subscription_id": {
+                    "description": "subscription_id",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptions.SubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "cancel_at_period_end": {
+                    "description": "cancel_at_period_end",
+                    "type": "boolean"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "currency",
+                    "type": "string"
+                },
+                "customer": {
+                    "$ref": "#/definitions/customers.CustomerResponse"
+                },
+                "customer_id": {
+                    "description": "customer_id",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/subscriptions.SubscriptionItem"
+                    }
+                },
+                "metadata": {
+                    "description": "metadata",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "org_id": {
+                    "description": "org_id",
+                    "type": "string"
+                },
+                "payment_method": {
+                    "description": "payment_method",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.PaymentMethod"
+                        }
+                    ]
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "reference": {
+                    "description": "reference",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "source",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.BillingSource"
+                        }
+                    ]
+                },
+                "start_at": {
+                    "description": "start_at",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "status",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.SubscriptionStatus"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string"
+                },
+                "v1": {
+                    "description": "v1",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 }
             }
         }

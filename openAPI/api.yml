@@ -1466,27 +1466,35 @@ definitions:
       created_at:
         description: The timestamp indicating when the organization was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       credits_usd:
         description: The amount of credits in USD associated with the organization.
         type: number
+        example: 5000.50
       id:
         description: The unique identifier of the organization.
         type: string
+        example: "org123"
       logo_url:
         description: The URL of the organization's logo.
         type: string
+        example: "https://example.com/logo.png"
       name:
         description: The name of the organization.
         type: string
+        example: "Example Organization"
       offramp_fee_pct:
         description: The off-ramp fee percentage applied by the organization.
         type: number
+        example: 0.05
       owner_user_id:
         description: The user ID of the owner of the organization.
         type: string
+        example: "user123"
       payment_fee_pct:
         description: The payment fee percentage applied by the organization.
         type: number
+        example: 0.03
       properties:
         description: Additional properties associated with the organization.
         type: array
@@ -1495,9 +1503,11 @@ definitions:
       swap_fee_pct:
         description: The swap fee percentage applied by the organization.
         type: number
+        example: 0.02
       updated_at:
         description: The timestamp indicating when the organization was last updated.
         type: string
+        example: '2023-01-02T08:30:00Z'
       v1:
         description: Additional data associated with the organization.
         type: array
@@ -1506,6 +1516,8 @@ definitions:
       webhook_url:
         description: The URL used for webhooks related to the organization.
         type: string
+        example: "https://example.com/webhook"
+
   models.OrgIntegrationStatus:
     type: integer
     enum:

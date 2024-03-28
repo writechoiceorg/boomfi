@@ -770,47 +770,54 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/subscriptions":
     get:
       security:
       - ApiKeyAuth: []
-      description: List subscriptions
+      description: This endpoint retrieves all subscriptions currently in the system.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Subscriptions
-      summary: List subscriptions.
+      summary: List Subscriptions
       parameters:
       - type: string
         name: after
         in: query
+        description: Retrieve subscriptions after this timestamp.
       - type: string
         name: before
         in: query
+        description: Retrieve subscriptions before this timestamp.
       - maximum: 100
         minimum: 1
         type: integer
         name: limit
         in: query
+        description: Maximum number of subscriptions to retrieve per page (default=100).
       - minimum: 1
         type: integer
         name: page
         in: query
+        description: Page number of the results to retrieve (default=1).
       - type: string
         name: since
         in: query
+        description: Retrieve subscriptions since this timestamp.
       - enum:
-        - asc
-        - desc
+          - asc
+          - desc
         type: string
         name: sort
         in: query
+        description: Sort order for the retrieved subscriptions (ascending or descending).
       - type: string
         name: until
         in: query
+        description: Retrieve subscriptions until this timestamp.
       responses:
         '200':
           description: OK
@@ -823,7 +830,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/subscriptions/{subscriptionID}":
     delete:
       security:
@@ -1341,12 +1348,15 @@ definitions:
       last_update:
         type: string
         example: '2021-01-01T00:00:00Z'
+        description: Timestamp of the last update in the subscription list.
       next:
         type: integer
         example: 10
+        description: Index of the next page of subscriptions.
       total:
         type: integer
         example: 10
+        description: Total number of subscriptions in the system.
   internal.PaginatedResponse-accounts_OrgSettlementAccountResponse:
     type: object
     properties:
@@ -1479,24 +1489,36 @@ definitions:
     - AccountTypeBank
     - AccountTypeCard
   models.BillingScheme:
+    description: The billing scheme determines how the charges are calculated for the subscription.
     type: integer
     enum:
-    - 1
-    - 2
-    - 3
-    - 4
+    - 1: BillingSchemeFlatfee
+    - 2: BillingSchemePerunit
+    - 3: BillingSchemeGraduated
+    - 4: BillingSchemeVolume
     x-enum-varnames:
     - BillingSchemeFlatfee
     - BillingSchemePerunit
     - BillingSchemeGraduated
     - BillingSchemeVolume
   models.BillingSource:
+    description: >-
+      The source  of this billing information. Can be one of the following:
+
+      - 1 = Lago
+
+      - 2 = Boomfi
+
+      - 3 = Stripe
+
+      - 4 = Chargebee
+
     type: integer
     enum:
-    - 1
-    - 2
-    - 3
-    - 4
+    - 1: Lago
+    - 2: Boomfi
+    - 3: Stripe
+    - 4: Chargebee
     x-enum-varnames:
     - BillingSourceLago
     - BillingSourceBoomfi
@@ -1745,6 +1767,24 @@ definitions:
     - RecurringUsageTypeLicensed
     - RecurringUsageTypeMetered
   models.SubscriptionStatus:
+    description: >-
+      The current status of the subscription.
+
+      - 1 = Unknown
+      
+      - 2 = Pending
+      
+      - 3 = Future
+      
+      - 4 = Intrial
+      
+      - 5 = Active
+      
+      - 6 = Paused
+      
+      - 7 = Expired
+      
+      - 8 = Canceled
     type: integer
     enum:
     - 1
@@ -2202,55 +2242,68 @@ definitions:
     type: object
     properties:
       created_at:
-        description: created_at
+        description: The timestamp indicating when the subscription item was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       id:
-        description: id
+        description: The unique identifier of the subscription item.
         type: string
+        example: item123
       plan_id:
-        description: plan_id
+        description: The unique identifier of the plan associated with the subscription item.
         type: string
+        example: plan456
       properties:
         type: object
         additionalProperties: {}
       subscription_id:
-        description: subscription_id
+        description: The unique identifier of the subscription associated with the subscription item.
         type: string
+        example: sub123
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the subscription item was last updated.
         type: string
+        example: '2023-01-02T09:00:00Z'
   subscriptions.SubscriptionResponse:
     type: object
     properties:
       cancel_at_period_end:
-        description: cancel_at_period_end
+        description: Indicates whether the subscription will be canceled at the end of the current period.
         type: boolean
+        example: false
       created_at:
-        description: created_at
+        description: The timestamp indicating when the subscription was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       currency:
-        description: currency
+        description: The currency of the subscription.
         type: string
+        example: USD
       customer:
+        description: Information about the customer associated with the subscription.
         "$ref": "#/definitions/customers.CustomerResponse"
       customer_id:
-        description: customer_id
+        description: The unique identifier of the customer associated with the subscription.
         type: string
+        example: customer123
       id:
-        description: id
+        description: The unique identifier of the subscription.
         type: string
+        example: sub123
       items:
         type: array
+        description: List of subscription items included in the subscription.
         items:
           "$ref": "#/definitions/subscriptions.SubscriptionItem"
       metadata:
-        description: metadata
+        description: Additional metadata associated with the subscription.
         type: array
         items:
           type: integer
       org_id:
-        description: org_id
+        description: The identifier representing the organization associated with the subscription.
         type: string
+        example: org123
       payment_method:
         description: payment_method
         allOf:
@@ -2259,22 +2312,25 @@ definitions:
         type: object
         additionalProperties: {}
       reference:
-        description: reference
+        description: The reference associated with the subscription.
         type: string
+        example: REF-123456
       source:
-        description: source
+        description: The source of the subscription.
         allOf:
         - "$ref": "#/definitions/models.BillingSource"
       start_at:
-        description: start_at
+        description: The timestamp indicating when the subscription starts.
         type: string
+        example: '2023-01-05T10:00:00Z'
       status:
-        description: status
+        description: The status of the subscription.
         allOf:
         - "$ref": "#/definitions/models.SubscriptionStatus"
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the subscription was last updated.
         type: string
+        example: '2023-01-02T09:00:00Z'
       v1:
         description: v1
         type: array

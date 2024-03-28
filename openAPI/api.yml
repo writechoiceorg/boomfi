@@ -418,42 +418,49 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: List paylinks
+      description: Retrieve a list of paylinks.
       consumes:
       - application/json
       produces:
       - application/json
       tags:
       - Paylinks
-      summary: List paylinks.
+      summary: List Paylinks
       parameters:
       - type: string
         name: after
         in: query
+        description: Return paylinks after this cursor for pagination.
       - type: string
         name: before
         in: query
+        description: Return paylinks before this cursor for pagination.
       - maximum: 100
         minimum: 1
         type: integer
         name: limit
         in: query
+        description: The maximum number of paylinks to return per page (1-100).
       - minimum: 1
         type: integer
         name: page
         in: query
+        description: The page number of the results to return.
       - type: string
         name: since
         in: query
+        description: Return paylinks created or updated since this timestamp.
       - enum:
         - asc
         - desc
         type: string
         name: sort
         in: query
+        description: Sort order for the results.
       - type: string
         name: until
         in: query
+        description: Return paylinks created or updated until this timestamp.
       responses:
         '200':
           description: OK
@@ -1256,12 +1263,15 @@ definitions:
           "$ref": "#/definitions/paylinks.PaymentLinkResponse"
       last_update:
         type: string
+        description: The timestamp indicating when the data was last updated.
         example: '2021-01-01T00:00:00Z'
       next:
         type: integer
+        description: The index of the next page of paylinks. 
         example: 10
       total:
         type: integer
+        description: The total number of paylinks available.
         example: 10
   internal.PaginatedItems-payments_PaymentResponse:
     type: object
@@ -1796,53 +1806,70 @@ definitions:
     type: object
     properties:
       created_at:
-        description: created_at
+        description: The timestamp indicating when the payment link was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       created_by:
-        description: created_by
+        description: The identifier of the user who created the payment link.
         type: string
+        example: "user123"
       customer_ident_collection:
-        description: customer_ident_collection
+        description: Indicates whether customer identification collection is enabled for the payment link.
         type: boolean
+        example: true
       deleted_at:
-        description: deleted_at
+        description: The timestamp indicating when the payment link was deleted (if applicable).
         type: string
+        example: '2023-01-02T08:30:00Z'
       enabled:
-        description: enabled
+        description: Indicates whether the payment link is enabled.
         type: boolean
+        example: true
       id:
-        description: id
+        description: The unique identifier of the payment link.
         type: string
+        example: "link123"
       invoice_id:
-        description: invoice_id
+        description: The identifier of the associated invoice (if applicable).
         type: string
+        example: "invoice123"
       metadata:
+        description: Additional metadata associated with the payment link.
         type: object
-        additionalProperties: {}
+        additionalProperties: true
+        example: {"key": "value"}
       plan:
+        description: The details of the associated plan (if applicable).
         "$ref": "#/definitions/plan.PlanResponse"
       plan_id:
-        description: plan_id
+        description: The identifier of the associated plan (if applicable).
         type: string
+        example: "plan123"
       properties:
+        description: Additional properties associated with the payment link.
         type: object
-        additionalProperties: {}
+        additionalProperties: true
+        example: {"key": "value"}
       shipping_address_collection:
-        description: shipping_address_collection
+        description: Indicates whether shipping address collection is enabled for the payment link.
         type: boolean
+        example: true
       source:
-        description: source
+        description: The billing source used for the payment link.
         allOf:
-        - "$ref": "#/definitions/models.BillingSource"
+          - "$ref": "#/definitions/models.BillingSource"
       tax_ident_collection:
-        description: tax_ident_collection
+        description: Indicates whether tax identification collection is enabled for the payment link.
         type: boolean
+        example: true
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the payment link was last updated.
         type: string
+        example: '2023-01-03T10:45:00Z'
       updated_by:
-        description: updated_by
+        description: The identifier of the user who last updated the payment link.
         type: string
+        example: "user456"
   payments.PaymentResponse:
     type: object
     properties:
@@ -1980,77 +2007,95 @@ definitions:
     type: object
     properties:
       available_quantity:
-        description: available_quantity
+        description: The available quantity of the plan.
         type: integer
+        example: 100
       billing_scheme:
-        description: billing_scheme
+        description: The billing scheme of the plan.
         allOf:
-        - "$ref": "#/definitions/models.BillingScheme"
+          - "$ref": "#/definitions/models.BillingScheme"
       created_at:
-        description: created_at
+        description: The timestamp indicating when the plan was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       created_by:
-        description: created_by
+        description: The identifier of the user who created the plan.
         type: string
+        example: "user123"
       currency:
-        description: currency
+        description: The currency of the plan.
         type: string
+        example: "USD"
       deleted_at:
-        description: deleted_at
+        description: The timestamp indicating when the plan was deleted (if applicable).
         type: string
+        example: '2023-01-02T08:30:00Z'
       enabled:
-        description: enabled
+        description: Indicates whether the plan is enabled.
         type: boolean
+        example: true
       id:
-        description: id
+        description: The unique identifier of the plan.
         type: string
+        example: "plan123"
       metadata:
+        description: Additional metadata associated with the plan.
         type: object
-        additionalProperties: {}
+        additionalProperties: true
+        example: {"key": "value"}
       name:
-        description: name
+        description: The name of the plan.
         type: string
+        example: "Gold Plan"
       org_id:
-        description: org_id
+        description: The identifier of the organization associated with the plan.
         type: string
+        example: "org123"
       payment_link:
+        description: The details of the associated payment link.
         "$ref": "#/definitions/plan.PaymentLinkResponse"
       price:
-        description: price
+        description: The price of the plan.
         type: string
+        example: "$99.99"
       properties:
+        description: Additional properties associated with the plan.
         type: object
-        additionalProperties: {}
+        additionalProperties: true
+        example: {"key": "value"}
       recurring_interval:
-        description: recurring_interval
+        description: The recurring interval of the plan.
         allOf:
-        - "$ref": "#/definitions/models.RecurringInterval"
+          - "$ref": "#/definitions/models.RecurringInterval"
       recurring_interval_count:
-        description: recurring_interval_count
+        description: The recurring interval count of the plan.
         type: integer
+        example: 1
       recurring_usage_type:
-        description: recurring_usage_type
+        description: The recurring usage type of the plan.
         allOf:
-        - "$ref": "#/definitions/models.RecurringUsageType"
+          - "$ref": "#/definitions/models.RecurringUsageType"
       reference:
-        description: reference
+        description: The reference of the plan.
         type: string
+        example: "plan-ref-123"
       source:
-        description: source
+        description: The billing source used for the plan.
         allOf:
-        - "$ref": "#/definitions/models.BillingSource"
+          - "$ref": "#/definitions/models.BillingSource"
       trial_period:
-        description: trial_period
+        description: The trial period of the plan.
         type: string
+        example: "14 days"
       type:
-        description: type
+        description: The type of the plan.
         allOf:
-        - "$ref": "#/definitions/models.PlanType"
+          - "$ref": "#/definitions/models.PlanType"
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the plan was last updated.
         type: string
+        example: '2023-01-03T10:45:00Z'
       v1:
-        description: v1
         type: array
         items:
           type: integer

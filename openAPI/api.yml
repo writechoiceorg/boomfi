@@ -261,24 +261,6 @@ paths:
         
         
         These events correspond to the same data that is received via webhooks, which means that users can access the historical events in case of any connection loss or for any other purposes.
-
-        The following are the  possible event types that can be returned by this endpoint:
-        
-
-        | Event Type          | Description                                                                                                     |
-        |---------------------|-----------------------------------------------------------------------------------------------------------------|
-        | Subscription        |                                                                                                                 |
-        | Subscription_Created| Indicates that a new subscription has been created.                                                             |
-        | Subscription_Canceled| Signifies the cancellation of a subscription.                                                                   |
-        | Subscription_Updated| Reflects updates or modifications to an existing subscription.                                                  |
-        |                     |                                                                                                                 |
-        | Payment             |                                                                                                                 |
-        | Payment_Created     | Denotes the creation of a new payment transaction.                                                              |
-        | Payment_Updated     | Represents updates or modifications to an existing payment transaction.                                         |
-        |                     |                                                                                                                 |
-        | Plan                |                                                                                                                 |
-        | Plan_Created        | Indicates the creation of a new subscription plan.                                                               |
-
       produces:
       - application/json
       tags:

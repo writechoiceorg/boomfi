@@ -79,7 +79,10 @@ paths:
       security:
       - ApiKeyAuth: []
       description: >-
-        This endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. This endpoint provides essential information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
+        This endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. 
+        
+        
+        This endpoint provides essential information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
       consumes:
       - application/json
       produces:
@@ -406,7 +409,6 @@ paths:
                       trial_period: ''
                       type: OneTime
                       updated_at: '2023-08-16T08:41:18.406389167Z'
-                
   "/v1/payments":
     get:
       security:
@@ -471,7 +473,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve a payment's details by it's unique identifier.
+      description: Retrieve the details of a payment using its unique identifier.
       produces:
       - application/json
       tags:
@@ -594,7 +596,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: This endpoint retrieves details about a specific plan identified by the plan's unique identifier.
+      description: Retrieve details about a specific plan identified by the plan's unique identifier.
       produces:
       - application/json
       tags:
@@ -623,7 +625,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: This endpoint retrieves all subscriptions currently in the system.
+      description: Retrieve all subscriptions currently in the system.
       consumes:
       - application/json
       produces:
@@ -683,7 +685,7 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Cancels the subscription identified by the provided subscription ID.
+      description: Cancels the subscription identified by the provided subscription unique identifier.
       produces:
       - application/json
       tags:
@@ -782,7 +784,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: This endpoint is used to retrieve a specific customer identified by its unique `customerID`. 
+      description: Retrieve a specific customer identified by its unique identifier. 
       produces:
       - application/json
       tags:
@@ -810,7 +812,7 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: This endpoint is used to delete a specific customer identified by its unique `customerID`. 
+      description: Delete a specific customer by its unique identifier. 
       produces:
       - application/json
       tags:
@@ -837,7 +839,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: This endpoint is used to retrieve a list of all integrations associated with a organization. 
+      description: Retrieve a list of all integrations associated with your organization. 
       produces:
       - application/json
       tags:
@@ -862,7 +864,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: This endpoint is used to retrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
+      description: Rretrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
       produces:
       - application/json
       tags:

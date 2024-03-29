@@ -1598,60 +1598,87 @@ definitions:
   models.Org:
     type: object
     properties:
-      created_at:
-        description: The timestamp indicating when the organization was created.
-        type: string
-        example: '2023-01-01T12:00:00Z'
-      credits_usd:
-        description: The amount of credits in USD associated with the organization.
-        type: number
-        example: 5000.50
       id:
-        description: The unique identifier of the organization.
         type: string
-        example: "org123"
-      logo_url:
-        description: The URL of the organization's logo.
-        type: string
-        example: "https://example.com/logo.png"
+        description: The unique identifier for BoomFi
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
       name:
-        description: The name of the organization.
         type: string
-        example: "Example Organization"
-      offramp_fee_pct:
-        description: The off-ramp fee percentage applied by the organization.
-        type: number
-        example: 0.05
+        description: The name of the BoomFi service
+        example: "BoomFi"
       owner_user_id:
-        description: The user ID of the owner of the organization.
         type: string
-        example: "user123"
-      payment_fee_pct:
-        description: The payment fee percentage applied by the organization.
-        type: number
-        example: 0.03
-      properties:
-        description: Additional properties associated with the organization.
-        type: array
-        items:
-          type: integer
-      swap_fee_pct:
-        description: The swap fee percentage applied by the organization.
-        type: number
-        example: 0.02
-      updated_at:
-        description: The timestamp indicating when the organization was last updated.
-        type: string
-        example: '2023-01-02T08:30:00Z'
-      v1:
-        description: Additional data associated with the organization.
-        type: array
-        items:
-          type: integer
+        description: The user ID of the owner
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
       webhook_url:
-        description: The URL used for webhooks related to the organization.
         type: string
-        example: "https://example.com/webhook"
+        format: uri
+        description: The URL for webhook notifications
+        example: "https://webhook.site/b09eec23-3f7a-4f0c-aec6-84c277c5eb78"
+      logo_url:
+        type: string
+        format: uri
+        description: The URL for the logo of BoomFi
+        example: "https://boomfi-test-addonsstack-ipj55n-merchantdatabucket-11rcw286tjikp.s3.eu-west-2.amazonaws.com/7403e69d-71c7-4ab4-8b19-7130ecd0bb3e/merchant-logos/57da50bd-857a-4658-8916-7f4a5f9ad9ad.png"
+      offramp_fee_pct:
+        type: number
+        description: The offramp fee percentage
+        example: 1
+      payment_fee_pct:
+        type: number
+        description: The payment fee percentage
+        example: 1
+      swap_fee_pct:
+        type: number
+        description: The swap fee percentage
+        example: 1
+      credits_usd:
+        type: number
+        description: The credits in USD
+        example: 0
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when BoomFi was created
+        example: "2023-08-11T10:09:25.679Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: The timestamp when BoomFi was last updated
+        example: "2024-03-29T13:59:55.003Z"
+      properties:
+        type: object
+        properties:
+          ramp:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                description: Indicates if Ramp is enabled
+                example: true
+          spreedly:
+            type: object
+            properties:
+              merchant_profile_id:
+                type: string
+                description: The merchant profile ID for Spreedly
+                example: "65oxw5ZZ2lE4siMz618v4HQqD2X"
+              sca_authentication_enabled:
+                type: boolean
+                description: Indicates if SCA authentication is enabled
+                example: true
+              sca_provider_id:
+                type: string
+                description: The SCA provider ID for Spreedly
+                example: "YN8LHxRK9ysWlKfdWZdDCtUM2TI"
+              sub_merchant_data:
+                type: string
+                description: Sub-merchant data for Spreedly
+                example: "eyJ0b2tlbiI6Ik5zVkUyV1E0eWZmUklBaDRSMENzalRXYU5naSIsIm5hbWUiOiJDcmV3IiwiZW52aXJvbm1lbnRfa2V5IjoiM0I1TkFGWTlBTTkyODlGWDZROTVOM1g4RFciLCJtZXJjaGFudF9kZWZpbmVkX3VpZCI6IjJUcG1ubWg2R0hKWHVtS04xb0J5MnU1NkltYSIsImFkZHJlc3MiOnsiYWRkcmVzczEiOiIiLCJjaXR5IjoiIiwic3RhdGUiOiIiLCJ6aXAiOiIiLCJjb3VudHJ5IjoiIn0sIm1ldGFkYXRhIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNlQxNDo0OToyM1oiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wMi0xNlQxNDo0OToyM1oifQ=="
+              sub_merchant_id:
+                type: string
+                description: The sub-merchant ID for Spreedly
+                example: "NsVE2WQ4yffRIAh4R0CsjTWaNgi"
 
   models.OrgIntegrationStatus:
     description: >-

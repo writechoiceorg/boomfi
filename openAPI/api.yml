@@ -1199,10 +1199,12 @@ definitions:
   events.Event:
     type: object
     properties:
+      type:
+        type: string
+        description: The type or category of the event.
       action:
         type: string
         description: The action associated with the event.
-        example: "create"
       data:
         type: object
         additionalProperties: {}
@@ -1210,15 +1212,9 @@ definitions:
       id:
         type: string
         description: The unique identifier of the event.
-        example: "event123"
       timestamp:
         type: string
         description: The timestamp indicating when the event occurred.
-        example: "2023-01-01T12:00:00Z"
-      type:
-        type: string
-        description: The type or category of the event.
-        example: "user_activity"
   integrations.IntegrationsResponseItem:
     type: object
     properties:
@@ -1453,15 +1449,12 @@ definitions:
       last_update:
         type: string
         description: The timestamp indicating when the data was last updated.
-        example: '2021-01-01T00:00:00Z'
       next:
         type: integer
         description: The index indicating the next page of items.
-        example: 10
       total:
         type: integer
         description: The total number of items across all pages.
-        example: 10
   internal.PaginatedItems-paylinks_PaymentLinkResponse:
     type: object
     properties:

@@ -212,7 +212,7 @@ paths:
       - application/json
       tags:
       - Paylinks
-      summary: Generate Variant Pay Link URL
+      summary: Create Variant Pay Link URL
       parameters:
       - type: string
         description: Unique identifier of the payment link.

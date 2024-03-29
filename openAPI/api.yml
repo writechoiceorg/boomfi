@@ -2130,73 +2130,168 @@ definitions:
       plan:
         "$ref": "#/definitions/plan.PlanResponse"
   paylinks.PaymentLinkResponse:
-    type: object
-    properties:
-      created_at:
-        description: The timestamp indicating when the payment link was created.
-        type: string
-        example: '2023-01-01T12:00:00Z'
-      created_by:
-        description: The identifier of the user who created the payment link.
-        type: string
-        example: "user123"
-      customer_ident_collection:
-        description: Indicates whether customer identification collection is enabled for the payment link.
-        type: boolean
-        example: true
-      deleted_at:
-        description: The timestamp indicating when the payment link was deleted (if applicable).
-        type: string
-        example: '2023-01-02T08:30:00Z'
-      enabled:
-        description: Indicates whether the payment link is enabled.
-        type: boolean
-        example: true
-      id:
-        description: The unique identifier of the payment link.
-        type: string
-        example: "link123"
-      invoice_id:
-        description: The identifier of the associated invoice (if applicable).
-        type: string
-        example: "invoice123"
-      metadata:
-        description: Additional metadata associated with the payment link.
-        type: object
-        additionalProperties: true
-        example: {"key": "value"}
-      plan:
-        description: The details of the associated plan (if applicable).
-        "$ref": "#/definitions/plan.PlanResponse"
-      plan_id:
-        description: The identifier of the associated plan (if applicable).
-        type: string
-        example: "plan123"
+    type: array
+    items:
+      type: object
       properties:
-        description: Additional properties associated with the payment link.
-        type: object
-        additionalProperties: true
-        example: {"key": "value"}
-      shipping_address_collection:
-        description: Indicates whether shipping address collection is enabled for the payment link.
-        type: boolean
-        example: true
-      source:
-        description: The billing source used for the payment link.
-        allOf:
-          - "$ref": "#/definitions/models.BillingSource"
-      tax_ident_collection:
-        description: Indicates whether tax identification collection is enabled for the payment link.
-        type: boolean
-        example: true
-      updated_at:
-        description: The timestamp indicating when the payment link was last updated.
-        type: string
-        example: '2023-01-03T10:45:00Z'
-      updated_by:
-        description: The identifier of the user who last updated the payment link.
-        type: string
-        example: "user456"
+        id:
+          type: string
+          description: The unique identifier for the paylink
+          example: "2Z4zsnmp37AF3WKM6N2j4wmeakr"
+        plan_id:
+          type: string
+          description: The ID of the associated plan
+          example: "2Z4zspFMhs2pMYjcR3l6JpJaWdA"
+        invoice_id:
+          type: string
+          description: The ID of the associated invoice
+          example: ""
+        source:
+          type: string
+          description: The source of the paylink
+          example: "BoomFi"
+        customer_ident_collection:
+          type: boolean
+          description: Indicates if customer identification collection is enabled
+          example: false
+        shipping_address_collection:
+          type: boolean
+          description: Indicates if shipping address collection is enabled
+          example: false
+        tax_ident_collection:
+          type: boolean
+          description: Indicates if tax identification collection is enabled
+          example: false
+        enabled:
+          type: boolean
+          description: Indicates if the paylink is enabled
+          example: true
+        deleted_at:
+          type: string
+          format: date-time
+          description: The timestamp when the paylink was deleted
+          example: "2023-12-04T13:25:48.499Z"
+        created_by:
+          type: string
+          description: The ID of the user who created the paylink
+          example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+        updated_by:
+          type: string
+          description: The ID of the user who last updated the paylink
+          example: ""
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the paylink was created
+          example: "2023-12-04T13:25:48.496Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the paylink was last updated
+          example: "2023-12-04T13:25:48.499Z"
+        metadata:
+          type: object
+          description: Additional metadata associated with the paylink
+          example: {}
+        properties:
+          type: object
+          description: Additional properties associated with the paylink
+          properties:
+            short_code:
+              type: string
+              description: The short code associated with the paylink
+              example: "AANj9Dm7Zl"
+        plan:
+          type: object
+          description: The details of the associated plan
+          properties:
+            id:
+              type: string
+              description: The unique identifier for the plan
+              example: "2Z4zspFMhs2pMYjcR3l6JpJaWdA"
+            org_id:
+              type: string
+              description: The organization ID associated with the plan
+              example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+            source:
+              type: string
+              description: The source of the plan
+              example: "Lago"
+            name:
+              type: string
+              description: The name of the plan
+              example: "test paylink 12 04"
+            type:
+              type: string
+              description: The type of the plan
+              example: "OneTime"
+            billing_scheme:
+              type: string
+              description: The billing scheme of the plan
+              example: "FlatFee"
+            price:
+              type: string
+              description: The price of the plan
+              example: "1"
+            currency:
+              type: string
+              description: The currency of the plan
+              example: "USD"
+            available_quantity:
+              type: integer
+              description: The available quantity of the plan
+              example: 0
+            trial_period:
+              type: string
+              description: The trial period of the plan
+              example: ""
+            recurring_interval:
+              type: string
+              description: The recurring interval of the plan
+              example: "Unknown"
+            recurring_interval_count:
+              type: integer
+              description: The recurring interval count of the plan
+              example: 1
+            recurring_usage_type:
+              type: string
+              description: The recurring usage type of the plan
+              example: "Unknown"
+            reference:
+              type: string
+              description: The reference of the plan
+              example: ""
+            enabled:
+              type: boolean
+              description: Indicates if the plan is enabled
+              example: true
+            v1:
+              type: string
+              description: Additional information about the plan
+              example: "eyJwbGFucyI6IHsiaWQiOiAiYWE1ZmI5MjQtMmMzZi00NzcwLTkyZDEtMjFjYmY3ODc3ODc2IiwgIm5hbWUiOiAidGVzdCBwYXlsaW5rIDEyIDA0IiwgInN0YXR1cyI6ICJhY3RpdmUiLCAiaW50ZXJ2YWwiOiBudWxsLCAicmVmZXJlbmNlIjogIiIsICJhbW91bnRfd2VpIjogIjEwMCIsICJjcmVhdGVkX2F0IjogIjIwMjMtMTI..."
+            created_by:
+              type: string
+              description: The ID of the user who created the plan
+              example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+            created_at:
+              type: string
+              format: date-time
+              description: The timestamp when the plan was created
+              example: "2023-12-04T13:25:47.656Z"
+            updated_at:
+              type: string
+              format: date-time
+              description: The timestamp when the plan was last updated
+              example: "2023-12-04T13:25:48.491Z"
+            deleted_at:
+              type: string
+              format: date-time
+              description: The timestamp when the plan was deleted
+              example: null
+            metadata:
+              type: object
+              description: Additional metadata associated with the plan
+              example: {}
   payments.PaymentResponse:
     type: object
     properties:

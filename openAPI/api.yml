@@ -166,7 +166,7 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Use this endpoint to generate a new payment link in BoomFi.
+      description: Use this endpoint to create a new payment link in BoomFi.
       consumes:
       - application/json
       produces:

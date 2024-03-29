@@ -2119,12 +2119,12 @@ definitions:
     properties:
       url:
         type: string
-        description: The generated variant URL.
-        example: "https://pay-test.boomfi.xyz/2bm4YuFSaw011jTWbevVPA3137q?amount=20&currency=EUR"
+        description: The URL of the paylink variant
+        example: "https://pay-test.boomfi.xyz/2Z4zsnmp37AF3WKM6N2j4wmeakr?amount=101&currency=EUR&signature=7a3043f809aa4aab4ca68694f9394c6fe4deb82c745347a4fc4ae33f6716c22e"
       created_by:
         type: string
-        description: The user who created the variant URL.
-        example: "user123"
+        description: The ID of the user who created the paylink variant
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
       payment_link:
         "$ref": "#/definitions/paylinks.PaymentLinkResponse"
       plan:

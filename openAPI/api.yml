@@ -263,6 +263,7 @@ paths:
         These events correspond to the same data that is received via webhooks, which means that users can access the historical events in case of any connection loss or for any other purposes.
 
         The following are the  possible event types that can be returned by this endpoint:
+        
 
         | Event Type          | Description                                                                                                     |
         |---------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -282,7 +283,7 @@ paths:
       - application/json
       tags:
       - Events
-      summary: List events for an organization
+      summary: List Events for an Organization
       parameters:
       - type: string
         name: after

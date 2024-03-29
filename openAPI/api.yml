@@ -1231,22 +1231,95 @@ definitions:
   internal.PaginatedItems-accounts_OrgSettlementAccountResponse:
     type: object
     properties:
-      items:
-        type: array
-        items:
-          "$ref": "#/definitions/accounts.OrgSettlementAccountResponse"
-      last_update:
+      id:
+        type: integer
+        description: The unique identifier for the account
+        example: 307
+      org_id:
         type: string
-        description: The timestamp indicating when the pagination data was last updated.
-        example: '2021-01-01T00:00:00Z'
-      next:
+        description: The organization ID associated with the account
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+      account_type:
+        type: string
+        description: The type of account (e.g., Crypto, Card)
+        example: "Crypto"
+      name:
+        type: string
+        description: The name of the account
+        example: "metamask"
+      chain_id:
         type: integer
-        description: The index indicating the next page of items.
-        example: 10
-      total:
-        type: integer
-        description: The total number of items across all pages.
-        example: 10
+        description: The identifier of the blockchain chain associated with the account
+        example: 1
+      address:
+        type: string
+        description: The address of the account
+        example: "0xE1c92E9A0f5f61739289e1CE5825038a68d8e580"
+      currencies:
+        type: array
+        description: The list of supported currencies for the account
+        items:
+          type: string
+        example:
+          - "USDC"
+          - "USDT"
+          - "DAI"
+          - "WETH"
+          - "ETH"
+      account_number:
+        type: string
+        description: The account number (if applicable)
+        example: ""
+      sort_code:
+        type: string
+        description: The sort code (if applicable)
+        example: ""
+      enabled:
+        type: boolean
+        description: Indicates if the account is enabled
+        example: true
+      created_by:
+        type: string
+        description: The ID of the user who created the account
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when the account was created
+        example: "2023-06-08T13:15:23.307Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: The timestamp when the account was last updated
+        example: "2023-06-08T13:15:23.307Z"
+      deleted_at:
+        type: string
+        format: date-time
+        description: The timestamp when the account was deleted (if applicable)
+        example: null
+      chain:
+        type: object
+        properties:
+          code:
+            type: string
+            description: The code representing the blockchain chain
+            example: "eth-mainnet"
+          name:
+            type: string
+            description: The name of the blockchain chain
+            example: "Ethereum"
+          category:
+            type: string
+            description: The category of the blockchain chain
+            example: "Ethereum"
+          is_testnet:
+            type: boolean
+            description: Indicates if the blockchain chain is a testnet
+            example: false
+          native_currency_symbol:
+            type: string
+            description: The native currency symbol of the blockchain chain
+            example: "ETH"
   internal.PaginatedItems-customers_ResponseCustomer:
     type: object
     properties:
@@ -1362,9 +1435,12 @@ definitions:
     type: object
     properties:
       data:
-        "$ref": "#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse"
-      error:
-        type: boolean
+        type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: "#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse"
   internal.PaginatedResponse-customers_ResponseCustomer:
     type: object
     properties:

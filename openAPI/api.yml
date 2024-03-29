@@ -296,1461 +296,198 @@ paths:
           schema:
             "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
           examples:
-            example1:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2Tpmnpckx3zXIlOLPGk35xOdfxB\",\n  \"timestamp\": \"2023-08-11T10:09:25.57Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.000308\",\n    \"created_at\": \"2023-08-11T10:09:23.742038Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2Tpmnpckx3zXIlOLPGk35xOdfxB\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-11T10:09:25.761828769Z\"\n\
-                \  }\n}"
-            example10:
+            Payment_Created:
+            summary: Payment_Created
+            value:
+              action: Created
+              data:
+                amount: '0.999849'
+                created_at: '2023-11-17T09:53:01.789836Z'
+                crypto_transaction:
+                  chain_id: 137
+                  hash: '0xbc356766c356af9a45e9b5e9e68670f969b64a6ca44074bb02016a6b943c4960'
+                currency: USDC
+                customer:
+                  created_at: '2023-08-11T10:09:25.723Z'
+                  deleted_at: null
+                  email: chaoyan@gmail.com
+                  id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                  metadata: {}
+                  name: Test 2
+                  org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                  phone: ''
+                  reference: ''
+                  updated_at: '2023-11-17T09:53:04.461Z'
+                  wallet_address: '0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD'
+                customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                id: 2YIYuda0iMboU6hELStkL9Ml2PI
+                invoice_id: ''
+                next_action: ''
+                org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                parent_id: ''
+                payment_method: MerchantContract
+                scheduled_time: 0
+                status: Processing
+                updated_at: '2023-11-17T09:53:04.464750378Z'
+              id: 2YIYuda0iMboU6hELStkL9Ml2PI
+              timestamp: '2023-11-17T09:53:04.337Z'
+              type: Payment
+            Payment_Updated:
               summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2TzVIhh5JpYqjoGDIDZCSlSnqo1\",\n  \"timestamp\": \"2023-08-14T20:43:42.675Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.120246\",\n    \"created_at\": \"2023-08-14T20:43:10.785017Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzVIhh5JpYqjoGDIDZCSlSnqo1\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Succeeded\",\n    \"updated_at\": \"2023-08-14T20:43:42.706821858Z\"\n \
-                \ }\n}"
-            example100:
+              value:
+                action: Updated
+                data:
+                  amount: '0.999849'
+                  created_at: '2023-11-17T09:53:01.789836Z'
+                  crypto_transaction:
+                    chain_id: 137
+                    hash: '0xbc356766c356af9a45e9b5e9e68670f969b64a6ca44074bb02016a6b943c4960'
+                  currency: USDC
+                  customer:
+                    created_at: '2023-08-11T10:09:25.723Z'
+                    deleted_at: null
+                    email: chaoyan@gmail.com
+                    id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    metadata: {}
+                    name: Test 2
+                    org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                    phone: ''
+                    reference: ''
+                    updated_at: '2023-11-17T09:53:11.484Z'
+                    wallet_address: '0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD'
+                  customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                  id: 2YIYuda0iMboU6hELStkL9Ml2PI
+                  invoice_id: ''
+                  next_action: ''
+                  org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                  parent_id: ''
+                  payment_method: MerchantContract
+                  scheduled_time: 0
+                  status: Succeeded
+                  updated_at: '2023-11-17T09:53:11.486175283Z'
+                id: 2YIYuda0iMboU6hELStkL9Ml2PI
+                timestamp: '2023-11-17T09:53:11.107Z'
+                type: Payment
+            Plan_Created:
               summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2YIZ7V8aOZ1Ry7ZLA2N1Pw8WNc0\"\
-                ,\n  \"timestamp\": \"2023-11-17T09:54:45.848Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-11-17T09:54:45.388144Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"deleted_at\": null,\n    \"enabled\": true,\n    \"id\": \"2YIZ7V8aOZ1Ry7ZLA2N1Pw8WNc0\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test sub 11 17 \",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n    \"recurring_interval\"\
-                : \"Month\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"\",\n    \"source\": \"Lago\",\n    \"\
-                trial_period\": \"\",\n    \"type\": \"Recurring\",\n    \"updated_at\": \"\
-                2023-11-17T09:54:46.38219192Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/rX8nz1v5D4\"\
-                \n  }\n}"
-            example11:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzVFMVujtAtcvkjl02bRvAbyXD\",\n  \"timestamp\": \"2023-08-14T20:44:04.698Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T20:43:24.60696Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzVFMVujtAtcvkjl02bRvAbyXD\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Cancelled\",\n    \"updated_at\": \"2023-08-14T20:44:04.721741662Z\"\
-                \n  }\n}"
-            example12:
-              summary: Subscription_Created
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Created\",\n  \"id\"\
-                : \"2TzjUmPyfA7Ik49mdlPgwsFmkIj\",\n  \"timestamp\": \"2023-08-14T22:40:21.477Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T22:40:21.583744777Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzjUmPyfA7Ik49mdlPgwsFmkIj\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Unknown\",\n    \"updated_at\": \"2023-08-14T22:40:21.676114139Z\"\
-                \n  }\n}"
-            example13:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzjUmPyfA7Ik49mdlPgwsFmkIj\",\n  \"timestamp\": \"2023-08-14T22:40:27.686Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T22:40:21.584Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzjUmPyfA7Ik49mdlPgwsFmkIj\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Unknown\",\n    \"updated_at\": \"2023-08-14T22:40:27.7135707Z\"\
-                \n  }\n}"
-            example14:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzjUmPyfA7Ik49mdlPgwsFmkIj\",\n  \"timestamp\": \"2023-08-14T22:40:36.537Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T22:40:36.296258Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzjUmPyfA7Ik49mdlPgwsFmkIj\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Active\",\n    \"updated_at\": \"2023-08-14T22:40:36.559442741Z\"\
-                \n  }\n}"
-            example15:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2TzjXRQpboacOeOharu3mNnpPfO\",\n  \"timestamp\": \"2023-08-14T22:40:42.467Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.130638\",\n    \"created_at\": \"2023-08-14T22:40:21.155635Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzjXRQpboacOeOharu3mNnpPfO\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-14T22:40:42.501332595Z\"\n\
-                \  }\n}"
-            example16:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2TzjXRQpboacOeOharu3mNnpPfO\",\n  \"timestamp\": \"2023-08-14T22:40:48.506Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.130638\",\n    \"created_at\": \"2023-08-14T22:40:21.155635Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzjXRQpboacOeOharu3mNnpPfO\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Succeeded\",\n    \"updated_at\": \"2023-08-14T22:40:48.538517134Z\"\n \
-                \ }\n}"
-            example17:
-              summary: Subscription_Created
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Created\",\n  \"id\"\
-                : \"2TzmtQXZfRWsfpV69YK8bMCFDzi\",\n  \"timestamp\": \"2023-08-14T23:08:17.358Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T23:08:17.440019161Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzmtQXZfRWsfpV69YK8bMCFDzi\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Unknown\",\n    \"updated_at\": \"2023-08-14T23:08:17.531331793Z\"\
-                \n  }\n}"
-            example18:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzmtQXZfRWsfpV69YK8bMCFDzi\",\n  \"timestamp\": \"2023-08-14T23:08:21.669Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T23:08:17.44Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzmtQXZfRWsfpV69YK8bMCFDzi\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Unknown\",\n    \"updated_at\": \"2023-08-14T23:08:21.693623838Z\"\
-                \n  }\n}"
-            example19:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzmtQXZfRWsfpV69YK8bMCFDzi\",\n  \"timestamp\": \"2023-08-14T23:08:29.522Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T23:08:29.284198Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzmtQXZfRWsfpV69YK8bMCFDzi\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Active\",\n    \"updated_at\": \"2023-08-14T23:08:29.543847118Z\"\
-                \n  }\n}"
-            example2:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Tpmnpckx3zXIlOLPGk35xOdfxB\",\n  \"timestamp\": \"2023-08-11T10:09:26.308Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.000308\",\n    \"created_at\": \"2023-08-11T10:09:23.742038Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2Tpmnpckx3zXIlOLPGk35xOdfxB\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-11T10:09:26.333077304Z\"\n\
-                \  }\n}"
-            example20:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2TzmviZ45bOTnF91qNt9BqVYyyq\",\n  \"timestamp\": \"2023-08-14T23:08:35.274Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.13\",\n    \"created_at\": \"2023-08-14T23:08:17.002215Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzmviZ45bOTnF91qNt9BqVYyyq\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-14T23:08:35.308192477Z\"\n\
-                \  }\n}"
-            example21:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2TzmviZ45bOTnF91qNt9BqVYyyq\",\n  \"timestamp\": \"2023-08-14T23:08:42.824Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.13\",\n    \"created_at\": \"2023-08-14T23:08:17.002215Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzmviZ45bOTnF91qNt9BqVYyyq\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Succeeded\",\n    \"updated_at\": \"2023-08-14T23:08:42.85415468Z\"\n  }\n\
-                }"
-            example22:
+              value:
+                action: Created
+                data:
+                  available_quantity: 0
+                  billing_scheme: FlatFee
+                  created_at: '2023-11-17T09:54:45.388144Z'
+                  created_by: 2TzGhPCAfFWLPBjtc6h52Aao2S6
+                  currency: USD
+                  deleted_at: null
+                  enabled: true
+                  id: 2YIZ7V8aOZ1Ry7ZLA2N1Pw8WNc0
+                  metadata: {}
+                  name: 'test sub 11 17 '
+                  org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                  price: '1'
+                  recurring_interval: Month
+                  recurring_interval_count: 1
+                  recurring_usage_type: Unknown
+                  reference: ''
+                  source: Lago
+                  trial_period: ''
+                  type: Recurring
+                  updated_at: '2023-11-17T09:54:46.38219192Z'
+                  url: https://app-test.boomfi.xyz/checkout/rX8nz1v5D4
+                id: 2YIZ7V8aOZ1Ry7ZLA2N1Pw8WNc0
+                timestamp: '2023-11-17T09:54:45.848Z'
+                type: Plan
+            Subscription_Canceled:
               summary: Subscription_Canceled
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Canceled\",\n  \"id\"\
-                : \"2TzmtQXZfRWsfpV69YK8bMCFDzi\",\n  \"timestamp\": \"2023-08-14T23:09:52.41Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T23:08:29.284198Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzmtQXZfRWsfpV69YK8bMCFDzi\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Cancelled\",\n    \"updated_at\": \"2023-08-14T23:09:52.432514073Z\"\
-                \n  }\n}"
-            example23:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2U3jhiF0n0JazmSe1WTtBbX8oCK\"\
-                ,\n  \"timestamp\": \"2023-08-16T08:41:18.37Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-08-16T08:41:17.981962Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2U3jhiF0n0JazmSe1WTtBbX8oCK\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test ccy gbp\",\n    \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n    \"recurring_interval\"\
-                : \"Unknown\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"\",\n    \"source\": \"Lago\",\n    \"\
-                trial_period\": \"\",\n    \"type\": \"OneTime\",\n    \"updated_at\": \"2023-08-16T08:41:18.406389167Z\"\
-                \n  }\n}"
-            example24:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2U4DCzLiqUt5VXjotVR1XIjMati\"\
-                ,\n  \"timestamp\": \"2023-08-16T12:43:55.495Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-08-16T10:45:52.052326Z\"\
-                ,\n    \"created_by\": \"2U3yqx6TklOAciMfnBBI21pZhP1\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2U4DCzLiqUt5VXjotVR1XIjMati\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Tenner\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n    \"price\": \"10\",\n    \"recurring_interval\": \"Unknown\",\n    \"\
-                recurring_interval_count\": 1,\n    \"recurring_usage_type\": \"Unknown\",\n\
-                \    \"reference\": \"\",\n    \"source\": \"Lago\",\n    \"trial_period\":\
-                \ \"\",\n    \"type\": \"OneTime\",\n    \"updated_at\": \"2023-08-16T12:43:55.52355033Z\"\
-                \n  }\n}"
-            example25:
-              summary: Subscription_Canceled
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Canceled\",\n  \"id\"\
-                : \"2TzmtQXZfRWsfpV69YK8bMCFDzi\",\n  \"timestamp\": \"2023-08-17T14:55:00.577Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T23:08:29.284198Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzmtQXZfRWsfpV69YK8bMCFDzi\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Cancelled\",\n    \"updated_at\": \"2023-08-17T14:55:14.072947+01:00\"\
-                \n  }\n}"
-            example26:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2U9hiuhtANAwL8UgZhC0iKNM0bG\"\
-                ,\n  \"timestamp\": \"2023-08-18T11:23:53.166Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-08-18T11:23:52.682913Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2U9hiuhtANAwL8UgZhC0iKNM0bG\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test \",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n    \"price\": \"1\",\n    \"recurring_interval\": \"Unknown\",\n    \"recurring_interval_count\"\
-                : 1,\n    \"recurring_usage_type\": \"Unknown\",\n    \"reference\": \"\",\n\
-                \    \"source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"OneTime\"\
-                ,\n    \"updated_at\": \"2023-08-18T11:23:53.372580354Z\"\n  }\n}"
-            example27:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2U9hklqxISN6V1vkuJytaStnf4E\",\n  \"timestamp\": \"2023-08-18T11:24:08.198Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-08-18T11:24:06.454845Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2U9hklqxISN6V1vkuJytaStnf4E\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-18T11:24:08.276726439Z\"\n\
-                \  }\n}"
-            example28:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2U9hklqxISN6V1vkuJytaStnf4E\",\n  \"timestamp\": \"2023-08-18T11:24:09.195Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-08-18T11:24:06.454845Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2U9hklqxISN6V1vkuJytaStnf4E\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-18T11:24:09.222867762Z\"\n\
-                \  }\n}"
-            example29:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2U9hklqxISN6V1vkuJytaStnf4E\",\n  \"timestamp\": \"2023-08-18T11:24:14.203Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-08-18T11:24:06.454845Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2U9hklqxISN6V1vkuJytaStnf4E\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Succeeded\",\n    \"updated_at\": \"2023-08-18T11:24:14.233897667Z\"\n \
-                \ }\n}"
-            example3:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2TzGGdyWGYOzJPVYPfXQG8xNFoR\",\n  \"timestamp\": \"2023-08-14T18:40:00.75Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.141179\",\n    \"created_at\": \"2023-08-14T18:39:32.842267Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzGGdyWGYOzJPVYPfXQG8xNFoR\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-14T18:40:00.806134771Z\"\n\
-                \  }\n}"
-            example30:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2VXQ2X0LhoCmIirWq0DcDIOXjWW\"\
-                ,\n  \"timestamp\": \"2023-09-17T19:42:18.658Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-09-17T19:42:18.222735Z\"\
-                ,\n    \"created_by\": \"2U3yqx6TklOAciMfnBBI21pZhP1\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2VXQ2X0LhoCmIirWq0DcDIOXjWW\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"paylink sync\",\n    \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"22\",\n    \"recurring_interval\"\
-                : \"Unknown\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"\",\n    \"source\": \"Lago\",\n    \"\
-                trial_period\": \"\",\n    \"type\": \"OneTime\",\n    \"updated_at\": \"2023-09-17T19:42:18.741056674Z\"\
-                ,\n    \"url\": \"https://app-test.boomfi.xyz/checkout/LngjrnOB5A\"\n  }\n}"
-            example31:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2VaJQx5DemBnu55DB573jonyUYB\",\n  \"timestamp\": \"2023-09-18T20:17:24.21Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"21.988526\",\n    \"created_at\": \"2023-09-18T20:17:21.552296Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\"\
-                ,\n    \"id\": \"2VaJQx5DemBnu55DB573jonyUYB\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-09-18T20:17:24.318788886Z\"\n\
-                \  }\n}"
-            example32:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2VkcxefiaNC67fTrDNA2AO3a3sB\"\
-                ,\n  \"timestamp\": \"2023-09-22T11:56:06.147Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-09-22T11:56:05.70362Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2VkcxefiaNC67fTrDNA2AO3a3sB\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test one time 22 sep\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n    \"recurring_interval\"\
-                : \"Unknown\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"abc\",\n    \"source\": \"Lago\",\n   \
-                \ \"trial_period\": \"\",\n    \"type\": \"OneTime\",\n    \"updated_at\": \"\
-                2023-09-22T11:56:06.230195583Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/PrZm5rQ1vW\"\
-                \n  }\n}"
-            example33:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2Vkd17EnY8wzhMK6YPEthl1g2V4\",\n  \"timestamp\": \"2023-09-22T11:56:33.616Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-22T11:56:32.006041Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-22T11:56:33.673Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vkd17EnY8wzhMK6YPEthl1g2V4\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-22T11:56:33.690788995Z\"\n  }\n}"
-            example34:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Vkd17EnY8wzhMK6YPEthl1g2V4\",\n  \"timestamp\": \"2023-09-22T11:56:34.893Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-22T11:56:32.006041Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-22T11:56:34.924Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vkd17EnY8wzhMK6YPEthl1g2V4\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-22T11:56:34.934315694Z\"\n  }\n}"
-            example35:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Vkd17EnY8wzhMK6YPEthl1g2V4\",\n  \"timestamp\": \"2023-09-22T11:56:38.834Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-22T11:56:32.006041Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-22T11:56:38.867Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vkd17EnY8wzhMK6YPEthl1g2V4\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Succeeded\"\
-                ,\n    \"updated_at\": \"2023-09-22T11:56:38.876567457Z\"\n  }\n}"
-            example36:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2VnzIMChXRgOTPgPzlkx3SYb3Yn\",\n  \"timestamp\": \"2023-09-23T16:29:11.794Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T16:29:09.633799Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T16:29:12.099Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2VnzIMChXRgOTPgPzlkx3SYb3Yn\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-23T16:29:12.195052043Z\"\n  }\n}"
-            example37:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2VnzIMChXRgOTPgPzlkx3SYb3Yn\",\n  \"timestamp\": \"2023-09-23T16:29:12.626Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T16:29:09.633799Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T16:29:12.65Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2VnzIMChXRgOTPgPzlkx3SYb3Yn\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-23T16:29:12.659941646Z\"\n  }\n}"
-            example38:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2VnzIMChXRgOTPgPzlkx3SYb3Yn\",\n  \"timestamp\": \"2023-09-23T16:29:17.772Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T16:29:09.633799Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T16:29:17.802Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2VnzIMChXRgOTPgPzlkx3SYb3Yn\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Succeeded\"\
-                ,\n    \"updated_at\": \"2023-09-23T16:29:17.812958114Z\"\n  }\n}"
-            example39:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2Vo4bBxwSQobbcucISSzNtpVclj\",\n  \"timestamp\": \"2023-09-23T17:12:47.622Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T17:12:45.685191Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T17:12:47.683Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vo4bBxwSQobbcucISSzNtpVclj\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-23T17:12:47.704245807Z\"\n  }\n}"
-            example4:
+              value:
+                action: Canceled
+                data:
+                  cancel_at_period_end: false
+                  created_at: '2023-11-02T06:44:50.439483Z'
+                  currency: ''
+                  customer:
+                    created_at: '2023-08-11T10:09:25.723Z'
+                    deleted_at: null
+                    email: chaoyan@gmail.com
+                    id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    metadata: {}
+                    name: Test 2
+                    org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                    phone: ''
+                    reference: ''
+                    updated_at: '2023-11-09T04:25:07.997Z'
+                    wallet_address: '0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD'
+                  customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                  id: 2Xc13wymUvQmw1PE51fMv4qRw7Z
+                  metadata: {}
+                  reference: test-sub-chargebee-USD-Weekly
+                  source: Lago
+                  status: Canceled
+                  updated_at: '2023-11-09T04:25:07.999938331Z'
+                id: 2Xc13wymUvQmw1PE51fMv4qRw7Z
+                timestamp: '2023-11-09T04:25:07.921Z'
+                type: Subscription
+            Subscription_Created:
               summary: Subscription_Created
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Created\",\n  \"id\"\
-                : \"2TzGhOAljp2nTpMIWQqO2yEq7zL\",\n  \"timestamp\": \"2023-08-14T18:43:33.478Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T18:39:47.083452Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzGhOAljp2nTpMIWQqO2yEq7zL\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Cancelled\",\n    \"updated_at\": \"2023-08-14T18:43:33.510486984Z\"\
-                \n  }\n}"
-            example40:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Vo4bBxwSQobbcucISSzNtpVclj\",\n  \"timestamp\": \"2023-09-23T17:12:48.67Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T17:12:45.685191Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T17:12:48.695Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vo4bBxwSQobbcucISSzNtpVclj\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-23T17:12:48.705601764Z\"\n  }\n}"
-            example41:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Vo4bBxwSQobbcucISSzNtpVclj\",\n  \"timestamp\": \"2023-09-23T17:12:54.41Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T17:12:45.685191Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T17:12:54.438Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vo4bBxwSQobbcucISSzNtpVclj\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Succeeded\"\
-                ,\n    \"updated_at\": \"2023-09-23T17:12:54.447606282Z\"\n  }\n}"
-            example42:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2Vo9bxI5kM6eKFmmRukCy0KbT2L\",\n  \"timestamp\": \"2023-09-23T17:53:59.995Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T17:53:57.814204Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T17:54:00.205Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vo9bxI5kM6eKFmmRukCy0KbT2L\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-23T17:54:00.292045283Z\"\n  }\n}"
-            example43:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Vo9bxI5kM6eKFmmRukCy0KbT2L\",\n  \"timestamp\": \"2023-09-23T17:54:01.799Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T17:53:57.814204Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T17:54:01.832Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vo9bxI5kM6eKFmmRukCy0KbT2L\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-23T17:54:01.857161972Z\"\n  }\n}"
-            example44:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Vo9bxI5kM6eKFmmRukCy0KbT2L\",\n  \"timestamp\": \"2023-09-23T17:54:04.934Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-23T17:53:57.814204Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-23T17:54:05.092Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2Vo9bxI5kM6eKFmmRukCy0KbT2L\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Succeeded\"\
-                ,\n    \"updated_at\": \"2023-09-23T17:54:05.105386614Z\"\n  }\n}"
-            example45:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2VyqEFmTmqdTu3igDX8kWPotFDV\",\n  \"timestamp\": \"2023-09-27T12:42:33.427Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-27T12:42:32.171439Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-27T12:42:33.518Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2VyqEFmTmqdTu3igDX8kWPotFDV\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-27T12:42:33.531141706Z\"\n  }\n}"
-            example46:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2VyqEFmTmqdTu3igDX8kWPotFDV\",\n  \"timestamp\": \"2023-09-27T12:42:33.917Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-27T12:42:32.171439Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-27T12:42:33.943Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2VyqEFmTmqdTu3igDX8kWPotFDV\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Processing\"\
-                ,\n    \"updated_at\": \"2023-09-27T12:42:33.994388153Z\"\n  }\n}"
-            example47:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2VyqEFmTmqdTu3igDX8kWPotFDV\",\n  \"timestamp\": \"2023-09-27T12:42:40.584Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-09-27T12:42:32.171439Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"chao+test@boomfi.xyz\"\
-                ,\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n      \"metadata\": \"e30=\"\
-                ,\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-09-27T12:42:40.616Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2VyqEFmTmqdTu3igDX8kWPotFDV\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\": \"Succeeded\"\
-                ,\n    \"updated_at\": \"2023-09-27T12:42:40.627826231Z\"\n  }\n}"
-            example48:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2WJ0wMM2hNsVV9mwmlNgjuVe4NE\",\n  \"timestamp\": \"2023-10-04T16:06:52.757Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-04T16:06:50.653031Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-10-04T16:06:52.776Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"\",\n      \"id\"\
-                : \"2WJ0wLm9jUe09qEEmgXntv3euC8\",\n      \"metadata\": \"e30=\",\n      \"\
-                name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"\
-                phone\": \"\",\n      \"reference\": \"awesome\",\n      \"updated_at\": \"\
-                2023-10-04T16:06:52.813Z\",\n      \"wallet_address\": \"\"\n    },\n    \"\
-                customer_id\": \"2WJ0wLm9jUe09qEEmgXntv3euC8\",\n    \"id\": \"2WJ0wMM2hNsVV9mwmlNgjuVe4NE\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"payment_method\"\
-                : \"Crypto\",\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-10-04T16:06:52.815801415Z\"\
-                \n  }\n}"
-            example49:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2WJ0wMM2hNsVV9mwmlNgjuVe4NE\",\n  \"timestamp\": \"2023-10-04T16:06:53.816Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-04T16:06:50.653031Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-10-04T16:06:52.776Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"\",\n      \"id\"\
-                : \"2WJ0wLm9jUe09qEEmgXntv3euC8\",\n      \"metadata\": \"e30=\",\n      \"\
-                name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"\
-                phone\": \"\",\n      \"reference\": \"awesome\",\n      \"updated_at\": \"\
-                2023-10-04T16:06:53.839Z\",\n      \"wallet_address\": \"\"\n    },\n    \"\
-                customer_id\": \"2WJ0wLm9jUe09qEEmgXntv3euC8\",\n    \"id\": \"2WJ0wMM2hNsVV9mwmlNgjuVe4NE\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"payment_method\"\
-                : \"Crypto\",\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-10-04T16:06:53.847303721Z\"\
-                \n  }\n}"
-            example5:
+              value:
+                action: Created
+                data:
+                  cancel_at_period_end: false
+                  created_at: '2023-11-15T10:52:34.730094731Z'
+                  currency: ''
+                  customer:
+                    created_at: '2023-08-11T10:09:25.723Z'
+                    deleted_at: null
+                    email: chaoyan@gmail.com
+                    id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    metadata: {}
+                    name: Test 2
+                    org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                    phone: ''
+                    reference: ''
+                    updated_at: '2023-11-15T10:52:34.827Z'
+                    wallet_address: '0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD'
+                  customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                  id: 2YD1tydYvyw8vVodm9nSEzCbCzE
+                  metadata: {}
+                  org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                  reference: test-sub-chargebee-USD-Weekly
+                  source: Lago
+                  status: Pending
+                  updated_at: '2023-11-15T10:52:34.830645089Z'
+                id: 2YD1tydYvyw8vVodm9nSEzCbCzE
+                timestamp: '2023-11-15T10:52:34.728Z'
+                type: Subscription
+            Subscription_Updated:
               summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzGhOAljp2nTpMIWQqO2yEq7zL\",\n  \"timestamp\": \"2023-08-14T18:43:39.833Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T18:39:47.083452Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzGhOAljp2nTpMIWQqO2yEq7zL\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Cancelled\",\n    \"updated_at\": \"2023-08-14T18:43:39.856479218Z\"\
-                \n  }\n}"
-            example50:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2WJ0wMM2hNsVV9mwmlNgjuVe4NE\",\n  \"timestamp\": \"2023-10-04T16:07:00.656Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-04T16:06:50.653031Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\": \"\
-                2023-10-04T16:06:52.776Z\",\n      \"deleted_at\": {\n        \"Time\": \"0001-01-01T00:00:00Z\"\
-                ,\n        \"Valid\": false\n      },\n      \"email\": \"\",\n      \"id\"\
-                : \"2WJ0wLm9jUe09qEEmgXntv3euC8\",\n      \"metadata\": \"e30=\",\n      \"\
-                name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"\
-                phone\": \"\",\n      \"reference\": \"awesome\",\n      \"updated_at\": \"\
-                2023-10-04T16:07:00.753Z\",\n      \"wallet_address\": \"\"\n    },\n    \"\
-                customer_id\": \"2WJ0wLm9jUe09qEEmgXntv3euC8\",\n    \"id\": \"2WJ0wMM2hNsVV9mwmlNgjuVe4NE\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"payment_method\"\
-                : \"Crypto\",\n    \"status\": \"Succeeded\",\n    \"updated_at\": \"2023-10-04T16:07:00.755471439Z\"\
-                \n  }\n}"
-            example51:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2WJ5BInnByfmxGaquF375pdzCoS\",\n  \"timestamp\": \"2023-10-04T16:41:45.274Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-04T16:41:43.164641Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x1ee44f50a5e9c15a5269e7a2a1e23c7aaf1e4c7aaec2583f425aebcc76112ef6\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-10-04T16:41:45.342Z\",\n      \"deleted_at\": {\n        \"Time\":\
-                \ \"0001-01-01T00:00:00Z\",\n        \"Valid\": false\n      },\n      \"email\"\
-                : \"\",\n      \"id\": \"2WJ5BLCoKQG6pWJFZCCab2PtHVH\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"awesome2\",\n      \"updated_at\"\
-                : \"2023-10-04T16:41:45.459Z\",\n      \"wallet_address\": \"\"\n    },\n  \
-                \  \"customer_id\": \"2WJ5BLCoKQG6pWJFZCCab2PtHVH\",\n    \"id\": \"2WJ5BInnByfmxGaquF375pdzCoS\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"payment_method\"\
-                : \"Crypto\",\n    \"reference\": \"abc\",\n    \"status\": \"Processing\",\n\
-                \    \"updated_at\": \"2023-10-04T16:41:45.471457653Z\"\n  }\n}"
-            example52:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2WJ5BInnByfmxGaquF375pdzCoS\",\n  \"timestamp\": \"2023-10-04T16:41:46.357Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-04T16:41:43.164641Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x1ee44f50a5e9c15a5269e7a2a1e23c7aaf1e4c7aaec2583f425aebcc76112ef6\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-10-04T16:41:45.342Z\",\n      \"deleted_at\": {\n        \"Time\":\
-                \ \"0001-01-01T00:00:00Z\",\n        \"Valid\": false\n      },\n      \"email\"\
-                : \"\",\n      \"id\": \"2WJ5BLCoKQG6pWJFZCCab2PtHVH\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"awesome2\",\n      \"updated_at\"\
-                : \"2023-10-04T16:41:46.388Z\",\n      \"wallet_address\": \"\"\n    },\n  \
-                \  \"customer_id\": \"2WJ5BLCoKQG6pWJFZCCab2PtHVH\",\n    \"id\": \"2WJ5BInnByfmxGaquF375pdzCoS\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"payment_method\"\
-                : \"Crypto\",\n    \"reference\": \"abc\",\n    \"status\": \"Processing\",\n\
-                \    \"updated_at\": \"2023-10-04T16:41:46.431391559Z\"\n  }\n}"
-            example53:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2WJ5BInnByfmxGaquF375pdzCoS\",\n  \"timestamp\": \"2023-10-04T16:41:52.287Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-04T16:41:43.164641Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x1ee44f50a5e9c15a5269e7a2a1e23c7aaf1e4c7aaec2583f425aebcc76112ef6\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-10-04T16:41:45.342Z\",\n      \"deleted_at\": {\n        \"Time\":\
-                \ \"0001-01-01T00:00:00Z\",\n        \"Valid\": false\n      },\n      \"email\"\
-                : \"\",\n      \"id\": \"2WJ5BLCoKQG6pWJFZCCab2PtHVH\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"awesome2\",\n      \"updated_at\"\
-                : \"2023-10-04T16:41:52.358Z\",\n      \"wallet_address\": \"\"\n    },\n  \
-                \  \"customer_id\": \"2WJ5BLCoKQG6pWJFZCCab2PtHVH\",\n    \"id\": \"2WJ5BInnByfmxGaquF375pdzCoS\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"payment_method\"\
-                : \"Crypto\",\n    \"reference\": \"abc\",\n    \"status\": \"Succeeded\",\n\
-                \    \"updated_at\": \"2023-10-04T16:41:52.362482184Z\"\n  }\n}"
-            example54:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2WObbtSpeKS8X4CeJv5VKWk98FI\",\n  \"timestamp\": \"2023-10-06T15:37:27.685Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-06T15:37:26.620933Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x3ee5cadf59abefbe103260efd2ac0449d6b17ca51ce7d9ff34ad08a0ea5efc17\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-10-06T15:37:27.708Z\",\n      \"deleted_at\": {\n        \"Time\":\
-                \ \"0001-01-01T00:00:00Z\",\n        \"Valid\": false\n      },\n      \"email\"\
-                : \"\",\n      \"id\": \"2WObboFm00SdcaQA6sWUOW3VQr0\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"awesome_user\",\n      \"\
-                updated_at\": \"2023-10-06T15:37:27.742Z\",\n      \"wallet_address\": \"\"\n\
-                \    },\n    \"customer_id\": \"2WObboFm00SdcaQA6sWUOW3VQr0\",\n    \"id\":\
-                \ \"2WObbtSpeKS8X4CeJv5VKWk98FI\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"reference\": \"abc\",\n\
-                \    \"status\": \"Processing\",\n    \"updated_at\": \"2023-10-06T15:37:27.747425889Z\"\
-                \n  }\n}"
-            example55:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2WObbtSpeKS8X4CeJv5VKWk98FI\",\n  \"timestamp\": \"2023-10-06T15:37:28.325Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-06T15:37:26.620933Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x3ee5cadf59abefbe103260efd2ac0449d6b17ca51ce7d9ff34ad08a0ea5efc17\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-10-06T15:37:27.708Z\",\n      \"deleted_at\": {\n        \"Time\":\
-                \ \"0001-01-01T00:00:00Z\",\n        \"Valid\": false\n      },\n      \"email\"\
-                : \"\",\n      \"id\": \"2WObboFm00SdcaQA6sWUOW3VQr0\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"awesome_user\",\n      \"\
-                updated_at\": \"2023-10-06T15:37:28.348Z\",\n      \"wallet_address\": \"\"\n\
-                \    },\n    \"customer_id\": \"2WObboFm00SdcaQA6sWUOW3VQr0\",\n    \"id\":\
-                \ \"2WObbtSpeKS8X4CeJv5VKWk98FI\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"reference\": \"abc\",\n\
-                \    \"status\": \"Processing\",\n    \"updated_at\": \"2023-10-06T15:37:28.351787168Z\"\
-                \n  }\n}"
-            example56:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2WObbtSpeKS8X4CeJv5VKWk98FI\",\n  \"timestamp\": \"2023-10-06T15:37:36.212Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-10-06T15:37:26.620933Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x3ee5cadf59abefbe103260efd2ac0449d6b17ca51ce7d9ff34ad08a0ea5efc17\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-10-06T15:37:27.708Z\",\n      \"deleted_at\": {\n        \"Time\":\
-                \ \"0001-01-01T00:00:00Z\",\n        \"Valid\": false\n      },\n      \"email\"\
-                : \"\",\n      \"id\": \"2WObboFm00SdcaQA6sWUOW3VQr0\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"awesome_user\",\n      \"\
-                updated_at\": \"2023-10-06T15:37:36.243Z\",\n      \"wallet_address\": \"\"\n\
-                \    },\n    \"customer_id\": \"2WObboFm00SdcaQA6sWUOW3VQr0\",\n    \"id\":\
-                \ \"2WObbtSpeKS8X4CeJv5VKWk98FI\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"payment_method\": \"Crypto\",\n    \"reference\": \"abc\",\n\
-                \    \"status\": \"Succeeded\",\n    \"updated_at\": \"2023-10-06T15:37:36.246133514Z\"\
-                \n  }\n}"
-            example57:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2Ww2EGgGDDe7lgZ18BDxada5N0O\"\
-                ,\n  \"timestamp\": \"2023-10-18T11:40:08.237Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-18T11:40:07.162475Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USDC\",\n    \"enabled\": true,\n    \"id\": \"2Ww2EGgGDDe7lgZ18BDxada5N0O\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"migrated-plan-goerli3 1\",\n    \"\
-                org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"0.0001\",\n   \
-                \ \"recurring_interval\": \"Week\",\n    \"recurring_interval_count\": 1,\n\
-                \    \"recurring_usage_type\": \"Unknown\",\n    \"reference\": \"something\"\
-                ,\n    \"source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"\
-                Recurring\",\n    \"updated_at\": \"2023-10-18T11:40:08.441193354Z\",\n    \"\
-                url\": \"https://app-test.boomfi.xyz/checkout/RwoNLQYZ9L\"\n  }\n}"
-            example58:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2WzDSmXPvuEJNe9GP4FNXfx5Wk6\"\
-                ,\n  \"timestamp\": \"2023-10-19T14:41:56.071Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-19T14:41:55.359879Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2WzDSmXPvuEJNe9GP4FNXfx5Wk6\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Advanced USD Yearly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"750000\",\n    \"recurring_interval\"\
-                : \"Week\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_advanced-USD-yearly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-19T14:41:56.554705765Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/RwozJQMxKY\"\
-                \n  }\n}"
-            example59:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgIxM4MxaRbfwbmePL8U2nTd\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:30.389Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:29.647818Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgIxM4MxaRbfwbmePL8U2nTd\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Daily Mild Coffee Sample GBP Monthly\"\
-                ,\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n\
-                \    \"recurring_interval\": \"Month\",\n    \"recurring_interval_count\": 1,\n\
-                \    \"recurring_usage_type\": \"Unknown\",\n    \"reference\": \"cbdemo_sample_plan-gbp-monthly\"\
-                ,\n    \"source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"\
-                Recurring\",\n    \"updated_at\": \"2023-10-27T15:08:30.648354174Z\",\n    \"\
-                url\": \"https://app-test.boomfi.xyz/checkout/mGQLQBq8kG\"\n  }\n}"
-            example6:
-              summary: Subscription_Created
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Created\",\n  \"id\"\
-                : \"2TzVFMVujtAtcvkjl02bRvAbyXD\",\n  \"timestamp\": \"2023-08-14T20:43:11.255Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T20:43:11.33823353Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzVFMVujtAtcvkjl02bRvAbyXD\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Unknown\",\n    \"updated_at\": \"2023-08-14T20:43:11.412148723Z\"\
-                \n  }\n}"
-            example60:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgUiLjUJPKndZx1XRPhY3z6L\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:31.116Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:30.691537Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgUiLjUJPKndZx1XRPhY3z6L\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Advanced GBP Yearly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"7500\",\n    \"recurring_interval\"\
-                : \"Year\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_advanced-GBP-yearly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:31.705169478Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/mGQLQBYV9O\"\
-                \n  }\n}"
-            example61:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgbYlK36RSfvWTMqHBUJ8kkz\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:31.901Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:31.443887Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgbYlK36RSfvWTMqHBUJ8kkz\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Advanced GBP Monthly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"750\",\n    \"recurring_interval\"\
-                : \"Month\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_advanced-GBP-monthly\",\n    \"\
-                source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\"\
-                ,\n    \"updated_at\": \"2023-10-27T15:08:32.408133379Z\",\n    \"url\": \"\
-                https://app-test.boomfi.xyz/checkout/yMr1rRX2X7\"\n  }\n}"
-            example62:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgZNCZkwMaVRmFocB6vV2bow\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:32.7Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:32.139694Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgZNCZkwMaVRmFocB6vV2bow\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Intermediary GBP Yearly\",\n    \"\
-                org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"6000\",\n    \"\
-                recurring_interval\": \"Year\",\n    \"recurring_interval_count\": 1,\n    \"\
-                recurring_usage_type\": \"Unknown\",\n    \"reference\": \"cbdemo_intermediary-GBP-yearly\"\
-                ,\n    \"source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"\
-                Recurring\",\n    \"updated_at\": \"2023-10-27T15:08:33.08427267Z\",\n    \"\
-                url\": \"https://app-test.boomfi.xyz/checkout/o7QNQEOZ9K\"\n  }\n}"
-            example63:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgkS9thkDhdgowmszEPrTjui\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:33.601Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:32.848713Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgkS9thkDhdgowmszEPrTjui\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Intermediary GBP Monthly\",\n    \"\
-                org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"600\",\n    \"\
-                recurring_interval\": \"Month\",\n    \"recurring_interval_count\": 1,\n   \
-                \ \"recurring_usage_type\": \"Unknown\",\n    \"reference\": \"cbdemo_intermediary-GBP-monthly\"\
-                ,\n    \"source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"\
-                Recurring\",\n    \"updated_at\": \"2023-10-27T15:08:33.943953325Z\",\n    \"\
-                url\": \"https://app-test.boomfi.xyz/checkout/EG9N9DPAok\"\n  }\n}"
-            example64:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgqPd6Nm4dkz0ghE57mi7Uez\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:34.284Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:33.844215Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgqPd6Nm4dkz0ghE57mi7Uez\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Basic GBP Yearly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"4000\",\n    \"recurring_interval\"\
-                : \"Year\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_basic-GBP-yearly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:34.618055043Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/KmZWZMA8DJ\"\
-                \n  }\n}"
-            example65:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgpAIVYywSwZEg2ZejG0pCnf\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:34.813Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:34.548182Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgpAIVYywSwZEg2ZejG0pCnf\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Basic GBP Monthly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"400\",\n    \"recurring_interval\"\
-                : \"Month\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_basic-GBP-monthly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:35.086943582Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/KmZWZMAMZx\"\
-                \n  }\n}"
-            example66:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrgxCaZVEWovnoDwVBDuLF1WB\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:35.495Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:35.119739Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrgxCaZVEWovnoDwVBDuLF1WB\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Premium GBP Yearly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"10000\",\n    \"recurring_interval\"\
-                : \"Year\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_premium-GBP-yearly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:35.925749477Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/Y0vkv4lJJA\"\
-                \n  }\n}"
-            example67:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrh04dIs9cBcm2TwrlkELB4sM\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:36.242Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:35.829853Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrh04dIs9cBcm2TwrlkELB4sM\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Premium GBP Monthly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1000\",\n    \"recurring_interval\"\
-                : \"Month\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_premium-GBP-monthly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:36.527597433Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/mGQLQBGVv0\"\
-                \n  }\n}"
-            example68:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrhCAK9tjST82sFFhkFrZoTJ4\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:36.78Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:36.527792Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrhCAK9tjST82sFFhkFrZoTJ4\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Standard GBP Yearly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"7500\",\n    \"recurring_interval\"\
-                : \"Year\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_standard-GBP-yearly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:37.288504451Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/z9K2K0QqRm\"\
-                \n  }\n}"
-            example69:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrhGc03NIFegT1gwLcaB6XBw1\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:37.775Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:37.217417Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrhGc03NIFegT1gwLcaB6XBw1\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Standard GBP Monthly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"750\",\n    \"recurring_interval\"\
-                : \"Month\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_standard-GBP-monthly\",\n    \"\
-                source\": \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\"\
-                ,\n    \"updated_at\": \"2023-10-27T15:08:38.286759385Z\",\n    \"url\": \"\
-                https://app-test.boomfi.xyz/checkout/Y0vkv4qWmp\"\n  }\n}"
-            example7:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzVFMVujtAtcvkjl02bRvAbyXD\",\n  \"timestamp\": \"2023-08-14T20:43:18.331Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T20:43:11.338Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzVFMVujtAtcvkjl02bRvAbyXD\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Unknown\",\n    \"updated_at\": \"2023-08-14T20:43:18.354576217Z\"\
-                \n  }\n}"
-            example70:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrhFhZKyS74zEQXGpqPWHw4nn\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:38.472Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:37.835993Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrhFhZKyS74zEQXGpqPWHw4nn\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Lite GBP Yearly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"5000\",\n    \"recurring_interval\"\
-                : \"Year\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_lite-GBP-yearly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:38.828484335Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/mGQLQBNvqO\"\
-                \n  }\n}"
-            example71:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrhRxoDShbTwSU2S6DHR1KqBq\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:38.953Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:38.625662Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrhRxoDShbTwSU2S6DHR1KqBq\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Lite GBP Monthly\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"500\",\n    \"recurring_interval\"\
-                : \"Month\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_lite-GBP-monthly\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"Recurring\",\n   \
-                \ \"updated_at\": \"2023-10-27T15:08:39.400749995Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/7OLvLlJG8r\"\
-                \n  }\n}"
-            example72:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrhanV1mFCJBjYx7Ukmc79ia9\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:39.95Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:39.330287Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrhanV1mFCJBjYx7Ukmc79ia9\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Setup Charge GBP\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"500\",\n    \"recurring_interval\"\
-                : \"Unknown\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"cbdemo_setup-charge-GBP\",\n    \"source\"\
-                : \"Lago\",\n    \"trial_period\": \"\",\n    \"type\": \"OneTime\",\n    \"\
-                updated_at\": \"2023-10-27T15:08:40.389814365Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/KmZWZM7ovx\"\
-                \n  }\n}"
-            example73:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XLrhVvQbC8pQuQjiNzW43LfStR\"\
-                ,\n  \"timestamp\": \"2023-10-27T15:08:40.511Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-27T15:08:40.073544Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                GBP\",\n    \"enabled\": true,\n    \"id\": \"2XLrhVvQbC8pQuQjiNzW43LfStR\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"Implementation Charge GBP\",\n   \
-                \ \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"500\",\n  \
-                \  \"recurring_interval\": \"Unknown\",\n    \"recurring_interval_count\": 0,\n\
-                \    \"recurring_usage_type\": \"Unknown\",\n    \"reference\": \"cbdemo_implementation-charge-GBP\"\
-                ,\n    \"source\": \"Chargebee\",\n    \"trial_period\": \"\",\n    \"type\"\
-                : \"OneTime\",\n    \"updated_at\": \"2023-10-27T15:08:40.809073583Z\",\n  \
-                \  \"url\": \"https://app-test.boomfi.xyz/checkout/g6LBLvyKJ9\"\n  }\n}"
-            example74:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XWFKzQtibRXa4We7Enso86Eraa\"\
-                ,\n  \"timestamp\": \"2023-10-31T07:21:08.108Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-10-31T07:21:07.585085Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"enabled\": true,\n    \"id\": \"2XWFKzQtibRXa4We7Enso86Eraa\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test one time Oct 31\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n    \"recurring_interval\"\
-                : \"Unknown\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"test-ref-prodt\",\n    \"source\": \"Lago\"\
-                ,\n    \"trial_period\": \"\",\n    \"type\": \"OneTime\",\n    \"updated_at\"\
-                : \"2023-10-31T07:21:08.354125346Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/JlyZ2RMvql\"\
-                \n  }\n}"
-            example75:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2XbpBZthqWnAFmEbBKvkPytBgyS\",\n  \"timestamp\": \"2023-11-02T06:44:58.704Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-02T06:44:31.802057Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc35c909eaa47ffd22b7d7fab41fae9bbeac29207fa15c99ba6b3734e9697778d\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chao+test@boomfi.xyz\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n\
-                \      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-02T06:44:58.914Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2XbpBZthqWnAFmEbBKvkPytBgyS\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"reference\": \"\
-                test-sub-chargebee-USD-Weekly\",\n    \"scheduled_time\": 0,\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-11-02T06:44:58.97487631Z\"\n \
-                \ }\n}"
-            example76:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2XbpBZthqWnAFmEbBKvkPytBgyS\",\n  \"timestamp\": \"2023-11-02T06:45:03.844Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-02T06:44:31.802057Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc35c909eaa47ffd22b7d7fab41fae9bbeac29207fa15c99ba6b3734e9697778d\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chao+test@boomfi.xyz\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n\
-                \      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-02T06:45:04.017Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2XbpBZthqWnAFmEbBKvkPytBgyS\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"reference\": \"\
-                test-sub-chargebee-USD-Weekly\",\n    \"scheduled_time\": 0,\n    \"status\"\
-                : \"Succeeded\",\n    \"updated_at\": \"2023-11-02T06:45:04.019610516Z\"\n \
-                \ }\n}"
-            example77:
-              summary: Subscription_Created
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Created\",\n  \"id\"\
-                : \"2Xc13wymUvQmw1PE51fMv4qRw7Z\",\n  \"timestamp\": \"2023-11-02T08:22:38.439Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-11-02T06:44:50.439483Z\",\n    \"currency\": \"\",\n    \"customer\"\
-                : {\n      \"created_at\": \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\"\
-                : null,\n      \"email\": \"chao+test@boomfi.xyz\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-02T08:22:38.665Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2Xc13wymUvQmw1PE51fMv4qRw7Z\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"test-sub-chargebee-USD-Weekly\"\
-                ,\n    \"source\": \"Lago\",\n    \"status\": \"Active\",\n    \"updated_at\"\
-                : \"2023-11-02T08:22:38.667647417Z\"\n  }\n}"
-            example78:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2Xc13wymUvQmw1PE51fMv4qRw7Z\",\n  \"timestamp\": \"2023-11-02T08:22:56.902Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-11-02T06:44:50.439483Z\",\n    \"currency\": \"\",\n    \"customer\"\
-                : {\n      \"created_at\": \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\"\
-                : null,\n      \"email\": \"chao+test@boomfi.xyz\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-02T08:22:57.099Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2Xc13wymUvQmw1PE51fMv4qRw7Z\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"test-sub-chargebee-USD-Weekly\"\
-                ,\n    \"source\": \"Lago\",\n    \"status\": \"Active\",\n    \"updated_at\"\
-                : \"2023-11-02T08:22:57.102190654Z\"\n  }\n}"
-            example79:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2Xbp0ZRO3m9VGLUoo8voAe9moeF\"\
-                ,\n  \"timestamp\": \"2023-11-02T08:23:39.381Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-11-01T11:24:24Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"deleted_at\": null,\n    \"enabled\": true,\n    \"id\": \"2Xbp0ZRO3m9VGLUoo8voAe9moeF\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test sub chargebee USD Weekly\",\n\
-                \    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n \
-                \   \"recurring_interval\": \"Week\",\n    \"recurring_interval_count\": 0,\n\
-                \    \"recurring_usage_type\": \"Unknown\",\n    \"reference\": \"test-sub-chargebee-USD-Weekly\"\
-                ,\n    \"source\": \"Chargebee\",\n    \"trial_period\": \"\",\n    \"type\"\
-                : \"Recurring\",\n    \"updated_at\": \"2023-11-02T07:06:12.83Z\",\n    \"url\"\
-                : \"https://app-test.boomfi.xyz/checkout/yMooLZEkEV\"\n  }\n}"
-            example8:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2TzVFMVujtAtcvkjl02bRvAbyXD\",\n  \"timestamp\": \"2023-08-14T20:43:24.902Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-08-14T20:43:24.60696Z\",\n    \"currency\": \"\",\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2TzVFMVujtAtcvkjl02bRvAbyXD\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Active\",\n    \"updated_at\": \"2023-08-14T20:43:24.923623569Z\"\
-                \n  }\n}"
-            example80:
-              summary: Subscription_Updated
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Updated\",\n  \"id\"\
-                : \"2Xc13wymUvQmw1PE51fMv4qRw7Z\",\n  \"timestamp\": \"2023-11-02T08:24:46.695Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-11-02T06:44:50.439483Z\",\n    \"currency\": \"\",\n    \"customer\"\
-                : {\n      \"created_at\": \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\"\
-                : null,\n      \"email\": \"chao+test@boomfi.xyz\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-02T08:24:46.786Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2Xc13wymUvQmw1PE51fMv4qRw7Z\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"test-sub-chargebee-USD-Weekly\"\
-                ,\n    \"source\": \"Lago\",\n    \"status\": \"Active\",\n    \"updated_at\"\
-                : \"2023-11-02T08:24:46.788991268Z\"\n  }\n}"
-            example81:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2XupdN3WXDJY11lYukGwRzyhxQx\",\n  \"timestamp\": \"2023-11-09T00:15:05.285Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-09T00:15:03.159314Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xd73b3286df58737b44a9d175f98477918352a3b755ed82d468cc712b21bc88fe\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-09T00:15:05.441Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2XupdN3WXDJY11lYukGwRzyhxQx\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"reference\": \"\
-                test-sub-chargebee-USD-Weekly\",\n    \"scheduled_time\": 0,\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-11-09T00:15:05.444225519Z\"\n\
-                \  }\n}"
-            example82:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2XupdN3WXDJY11lYukGwRzyhxQx\",\n  \"timestamp\": \"2023-11-09T00:15:13.286Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-09T00:15:03.159314Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xd73b3286df58737b44a9d175f98477918352a3b755ed82d468cc712b21bc88fe\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-09T00:15:13.576Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2XupdN3WXDJY11lYukGwRzyhxQx\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"reference\": \"\
-                test-sub-chargebee-USD-Weekly\",\n    \"scheduled_time\": 0,\n    \"status\"\
-                : \"Succeeded\",\n    \"updated_at\": \"2023-11-09T00:15:13.579942461Z\"\n \
-                \ }\n}"
-            example83:
-              summary: Subscription_Canceled
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Canceled\",\n  \"id\"\
-                : \"2Xc13wymUvQmw1PE51fMv4qRw7Z\",\n  \"timestamp\": \"2023-11-09T04:25:07.921Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-11-02T06:44:50.439483Z\",\n    \"currency\": \"\",\n    \"customer\"\
-                : {\n      \"created_at\": \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\"\
-                : null,\n      \"email\": \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-09T04:25:07.997Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2Xc13wymUvQmw1PE51fMv4qRw7Z\"\
-                ,\n    \"metadata\": {},\n    \"reference\": \"test-sub-chargebee-USD-Weekly\"\
-                ,\n    \"source\": \"Lago\",\n    \"status\": \"Canceled\",\n    \"updated_at\"\
-                : \"2023-11-09T04:25:07.999938331Z\"\n  }\n}"
-            example84:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2XwE2mX97DBfULIF1pHH1QoOIJH\",\n  \"timestamp\": \"2023-11-09T12:05:35.921Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-09T12:05:33.863624Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc5f600150b767c030d73a7df2453fa4abcc941ebe032b5012d2812841d0586d1\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-11-09T12:05:36.175Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"\",\n      \"id\": \"2XwE2kgjtNmaGqjkVqfKcaWrvC5\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"chao1\",\n      \"updated_at\"\
-                : \"2023-11-09T12:05:36.347Z\",\n      \"wallet_address\": \"\"\n    },\n  \
-                \  \"customer_id\": \"2XwE2kgjtNmaGqjkVqfKcaWrvC5\",\n    \"id\": \"2XwE2mX97DBfULIF1pHH1QoOIJH\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\": \"\",\n    \"payment_method\"\
-                : \"MerchantContract\",\n    \"reference\": \"test-ref-prodt\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-09T12:05:36.351683659Z\"\
-                \n  }\n}"
-            example85:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2XwE2mX97DBfULIF1pHH1QoOIJH\",\n  \"timestamp\": \"2023-11-09T12:05:37.097Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-09T12:05:33.863624Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc5f600150b767c030d73a7df2453fa4abcc941ebe032b5012d2812841d0586d1\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-11-09T12:05:36.175Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"\",\n      \"id\": \"2XwE2kgjtNmaGqjkVqfKcaWrvC5\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"chao1\",\n      \"updated_at\"\
-                : \"2023-11-09T12:05:37.432Z\",\n      \"wallet_address\": \"\"\n    },\n  \
-                \  \"customer_id\": \"2XwE2kgjtNmaGqjkVqfKcaWrvC5\",\n    \"id\": \"2XwE2mX97DBfULIF1pHH1QoOIJH\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\": \"\",\n    \"payment_method\"\
-                : \"MerchantContract\",\n    \"reference\": \"test-ref-prodt\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-09T12:05:37.436143635Z\"\
-                \n  }\n}"
-            example86:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2XwE2mX97DBfULIF1pHH1QoOIJH\",\n  \"timestamp\": \"2023-11-09T12:05:45.991Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-09T12:05:33.863624Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc5f600150b767c030d73a7df2453fa4abcc941ebe032b5012d2812841d0586d1\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-11-09T12:05:36.175Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"\",\n      \"id\": \"2XwE2kgjtNmaGqjkVqfKcaWrvC5\",\n      \"metadata\"\
-                : {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"chao1\",\n      \"updated_at\"\
-                : \"2023-11-09T12:05:46.409Z\",\n      \"wallet_address\": \"\"\n    },\n  \
-                \  \"customer_id\": \"2XwE2kgjtNmaGqjkVqfKcaWrvC5\",\n    \"id\": \"2XwE2mX97DBfULIF1pHH1QoOIJH\"\
-                ,\n    \"invoice_id\": \"\",\n    \"next_action\": \"\",\n    \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\": \"\",\n    \"payment_method\"\
-                : \"MerchantContract\",\n    \"reference\": \"test-ref-prodt\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Succeeded\",\n    \"updated_at\": \"2023-11-09T12:05:46.412892154Z\"\
-                \n  }\n}"
-            example87:
-              summary: Plan_Created
-              value: "{\n  \"type\": \"Plan\",\n  \"action\": \"Created\",\n  \"id\": \"2XzL901bPkOIPPiMSMQVnjaKBjG\"\
-                ,\n  \"timestamp\": \"2023-11-10T14:33:25.32Z\",\n  \"data\": {\n    \"available_quantity\"\
-                : 0,\n    \"billing_scheme\": \"FlatFee\",\n    \"created_at\": \"2023-11-10T14:33:24.914434Z\"\
-                ,\n    \"created_by\": \"2TzGhPCAfFWLPBjtc6h52Aao2S6\",\n    \"currency\": \"\
-                USD\",\n    \"deleted_at\": null,\n    \"enabled\": true,\n    \"id\": \"2XzL901bPkOIPPiMSMQVnjaKBjG\"\
-                ,\n    \"metadata\": {},\n    \"name\": \"test one time 10 Nov\",\n    \"org_id\"\
-                : \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"price\": \"1\",\n    \"recurring_interval\"\
-                : \"Unknown\",\n    \"recurring_interval_count\": 1,\n    \"recurring_usage_type\"\
-                : \"Unknown\",\n    \"reference\": \"abc\",\n    \"source\": \"Lago\",\n   \
-                \ \"trial_period\": \"\",\n    \"type\": \"OneTime\",\n    \"updated_at\": \"\
-                2023-11-10T14:33:25.568382989Z\",\n    \"url\": \"https://app-test.boomfi.xyz/checkout/lDxE3R66BJ\"\
-                \n  }\n}"
-            example88:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2XzO99Ds4Z730IkOO4NNaMlYhbL\",\n  \"timestamp\": \"2023-11-10T14:58:07.82Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-10T14:34:01.146825Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc31f67649e85a291e19b81cbe351b935c9f9478918b4247d43700d5f7360d030\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-10T14:58:08.497Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2XzO99Ds4Z730IkOO4NNaMlYhbL\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"reference\": \"\
-                abc\",\n    \"scheduled_time\": 0,\n    \"status\": \"Succeeded\",\n    \"updated_at\"\
-                : \"2023-11-10T14:58:08.503204696Z\"\n  }\n}"
-            example89:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2XzO9JCIhOtvMYcfpuON0uVukZF\",\n  \"timestamp\": \"2023-11-10T14:58:07.911Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-10T14:34:01.146825Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xc31f67649e85a291e19b81cbe351b935c9f9478918b4247d43700d5f7360d030\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-10T14:58:08.608Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2XzO9JCIhOtvMYcfpuON0uVukZF\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"reference\": \"\
-                abc\",\n    \"scheduled_time\": 0,\n    \"status\": \"Succeeded\",\n    \"updated_at\"\
-                : \"2023-11-10T14:58:08.613233616Z\"\n  }\n}"
-            example9:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2TzVIhh5JpYqjoGDIDZCSlSnqo1\",\n  \"timestamp\": \"2023-08-14T20:43:37.394Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"1.120246\",\n    \"created_at\": \"2023-08-14T20:43:10.785017Z\"\
-                ,\n    \"currency\": \"USDC\",\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n    \"id\": \"2TzVIhh5JpYqjoGDIDZCSlSnqo1\",\n    \"invoice_id\": \"\",\n\
-                \    \"next_action\": \"\",\n    \"payment_method\": \"Crypto\",\n    \"status\"\
-                : \"Processing\",\n    \"updated_at\": \"2023-08-14T20:43:37.426116895Z\"\n\
-                \  }\n}"
-            example90:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2Y8rQYQJq06OgcdvDimQzRSeHwp\",\n  \"timestamp\": \"2023-11-13T23:27:11.535Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-13T23:27:09.335259Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xdbb8d2c57e831b9df53e9305325dd1541dd81f244813efa33992008f0f8ac279\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-09-18T20:17:24.275Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"hyde@boomfi.xyz\",\n      \"id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\",\n   \
-                \   \"metadata\": {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-13T23:27:11.681Z\",\n      \"wallet_address\": \"0xb937ECaFdC79EdB05Fb3Bd3A26e15dcAb79F8F68\"\
-                \n    },\n    \"customer_id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\",\n    \"id\"\
-                : \"2Y8rQYQJq06OgcdvDimQzRSeHwp\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-13T23:27:11.684306804Z\"\
-                \n  }\n}"
-            example91:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Y8rQYQJq06OgcdvDimQzRSeHwp\",\n  \"timestamp\": \"2023-11-13T23:27:12.912Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-13T23:27:09.335259Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xdbb8d2c57e831b9df53e9305325dd1541dd81f244813efa33992008f0f8ac279\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-09-18T20:17:24.275Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"hyde@boomfi.xyz\",\n      \"id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\",\n   \
-                \   \"metadata\": {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-13T23:27:13.197Z\",\n      \"wallet_address\": \"0xb937ECaFdC79EdB05Fb3Bd3A26e15dcAb79F8F68\"\
-                \n    },\n    \"customer_id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\",\n    \"id\"\
-                : \"2Y8rQYQJq06OgcdvDimQzRSeHwp\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-13T23:27:13.199799332Z\"\
-                \n  }\n}"
-            example92:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2Y8rQYQJq06OgcdvDimQzRSeHwp\",\n  \"timestamp\": \"2023-11-13T23:27:19.875Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-13T23:27:09.335259Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xdbb8d2c57e831b9df53e9305325dd1541dd81f244813efa33992008f0f8ac279\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-09-18T20:17:24.275Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"hyde@boomfi.xyz\",\n      \"id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\",\n   \
-                \   \"metadata\": {},\n      \"name\": \"\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-13T23:27:20.044Z\",\n      \"wallet_address\": \"0xb937ECaFdC79EdB05Fb3Bd3A26e15dcAb79F8F68\"\
-                \n    },\n    \"customer_id\": \"2VaJQqyH9rnDMEAVBaO579SxrtG\",\n    \"id\"\
-                : \"2Y8rQYQJq06OgcdvDimQzRSeHwp\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Succeeded\",\n    \"updated_at\": \"2023-11-13T23:27:20.046822799Z\"\
-                \n  }\n}"
-            example93:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2YD1eWahq2rVducynO2hCSRDxeV\",\n  \"timestamp\": \"2023-11-15T10:50:31.453Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-15T10:50:28.556203Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x659f5eb964dcab55090fa731309f501ab3ef8292522f12e9127be287f386ac90\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-15T10:50:31.64Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2YD1eWahq2rVducynO2hCSRDxeV\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-15T10:50:31.643970361Z\"\
-                \n  }\n}"
-            example94:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2YD1eWahq2rVducynO2hCSRDxeV\",\n  \"timestamp\": \"2023-11-15T10:50:31.939Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-15T10:50:28.556203Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x659f5eb964dcab55090fa731309f501ab3ef8292522f12e9127be287f386ac90\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-15T10:50:32.436Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2YD1eWahq2rVducynO2hCSRDxeV\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-15T10:50:32.439217674Z\"\
-                \n  }\n}"
-            example95:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2YD1eWahq2rVducynO2hCSRDxeV\",\n  \"timestamp\": \"2023-11-15T10:50:37.534Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-15T10:50:28.556203Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0x659f5eb964dcab55090fa731309f501ab3ef8292522f12e9127be287f386ac90\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-15T10:50:37.725Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2YD1eWahq2rVducynO2hCSRDxeV\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Succeeded\",\n    \"updated_at\": \"2023-11-15T10:50:37.728743435Z\"\
-                \n  }\n}"
-            example96:
-              summary: Subscription_Created
-              value: "{\n  \"type\": \"Subscription\",\n  \"action\": \"Created\",\n  \"id\"\
-                : \"2YD1tydYvyw8vVodm9nSEzCbCzE\",\n  \"timestamp\": \"2023-11-15T10:52:34.728Z\"\
-                ,\n  \"data\": {\n    \"cancel_at_period_end\": false,\n    \"created_at\":\
-                \ \"2023-11-15T10:52:34.730094731Z\",\n    \"currency\": \"\",\n    \"customer\"\
-                : {\n      \"created_at\": \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\"\
-                : null,\n      \"email\": \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\"\
-                ,\n      \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"\
-                2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n      \"phone\": \"\",\n      \"reference\"\
-                : \"\",\n      \"updated_at\": \"2023-11-15T10:52:34.827Z\",\n      \"wallet_address\"\
-                : \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\n    },\n    \"customer_id\"\
-                : \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\": \"2YD1tydYvyw8vVodm9nSEzCbCzE\"\
-                ,\n    \"metadata\": {},\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n\
-                \    \"reference\": \"test-sub-chargebee-USD-Weekly\",\n    \"source\": \"Lago\"\
-                ,\n    \"status\": \"Pending\",\n    \"updated_at\": \"2023-11-15T10:52:34.830645089Z\"\
-                \n  }\n}"
-            example97:
-              summary: Payment_Created
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Created\",\n  \"id\": \"\
-                2YIYuda0iMboU6hELStkL9Ml2PI\",\n  \"timestamp\": \"2023-11-17T09:53:04.337Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-17T09:53:01.789836Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xbc356766c356af9a45e9b5e9e68670f969b64a6ca44074bb02016a6b943c4960\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-17T09:53:04.461Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2YIYuda0iMboU6hELStkL9Ml2PI\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-17T09:53:04.464750378Z\"\
-                \n  }\n}"
-            example98:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2YIYuda0iMboU6hELStkL9Ml2PI\",\n  \"timestamp\": \"2023-11-17T09:53:05.438Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-17T09:53:01.789836Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xbc356766c356af9a45e9b5e9e68670f969b64a6ca44074bb02016a6b943c4960\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-17T09:53:05.56Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2YIYuda0iMboU6hELStkL9Ml2PI\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Processing\",\n    \"updated_at\": \"2023-11-17T09:53:05.561951772Z\"\
-                \n  }\n}"
-            example99:
-              summary: Payment_Updated
-              value: "{\n  \"type\": \"Payment\",\n  \"action\": \"Updated\",\n  \"id\": \"\
-                2YIYuda0iMboU6hELStkL9Ml2PI\",\n  \"timestamp\": \"2023-11-17T09:53:11.107Z\"\
-                ,\n  \"data\": {\n    \"amount\": \"0.999849\",\n    \"created_at\": \"2023-11-17T09:53:01.789836Z\"\
-                ,\n    \"crypto_transaction\": {\n      \"chain_id\": 137,\n      \"hash\":\
-                \ \"0xbc356766c356af9a45e9b5e9e68670f969b64a6ca44074bb02016a6b943c4960\"\n \
-                \   },\n    \"currency\": \"USDC\",\n    \"customer\": {\n      \"created_at\"\
-                : \"2023-08-11T10:09:25.723Z\",\n      \"deleted_at\": null,\n      \"email\"\
-                : \"chaoyan@gmail.com\",\n      \"id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n \
-                \     \"metadata\": {},\n      \"name\": \"Test 2\",\n      \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\"\
-                ,\n      \"phone\": \"\",\n      \"reference\": \"\",\n      \"updated_at\"\
-                : \"2023-11-17T09:53:11.484Z\",\n      \"wallet_address\": \"0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD\"\
-                \n    },\n    \"customer_id\": \"2TpmnpjFmjaERa3X6YKU3YpvC2d\",\n    \"id\"\
-                : \"2YIYuda0iMboU6hELStkL9Ml2PI\",\n    \"invoice_id\": \"\",\n    \"next_action\"\
-                : \"\",\n    \"org_id\": \"2Tpmnmh6GHJXumKN1oBy2u56Ima\",\n    \"parent_id\"\
-                : \"\",\n    \"payment_method\": \"MerchantContract\",\n    \"scheduled_time\"\
-                : 0,\n    \"status\": \"Succeeded\",\n    \"updated_at\": \"2023-11-17T09:53:11.486175283Z\"\
-                \n  }\n}"
+              value:
+                action: Updated
+                data:
+                  cancel_at_period_end: false
+                  created_at: '2023-11-02T06:44:50.439483Z'
+                  currency: ''
+                  customer:
+                    created_at: '2023-08-11T10:09:25.723Z'
+                    deleted_at: null
+                    email: chao+test@boomfi.xyz
+                    id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    metadata: {}
+                    name: Test 2
+                    org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                    phone: ''
+                    reference: ''
+                    updated_at: '2023-11-02T08:24:46.786Z'
+                    wallet_address: '0x22CEB9a144754f8c211985FF631Db1515Ff1A5FD'
+                  customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                  id: 2Xc13wymUvQmw1PE51fMv4qRw7Z
+                  metadata: {}
+                  reference: test-sub-chargebee-USD-Weekly
+                  source: Lago
+                  status: Active
+                  updated_at: '2023-11-02T08:24:46.788991268Z'
+                id: 2Xc13wymUvQmw1PE51fMv4qRw7Z
+                timestamp: '2023-11-02T08:24:46.695Z'
+                type: Subscription
 
   "/v1/payments":
     get:

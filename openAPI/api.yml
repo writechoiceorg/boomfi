@@ -10,7 +10,7 @@ info:
   version: '1.0'
 host: mapi.boomfi.xyz
 paths:
-  "/orgs":
+  "/v1/orgs":
     get:
       security:
       - ApiKeyAuth: []
@@ -74,7 +74,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/accounts":
+  "/v1/accounts":
     get:
       security:
       - ApiKeyAuth: []
@@ -99,7 +99,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/paylinks":
+  "/v1/paylinks":
     get:
       security:
       - ApiKeyAuth: []
@@ -189,7 +189,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/paylinks/generate-variant/{paylinkId}":
+  "/v1/paylinks/generate-variant/{paylinkId}":
     get:
       security:
       - ApiKeyAuth: []
@@ -244,7 +244,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/events":
+  "/v1/events":
     get:
       security:
       - ApiKeyAuth: []
@@ -295,7 +295,7 @@ paths:
           description: OK
           schema:
             "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
-  "/payments":
+  "/v1/payments":
     get:
       security:
       - ApiKeyAuth: []
@@ -355,7 +355,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/payments/{paymentId}":
+  "/v1/payments/{paymentId}":
     get:
       security:
       - ApiKeyAuth: []
@@ -388,7 +388,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/plan":
+  "/v1/plan":
     get:
       security:
       - ApiKeyAuth: []
@@ -478,7 +478,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/plan/{planId}":
+  "/v1/plan/{planId}":
     get:
       security:
       - ApiKeyAuth: []
@@ -507,7 +507,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/subscriptions":
+  "/v1/subscriptions":
     get:
       security:
       - ApiKeyAuth: []
@@ -567,7 +567,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/subscriptions/{subscriptionID}":
+  "/v1/subscriptions/{subscriptionID}":
     delete:
       security:
       - ApiKeyAuth: []
@@ -600,7 +600,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/customers":
+  "/v1/customers":
     get:
       security:
       - ApiKeyAuth: []
@@ -666,7 +666,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/customers/{customerID}":
+  "/v1/customers/{customerID}":
     get:
       security:
       - ApiKeyAuth: []
@@ -721,7 +721,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations":
+  "/v1/integrations":
     get:
       security:
       - ApiKeyAuth: []
@@ -746,7 +746,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations/_templates":
+  "/v1/integrations/_templates":
     get:
       security:
       - ApiKeyAuth: []
@@ -771,7 +771,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations/{name}":
+  "/v1/integrations/{name}":
     post:
       security:
       - ApiKeyAuth: []
@@ -828,7 +828,7 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
-  "/integrations/{name}/{orgID}":
+  "/v1/integrations/{name}/{orgID}":
     post:
       security:
       - ApiKeyAuth: []

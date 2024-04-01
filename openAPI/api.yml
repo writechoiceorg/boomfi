@@ -309,8 +309,7 @@ paths:
           description: OK
           schema:
             "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
-          examples:
-            Available events:
+            example:
               data:
                 items:
                   - type: Payment

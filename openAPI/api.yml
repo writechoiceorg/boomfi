@@ -51,16 +51,11 @@ paths:
       - Organization
       summary: Update Organization
       parameters:
-      - description: body
-        name: body
+      - name: body
         in: body
         required: true
         schema:
-          "$ref": "#/definitions/orgs.UpdateOrgRequest"
-          example:
-          - logo_url:  https://example.com/logo.png
-            name: My Company's updated name
-            webhook_url: http://example.com/webhooks
+          "$ref": "#/definitions/orgs.UpdateOrgRequest"          
       responses:
         '200':
           description: OK
@@ -2187,12 +2182,15 @@ definitions:
       logo_url:
         type: string
         description: The URL of the organization's logo.
+        example: https://example.com/logo.png
       name:
         type: string
         description: The updated name of the organization.
+        example: My Company's updated name
       webhook_url:
         type: string
         description: The updated webhook URL for the organization.
+        example: http://example.com/webhooks
 
   paylinks.CreatePaymentLinkRequest:
     type: object

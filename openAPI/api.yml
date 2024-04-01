@@ -2558,99 +2558,94 @@ definitions:
   plan.PlanResponse:
     type: object
     properties:
-      available_quantity:
-        description: The available quantity of the plan.
-        type: integer
-        example: 100
+      id:
+        type: string
+        description: The unique identifier of the plan.
+        example: "2eJh1L1rDrCZxTyE6vwGhck7LWI"
+      org_id:
+        type: string
+        description: The identifier of the organization associated with the plan.
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+      source:
+        type: string
+        description: The source of the plan.
+        allOf:
+          - "$ref": "#/definitions/models.BillingSource"
+      name:
+        type: string
+        description: The name of the plan.
+        allOf:
+          - "$ref": "#/definitions/models.PlanType"
+      type:
+        type: string
+        description: The type of the plan.
       billing_scheme:
+        type: string
         description: The billing scheme of the plan.
         allOf:
           - "$ref": "#/definitions/models.BillingScheme"
-      created_at:
-        description: The timestamp indicating when the plan was created.
-        type: string
-        example: '2023-01-01T12:00:00Z'
-      created_by:
-        description: The identifier of the user who created the plan.
-        type: string
-        example: "user123"
-      currency:
-        description: The currency of the plan.
-        type: string
-        example: "USD"
-      deleted_at:
-        description: The timestamp indicating when the plan was deleted (if applicable).
-        type: string
-        example: '2023-01-02T08:30:00Z'
-      enabled:
-        description: Indicates whether the plan is enabled.
-        type: boolean
-        example: true
-      id:
-        description: The unique identifier of the plan.
-        type: string
-        example: "plan123"
-      metadata:
-        description: Additional metadata associated with the plan.
-        type: object
-        additionalProperties: true
-        example: {"key": "value"}
-      name:
-        description: The name of the plan.
-        type: string
-        example: "Gold Plan"
-      org_id:
-        description: The identifier of the organization associated with the plan.
-        type: string
-        example: "org123"
-      payment_link:
-        description: The details of the associated payment link.
-        "$ref": "#/definitions/plan.PaymentLinkResponse"
       price:
-        description: The price of the plan.
         type: string
-        example: "$99.99"
-      properties:
-        description: Additional properties associated with the plan.
-        type: object
-        additionalProperties: true
-        example: {"key": "value"}
+        description: The price of the plan.
+      currency:
+        type: string
+        description: The currency of the plan.
+      available_quantity:
+        type: integer
+        description: The available quantity of the plan.
+      trial_period:
+        type: string
+        description: The trial period of the plan.
       recurring_interval:
+        type: string
         description: The recurring interval of the plan.
         allOf:
           - "$ref": "#/definitions/models.RecurringInterval"
       recurring_interval_count:
-        description: The recurring interval count of the plan.
         type: integer
-        example: 1
+        description: The count of recurring intervals for the plan.
       recurring_usage_type:
+        type: string
         description: The recurring usage type of the plan.
         allOf:
           - "$ref": "#/definitions/models.RecurringUsageType"
       reference:
+        type: string
         description: The reference of the plan.
-        type: string
-        example: "plan-ref-123"
-      source:
-        description: The billing source used for the plan.
-        allOf:
-          - "$ref": "#/definitions/models.BillingSource"
-      trial_period:
-        description: The trial period of the plan.
-        type: string
-        example: "14 days"
-      type:
-        description: The type of the plan.
-        allOf:
-          - "$ref": "#/definitions/models.PlanType"
-      updated_at:
-        description: The timestamp indicating when the plan was last updated.
-        type: string
-        example: '2023-01-03T10:45:00Z'
+      enabled:
+        type: boolean
+        description: Indicates whether the plan is enabled or not.
       v1:
-        type: array
-        items:
-          type: integer
+        type: string
+        description: Additional information about the plan.
+      created_by:
+        type: string
+        description: The identifier of the user who created the plan.
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when the plan was created.
+      updated_at:
+        type: string
+        format: date-time
+        description: The timestamp when the plan was last updated.
+      deleted_at:
+        type: string
+        format: date-time
+        description: The timestamp when the plan was deleted, if applicable.
+      metadata:
+        type: object
+        description: Additional metadata associated with the plan.
+        additionalProperties: true
+        example: {"key": "value"}
+      properties:
+        type: object
+        description: Additional properties of the plan.
+        additionalProperties: true
+        example: {"key": "value"}
+      # payment_link:
+      #   description: The details of the associated payment link.
+      #   "$ref": "#/definitions/plan.PaymentLinkResponse"  
   sql.NullString:
     type: object
     properties:

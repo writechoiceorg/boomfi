@@ -57,6 +57,10 @@ paths:
         required: true
         schema:
           "$ref": "#/definitions/orgs.UpdateOrgRequest"
+          example:
+          - logo_url:  https://example.com/logo.png
+            name: My Company's updated name
+            webhook_url: http://example.com/webhooks
       responses:
         '200':
           description: OK

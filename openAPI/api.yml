@@ -24,20 +24,28 @@ paths:
       responses:
         '200':
           description: OK
-          schema:
-            "$ref": "#/definitions/models.Org"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/models.Org"
         '400':
           description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse"
         '401':
           description: Unauthorized
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse500"
     put:
       security:
       - ApiKeyAuth: []
@@ -58,20 +66,28 @@ paths:
       responses:
         '200':
           description: OK
-          schema:
-            "$ref": "#/definitions/models.Org"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/models.Org"
         '400':
           description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse"
         '401':
           description: Unauthorized
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse500"
   "/v1/accounts":
     get:
       security:
@@ -91,16 +107,22 @@ paths:
       responses:
         '200':
           description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-accounts_OrgSettlementAccountResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/internal.PaginatedResponse-accounts_OrgSettlementAccountResponse"
         '400':
           description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/internal.ErrorResponse500"
   "/v1/paylinks":
     get:
       security:
@@ -151,16 +173,22 @@ paths:
       responses:
         '200':
           description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-paylinks_PaymentLinkResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/internal.PaginatedResponse-paylinks_PaymentLinkResponse"
         '400':
           description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/definitions/internal.ErrorResponse500"
     post:
       security:
       - ApiKeyAuth: []

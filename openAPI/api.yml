@@ -1,4 +1,5 @@
-openapi: 3.1.0
+---
+swagger: '2.0'
 info:
   description: The BoomFi Merchants API provides a set of endpoints for merchants
     to manage their accounts, transactions, and more.
@@ -24,28 +25,20 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/models.Org"
+          schema:
+            "$ref": "#/definitions/models.Org"
         '400':
           description: Bad Request
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
         '401':
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse500"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
     put:
       security:
       - ApiKeyAuth: []
@@ -66,28 +59,20 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/models.Org"
+          schema:
+            "$ref": "#/definitions/models.Org"
         '400':
           description: Bad Request
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
         '401':
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse500"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/v1/accounts":
     get:
       security:
@@ -107,22 +92,16 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/definitions/internal.PaginatedResponse-accounts_OrgSettlementAccountResponse"
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-accounts_OrgSettlementAccountResponse"
         '400':
           description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/definitions/internal.ErrorResponse"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/definitions/internal.ErrorResponse500"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
   "/v1/paylinks":
     get:
       security:
@@ -173,22 +152,16 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/definitions/internal.PaginatedResponse-paylinks_PaymentLinkResponse"
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-paylinks_PaymentLinkResponse"
         '400':
           description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/definitions/internal.ErrorResponse"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
         '500':
           description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/definitions/internal.ErrorResponse500"
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
     post:
       security:
       - ApiKeyAuth: []
@@ -336,108 +309,109 @@ paths:
           description: OK
           schema:
             "$ref": "#/definitions/internal.PaginatedResponse-events_Event"
-          example:
-            data:
-              items:
-                - type: Payment
-                  action: Created
-                  id: 2Tpmnpckx3zXIlOLPGk35xOdfxB
-                  timestamp: '2023-08-11T10:09:25.57Z'
-                  data:
-                    amount: '1.000308'
-                    created_at: '2023-08-11T10:09:23.742038Z'
-                    currency: USDC
-                    customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+          examples:
+            Available events:
+              data:
+                items:
+                  - type: Payment
+                    action: Created
                     id: 2Tpmnpckx3zXIlOLPGk35xOdfxB
-                    invoice_id: ''
-                    next_action: ''
-                    payment_method: Crypto
-                    status: Processing
-                    updated_at: '2023-08-11T10:09:25.761828769Z'
-                - type: Payment
-                  action: Updated
-                  id: 2Tpmnpckx3zXIlOLPGk35xOdfxB
-                  timestamp: '2023-08-11T10:09:26.308Z'
-                  data:
-                    amount: '1.000308'
-                    created_at: '2023-08-11T10:09:23.742038Z'
-                    currency: USDC
-                    customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    timestamp: '2023-08-11T10:09:25.57Z'
+                    data:
+                      amount: '1.000308'
+                      created_at: '2023-08-11T10:09:23.742038Z'
+                      currency: USDC
+                      customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                      id: 2Tpmnpckx3zXIlOLPGk35xOdfxB
+                      invoice_id: ''
+                      next_action: ''
+                      payment_method: Crypto
+                      status: Processing
+                      updated_at: '2023-08-11T10:09:25.761828769Z'
+                  - type: Payment
+                    action: Updated
                     id: 2Tpmnpckx3zXIlOLPGk35xOdfxB
-                    invoice_id: ''
-                    next_action: ''
-                    payment_method: Crypto
-                    status: Processing
-                    updated_at: '2023-08-11T10:09:26.333077304Z'
-                - type: Subscription
-                  action: Created
-                  id: 2TzGhOAljp2nTpMIWQqO2yEq7zL
-                  timestamp: '2023-08-14T18:43:33.478Z'
-                  data:
-                    cancel_at_period_end: false
-                    created_at: '2023-08-14T18:39:47.083452Z'
-                    currency: ''
-                    customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    timestamp: '2023-08-11T10:09:26.308Z'
+                    data:
+                      amount: '1.000308'
+                      created_at: '2023-08-11T10:09:23.742038Z'
+                      currency: USDC
+                      customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                      id: 2Tpmnpckx3zXIlOLPGk35xOdfxB
+                      invoice_id: ''
+                      next_action: ''
+                      payment_method: Crypto
+                      status: Processing
+                      updated_at: '2023-08-11T10:09:26.333077304Z'
+                  - type: Subscription
+                    action: Created
                     id: 2TzGhOAljp2nTpMIWQqO2yEq7zL
-                    metadata: {}
-                    reference: ''
-                    source: Lago
-                    status: Cancelled
-                    updated_at: '2023-08-14T18:43:33.510486984Z'
-                - type: Subscription
-                  action: Updated
-                  id: 2TzGhOAljp2nTpMIWQqO2yEq7zL
-                  timestamp: '2023-08-14T18:43:39.833Z'
-                  data:
-                    cancel_at_period_end: false
-                    created_at: '2023-08-14T18:39:47.083452Z'
-                    currency: ''
-                    customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    timestamp: '2023-08-14T18:43:33.478Z'
+                    data:
+                      cancel_at_period_end: false
+                      created_at: '2023-08-14T18:39:47.083452Z'
+                      currency: ''
+                      customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                      id: 2TzGhOAljp2nTpMIWQqO2yEq7zL
+                      metadata: {}
+                      reference: ''
+                      source: Lago
+                      status: Cancelled
+                      updated_at: '2023-08-14T18:43:33.510486984Z'
+                  - type: Subscription
+                    action: Updated
                     id: 2TzGhOAljp2nTpMIWQqO2yEq7zL
-                    metadata: {}
-                    reference: ''
-                    source: Lago
-                    status: Cancelled
-                    updated_at: '2023-08-14T18:43:39.856479218Z'
-                - type: Subscription
-                  action: Canceled
-                  id: 2TzmtQXZfRWsfpV69YK8bMCFDzi
-                  timestamp: '2023-08-14T23:09:52.41Z'
-                  data:
-                    cancel_at_period_end: false
-                    created_at: '2023-08-14T23:08:29.284198Z'
-                    currency: ''
-                    customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                    timestamp: '2023-08-14T18:43:39.833Z'
+                    data:
+                      cancel_at_period_end: false
+                      created_at: '2023-08-14T18:39:47.083452Z'
+                      currency: ''
+                      customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                      id: 2TzGhOAljp2nTpMIWQqO2yEq7zL
+                      metadata: {}
+                      reference: ''
+                      source: Lago
+                      status: Cancelled
+                      updated_at: '2023-08-14T18:43:39.856479218Z'
+                  - type: Subscription
+                    action: Canceled
                     id: 2TzmtQXZfRWsfpV69YK8bMCFDzi
-                    metadata: {}
-                    reference: ''
-                    source: Lago
-                    status: Cancelled
-                    updated_at: '2023-08-14T23:09:52.432514073Z'
-                - type: Plan
-                  action: Created
-                  id: 2U3jhiF0n0JazmSe1WTtBbX8oCK
-                  timestamp: '2023-08-16T08:41:18.37Z'
-                  data:
-                    available_quantity: 0
-                    billing_scheme: FlatFee
-                    created_at: '2023-08-16T08:41:17.981962Z'
-                    created_by: 2TzGhPCAfFWLPBjtc6h52Aao2S6
-                    currency: USD
-                    enabled: true
+                    timestamp: '2023-08-14T23:09:52.41Z'
+                    data:
+                      cancel_at_period_end: false
+                      created_at: '2023-08-14T23:08:29.284198Z'
+                      currency: ''
+                      customer_id: 2TpmnpjFmjaERa3X6YKU3YpvC2d
+                      id: 2TzmtQXZfRWsfpV69YK8bMCFDzi
+                      metadata: {}
+                      reference: ''
+                      source: Lago
+                      status: Cancelled
+                      updated_at: '2023-08-14T23:09:52.432514073Z'
+                  - type: Plan
+                    action: Created
                     id: 2U3jhiF0n0JazmSe1WTtBbX8oCK
-                    metadata: {}
-                    name: test ccy gbp
-                    org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
-                    price: '1'
-                    recurring_interval: Unknown
-                    recurring_interval_count: 1
-                    recurring_usage_type: Unknown
-                    reference: ''
-                    source: Lago
-                    trial_period: ''
-                    type: OneTime
-                    updated_at: '2023-08-16T08:41:18.406389167Z'
+                    timestamp: '2023-08-16T08:41:18.37Z'
+                    data:
+                      available_quantity: 0
+                      billing_scheme: FlatFee
+                      created_at: '2023-08-16T08:41:17.981962Z'
+                      created_by: 2TzGhPCAfFWLPBjtc6h52Aao2S6
+                      currency: USD
+                      enabled: true
+                      id: 2U3jhiF0n0JazmSe1WTtBbX8oCK
+                      metadata: {}
+                      name: test ccy gbp
+                      org_id: 2Tpmnmh6GHJXumKN1oBy2u56Ima
+                      price: '1'
+                      recurring_interval: Unknown
+                      recurring_interval_count: 1
+                      recurring_usage_type: Unknown
+                      reference: ''
+                      source: Lago
+                      trial_period: ''
+                      type: OneTime
+                      updated_at: '2023-08-16T08:41:18.406389167Z'
   "/v1/payments":
     get:
       security:

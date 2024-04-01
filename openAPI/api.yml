@@ -2182,15 +2182,15 @@ definitions:
       logo_url:
         type: string
         description: The URL of the organization's logo.
-        example: https://example.com/logo.png
+        example: https://boomfi-test-addonsstack-ipj55n-merchantdatabucket-11rcw286tjikp.s3.eu-west-2.amazonaws.com/7403e69d-71c7-4ab4-8b19-7130ecd0bb3e/merchant-logos/57da50bd-857a-4658-8916-7f4a5f9ad9ad.png
       name:
         type: string
         description: The updated name of the organization.
-        example: My Company's updated name
+        example: BoomFi
       webhook_url:
         type: string
         description: The updated webhook URL for the organization.
-        example: http://example.com/webhooks
+        example: https://webhook.site/b09eec23-3f7a-4f0c-aec6-84c277c5eb78
 
   paylinks.CreatePaymentLinkRequest:
     type: object

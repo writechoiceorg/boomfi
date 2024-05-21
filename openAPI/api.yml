@@ -2015,42 +2015,42 @@ definitions:
       - 2 = Onetime
 
       - 3 = Recurring
-    type: integer
+    type: string
     enum:
-    - 1
-    - 2
-    - 3
+    - '1'
+    - '2'
+    - '3'
     x-enum-varnames:
     - PlanTypeUnknown
     - PlanTypeOnetime
     - PlanTypeRecurring
   models.RecurringInterval:
-    type: integer
+    type: string
     description: >-
           The recurring interval for the payment link.
 
-          - 1 = Unknown
+          - Unknown
 
-          - 2 = Minute
+          - Minute
           
-          - 3 = Hour
+          - Hour
           
-          - 4 = Day
+          - Day
           
-          - 5 = Week
+          - Week
           
-          - 6 = Month
+          - Month
           
-          - 7 = Year
+          - Year
           
     enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
+    - Unknown
+    - Minute
+    - Hour
+    - Day
+    - Week
+    - Month
+    - Year
     x-enum-varnames:
     - RecurringIntervalUnknown
     - RecurringIntervalMinute
@@ -2198,9 +2198,11 @@ definitions:
       amount:
         type: string
         description: The amount associated with the payment link.
+        example: '1000'
       currency:
         type: string
         description: The currency of the payment link.
+        example: USD
       description:
         type: string
         description: A description of the payment link.
@@ -2208,9 +2210,11 @@ definitions:
         $ref: "#/definitions/models.RecurringInterval"
         description: >-
           The recurring interval for the payment link.
+        example: Day
       intervalCount:
         type: integer
         description: The number of intervals for the recurring payment link.
+        example: 1
       metadata:
         type: object
         additionalProperties: true
@@ -2218,15 +2222,18 @@ definitions:
       name:
         type: string
         description: The name of the payment link.
+        example: "New Paylink"
       reference:
         type: string
         description: The reference for the payment link.
       trial_period:
         type: string
-        description: The trial period for the payment link.
+        description: The trial period for the payment link in a valid duration format. For example, for 1 day use 24h.
+        example: 24h
       type:
         $ref: "#/definitions/models.PlanType"
         description: The type of the payment link.
+        example: '2'
   paylinks.GenerateVariantURLResponse:
     type: object
     properties:

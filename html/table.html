@@ -1,0 +1,134 @@
+<style>
+  thead th {
+    background-color: #FCFCFF !important;
+    border-color: #ECEFF2 !important;
+    color: #282A30 !important;
+    /*font-weight: 400 !important;*/
+    border-width: 1px !important;
+    border: none !important;
+  }
+
+  table tr td {
+    background-color: #FFFFFF !important;
+    border-color: #ECEFF2 !important;
+    color: #282A30 !important;
+    font-weight: 400 !important;
+    border-width: 1px !important;
+    border: none !important;
+  }
+
+  thead tr {
+    border: 1px solid #ECEFF2 !important;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    border: 1px solid #ECEFF2 !important
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="auto"] thead th {
+      background-color: #282A30 !important;
+      border-color: #1E2024 !important;
+      color: #FFFFFF !important;
+      font-weight: 400 !important;
+      border-width: 1px !important;
+      border: none !important;
+    }
+
+    [data-color-mode="dark"] table tr td {
+      background-color: #1E2024 !important;
+      border-color: #282A30 !important;
+      color: #FFFFFF !important;
+      font-weight: 400 !important;
+      border-width: 1px !important;
+      border: none !important;
+    }
+
+    [data-color-mode="dark"] thead tr {
+      border: 1px solid #1E2024 !important;
+    }
+
+    [data-color-mode="dark"] table {
+      border-collapse: collapse !important;
+      border: 1px solid #1E2024 !important;
+    }
+  }
+
+  [data-color-mode="auto"] thead th {
+    background-color: #282A30 !important;
+    border-color: #1E2024 !important;
+    color: #FFFFFF !important;
+    font-weight: 400 !important;
+    border-width: 1px !important;
+    border: none !important;
+  }
+
+  [data-color-mode="dark"] table tr td {
+    background-color: #1E2024 !important;
+    border-color: #282A30 !important;
+    color: #FFFFFF !important;
+    font-weight: 400 !important;
+    border-width: 1px !important;
+    border: none !important;
+  }
+
+  [data-color-mode="dark"] thead tr {
+    border: 1px solid #1E2024 !important;
+  }
+
+  [data-color-mode="dark"] table {
+    border-collapse: collapse !important;
+    border: 1px solid #1E2024 !important;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Daily Levels per day</th>
+      <th>Verification Level 0</th>
+      <th colspan="2">Verification Level 1</th>
+      <th colspan="2">Verification Level 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td><b>Card</b></td>
+      <td><b>OTC</b></td>
+      <td><b>Card</b></td>
+      <td><b>OTC</b></td>
+      <td><b>Card</b></td>
+    </tr>
+    <tr>
+      <td>Fiat to Crypto</td>
+      <td>50 EUR per day <br> 150 EUR per month <br> (by regulation)</td>
+      <td>50 EUR per day</td>
+      <td>3,000 EUR / transaction <br> 5,000 EUR / day <br> 20,000 EUR / month</td>
+      <td>100,000 EUR / day</td>
+      <td>3,000 EUR / transaction<br>10,000 EUR / day<br>50,000 EUR / month</td>
+    </tr>
+    <tr>
+      <td>Crypto to Fiat Withdrawal</td>
+      <td>-</td>
+      <td>50 EUR per day</td>
+      <td>-</td>
+      <td>1 million EUR / day</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Verification Attributes KYC</td>
+      <td>Name+Email (verified)+Phone number (verified)</td>
+      <td colspan="2">Name, email, phone number, ID doc, liveness selfie, wallet screen</td>
+      <td colspan="2">Level 1 + Proof of address, proof of source of funds/source of wealth, wallet screen</td>
+    </tr>
+    <tr>
+      <td>Verification Attributes KYB</td>
+      <td>Not available</td>
+      <td colspan="2">KYB level 1 (sumsub) + wallet screen</td>
+      <td colspan="2">KYB level 2 (sumsub) + wallet screen + source of funds proof + license (if regulated) + AML policy
+        (if regulated)</td>
+    </tr>
+  </tbody>
+</table>

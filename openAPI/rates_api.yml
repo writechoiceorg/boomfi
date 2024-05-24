@@ -67,6 +67,8 @@ paths:
           description: The fiat currency you want to sell. At the moment only EUR is supported.
           schema:
             type: string
+            enum:
+              - EUR
         - name: buy_token
           in: query
           required: true

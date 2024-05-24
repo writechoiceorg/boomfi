@@ -6,21 +6,44 @@ info:
 servers:
   - url: https://capi-test.boomfi.xyz/v1
 paths:
+  /ramp/fiat_currencies:
+    get:
+      summary: Get All Fiat Currencies
+      description: Retrieve all fiat currencies supported by the API.
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                          example: EUR
+                      example:
+                        - currency: EUR
+                        - currency: GBP
   /ramp/quote:
     get:
-      summary: Get a quote for purchasing cryptocurrency using fiat currency
+      summary: Get Quotes Cryptocurrency
       description: This endpoint provides a quote for buying a specified amount of cryptocurrency using fiat currency. The user needs to specify the fiat currency, the cryptocurrency token address, and other relevant parameters to get a quote.
       parameters:
         - name: sell_currency
           in: query
           required: true
-          description: The fiat currency you want to sell (e.g., EUR).
+          description: The fiat currency you want to sell. At the moment only EUR is supported.
           schema:
             type: string
         - name: buy_token
           in: query
           required: true
-          description: The token address of the cryptocurrency you want to buy.
+          description: The token address of the cryptocurrency you want to buy. Find the available tokens on [swap.boomfi.xyz](swap.boomfi.xyz).
           schema:
             type: string
         - name: buy_currency

@@ -25,10 +25,37 @@ paths:
                       properties:
                         currency:
                           type: string
-                          example: EUR
+                          example: USD
+                        payment_methods:
+                          type: object
+                          properties:
+                            Card:
+                              type: object
+                              properties:
+                                provider:
+                                  type: string
+                                  example: Spreedly
+                                env_key:
+                                  type: string
+                                  example: "3B5NAFY9AM9289FX6Q95N3X8DW"
                       example:
-                        - currency: EUR
+                        - currency: USD
+                          payment_methods:
+                            Card:
+                              provider: Spreedly
+                              env_key: "3B5NAFY9AM9289FX6Q95N3X8DW"
                         - currency: GBP
+                          payment_methods:
+                            Card:
+                              provider: Spreedly
+                              env_key: "3B5NAFY9AM9289FX6Q95N3X8DW"
+                        - currency: EUR
+                          payment_methods:
+                            Card:
+                              provider: Spreedly
+                              env_key: "3B5NAFY9AM9289FX6Q95N3X8DW"
+        '500':
+          description: Internal server error. Something went wrong on the server side.
   /ramp/quote:
     get:
       summary: Get Quotes Cryptocurrency

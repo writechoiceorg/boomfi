@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: BoomFi Rates API
+  version: 1.0.0
+  description: API for retrieving quotes for purchasing cryptocurrency using fiat currencies.
+servers:
+  - url: https://capi-test.boomfi.xyz/v1
+paths:
+  /ramp/quote:
+    get:
+      summary: Get a quote for purchasing cryptocurrency using fiat currency
+      description: This endpoint provides a quote for buying a specified amount of cryptocurrency using fiat currency. The user needs to specify the fiat currency, the cryptocurrency token address, and other relevant parameters to get a quote.
+      parameters:
+        - name: sell_currency
+          in: query
+          required: true
+          description: The fiat currency you want to sell (e.g., EUR).
+          schema:
+            type: string
+        - name: buy_token
+          in: query
+          required: true
+          description: The token address of the cryptocurrency you want to buy.
+          schema:
+            type: string
+        - name: buy_currency
+          in: query
+          required: true
+          description: The symbol of the cryptocurrency you want to buy (for easier debugging).
+          schema:
+            type: string
+        - name: payment_method
+          in: query
+          required: true
+          description: The payment method. Currently, only "Card" is supported.
+          schema:
+            type: string
+            enum:
+              - Card
+        - name: chain_id
+          in: query
+          required: true
+          description: The chain ID of the blockchain on which you would like to buy the token. Refer to the documentation for the supported chain IDs.
+          schema:
+            type: integer
+        - name: sell_amount
+          in: query
+          required: false
+          description: The amount of fiat currency you want to sell.
+          schema:
+            type: number
+        - name: buy_amount
+          in: query
+          required: false
+          description: The amount of cryptocurrency you want to buy.
+          schema:
+            type: number
+      responses:
+        '200':
+          description: A successful response containing the quote details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      buy_currency:
+                        type: string
+                        description: The symbol of the cryptocurrency being bought.
+                        example: USDC
+                      buy_amount:
+                        type: string
+                        description: The amount of cryptocurrency that will be received.
+                        example: "72.22"
+                      sell_currency:
+                        type: string
+                        description: The fiat currency used for the purchase.
+                        example: EUR
+                      sell_amount:
+                        type: string
+                        description: The amount of fiat currency used in the transaction.
+                        example: "100"
+                      payment_method:
+                        type: string
+                        description: The payment method used in the transaction.
+                        example: Card
+                      quote_time:
+                        type: string
+                        format: date-time
+                        description: The time when the quote was generated.
+                        example: "2024-05-23T21:13:24.531851848Z"
+                      expiry:
+                        type: string
+                        format: date-time
+                        description: The expiration time of the quote.
+                        example: "2024-05-23T21:13:34.531851848Z"
+                      rate:
+                        type: string
+                        description: The exchange rate applied in the quote.
+                        example: "1.035"
+                      fees:
+                        type: object
+                        properties:
+                          fee_ccy:
+                            type: string
+                            description: The currency in which the fees are charged.
+                            example: EUR
+                          network_fee:
+                            type: string
+                            description: The fee charged by the network.
+                            example: "29.231662792647756526654796064"
+                          boomfi_fee:
+                            type: string
+                            description: The fee charged by BoomFi.
+                            example: "1"
+                          total_fee:
+                            type: string
+                            description: The total fees charged.
+                            example: "30.231662792647756526654796064"
+                      quote_amount:
+                        type: string
+                        description: The total amount quoted for the transaction.
+                        example: "100"
+                      settlement_ccy:
+                        type: string
+                        description: The currency in which the settlement will occur.
+                        example: USDC
+                      settlement_chain_id:
+                        type: integer
+                        description: The chain ID of the blockchain where the settlement will occur.
+                        example: 1
+                      settlement_token_address:
+                        type: string
+                        description: The token address of the cryptocurrency being bought.
+                        example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                      session:
+                        type: string
+                        description: The session identifier for the transaction.
+                        example: "abc123xyz456def789ghi012jkl345mno678pqr901stu234vwx567yz890"
+        '400':
+          description: Invalid request. One or more parameters might be missing or incorrect.
+        '500':
+          description: Internal server error. Something went wrong on the server side.

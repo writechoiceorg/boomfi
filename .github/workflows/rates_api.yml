@@ -1,10 +1,10 @@
 name: Sync API definition to ReadMe
 
-# Run workflow for every push to the api.yml file
+# Run workflow for every push to the rates_api.yml file
 on:
   push:
     paths:
-      - 'openAPI/api.yml'
+      - 'openAPI/rates_api.yml'
 
 jobs:  
   sync-credit-core:
@@ -19,4 +19,4 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi ./openAPI/api.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.DEFINITION_ID }}
+          rdme: openapi ./openAPI/rates_api.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.DEFINITION_ID_RATES }}

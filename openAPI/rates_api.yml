@@ -58,7 +58,7 @@ paths:
           description: Internal server error. Something went wrong on the server side.
   /ramp/quote:
     get:
-      summary: Get Quotes Cryptocurrency
+      summary: Get Ramp Quotes
       description: This endpoint provides a quote for buying a specified amount of cryptocurrency using fiat currency. The user needs to specify the fiat currency, the cryptocurrency token address, and other relevant parameters to get a quote.
       parameters:
         - name: sell_currency

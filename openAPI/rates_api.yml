@@ -315,6 +315,10 @@ paths:
                             type: string
                             description: "The symbol of the currency."
                             example: USDT
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Digital
                           tokens:
                             type: array
                             description: "List of tokens associated with this currency."
@@ -379,6 +383,7 @@ paths:
                       USDT:
                         name: Tether USDt
                         symbol: USDT
+                        type: Digital
                         tokens:
                         - address: '0x55d398326f99059fF775485246999027B3197955'
                           chain_id: '56'
@@ -398,4 +403,3 @@ paths:
                         - address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
                           chain_id: '42161'
                           name: Tether USDt
-      

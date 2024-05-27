@@ -333,10 +333,6 @@ paths:
                                   type: string
                                   description: "The name of the token."
                                   example: Tether USDt
-                          type:
-                            type: string
-                            description: "The type of the currency (e.g., Digital, Fiat)."
-                            example: Digital
               examples:
                 sample:
                   value:
@@ -402,7 +398,4 @@ paths:
                         - address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
                           chain_id: '42161'
                           name: Tether USDt
-                        type: Digital
-
-          
       

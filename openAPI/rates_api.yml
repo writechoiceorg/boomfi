@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API for retrieving quotes for purchasing cryptocurrency using fiat currencies.
 servers:
-  - url: https://capi-test.boomfi.xyz/v1
+  - url: https://capi.boomfi.xyz/v1
 paths:
   /ramp/quote:
     get:
@@ -58,7 +58,7 @@ paths:
           schema:
             type: number
       responses:
-        '200':
+        "200":
           description: A successful response containing the quote details.
           content:
             application/json:
@@ -141,16 +141,16 @@ paths:
                         type: string
                         description: The session identifier for the transaction.
                         example: "abc123xyz456def789ghi012jkl345mno678pqr901stu234vwx567yz890"
-        '400':
+        "400":
           description: Invalid request. One or more parameters might be missing or incorrect.
-        '500':
+        "500":
           description: Internal server error. Something went wrong on the server side.
   /ramp/currencies:
     get:
-      description: Retrieve a list of supported currencies with their details.
+      description: ""
       summary: Get supported currencies
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -182,7 +182,7 @@ paths:
                                 chain_id:
                                   type: string
                                   description: "The chain ID where the token is available."
-                                  example: '56'
+                                  example: "56"
                                 name:
                                   type: string
                                   description: "The name of the token."
@@ -212,11 +212,11 @@ paths:
                                 address:
                                   type: string
                                   description: "The token address."
-                                  example: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
+                                  example: "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3"
                                 chain_id:
                                   type: string
                                   description: "The chain ID where the token is available."
-                                  example: '56'
+                                  example: "56"
                                 name:
                                   type: string
                                   description: "The name of the token."
@@ -246,7 +246,7 @@ paths:
                                 chain_id:
                                   type: string
                                   description: "The chain ID where the token is available."
-                                  example: '1'
+                                  example: "1"
                                 name:
                                   type: string
                                   description: "The name of the token."
@@ -328,11 +328,11 @@ paths:
                                 address:
                                   type: string
                                   description: "The token address."
-                                  example: '0x55d398326f99059fF775485246999027B3197955'
+                                  example: "0x55d398326f99059fF775485246999027B3197955"
                                 chain_id:
                                   type: string
                                   description: "The chain ID where the token is available."
-                                  example: '56'
+                                  example: "56"
                                 name:
                                   type: string
                                   description: "The name of the token."
@@ -345,28 +345,28 @@ paths:
                         name: BNB
                         symbol: BNB
                         tokens:
-                        - chain_id: '56'
-                          name: BNB
+                          - chain_id: "56"
+                            name: BNB
                         type: Digital
                       DAI:
                         name: Dai
                         symbol: DAI
                         tokens:
-                        - address: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
-                          chain_id: '56'
-                          name: Dai
-                        - address: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'
-                          chain_id: '137'
-                          name: Dai
+                          - address: "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3"
+                            chain_id: "56"
+                            name: Dai
+                          - address: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
+                            chain_id: "137"
+                            name: Dai
                         type: Digital
                       ETH:
                         name: Ethereum
                         symbol: ETH
                         tokens:
-                        - chain_id: '1'
-                          name: ETH
-                        - chain_id: '42161'
-                          name: ETH
+                          - chain_id: "1"
+                            name: ETH
+                          - chain_id: "42161"
+                            name: ETH
                         type: Digital
                       EUR:
                         name: Euro
@@ -385,21 +385,21 @@ paths:
                         symbol: USDT
                         type: Digital
                         tokens:
-                        - address: '0x55d398326f99059fF775485246999027B3197955'
-                          chain_id: '56'
-                          name: Tether USDt
-                        - address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
-                          chain_id: '137'
-                          name: Tether USDt
-                        - address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                          chain_id: '1'
-                          name: Tether USDt
-                        - address: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB'
-                          chain_id: '1399811149'
-                          name: Tether USDt
-                        - address: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
-                          chain_id: '-200'
-                          name: Tether USD
-                        - address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
-                          chain_id: '42161'
-                          name: Tether USDt
+                          - address: "0x55d398326f99059fF775485246999027B3197955"
+                            chain_id: "56"
+                            name: Tether USDt
+                          - address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
+                            chain_id: "137"
+                            name: Tether USDt
+                          - address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+                            chain_id: "1"
+                            name: Tether USDt
+                          - address: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
+                            chain_id: "1399811149"
+                            name: Tether USDt
+                          - address: "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+                            chain_id: "-200"
+                            name: Tether USD
+                          - address: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
+                            chain_id: "42161"
+                            name: Tether USDt

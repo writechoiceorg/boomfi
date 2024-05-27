@@ -6,56 +6,6 @@ info:
 servers:
   - url: https://capi-test.boomfi.xyz/v1
 paths:
-  /ramp/fiat_currencies:
-    get:
-      summary: Get All Fiat Currencies
-      description: Retrieve all fiat currencies supported by the API.
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        currency:
-                          type: string
-                          example: USD
-                        payment_methods:
-                          type: object
-                          properties:
-                            Card:
-                              type: object
-                              properties:
-                                provider:
-                                  type: string
-                                  example: Spreedly
-                                env_key:
-                                  type: string
-                                  example: "3B5NAFY9AM9289FX6Q95N3X8DW"
-                      example:
-                        - currency: USD
-                          payment_methods:
-                            Card:
-                              provider: Spreedly
-                              env_key: "3B5NAFY9AM9289FX6Q95N3X8DW"
-                        - currency: GBP
-                          payment_methods:
-                            Card:
-                              provider: Spreedly
-                              env_key: "3B5NAFY9AM9289FX6Q95N3X8DW"
-                        - currency: EUR
-                          payment_methods:
-                            Card:
-                              provider: Spreedly
-                              env_key: "3B5NAFY9AM9289FX6Q95N3X8DW"
-        '500':
-          description: Internal server error. Something went wrong on the server side.
   /ramp/quote:
     get:
       summary: Get Ramp Quotes
@@ -195,3 +145,78 @@ paths:
           description: Invalid request. One or more parameters might be missing or incorrect.
         '500':
           description: Internal server error. Something went wrong on the server side.
+  /ramp/currencies:
+    get:
+      description: Retrieve a list of supported currencies with their details.
+      summary: Get supported currencies
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                data:
+                  BNB:
+                    name: BNB
+                    symbol: BNB
+                    tokens:
+                    - chain_id: '56'
+                      name: BNB
+                    type: Digital
+                  DAI:
+                    name: Dai
+                    symbol: DAI
+                    tokens:
+                    - address: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
+                      chain_id: '56'
+                      name: Dai
+                    - address: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'
+                      chain_id: '137'
+                      name: Dai
+                    type: Digital
+                  ETH:
+                    name: Ethereum
+                    symbol: ETH
+                    tokens:
+                    - chain_id: '1'
+                      name: ETH
+                    - chain_id: '42161'
+                      name: ETH
+                    type: Digital
+                  EUR:
+                    name: Euro
+                    symbol: EUR
+                    type: Fiat
+                  GBP:
+                    name: British Pound Sterling
+                    symbol: GBP
+                    type: Fiat
+                  USD:
+                    name: US Dollar
+                    symbol: USD
+                    type: Fiat
+                  USDT:
+                    name: Tether USDt
+                    symbol: USDT
+                    tokens:
+                    - address: '0x55d398326f99059fF775485246999027B3197955'
+                      chain_id: '56'
+                      name: Tether USDt
+                    - address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+                      chain_id: '137'
+                      name: Tether USDt
+                    - address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                      chain_id: '1'
+                      name: Tether USDt
+                    - address: Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+                      chain_id: '1399811149'
+                      name: Tether USDt
+                    - address: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+                      chain_id: '-200'
+                      name: Tether USD
+                    - address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
+                      chain_id: '42161'
+                      name: Tether USDt
+                    type: Digital
+          
+      

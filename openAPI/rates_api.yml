@@ -154,69 +154,255 @@ paths:
           description: Successful response
           content:
             application/json:
-              example:
-                data:
-                  BNB:
-                    name: BNB
-                    symbol: BNB
-                    tokens:
-                    - chain_id: '56'
-                      name: BNB
-                    type: Digital
-                  DAI:
-                    name: Dai
-                    symbol: DAI
-                    tokens:
-                    - address: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
-                      chain_id: '56'
-                      name: Dai
-                    - address: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'
-                      chain_id: '137'
-                      name: Dai
-                    type: Digital
-                  ETH:
-                    name: Ethereum
-                    symbol: ETH
-                    tokens:
-                    - chain_id: '1'
-                      name: ETH
-                    - chain_id: '42161'
-                      name: ETH
-                    type: Digital
-                  EUR:
-                    name: Euro
-                    symbol: EUR
-                    type: Fiat
-                  GBP:
-                    name: British Pound Sterling
-                    symbol: GBP
-                    type: Fiat
-                  USD:
-                    name: US Dollar
-                    symbol: USD
-                    type: Fiat
-                  USDT:
-                    name: Tether USDt
-                    symbol: USDT
-                    tokens:
-                    - address: '0x55d398326f99059fF775485246999027B3197955'
-                      chain_id: '56'
-                      name: Tether USDt
-                    - address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
-                      chain_id: '137'
-                      name: Tether USDt
-                    - address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                      chain_id: '1'
-                      name: Tether USDt
-                    - address: Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
-                      chain_id: '1399811149'
-                      name: Tether USDt
-                    - address: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
-                      chain_id: '-200'
-                      name: Tether USD
-                    - address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
-                      chain_id: '42161'
-                      name: Tether USDt
-                    type: Digital
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    description: "A mapping of currency symbols to their details."
+                    properties:
+                      BNB:
+                        type: object
+                        description: "Details for BNB currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: BNB
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: BNB
+                          tokens:
+                            type: array
+                            description: "List of tokens associated with this currency."
+                            items:
+                              type: object
+                              properties:
+                                chain_id:
+                                  type: string
+                                  description: "The chain ID where the token is available."
+                                  example: '56'
+                                name:
+                                  type: string
+                                  description: "The name of the token."
+                                  example: BNB
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Digital
+                      DAI:
+                        type: object
+                        description: "Details for DAI currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: Dai
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: DAI
+                          tokens:
+                            type: array
+                            description: "List of tokens associated with this currency."
+                            items:
+                              type: object
+                              properties:
+                                address:
+                                  type: string
+                                  description: "The token address."
+                                  example: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
+                                chain_id:
+                                  type: string
+                                  description: "The chain ID where the token is available."
+                                  example: '56'
+                                name:
+                                  type: string
+                                  description: "The name of the token."
+                                  example: Dai
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Digital
+                      ETH:
+                        type: object
+                        description: "Details for ETH currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: Ethereum
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: ETH
+                          tokens:
+                            type: array
+                            description: "List of tokens associated with this currency."
+                            items:
+                              type: object
+                              properties:
+                                chain_id:
+                                  type: string
+                                  description: "The chain ID where the token is available."
+                                  example: '1'
+                                name:
+                                  type: string
+                                  description: "The name of the token."
+                                  example: ETH
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Digital
+                      EUR:
+                        type: object
+                        description: "Details for EUR currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: Euro
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: EUR
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Fiat
+                      GBP:
+                        type: object
+                        description: "Details for GBP currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: British Pound Sterling
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: GBP
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Fiat
+                      USD:
+                        type: object
+                        description: "Details for USD currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: US Dollar
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: USD
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Fiat
+                      USDT:
+                        type: object
+                        description: "Details for USDT currency."
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the currency."
+                            example: Tether USDt
+                          symbol:
+                            type: string
+                            description: "The symbol of the currency."
+                            example: USDT
+                          tokens:
+                            type: array
+                            description: "List of tokens associated with this currency."
+                            items:
+                              type: object
+                              properties:
+                                address:
+                                  type: string
+                                  description: "The token address."
+                                  example: '0x55d398326f99059fF775485246999027B3197955'
+                                chain_id:
+                                  type: string
+                                  description: "The chain ID where the token is available."
+                                  example: '56'
+                                name:
+                                  type: string
+                                  description: "The name of the token."
+                                  example: Tether USDt
+                          type:
+                            type: string
+                            description: "The type of the currency (e.g., Digital, Fiat)."
+                            example: Digital
+              examples:
+                sample:
+                  value:
+                    data:
+                      BNB:
+                        name: BNB
+                        symbol: BNB
+                        tokens:
+                        - chain_id: '56'
+                          name: BNB
+                        type: Digital
+                      DAI:
+                        name: Dai
+                        symbol: DAI
+                        tokens:
+                        - address: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
+                          chain_id: '56'
+                          name: Dai
+                        - address: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'
+                          chain_id: '137'
+                          name: Dai
+                        type: Digital
+                      ETH:
+                        name: Ethereum
+                        symbol: ETH
+                        tokens:
+                        - chain_id: '1'
+                          name: ETH
+                        - chain_id: '42161'
+                          name: ETH
+                        type: Digital
+                      EUR:
+                        name: Euro
+                        symbol: EUR
+                        type: Fiat
+                      GBP:
+                        name: British Pound Sterling
+                        symbol: GBP
+                        type: Fiat
+                      USD:
+                        name: US Dollar
+                        symbol: USD
+                        type: Fiat
+                      USDT:
+                        name: Tether USDt
+                        symbol: USDT
+                        tokens:
+                        - address: '0x55d398326f99059fF775485246999027B3197955'
+                          chain_id: '56'
+                          name: Tether USDt
+                        - address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+                          chain_id: '137'
+                          name: Tether USDt
+                        - address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          chain_id: '1'
+                          name: Tether USDt
+                        - address: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB'
+                          chain_id: '1399811149'
+                          name: Tether USDt
+                        - address: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
+                          chain_id: '-200'
+                          name: Tether USD
+                        - address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
+                          chain_id: '42161'
+                          name: Tether USDt
+                        type: Digital
+
           
       

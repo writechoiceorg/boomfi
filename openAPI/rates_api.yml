@@ -9,6 +9,8 @@ paths:
   /ramp/quote:
     get:
       summary: Get Ramp Quotes
+      tags:
+      - Rates
       operationId: get-ramp-quotes
       description: This endpoint provides a quote for buying a specified amount of cryptocurrency using fiat currency. The user needs to specify the fiat currency, the cryptocurrency token address, and other relevant parameters to get a quote.
       parameters:
@@ -149,6 +151,8 @@ paths:
   /ramp/currencies:
     get:
       description: ""
+      tags:
+      - Rates
       operationId: get-ramp-currencies
       summary: Get supported currencies
       responses:

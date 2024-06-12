@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: var(--primary-font);
+      --main-color: #282A30;
+      --second-color: #FF8E57;
+      --primary-font: Inter;
+      --secondary-font: "Open Sans";
+    }
+
+    .Header3zzata9F_ZPQ {
+      box-shadow: 0 0px 0 var(--color-border-default);
+      -webkit-box-shadow: 0 0px 0 var(--color-border-default);
+    }
+
+    .header_container h1 {
+      font-size: 48px;
+    }
+
+    .undefined {
+      display: none;
+    }
+
+    .header_container p {
+      font-size: 16px;
+    }
+
+    .LandingWrap16kRMSdr5J8g {
+      background-color: #FCFCFF;
+      padding: 0;
+      width: 100%;
+    }
+
+
+    .body_container,
+    .rm-LandingPage {
+      background-color: #FCFCFF;
+      /* background-image: url("https://github.com/writechoiceorg/mo-tech-docs/blob/main/homepage/background-opaque.png?raw=true") !important; */
+      /* background-position-x: 75%;
+      background-position-y: -120px;
+      background-repeat: no-repeat;
+      background-size: 500px !important;
+      margin: 0; */
+    }
+
+    /* ************************ HEADER ************************ */
+    .header_container {
+      align-self: center;
+      color: var(--main-color);
+      display: flex;
+      justify-content: center;
+      padding: 60px 80px;
+    }
+
+    .hero_container {
+      align-items: center;
+      display: flex;
+      max-width: 1288px;
+      margin-right: 120px;
+    }
+
+    .hero_container .hero_title {
+      margin-bottom: 16px;
+      margin-right: 32px;
+      min-width: 50%;
+      /* display: flex;
+      width: 498px;
+      height: 159px;
+      flex-direction: column;
+      justify-content: start; */
+      /* flex-shrink: 0; */
+    }
+
+    .hero_container h1 {
+      margin: 0;
+      color: var(--main-color);
+      font-family: var(--primary-font);
+      font-size: 60px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 72px;
+      letter-spacing: -1.679px;
+    }
+
+    .hero_container .hero_title .first_title_line {
+      width: 35.0625rem;
+    }
+
+    .hero_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-self: center;
+      align-self: center;
+      margin-bottom: 12px;
+      width: 368px;
+    }
+
+    .hero_container .hero_content p {
+      margin: 0;
+      margin-bottom: 25px;
+      color: var(--main-color);
+      font-family: var(--primary-font);
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .hero_container .hero_btn {
+      border: 1px solid transparent;
+      display: inline-flex;
+      padding: 10px 32px;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      width: fit-content;
+      border-radius: 5.036px;
+      background: var(--main-color);
+      color: #F0F0F0;
+      text-align: center;
+      font-family: var(--primary-font);
+      font-size: 15.108px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 22.663px;
+    }
+
+    .hero_container .hero_btn:hover {
+      background: #282a30d7;
+      border: 1px solid var(--main-color);
+      box-shadow: 0 10px 20px #282a3017;
+      text-decoration: none !important;
+    }
+
+    /* ************************ CARDS ************************ */
+    .cards_container {
+      color: black;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      margin-bottom: 5%;
+    }
+
+    .cards_container .card {
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 0;
+      flex-shrink: 0;
+      /* height: fit-content; */
+      margin: 16px;
+      transition: all 0.3s ease, border 0.1s ease;
+      width: 349px;
+      border: 1px solid #DDD;
+      background: #FFF;
+      text-decoration: none;
+      color: var(--main-color);
+    }
+
+    .cards_container .card:hover {
+      border: 1px solid var(--main-color);
+      box-shadow: 0 10px 20px #282a3017;
+      transform: translateY(-2px);
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+
+    .cards_container .card_image {
+      background-position: center;
+      background-size: cover;
+      border-radius: 10px 10px 0px 0px;
+      height: 146px;
+    }
+
+    .cards_container .image1 {
+      background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/html/home/imgs/card1.png?raw=true')
+    }
+
+    .cards_container .image2 {
+      background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/html/home/imgs/card2.png?raw=true')
+    }
+
+    .cards_container .image3 {
+      background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/html/home/imgs/card3.png?raw=true')
+    }
+
+    .cards_container .card_text {
+      padding: 18px 20px 22px 20px;
+      /* align-self: stretch; */
+    }
+
+    .cards_container .card_text h3 {
+      height: 24px;
+      margin: 0;
+      color: var(--main-color);
+      font-family: var(--secondary-font);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .cards_container .card_text .card_content {
+      min-height: 40px;
+      height: fit-content;
+      color: var(--main-color);
+      font-family: var(--secondary-font);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      margin: 15px 0;
+    }
+
+    .cards_container .card_text .more_btn {
+      margin: 0;
+      display: flex;
+      height: 30px !important;
+      flex-direction: column;
+      justify-content: center;
+      align-self: stretch;
+      color: #8B8B8B;
+      font-family: var(--secondary-font);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* ************************ DARK MODE ************************ */
+    @media (prefers-color-scheme: dark) {
+
+      [data-color-mode="system"] .LandingWrap16kRMSdr5J8g,
+      [data-color-mode="system"] .body_container,
+      [data-color-mode="system"] .rm-LandingPage {
+        background-color: #1F282D !important;
+      }
+
+      [data-color-mode="system"] .hero_container .hero_content p,
+      [data-color-mode="system"] .hero_container .first_title_line,
+      [data-color-mode="system"] .hero_container .second_title_line,
+      [data-color-mode="system"] .cards_container .card_text h3,
+      [data-color-mode="system"] .cards_container .card_text .card_content {
+        color: #fff !important;
+      }
+
+      [data-color-mode="system"] .hero_container .hero_btn {
+        background-color: #5F00E7;
+      }
+
+      [data-color-mode="system"] .hero_container .hero_btn:hover {
+        background-color: #6000e7a1;
+      }
+
+      [data-color-mode="system"] .cards_container .card {
+        background-color: #11191E !important;
+        color: #fff;
+        border-color: var(--main-color);
+      }
+
+      [data-color-mode="system"] .cards_container .card:hover {
+        border-color: #5F00E7;
+      }
+    }
+
+    [data-color-mode="dark"] .LandingWrap16kRMSdr5J8g,
+    [data-color-mode="dark"] .body_container,
+    [data-color-mode="dark"] .rm-LandingPage {
+      background-color: #1F282D !important;
+    }
+
+    [data-color-mode="dark"] .hero_container .hero_content p,
+    [data-color-mode="dark"] .hero_container .first_title_line,
+    [data-color-mode="dark"] .hero_container .second_title_line,
+    [data-color-mode="dark"] .cards_container .card_text h3,
+    [data-color-mode="dark"] .cards_container .card_text .card_content {
+      color: #fff !important;
+    }
+
+    [data-color-mode="dark"] .hero_container .hero_btn {
+      background-color: #5F00E7;
+    }
+
+    [data-color-mode="dark"] .hero_container .hero_btn:hover {
+      background-color: #6000e7a1;
+    }
+
+    [data-color-mode="dark"] .cards_container .card {
+      background-color: #11191E !important;
+      color: #fff;
+      border-color: var(--main-color);
+    }
+
+    [data-color-mode="dark"] .cards_container .card:hover {
+      border-color: #5F00E7;
+    }
+
+    /* ************************ MEDIA QUERIES ************************ */
+    @media only screen and (max-width: 1320px) {
+      .cards_container .card {
+        width: 350px;
+      }
+
+      .cards_container {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media only screen and (max-width: 1200px) {
+      .hero_content {
+        width: fit-content;
+      }
+    }
+
+    @media only screen and (max-width: 1115px) {
+      .hero_container {
+        gap: 50px;
+      }
+
+      .hero_container h1 {
+        font-size: 50px;
+      }
+    }
+
+    @media only screen and (max-width: 1065px) {
+      .hero_container .hero_content p {
+        margin-bottom: 15px;
+      }
+
+      .hero_container .hero_title .first_title_line {
+        width: fit-content;
+      }
+
+      .hero_container .hero_title {
+        margin-right: 0;
+      }
+    }
+
+    @media only screen and (max-width: 1000px) {
+      .cards_container {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media only screen and (max-width: 950px) {
+      .hero_container {
+        gap: 20px;
+      }
+
+      .hero_container h1 {
+        font-size: 45px;
+      }
+
+      .hero_container {
+        margin-right: 0;
+      }
+
+      /* .hero_container {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 408px;
+      } */
+    }
+
+    @media only screen and (max-width: 860px) {
+      .hero_container {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: fit-content;
+      }
+
+      .hero_container .hero_title {
+        margin: 0;
+        height: fit-content;
+      }
+
+      .hero_container h1 {
+        line-height: normal;
+      }
+    }
+
+    @media only screen and (max-width: 800px) {
+      .header_container {
+        padding: 20px 50px;
+      }
+
+      .hero_container h1 {
+        font-size: 35px !important;
+        width: fit-content !important;
+      }
+    }
+
+    @media only screen and (max-width: 700px) {
+      .hero_container .hero_btn {
+        margin: 0;
+        padding: 7px 10px;
+      }
+
+      .body_container,
+      .rm-LandingPage {
+        background-position-x: 80%;
+        background-position-y: -50px;
+        background-size: 300px !important;
+      }
+    }
+
+    @media only screen and (max-width: 634px) {
+      .header_container {
+        padding: 30px;
+      }
+    }
+
+    @media only screen and (max-width: 595px) {
+      .hero_container h1 {
+        font-size: 35px;
+      }
+
+      .hero_container p {
+        font-size: 15px !important;
+        margin-bottom: 20px !important;
+      }
+    }
+
+    @media only screen and (max-width: 443px) {
+
+      .hero_container .hero_title,
+      .hero_container,
+      .hero_container .hero_content p {
+        width: fit-content;
+      }
+
+      .cards_container .card {
+        flex-basis: 90% !important;
+        width: 90% !important;
+      }
+    }
+
+    @media only screen and (max-width: 396px) {
+
+      .hero_container p,
+      .card_text p,
+      .card_text a {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body class="body_container">
+  <header class="header">
+
+    <div class="header_container">
+      <div class="hero_container">
+        <div class="hero_title">
+          <h1 class="first_title_line">Learn how to</h1>
+          <h1 class="second_title_line">integrate BoomFi</h1>
+        </div>
+        <div class="hero_content">
+          <p>
+            Explore our guides and examples to start accepting crypto payments, exchanging cryptocurrencies, and
+            integrating our card ramp solution.
+          </p>
+          <a class="hero_btn" href="/">Get Started</a>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <div class="cards_container">
+
+    <a class="card card_with_link" href="/">
+      <div class="card_image image1">
+      </div>
+      <div class="card_text">
+        <h3>Accept Payments</h3>
+        <p class="card_content">Learn how to start accepting crypto payments in just a few clicks.</p>
+        <p class="more_btn">Learn more</p>
+      </div>
+    </a>
+
+    <a class="card card_with_link" href="/">
+      <div class="card_image image2">
+      </div>
+      <div class="card_text">
+        <h3>Card Ramp</h3>
+        <p class="card_content">Seamlessly integrate our card ramp solution for purchasing cryptocurrencies.</p>
+        <p class="more_btn">Learn more</p>
+      </div>
+    </a>
+
+    <a class="card card_with_link" href="/">
+      <div class="card_image image3">
+      </div>
+      <div class="card_text">
+        <h3>Exchange</h3>
+        <p class="card_content">Explore BoomFi's crypto trading feature designed to enhance your trading experience.</p>
+        <p class="more_btn">Learn more</p>
+      </div>
+    </a>
+
+  </div>
+
+</body>
+
+</html>

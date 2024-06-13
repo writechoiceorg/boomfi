@@ -651,6 +651,21 @@ paths:
       operationId: list-subscriptions
       parameters:
       - type: string
+        name: customer_id
+        in: query
+        description: Retrieve a list of subscriptions for a particular customer.
+      - type: string
+        name: status
+        in: query
+        description: Retrieve subscriptions based on their respective status.
+        enum:
+        - Pending
+        - Future
+        - InTrial
+        - Active
+        - Paused
+        - Expired
+      - type: string
         name: after
         in: query
         description: Retrieve subscriptions after this timestamp.
@@ -812,7 +827,7 @@ paths:
       operationId: get-customer-by-id
       parameters:
       - type: string
-        description: Unique identifier of the customer.
+        description: Unique identifier of the customer. Supports either BoomFi's Customer ID or the unique reference identifier set in a paylink for the customer.
         name: customerID
         in: path
         required: true

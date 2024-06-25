@@ -1,45 +1,238 @@
 <style>
-  .callout.callout_okay {
-    --background: #DFFFE8 !important;
-    --title: #000000 !important;
-    border: 0;
-    border-radius: 4px !important;
-    color: #000000 !important;
+  :root {
+    --callout-border: 0;
+    --callout-border-radius: 4px;
+    --text-color: #000000;
+
+    /* Info Callout Colors */
+    --info-light-bg: #DAF8FF;
+    --info-light-border: #7CCEDF;
+    --info-light-header: #57B3C7;
+    --info-light-text: #283652;
+    --info-light-link: #57B3C7;
+    --info-dark-bg: #DAF8FF;
+    --info-dark-border: #7CCEDF;
+    --info-dark-header: #57B3C7;
+    --info-dark-text: #97B5BC;
+    --info-dark-link: #57B3C7;
+
+    /* Okay Callout Colors */
+    --okay-light-bg: #DFFFE8;
+    --okay-light-border: #116E5F;
+    --okay-light-header: #116E5F;
+    --okay-light-text: #116E5F;
+    --okay-light-link: #61AEA0;
+    --okay-dark-bg: #DFFFE8;
+    --okay-dark-header: #5BB2A4;
+    --okay-dark-text: #7B9792;
+    --okay-dark-link: #61AEA0;
+
+    /* Default Callout Colors */
+    --default-light-bg: #e8e8e8;
+    --default-light-border: #ACACAC;
+    --default-light-text: #8A8A8A;
+    --default-dark-bg: #e8e8e8;
+    --default-dark-text: #FFFFFF;
+
+    /* Warn Callout Colors */
+    --warn-light-bg: #fff9c2;
+    --warn-light-border: #FFB293;
+    --warn-light-header: #FF966B;
+    --warn-light-text: #80776C;
+    --warn-light-link: #FF966B;
+    --warn-dark-bg: #fff9c2;
+    --warn-dark-header: #FF966B;
+    --warn-dark-text: #989693;
+    --warn-dark-link: #FF966B;
+
+    /* Error Callout Colors */
+    --error-light-bg: #ffdada;
+    --error-light-border: #FA94A6;
+    --error-light-header: #FF728B;
+    --error-light-text: #B56978;
+    --error-light-link: #FF728B;
+    --error-dark-bg: #ffdada;
+    --error-dark-header: #FF728B;
+    --error-dark-text: #C6A5AB;
+    --error-dark-link: #FF728B;
   }
 
+  .field-description blockquote,
+  .markdown-body blockquote {
+    border-left: 0;
+  }
+
+  .callout {
+    border-radius: var(--callout-border-radius);
+    border: var(--callout-border);
+  }
+
+  .callout .callout-heading p,
+  .callout p,
+  .callout ul {
+    color: var(--text-color) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+
+    [data-color-mode="system"] .callout .callout-heading p,
+    [data-color-mode="system"] .callout p,
+    [data-color-mode="system"] .callout ul {
+      color: var(--text-color) !important;
+    }
+  }
+
+  [data-color-mode="dark"] .callout .callout-heading p,
+  [data-color-mode="dark"] .callout p,
+  [data-color-mode="dark"] .callout ul {
+    color: var(--text-color) !important;
+  }
+
+  /* INFO CALLOUT */
   .callout.callout_info {
-    --background: #DAF8FF !important;
-    --title: #000000 !important;
-    border: 0;
-    border-radius: 4px !important;
-    color: #000000 !important;
+    background: var(--info-light-bg);
   }
 
+  .callout.callout_info a {
+    color: var(--info-light-link);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .callout.callout_info {
+      background-color: var(--info-dark-bg) !important;
+    }
+
+    [data-color-mode="system"] .callout.callout_info a {
+      color: var(--info-dark-link) !important;
+    }
+  }
+
+  [data-color-mode="dark"] .callout.callout_info {
+    background-color: var(--info-dark-bg) !important;
+  }
+
+  [data-color-mode="dark"] .callout.callout_info a {
+    color: var(--info-dark-link) !important;
+  }
+
+  /* INFO CALLOUT */
+
+  /* OKAY CALLOUT */
+  .callout.callout_okay {
+    background: var(--okay-light-bg);
+  }
+
+  .callout.callout_okay a {
+    color: var(--okay-light-link);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .callout.callout_okay {
+      background-color: var(--okay-dark-bg) !important;
+    }
+
+    [data-color-mode="system"] .callout.callout_okay a {
+      color: var(--okay-dark-link) !important;
+    }
+  }
+
+  [data-color-mode="dark"] .callout.callout_okay {
+    background-color: var(--okay-dark-bg) !important;
+  }
+
+  [data-color-mode="dark"] .callout.callout_okay a {
+    color: var(--okay-dark-link) !important;
+  }
+
+  /* OKAY CALLOUT */
+
+  /* DEFAULT CALLOUT */
   .callout.callout_default {
-    --background: #e8e8e8 !important;
-    --title: #000000 !important;
-    border: 0;
-    border-radius: 4px !important;
-    color: #000000 !important;
+    background: var(--default-light-bg);
   }
 
-  .callout.callout_error {
-    --background: #ffdada !important;
-    --title: #000000 !important;
-    border: 0;
-    border-radius: 4px !important;
-    color: #000000 !important;
+  .callout.callout_default a {
+    color: var(--text-color) !important;
   }
 
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .callout.callout_default {
+      background-color: var(--default-dark-bg) !important;
+    }
+
+    [data-color-mode="system"] .callout.callout_default a {
+      color: var(--text-color) !important;
+    }
+
+  }
+
+  [data-color-mode="dark"] .callout.callout_default {
+    background-color: var(--default-dark-bg) !important;
+  }
+
+  [data-color-mode="dark"] .callout.callout_default a {
+    color: var(--text-color) !important;
+  }
+
+  /* DEFAULT CALLOUT */
+
+  /* WARN CALLOUT */
   .callout.callout_warn {
-    --title: #000000 !important;
-    border: 0;
-    border-radius: 4px !important;
+    background: var(--warn-light-bg);
   }
 
-  .callout a {
-    color: #000000 !important;
+  .callout.callout_warn a {
+    color: var(--warn-light-link);
   }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .callout.callout_warn {
+      background-color: var(--warn-dark-bg) !important;
+    }
+
+    [data-color-mode="system"] .callout.callout_warn a {
+      color: var(--warn-dark-link);
+    }
+  }
+
+  [data-color-mode="dark"] .callout.callout_warn {
+    background-color: var(--warn-dark-bg) !important;
+  }
+
+  [data-color-mode="dark"] .callout.callout_warn a {
+    color: var(--warn-dark-link);
+  }
+
+  /* WARN CALLOUT */
+
+  /* ERROR CALLOUT */
+  .callout.callout_error {
+    background: var(--error-light-bg);
+  }
+
+  .callout.callout_error a {
+    color: var(--error-light-link);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .callout.callout_error {
+      background-color: var(--error-dark-bg) !important;
+    }
+
+    [data-color-mode="system"] .callout.callout_error a {
+      color: var(--error-dark-link);
+    }
+  }
+
+  [data-color-mode="dark"] .callout.callout_error {
+    background-color: var(--error-dark-bg) !important;
+  }
+
+  [data-color-mode="dark"] .callout.callout_error a {
+    color: var(--error-dark-link);
+  }
+
+  /* ERROR CALLOUT */
 
   img {
     border-radius: 14px !important;

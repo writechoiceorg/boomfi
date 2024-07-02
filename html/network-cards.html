@@ -1,0 +1,128 @@
+<style>
+  .card_shelf1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin: 0 0 0 0;
+  }
+
+  .card img {
+    height: 25px;
+    width: 25px;
+    margin: 10px 0 0 !important;
+  }
+
+  .card {
+    background-color: rgb(250, 250, 250);
+    border: 1px solid #ECEFF2;
+    border-radius: 4px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none !important;
+    transition: all 0.35s ease-in-out;
+    cursor: pointer;
+  }
+
+  .card h4 {
+    margin: 15px 0 10px;
+  }
+
+  .card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 5px 5px rgba(165, 165, 165, 0.192);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="auto"] .card {
+      background-color: rgb(71, 71, 71);
+      border: 1px solid rgb(100, 100, 100);
+    }
+
+    [data-color-mode="dark"] .card h4 {
+      color: white;
+    }
+
+    [data-color-mode="dark"] .card:hover {
+      box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
+    }
+
+    [data-color-mode="dark"] svg {
+      fill: white;
+    }
+  }
+
+  [data-color-mode="dark"] .card {
+    background-color: rgb(71, 71, 71);
+    border: 1px solid rgb(100, 100, 100);
+  }
+
+  [data-color-mode="dark"] .card h4 {
+    color: white;
+  }
+
+  [data-color-mode="dark"] .card:hover {
+    box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
+  }
+
+  [data-color-mode="dark"] svg {
+    fill: white;
+  }
+
+  @media only screen and (max-width: 550px) {
+    .card_shelf {
+      grid-template-columns: repeat(2, 1fr) !important;
+      grid-column-gap: 10% !important;
+      grid-row-gap: 20px !important;
+      margin: 0 10% !important;
+    }
+  }
+
+  @media only screen and (max-width: 350px) {
+
+    .card img,
+    .card1 img {
+      height: 18px !important;
+      width: 18px !important;
+      margin: 10px 0 0 !important;
+    }
+  }
+</style>
+
+<body>
+  <div class="card_shelf1">
+    <a class="card" target="_blank" href="https://polygon.technology/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/matic-logo.webp" alt="">
+      <h4>Polygon</h4>
+    </a>
+    <a class="card" target="_blank" href="https://arbitrum.io/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/arbitrum-arb-logo.png"
+        alt="">
+      <h4>Arbitrum</h4>
+    </a>
+    <a class="card" target="_blank" href="https://ethereum.org/en/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/ethereum-eth-logo.png"
+        alt="">
+      <h4>Ethereum</h4>
+    </a>
+    <a class="card" target="_blank" href="https://tron.network/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/tron-trx-logo.png" alt="">
+      <h4>Tron</h4>
+    </a>
+    <a class="card" target="_blank" href="https://solana.com/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/Solana_logo.png" alt="">
+      <h4>Solana</h4>
+    </a>
+    <a class="card" target="_blank" href="https://www.bnbchain.org/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/bnb-logo.png" alt="">
+      <h4>BNB Chain</h4>
+    </a>
+    <a class="card" target="_blank" href="https://www.base.org/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/base-chain-logo.png" alt="">
+      <h4>Base Chain</h4>
+    </a>
+  </div>
+</body>

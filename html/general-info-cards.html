@@ -1,0 +1,186 @@
+<style>
+  .card_shelf2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin: 0 0 0 0;
+  }
+
+  .card {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ECEFF2;
+    border-radius: 8px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    transition: all 0.35s ease-in-out;
+  }
+
+  .card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02) translateY(-3px);
+    cursor: pointer;
+  }
+
+  .card .card_text {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .card .card_text a {
+    display: flex;
+    text-decoration: none;
+    color: rgb(159, 20, 159);
+    font-weight: 600 !important;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .card .card_text a:hover {
+    text-decoration: underline !important;
+  }
+
+  .card .card_text svg {
+    fill: rgb(159, 20, 159);
+    margin-left: 10px;
+    font-weight: 600 !important;
+  }
+
+  .card .card_text h3 {
+    font-size: 16px;
+  }
+
+  .card .card_text p {
+    font-size: 14px;
+  }
+
+  .card .card_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="auto"] .card {
+      background-color: rgb(71, 71, 71);
+      border: 1px solid rgb(100, 100, 100);
+      color: white;
+    }
+
+    [data-color-mode="dark"] .card:hover {
+      box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
+    }
+
+    [data-color-mode="dark"] .card .card_text a {
+      text-decoration: none;
+      color: rgb(241, 2, 241) !important;
+    }
+
+    [data-color-mode="dark"] .card svg {
+      text-decoration: none;
+      color: rgb(241, 2, 241) !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  [data-color-mode="dark"] .card {
+    background-color: rgb(71, 71, 71);
+    border: 1px solid rgb(100, 100, 100);
+    color: white;
+  }
+
+  [data-color-mode="dark"] .card:hover {
+    box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
+  }
+
+  [data-color-mode="dark"] .card .card_text a {
+    text-decoration: none;
+    color: rgb(241, 2, 241) !important;
+  }
+
+  [data-color-mode="dark"] .card svg {
+    text-decoration: none;
+    color: rgb(241, 2, 241) !important;
+    font-weight: 600 !important;
+  }
+
+  @media only screen and (max-width: 1320px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 1110px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 1090px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 840px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 769px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .card_shelf2 {
+      grid-template-columns: repeat(1, 1fr);
+      margin: 0 10%;
+    }
+  }
+</style>
+
+<body>
+  <div class="card_shelf2">
+    <a class="card" href="/docs/networks-and-currencies">
+      <div class="card_text">
+        <h3>Networks & Currencies</h3>
+      </div>
+    </a>
+
+    <a class="card" href="/docs/pricing-and-fees">
+      <div class="card_text">
+        <h3>Pricing & Fees</h3>
+      </div>
+    </a>
+
+    <a class="card" href="/docs/account-verification-limits">
+      <div class="card_text">
+        <h3>Account Verification & Limits</h3>
+      </div>
+    </a>
+
+    <a class="card" href="/docs/unsupported-countries">
+      <div class="card_text">
+        <h3>Unsupported Countries</h3>
+      </div>
+    </a>
+
+    <a class="card" href="/docs/unsupported-business-activities">
+      <div class="card_text">
+        <h3>Unsupported Business Activities</h3>
+      </div>
+    </a>
+  </div>
+</body>

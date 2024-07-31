@@ -1,0 +1,242 @@
+<style>
+  .soon_tag {
+    position: relative;
+    top: -1px;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .content-toc .soon_tag {
+    display: none;
+  }
+
+  .card_shelf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    margin: 0 0 0 0;
+  }
+
+  .card {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ECEFF2;
+    border-radius: 8px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    transition: all 0.35s ease-in-out;
+  }
+
+  .card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02) translateY(-3px);
+    cursor: pointer;
+  }
+
+  .card_nolink {
+    cursor: default !important;
+  }
+
+  .card .card_text {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .card .card_text a {
+    display: flex;
+    text-decoration: none;
+    color: rgb(159, 20, 159);
+    font-weight: 600 !important;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .card .card_text a:hover {
+    text-decoration: underline !important;
+  }
+
+  .card .card_text svg {
+    fill: rgb(159, 20, 159);
+    margin-left: 10px;
+    font-weight: 600 !important;
+  }
+
+  .card .card_text h3 {
+    display: inline-flex;
+    font-size: 16px;
+  }
+
+  .card .card_text h3 span {
+    font-size: 8px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 10px;
+    margin-left: 10px;
+    align-self: center;
+  }
+
+  .card .card_text p {
+    font-size: 14px;
+  }
+
+  .card .card_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card_shelf .card_image {
+    height: 90px;
+    padding: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card_shelf .image1 {
+    background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/html/home/imgs/card1.png?raw=true')
+  }
+
+  .card_shelf .image2 {
+    background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/html/home/imgs/card2.png?raw=true')
+  }
+
+  .card_shelf .image3 {
+    background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/html/home/imgs/card3.png?raw=true')
+  }
+
+  .card_shelf .image4 {
+    background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/0b8c1246295c0520cb35e5c9d7b06e07223687b6/cards/Settings.svg')
+  }
+
+  .card_shelf .image5 {
+    background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/0b8c1246295c0520cb35e5c9d7b06e07223687b6/cards/Network_Currencies.svg')
+  }
+
+  .card_shelf .image6 {
+    background-image: url('https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/cbc84704e9c03ae3a5192ec7435e1093f1982fdb/cards/PricingFees.svg')
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="auto"] .card {
+      background-color: rgb(71, 71, 71);
+      border: 1px solid rgb(100, 100, 100);
+      color: white;
+    }
+
+    [data-color-mode="dark"] .card:hover {
+      box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
+    }
+
+    [data-color-mode="dark"] .card .card_text a {
+      text-decoration: none;
+      color: rgb(241, 2, 241) !important;
+    }
+
+    [data-color-mode="dark"] .card svg {
+      text-decoration: none;
+      color: rgb(241, 2, 241) !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  [data-color-mode="dark"] .card {
+    background-color: rgb(71, 71, 71);
+    border: 1px solid rgb(100, 100, 100);
+    color: white;
+  }
+
+  [data-color-mode="dark"] .card:hover {
+    box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
+  }
+
+  [data-color-mode="dark"] .card .card_text a {
+    text-decoration: none;
+    color: rgb(241, 2, 241) !important;
+  }
+
+  [data-color-mode="dark"] .card svg {
+    text-decoration: none;
+    color: rgb(241, 2, 241) !important;
+    font-weight: 600 !important;
+  }
+
+  @media only screen and (max-width: 1320px) {
+    .card_shelf {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 1110px) {
+    .card_shelf {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 1090px) {
+    .card_shelf {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 840px) {
+    .card_shelf {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 769px) {
+    .card_shelf {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .card_shelf {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .card_shelf {
+      grid-template-columns: repeat(1, 1fr);
+      margin: 0 10%;
+    }
+  }
+</style>
+
+<body>
+  <div class="card_shelf">
+    <a class="card" href="/docs/overview-payment-gateway">
+      <div class="card_image image1">
+      </div>
+      <div class="card_text">
+        <h3>Payment Gateway</h3>
+      </div>
+    </a>
+
+    <a class="card" href="/docs/exchange-crypto">
+      <div class="card_image image2">
+      </div>
+      <div class="card_text">
+        <h3>Crypto On/Off Ramp</h3>
+      </div>
+    </a>
+
+    <div class="card card_nolink">
+      <div class="card_image image3">
+      </div>
+      <div class="card_text">
+        <h3>Crypto Exchange <span>Coming soon</span></h3>
+      </div>
+    </div>
+  </div>
+</body>

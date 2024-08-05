@@ -37,20 +37,20 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    [data-color-mode="auto"] .card {
+    [data-color-mode="system"] .card {
       background-color: rgb(71, 71, 71);
       border: 1px solid rgb(100, 100, 100);
     }
 
-    [data-color-mode="dark"] .card h4 {
+    [data-color-mode="system"] .card h4 {
       color: white;
     }
 
-    [data-color-mode="dark"] .card:hover {
+    [data-color-mode="system"] .card:hover {
       box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
     }
 
-    [data-color-mode="dark"] svg {
+    [data-color-mode="system"] svg {
       fill: white;
     }
   }
@@ -94,15 +94,7 @@
 
 <body>
   <div class="card_shelf1">
-    <a class="card" target="_blank" href="https://polygon.technology/">
-      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/matic-logo.webp" alt="">
-      <h4>Polygon</h4>
-    </a>
-    <a class="card" target="_blank" href="https://arbitrum.io/">
-      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/arbitrum-arb-logo.png"
-        alt="">
-      <h4>Arbitrum</h4>
-    </a>
+
     <a class="card" target="_blank" href="https://ethereum.org/en/">
       <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/ethereum-eth-logo.png"
         alt="">
@@ -116,6 +108,10 @@
       <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/Solana_logo.png" alt="">
       <h4>Solana</h4>
     </a>
+    <a class="card" target="_blank" href="https://polygon.technology/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/matic-logo.webp" alt="">
+      <h4>Polygon</h4>
+    </a>
     <a class="card" target="_blank" href="https://www.bnbchain.org/">
       <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/bnb-logo.png" alt="">
       <h4>BNB Chain</h4>
@@ -124,5 +120,11 @@
       <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/base-chain-logo.png" alt="">
       <h4>Base Chain</h4>
     </a>
+    <a class="card" target="_blank" href="https://arbitrum.io/">
+      <img src="https://raw.githubusercontent.com/writechoiceorg/boomfi-docs/main/networks/arbitrum-arb-logo.png"
+        alt="">
+      <h4>Arbitrum</h4>
+    </a>
+
   </div>
 </body>

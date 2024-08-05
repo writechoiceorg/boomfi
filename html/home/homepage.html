@@ -80,7 +80,7 @@
       margin: 0;
       color: var(--main-color);
       font-family: var(--primary-font);
-      font-size: 60px !important;
+      font-size: 60px;
       font-style: normal;
       font-weight: 700;
       line-height: 72px;
@@ -225,7 +225,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: 150%;
-      margin: 15px 0;
+      margin: 10px 0;
     }
 
     .cards_container .card_text .more_btn {
@@ -327,6 +327,16 @@
       }
     }
 
+    @media only screen and (max-width: 1165px) {
+      .cards_container .card {
+        width: 40%;
+        margin: 10px;
+      }
+    }
+
+
+
+
     @media only screen and (max-width: 1115px) {
       .hero_container {
         gap: 50px;
@@ -338,6 +348,12 @@
     }
 
     @media only screen and (max-width: 1065px) {
+      .hero_container h1 {
+        font-size: 45px !important;
+        width: fit-content !important;
+        line-height: 50px !important;
+      }
+
       .hero_container .hero_content p {
         margin-bottom: 15px;
       }
@@ -389,7 +405,7 @@
       }
 
       .hero_container .hero_title {
-        margin: 0;
+        margin: 0 !important;
         height: fit-content;
       }
 
@@ -406,6 +422,7 @@
       .hero_container h1 {
         font-size: 35px !important;
         width: fit-content !important;
+        line-height: normal !important;
       }
     }
 
@@ -423,9 +440,13 @@
       }
     }
 
-    @media only screen and (max-width: 634px) {
+    @media only screen and (max-width: 655px) {
       .header_container {
         padding: 30px;
+      }
+
+      .cards_container .card {
+        width: 90%;
       }
     }
 
@@ -455,6 +476,9 @@
     }
 
     @media only screen and (max-width: 396px) {
+      .header_container .hero_container .hero_title h1 {
+        font-size: 30px !important;
+      }
 
       .hero_container p,
       .card_text p,

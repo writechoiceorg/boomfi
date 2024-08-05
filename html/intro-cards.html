@@ -28,6 +28,7 @@
     border: 1px solid #ECEFF2;
     border-radius: 8px;
     color: black;
+    font-family: Inter;
     display: flex;
     flex-direction: column;
     text-decoration: none !important;
@@ -95,6 +96,7 @@
   }
 
   .card_shelf .card_image {
+    border-radius: 8px 8px 0 0;
     height: 90px;
     padding: 10px;
     background-size: cover;
@@ -126,22 +128,22 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    [data-color-mode="auto"] .card {
+    [data-color-mode="system"] .card {
       background-color: rgb(71, 71, 71);
       border: 1px solid rgb(100, 100, 100);
       color: white;
     }
 
-    [data-color-mode="dark"] .card:hover {
+    [data-color-mode="system"] .card:hover {
       box-shadow: 0 5px 15px rgba(236, 236, 236, 0.325);
     }
 
-    [data-color-mode="dark"] .card .card_text a {
+    [data-color-mode="system"] .card .card_text a {
       text-decoration: none;
       color: rgb(241, 2, 241) !important;
     }
 
-    [data-color-mode="dark"] .card svg {
+    [data-color-mode="system"] .card svg {
       text-decoration: none;
       color: rgb(241, 2, 241) !important;
       font-weight: 600 !important;

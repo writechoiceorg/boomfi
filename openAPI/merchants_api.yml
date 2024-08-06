@@ -17,12 +17,12 @@ paths:
       description: |
         The `Get Organization` endpoint allows you to access detailed information about the organization. To successfully use this endpoint, follow the instructions below for the HTTP request, headers, and response handling.
         
-        **HTTP Request:**
+        ## HTTP Request
         Use the following HTTP request details to retrieve information about the organization:
         - **Method:** `GET`
         - **URL:** `https://mapi.boomfi.xyz/v1/orgs`
         
-        **Headers:**        
+        ## Headers        
         Include the following headers in your request to ensure proper authentication and response formatting:
         - `accept: application/json`
         - `x-api-key: <YOUR_API_KEY>`

@@ -15,7 +15,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The `Get Organization` endpoint is designed to retrieve detailed information about the organization.
+        The Get Organization endpoint allows you to access detailed information about the organization. To successfully use this endpoint, follow the instructions below for the HTTP request, headers, and response handling.
         
         **HTTP Request:**
         Use the following HTTP request details to retrieve information about the organization:

@@ -1,3 +1,3 @@
 # boomfi-docs
 
-Supporting repository for BoomFi Docs.
+Supporting repository for BoomFi Docs. 

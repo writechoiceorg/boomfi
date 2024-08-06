@@ -16,16 +16,18 @@ paths:
       - ApiKeyAuth: []
       description: |
         The `Get Organization` endpoint is designed to retrieve detailed information about the organization.
-
+        
         **HTTP Request:**
+        Use the following HTTP request details to retrieve information about the organization:
         - **Method:** `GET`
         - **URL:** `https://mapi.boomfi.xyz/v1/orgs`
         
-        **Headers:**
+        **Headers:**        
+        Include the following headers in your request to ensure proper authentication and response formatting:
         - `accept: application/json`
         - `x-api-key: <YOUR_API_KEY>`
         
-        #### Example Request
+        ## Example Request
 
         ```shell
         curl --request GET \
@@ -33,13 +35,15 @@ paths:
              --header 'accept: application/json'
         ```
 
-        #### Response Codes
+        ## Response Codes
+        The following are the expected response codes for this endpoint:
         - **200 OK:** The request was successful, and the organization information is returned.
         - **400 Bad Request:** The request was invalid, likely due to missing or incorrect parameters.
         - **401 Unauthorized:** Authentication failed, usually due to an invalid or missing API key.
         - **500 Internal Server Error:** An error occurred on the server, indicating a problem with processing the request.
         
-        #### Key Points
+        ## Key Points
+        Here are some key points to keep in mind when using this endpoint:
         - Use the provided `x-api-key` for authentication in the request headers.
         - Handle different HTTP response codes to manage success and error scenarios appropriately.
         - Ensure secure handling of the API key to prevent unauthorized access.

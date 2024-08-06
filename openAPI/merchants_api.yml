@@ -28,6 +28,7 @@ paths:
         - `x-api-key: <YOUR_API_KEY>`
         
         ## Example Request
+        Here's an example of how to make a request to this endpoint:
 
         ```shell
         curl --request GET \
@@ -37,7 +38,7 @@ paths:
 
         ## Response Codes
         The following are the expected response codes for this endpoint:
-        - **200 OK:** The request was successful, and the organization information is returned.
+        - **200 OK:** The request was successful, and the organization information was returned.
         - **400 Bad Request:** The request was invalid, likely due to missing or incorrect parameters.
         - **401 Unauthorized:** Authentication failed, usually due to an invalid or missing API key.
         - **500 Internal Server Error:** An error occurred on the server, indicating a problem with processing the request.

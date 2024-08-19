@@ -1,0 +1,482 @@
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .accordionGroup_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .accordion_container {
+    display: flex;
+    transition: all .2s;
+    border-radius: 6px;
+    border: 1px solid #E7EAEE;
+    color: #384248;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-style: normal;
+    line-height: 18px;
+  }
+
+  .accordion_container .title {
+    font-weight: 700;
+    font-size: 17.5px;
+  }
+
+  .accordion_container:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .control-icon {
+    fill: #384248;
+    transition: .3s ease;
+    pointer-events: none;
+  }
+
+  .control-icon-close {
+    display: none;
+  }
+
+  details[open] .title {
+    color: #000;
+  }
+
+  details[open] .control-icon-close {
+    display: initial;
+    transition: .3s ease;
+    fill: #000;
+  }
+
+  details[open] .control-icon-expand {
+    display: none;
+  }
+
+  details[open] {
+    border: 1px solid #000;
+  }
+
+
+  .accordion_container summary {
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .accordion_container summary .title {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+
+  .accordion_container summary .sumary-icon {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+
+  .accordion_container .content {
+    padding: 0 1rem;
+    color: #676767;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0.5rem 1rem 1rem !important;
+  }
+
+  details[open] div {
+    animation: sweep .3s ease-in-out;
+  }
+
+  @keyframes sweep {
+    0% {
+      opacity: 0;
+      margin-left: -10px
+    }
+
+    100% {
+      opacity: 1;
+      margin-left: 0px
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .accordion_container {
+      color: #fff;
+    }
+
+    [data-color-mode="system"] .accordion_container .content {
+      color: #B6B6B6;
+    }
+
+    [data-color-mode="system"] details[open] {
+      background: #11191E;
+      box-shadow: 1px 1px 4.2px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    [data-color-mode="system"] .control-icon {
+      fill: #FFF;
+    }
+  }
+
+  [data-color-mode="dark"] .accordion_container {
+    color: #fff;
+  }
+
+  [data-color-mode="dark"] .accordion_container .content {
+    color: #B6B6B6;
+  }
+
+  [data-color-mode="dark"] details[open] {
+    background: #11191E;
+    box-shadow: 1px 1px 4.2px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  [data-color-mode="dark"] .control-icon {
+    fill: #FFF;
+  }
+</style>
+
+<body>
+  <div class="accordionGroup_container">
+    <details class="accordion_container">
+      <summary>
+        <span class="title">Investment and Money Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Shell banks</li>
+        <li>Issuers of bearer shares</li>
+        <li>Payable-through accounts</li>
+        <li>Quick investment schemes, including online search/ad optimization</li>
+        <li>Money gifts</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Prepayment and Loan Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Acceptance of prepayments for products or services over a year in advance</li>
+        <li>Fast loans (excluding financial institutions)</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Messaging and Collection Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Chain messages intended for widespread forwarding</li>
+        <li>Cash collection institutions</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Claims and Credit Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Claims recovery agencies or firms</li>
+        <li>Credit card or identity protection services</li>
+        <li>Services to restore bank credit scores</li>
+        <li>Refinancing, credit recovery, or settlement services</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Prohibited Products</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Drugs of any kind</li>
+        <li>Warranty extension companies</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Prohibited Adult Products and Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Adult products or services involving bestiality, infant pornography, necrophilia, incest, violence, or BDSM
+        </li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Financial and Legal Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Payment of fines</li>
+        <li>Guarantees or protection against forced execution</li>
+        <li>Pretenders, riddles, or clairvoyants</li>
+        <li>Illegal gambling online, by phone, or mail</li>
+        <li>Lifetime subscriptions for any product or service</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Illegal Activities</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Any product or service related to illegal activities</li>
+        <li>Medical benefits packages, including discount medical cards</li>
+        <li>Marijuana pharmacies and related services</li>
+        <li>Activities prohibited by card schemes</li>
+        <li>Cross-selling techniques that share confidential cardholder data</li>
+        <li>Selling value-stored cards for card-not-present transactions</li>
+        <li>Deceptive marketing practices</li>
+        <li>Technology products infringing on intellectual property rights</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Marketing Schemes</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Changes in mortgages or credits, and mortgage redemption services</li>
+        <li>Multi-level marketing or pyramid schemes focusing on recruiting new distributors</li>
+        <li>Advance credit offers</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Pharmaceutical and Support Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Pharmacies, prescription drug retailers, or prescription discounts</li>
+        <li>PC support services, registry cleaning software, and bug fixes</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Counterfeit and Illegal Products</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Facsimile currency</li>
+        <li>Counterfeit design products or replicas (except furniture)</li>
+        <li>Substances simulating the effects of illegal drugs</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Startup and Hate Sites</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Commerce startups accepting orders by mail or telephone</li>
+        <li>Sites promoting hate, racism, or religious persecution</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Time-Sharing and Prize Schemes</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Time-sharing and promotional services</li>
+        <li>"Win a house" schemes</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Circumvention and Software</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Devices designed to circumvent encrypted content (e.g., TV, cable, pay-per-view programs)</li>
+        <li>Anti-virus and cleaning software (except recognized brands)</li>
+      </ul>
+    </details>
+
+    <details class="accordion_container">
+      <summary><span class="title">Automatic Subscription Services</span>
+        <div class="sumary-icon">
+          <svg class="control-icon control-icon-expand" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <svg class="control-icon control-icon-close" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+          </svg>
+        </div>
+      </summary>
+      <ul class="content">
+        <li>Services that automatically activate periodic subscriptions, particularly in industries like nutraceuticals
+          or pseudo-pharmaceuticals</li>
+      </ul>
+    </details>
+  </div>
+</body>

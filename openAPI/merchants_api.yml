@@ -2065,15 +2065,7 @@ definitions:
   models.RecurringInterval:
     type: string
     description: >-
-          The recurring interval for the payment link.
-
-          - Unknown
-
-          - Minute
-          
-          - Hour
-          
-          - Day
+          The recurring interval for the payment link:
           
           - Week
           
@@ -2082,18 +2074,10 @@ definitions:
           - Year
           
     enum:
-    - Unknown
-    - Minute
-    - Hour
-    - Day
     - Week
     - Month
     - Year
     x-enum-varnames:
-    - RecurringIntervalUnknown
-    - RecurringIntervalMinute
-    - RecurringIntervalHour
-    - RecurringIntervalDay
     - RecurringIntervalWeek
     - RecurringIntervalMonth
     - RecurringIntervalYear

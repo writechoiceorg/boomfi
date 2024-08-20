@@ -1111,6 +1111,8 @@ definitions:
 
   customers.CreateCustomerRequest:
     type: object
+    required:
+      - email
     properties:
       customer_ident:
         type: string

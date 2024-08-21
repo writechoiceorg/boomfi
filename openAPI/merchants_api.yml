@@ -231,14 +231,12 @@ paths:
       security:
       - ApiKeyAuth: []
       description: >-
-        This endpoint allows merchants to programmatically alter the amount and currency of an existing paylink identified by its unique identifier.
+        The `Create Variant Pay Link URL` endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount, currency, and customer-specific details. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
 
-
-        It enables merchants to dynamically adjust payment links, allowing flexibility in charging different amounts and currencies based on specific scenarios. Merchants can programmatically modify existing paylinks to suit various use cases such as checkout amounts, account balance top-ups, donations, or tipping using cryptocurrency.
-
-        > 📘 Paylinks variants
-
-        > Learn more about this feature at the [Paylink](doc:pay-links-copy#changing-the-amount-and-currency-of-a-pay-link) page of this documentation.
+        **Usage Notes**
+        - **Authorization:** Ensure that your request includes a valid API key in the header to authenticate the creation of a variant paylink.
+        - **Flexible Customization:** This endpoint allows you to tailor the payment experience by adjusting the amount, currency, or adding specific customer identifiers. This flexibility is useful for creating unique payment options for individual customers or special offers.
+        
       consumes:
       - application/json
       produces:

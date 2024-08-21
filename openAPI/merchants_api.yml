@@ -14,8 +14,7 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: |
-      
+      description: |      
         The `Get Organization` endpoint allows you to retrieve your organization's current settings and details. This includes key information such as the organization’s name, logo URL, and webhook URL. Use this endpoint to verify that your organization’s configuration in BoomFi is accurate and up to date.
         
         **Usage Notes**
@@ -50,7 +49,17 @@ paths:
     put:
       security:
       - ApiKeyAuth: []
-      description: This endpoint updates information about an organization.
+      description: |      
+        The `Update Organization` endpoint allows you to modify your organization's details, such as the name, logo URL, and webhook URL. This endpoint is useful for keeping your organization's information current and ensuring that your settings align with any changes in your operations or branding.
+        
+        **Usage Notes**
+        
+        - **Authorization:** Make sure to include a valid API key in the header when making the request for authentication.
+        - **Fields:** You can update any of the available fields listed below in a single request. If a field is not included in the request, its current value will remain unchanged.
+        	- `logo_url`
+        	- `name`
+        	- `webhook_url`
+          
       consumes:
       - application/json
       produces:

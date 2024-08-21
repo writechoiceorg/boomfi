@@ -51,13 +51,17 @@ paths:
         - name: sell_amount
           in: query
           required: false
-          description: The amount of fiat currency you want to sell. ⚠️ Required if `buy_amount` not informed. ⚠️
+          description: |
+            The amount of fiat currency you want to sell. 
+            ⚠️<small> Required if `buy_amount` not informed. </small>⚠️
           schema:
             type: number
         - name: buy_amount
           in: query
           required: false
-          description: The amount of cryptocurrency you want to buy. ⚠️ Required if `sell_amount` not informed. ⚠️
+          description: |
+            The amount of cryptocurrency you want to buy. 
+            ⚠️<small> Required if `sell_amount` not informed. </small>⚠️
           schema:
             type: number
       responses:

@@ -1127,6 +1127,8 @@ definitions:
 
   customers.CreateCustomerRequest:
     type: object
+    required:
+      - email
     properties:
       customer_ident:
         type: string
@@ -2081,35 +2083,18 @@ definitions:
   models.RecurringInterval:
     type: string
     description: >-
-          The recurring interval for the payment link.
-
-          - Unknown
-
-          - Minute
-          
-          - Hour
-          
-          - Day
+          The recurring interval for the payment link:
           
           - Week
           
           - Month
           
           - Year
-          
     enum:
-    - Unknown
-    - Minute
-    - Hour
-    - Day
     - Week
     - Month
     - Year
     x-enum-varnames:
-    - RecurringIntervalUnknown
-    - RecurringIntervalMinute
-    - RecurringIntervalHour
-    - RecurringIntervalDay
     - RecurringIntervalWeek
     - RecurringIntervalMonth
     - RecurringIntervalYear

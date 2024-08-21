@@ -192,7 +192,13 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Use this endpoint to create a new payment link in BoomFi.
+      description: |
+        The `Create Payment Link` endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and product description, making it easy to facilitate payments for a wide range of offerings. Use this endpoint to quickly create payment links that you can share with customers to collect payments seamlessly.
+
+        **Usage Notes**
+        - **Authorization:** Ensure that your request includes a valid API key in the header to authenticate the creation of the payment link.
+        - **Customization:** You can specify important details such as the amount, currency, and product name in your request. These parameters allow you to tailor the payment experience to match your specific needs.
+
       consumes:
       - application/json
       produces:

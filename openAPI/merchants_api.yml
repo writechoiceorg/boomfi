@@ -95,7 +95,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: >-
-        The `List Accounts` endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. This endpoint provides essential information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
+        The `List Accounts` endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. This endpoint provides information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
 
         **Usage Notes**
         - **Authorization:** Ensure that your request includes a valid API key in the header to authenticate the request.
@@ -131,7 +131,7 @@ paths:
         
         **Usage Notes**        
         - **Authorization:** Make sure your request includes a valid API key in the header to authenticate the request.
-        - **Data Overview:** The response includes essential information for each pay link, such as the plan it is associated with, the amount, currency, and creation date. This can be useful for auditing and managing your active payment links.
+        - **Data Overview:** The response includes information for each pay link, such as the plan it is associated with, the amount, currency, and creation date. This can be useful for auditing and managing your active payment links.
 
       consumes:
       - application/json

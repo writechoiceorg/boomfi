@@ -293,10 +293,12 @@ paths:
       security:
       - ApiKeyAuth: []
       description: >-
-        This endpoint allows you to retrieve a paginated list of events associated with a given organization. 
+        The `List Events for an Organization` endpoint allows you to retrieve a detailed, paginated list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review key actions such as subscription management, payment transactions, and plan creation.
         
+        ** Usage Notes**
+        - **Authorization:** Ensure your request includes a valid API key in the header to authenticate the request.
+        - **Event Types:** The endpoint categorizes events by type and action, including subscriptions, payments, and plans. Each event includes a timestamp and relevant details, allowing you to maintain an accurate log of all activities within your organization.
         
-        These events correspond to the same data that is received via webhooks, which means that users can access the historical events in case of any connection loss or for any other purposes.
       produces:
       - application/json
       tags:

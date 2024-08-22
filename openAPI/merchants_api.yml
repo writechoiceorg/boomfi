@@ -17,10 +17,6 @@ paths:
       description: |      
         The **Get Organization** endpoint allows you to retrieve your organization's current settings and details. This includes key information such as the organization’s name, logo URL, and webhook URL. Use this endpoint to verify that your organization’s configuration in BoomFi is accurate and up to date.
         
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Purpose:** This endpoint is particularly useful for confirming that your organization's settings, like the webhook URL, are correctly configured and reflect the latest information.
-
       consumes:
       - application/json
       produces:
@@ -50,14 +46,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |      
-        The **Update Organization** endpoint allows you to modify your organization's details, such as the name, logo URL, and webhook URL. This endpoint is useful for keeping your organization's information current and ensuring that your settings align with any changes in your operations or branding.
-        
-        **Usage Notes**        
-        - **Authorization:** Make sure to include a valid API key in the header when making the request for authentication.
-        - **Fields:** You can update any of the available fields listed below in a single request. If a field is not included in the request, its current value will remain unchanged.
-        	- `logo_url`
-        	- `name`
-        	- `webhook_url`
+        The **Update Organization** endpoint allows you to modify your organization's details, such as the name, logo URL, and webhook URL. This endpoint is useful for keeping your organization's information current and ensuring that your settings align with any changes in your operations or branding.    
 
       consumes:
       - application/json
@@ -97,10 +86,6 @@ paths:
       description: |
         The **List Accounts** endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. This endpoint provides information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
 
-        **Usage Notes**
-        - **Authorization:** Ensure that your request includes a valid API key in the header to authenticate the request.
-        - **Comprehensive View:** Use this endpoint to gain a complete overview of all settlement accounts associated with your organization, helping you manage payments across multiple blockchain networks effectively.
-
       consumes:
       - application/json
       produces:
@@ -129,9 +114,7 @@ paths:
       description: |
         The **List Paylinks** endpoint allows you to retrieve a comprehensive list of all pay links created within your organization on the BoomFi platform. This endpoint provides key details about each pay link, including the associated plan, amount, currency, and more. Use this endpoint to efficiently manage and review all the payment links you have generated, ensuring they align with your business needs.
         
-        **Usage Notes**        
-        - **Authorization:** Make sure your request includes a valid API key in the header to authenticate the request.
-        - **Data Overview:** The response includes information for each pay link, such as the plan it is associated with, the amount, currency, and creation date. This can be useful for auditing and managing your active payment links.
+        > **Note:** Paylinks are created automatically when a plan is created. Each plan has a corresponding paylink that can be used to facilitate payments.
 
       consumes:
       - application/json
@@ -195,10 +178,6 @@ paths:
       description: |
         The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and product description, making it easy to facilitate payments for a wide range of offerings. Use this endpoint to quickly create payment links that you can share with customers to collect payments seamlessly.
 
-        **Usage Notes**
-        - **Authorization:** Ensure that your request includes a valid API key in the header to authenticate the creation of the payment link.
-        - **Customization:** You can specify important details such as the amount, currency, and product name in your request. These parameters allow you to tailor the payment experience to match your specific needs.
-
       consumes:
       - application/json
       produces:
@@ -233,10 +212,6 @@ paths:
       description: |
         The **Create Variant Pay Link URL** endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount, currency, and customer-specific details. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
 
-        **Usage Notes**
-        - **Authorization:** Ensure that your request includes a valid API key in the header to authenticate the creation of a variant paylink.
-        - **Flexible Customization:** This endpoint allows you to tailor the payment experience by adjusting the amount, currency, or adding specific customer identifiers. This flexibility is useful for creating unique payment options for individual customers or special offers.
-        
       consumes:
       - application/json
       produces:
@@ -295,10 +270,6 @@ paths:
       description: |
         The **List Events for an Organization** endpoint allows you to retrieve a list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review key actions such as subscription management, payment transactions, and plan creation.
         
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header to authenticate the request.
-        - **Event Types:** The endpoint categorizes events by type and action, including subscriptions, payments, and plans. Each event includes a timestamp and relevant details, allowing you to maintain an accurate log of all activities within your organization.
-
       produces:
       - application/json
       tags:
@@ -455,10 +426,6 @@ paths:
       description: |
         The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. This endpoint provides essential details for each payment, such as the amount, currency, status, and timestamps. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have a comprehensive overview of all financial activities within the BoomFi platform.
         
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header to authenticate and access the payment data.
-        - **Data Overview:** The response includes key information about each payment, such as the transaction amount, currency, and current status. This data is crucial for monitoring your payment operations and maintaining accurate financial records.
-
       consumes:
       - application/json
       produces:
@@ -520,11 +487,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **Get Payment by ID** endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, currency, and associated metadata.
-        
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header to authenticate and retrieve the payment details.
-        - **Comprehensive Details:** This endpoint provides all relevant information about the specified payment, including the `amount`, `status`, `payment_method`, and other associated details. This view is useful for verifying the specifics of a transaction.
+        The **Get Payment by ID** endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, currency, and associated metadata.        
 
       produces:
       - application/json
@@ -561,10 +524,6 @@ paths:
       - ApiKeyAuth: []
       description: |
         The **List Plans** endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes key details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
-
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Data Overview:** This endpoint provides important information for each plan, helping you maintain a clear understanding of your subscription offerings.
 
       consumes:
       - application/json
@@ -628,11 +587,6 @@ paths:
       description: |
         The **Create Plan** endpoint allows you to create a new subscription plan. It requires a payload containing the plan's details. Use this endpoint to create flexible and tailored subscription options that align with your business needs.
 
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Required Fields:** When creating a plan, make sure to provide all mandatory fields such as `amount`, `currency`, `description`, `interval`, and others to define the pricing and billing structure accurately.
-        - **Metadata:** You can include optional `metadata` to store additional information about the plan, which can be useful for tracking and management purposes.
-
       consumes:
       - application/json
       produces:
@@ -667,10 +621,6 @@ paths:
       description: |      
         The **Get Plan by ID** endpoint allows you to retrieve detailed information about a specific subscription plan using its unique identifier. Use this endpoint to manage and review individual plans effectively.
         
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Plan Details:** This endpoint returns comprehensive information about the plan, including `amount`, `currency`, `interval`, and `metadata`, helping you to verify and manage the specifics of each plan.
-
       produces:
       - application/json
       tags:
@@ -703,10 +653,6 @@ paths:
       description: |
         The **List Subscriptions** endpoint allows you to retrieve a list of all active subscriptions within your organization. Use this endpoint to track and manage the ongoing subscriptions your organization maintains with its customers.
         
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Data Overview:** This endpoint provides important information for each subscription, helping you monitor and manage subscription activities effectively.
-
       consumes:
       - application/json
       produces:
@@ -785,10 +731,6 @@ paths:
       description: |
         The **Cancel Subscription** endpoint allows you to cancel an active subscription within your organization. Upon cancellation, the subscription will either end immediately or continue until the end of the current billing cycle, depending on your specified preferences. Use this endpoint to manage and control the lifecycle of your subscriptions effectively.
         
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Cancellation Timing:** You can choose to cancel the subscription immediately or at the end of the current billing period by setting the appropriate parameter in your request.
-
       produces:
       - application/json
       tags:
@@ -825,10 +767,6 @@ paths:
       description: |
         The **List Customers** endpoint allows you to retrieve a paginated list of customers associated with your organization. This endpoint provides optional parameters for sorting and filtering the results, enabling you to manage and review customer data efficiently.
         
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Filtering and Sorting:** You can use optional query parameters to filter and sort the list of customers based on specific criteria, such as creation date or email address.
-
       produces:
       - application/json
       tags:
@@ -865,11 +803,7 @@ paths:
       - ApiKeyAuth: []
       description: |
         The **Create Customer** endpoint allows you to create a new customer record within your organization. This endpoint requires a payload that includes key details about the customer, such as their email and wallet address. 
-        
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Required Fields:** When creating a customer, you must provide essential details, such as the customer’s email and wallet address. These fields are necessary for successfully adding the customer to your system.
-        
+                
       consumes:
       - application/json
       produces:
@@ -904,11 +838,7 @@ paths:
       - ApiKeyAuth: []
       description: |
         The **Get Customer by ID** endpoint allows you to retrieve detailed information about a specific customer using their unique identifier. Use this endpoint to access and manage individual customer records within your organization.
-        
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Customer Identification:** You must provide the unique identifier of the customer you wish to retrieve. This ensures you access the correct customer record.
-        
+                
       produces:
       - application/json
       tags:
@@ -940,10 +870,6 @@ paths:
       description: |
         The **Delete Customer** endpoint allows you to remove a specific customer record from your organization. Use this endpoint with caution to manage your customer database effectively.
         
-        **Usage Notes**        
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Customer Identification:** You must provide the unique identifier of the customer you wish to delete. This ensures that the correct customer record is permanently removed. 
-
       produces:
       - application/json
       tags:
@@ -973,11 +899,7 @@ paths:
       - ApiKeyAuth: []
       description: |
         The **Get Integrations** endpoint allows you to retrieve a list of all integrations available within your organization.  Use this endpoint to review and manage the integrations that connect BoomFi with other platforms.
-        
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Integration Details:** The response provides information about each integration, including its status and configuration settings.  
-        
+                
       produces:
       - application/json
       tags:

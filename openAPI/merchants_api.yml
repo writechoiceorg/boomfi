@@ -293,7 +293,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The `List Events for an Organization` endpoint allows you to retrieve a detailed, paginated list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review key actions such as subscription management, payment transactions, and plan creation.
+        The `List Events for an Organization` endpoint allows you to retrieve a list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review key actions such as subscription management, payment transactions, and plan creation.
         
         **Usage Notes**
         - **Authorization:** Ensure your request includes a valid API key in the header to authenticate the request.
@@ -519,7 +519,14 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve the details of a payment using its unique identifier.
+      description: |
+        The `Get Payment by ID` endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, currency, and associated metadata.
+        
+        **Usage Notes**
+        
+        - **Authorization:** Ensure your request includes a valid API key in the header to authenticate and retrieve the payment details.
+        - **Comprehensive Details:** This endpoint provides all relevant information about the specified payment, including the `amount`, `status`, `payment_method`, and other associated details. This view is useful for verifying the specifics of a transaction.
+
       produces:
       - application/json
       tags:
@@ -553,7 +560,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieves a list of plans available in the system.
+      description: |
+        The `List Plans` endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes key details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
+        
+        **Usage Notes**
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Data Overview:** This endpoint provides important information for each plan, helping you maintain a clear understanding of your subscription offerings.
+        
       consumes:
       - application/json
       produces:

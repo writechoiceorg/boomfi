@@ -700,7 +700,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve all subscriptions currently in the system.
+      description: |
+        The `List Subscriptions` endpoint allows you to retrieve a list of all active subscriptions within your organization. Use this endpoint to track and manage the ongoing subscriptions your organization maintains with its customers.
+        
+        **Usage Notes**        
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Data Overview:** This endpoint provides important information for each subscription, helping you monitor and manage subscription activities effectively.
+
       consumes:
       - application/json
       produces:
@@ -776,7 +782,14 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Cancels the subscription identified by the provided subscription unique identifier.
+      description: |
+        The `Cancel Subscription` endpoint allows you to cancel an active subscription within your organization. Upon cancellation, the subscription will either end immediately or continue until the end of the current billing cycle, depending on your specified preferences. Use this endpoint to manage and control the lifecycle of your subscriptions effectively.
+        
+        **Usage Notes**
+        
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Cancellation Timing:** You can choose to cancel the subscription immediately or at the end of the current billing period by setting the appropriate parameter in your request.
+
       produces:
       - application/json
       tags:

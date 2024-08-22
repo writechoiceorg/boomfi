@@ -785,8 +785,7 @@ paths:
       description: |
         The `Cancel Subscription` endpoint allows you to cancel an active subscription within your organization. Upon cancellation, the subscription will either end immediately or continue until the end of the current billing cycle, depending on your specified preferences. Use this endpoint to manage and control the lifecycle of your subscriptions effectively.
         
-        **Usage Notes**
-        
+        **Usage Notes**        
         - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
         - **Cancellation Timing:** You can choose to cancel the subscription immediately or at the end of the current billing period by setting the appropriate parameter in your request.
 
@@ -823,7 +822,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve a paginated list of customers for a given organization, with optional sorting and filtering parameters.
+      description: |
+        The `List Customers` endpoint allows you to retrieve a paginated list of customers associated with your organization. This endpoint provides optional parameters for sorting and filtering the results, enabling you to manage and review customer data efficiently.
+        
+        **Usage Notes**        
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Filtering and Sorting:** You can use optional query parameters to filter and sort the list of customers based on specific criteria, such as creation date or email address.
+
       produces:
       - application/json
       tags:
@@ -858,7 +863,13 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: This endpoint is used to create a new customer. It requires a payload containing details about the customer.
+      description: |
+        The `Create Customer` endpoint allows you to create a new customer record within your organization. This endpoint requires a payload that includes key details about the customer, such as their email and wallet address. 
+        
+        **Usage Notes**
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Required Fields:** When creating a customer, you must provide essential details, such as the customer’s email and wallet address. These fields are necessary for successfully adding the customer to your system.
+        
       consumes:
       - application/json
       produces:
@@ -891,7 +902,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve a specific customer identified by its unique identifier. 
+      description: |
+        The `Get Customer by ID` endpoint allows you to retrieve detailed information about a specific customer using their unique identifier. Use this endpoint to access and manage individual customer records within your organization.
+        
+        **Usage Notes**        
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Customer Identification:** You must provide the unique identifier of the customer you wish to retrieve. This ensures you access the correct customer record.
+        
       produces:
       - application/json
       tags:
@@ -920,7 +937,13 @@ paths:
     delete:
       security:
       - ApiKeyAuth: []
-      description: Delete a specific customer by its unique identifier. 
+      description: |
+        The `Delete Customer` endpoint allows you to remove a specific customer record from your organization. Use this endpoint with caution to manage your customer database effectively.
+        
+        **Usage Notes**        
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Customer Identification:** You must provide the unique identifier of the customer you wish to delete. This ensures that the correct customer record is permanently removed. 
+
       produces:
       - application/json
       tags:

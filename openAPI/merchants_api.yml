@@ -452,7 +452,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve a list of payments.
+      description: |
+        The `List Payments` endpoint allows you to retrieve a list of all payment transactions associated with your organization. This endpoint provides essential details for each payment, such as the amount, currency, status, and timestamps. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have a comprehensive overview of all financial activities within the BoomFi platform.
+        
+        **Usage Notes**        
+        - **Authorization:** Ensure your request includes a valid API key in the header to authenticate and access the payment data.
+        - **Data Overview:** The response includes key information about each payment, such as the transaction amount, currency, and current status. This data is crucial for monitoring your payment operations and maintaining accurate financial records.
+
       consumes:
       - application/json
       produces:

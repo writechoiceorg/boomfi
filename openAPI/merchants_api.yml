@@ -522,8 +522,7 @@ paths:
       description: |
         The `Get Payment by ID` endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, currency, and associated metadata.
         
-        **Usage Notes**
-        
+        **Usage Notes**        
         - **Authorization:** Ensure your request includes a valid API key in the header to authenticate and retrieve the payment details.
         - **Comprehensive Details:** This endpoint provides all relevant information about the specified payment, including the `amount`, `status`, `payment_method`, and other associated details. This view is useful for verifying the specifics of a transaction.
 
@@ -562,11 +561,11 @@ paths:
       - ApiKeyAuth: []
       description: |
         The `List Plans` endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes key details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
-        
+
         **Usage Notes**
         - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
         - **Data Overview:** This endpoint provides important information for each plan, helping you maintain a clear understanding of your subscription offerings.
-        
+
       consumes:
       - application/json
       produces:
@@ -626,7 +625,14 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: This endpoint is used to create a new plan. It requires a payload containing the details of the plan.
+      description: |
+        The `Create Plan` endpoint allows you to create a new subscription plan. It requires a payload containing the plan's details. Use this endpoint to create flexible and tailored subscription options that align with your business needs.
+
+        **Usage Notes**        
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Required Fields:** When creating a plan, make sure to provide all mandatory fields such as `amount`, `currency`, `description`, `interval`, and others to define the pricing and billing structure accurately.
+        - **Metadata:** You can include optional `metadata` to store additional information about the plan, which can be useful for tracking and management purposes.
+
       consumes:
       - application/json
       produces:

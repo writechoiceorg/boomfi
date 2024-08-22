@@ -15,8 +15,8 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |      
-        The **Get Organization** endpoint allows you to retrieve your organization's current settings and details. This includes key information such as the organization’s name, logo URL, and webhook URL. Use this endpoint to verify that your organization’s configuration in BoomFi is accurate and up to date.        
-        
+        The **Get Organization** endpoint allows you to retrieve your organization's current settings and details. This includes key information such as the organization's name, logo URL, and webhook URL. Use this endpoint to verify that your organization's configuration in BoomFi is accurate and up to date.        
+
       consumes:
       - application/json
       produces:
@@ -112,9 +112,11 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **List Paylinks** endpoint allows you to retrieve a comprehensive list of all pay links created within your organization on the BoomFi platform. This endpoint provides key details about each pay link, including the associated plan, amount, currency, and more. Use this endpoint to efficiently manage and review all the payment links you have generated, ensuring they align with your business needs.
-        
-        > **Note:** Paylinks are created automatically when a plan is created. Each plan has a corresponding paylink that can be used to facilitate payments.
+        The **List Paylinks** endpoint allows you to retrieve a comprehensive list of all pay links created within your organization on the BoomFi platform. Use this endpoint to efficiently manage and review all the payment links you have generated, ensuring they align with your business needs.
+
+        > 📘 Note:
+        > 
+        > Paylinks are created automatically when a plan is created. Each plan has a corresponding paylink that can be used to facilitate payments.
 
       consumes:
       - application/json
@@ -176,9 +178,11 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and product description, making it easy to facilitate payments for a wide range of offerings. Use this endpoint to quickly create payment links that you can share with customers to collect payments seamlessly.
-
-        > **Tip:** When creating a payment link, you can implicitly create a plan by providing details such as `amount` and `currency`. The link will be tied to the new plan.
+        The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and description, making facilitating payments for a wide range of offerings easy. Use this endpoint to quickly create payment links you can share with customers to collect payments seamlessly.
+        
+        > 📘 Note:
+        > 
+        > When creating a payment link, you can implicitly create a plan by providing details such as `amount` and `currency`.
 
       consumes:
       - application/json
@@ -214,7 +218,9 @@ paths:
       description: |
         The **Create Variant Pay Link URL** endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount, currency, and customer-specific details. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
 
-        > **Tip:** You can use this endpoint to offer discounts or custom pricing by creating a variant of an existing paylink.
+        > 📘 Note:
+        > 
+        > You can use this endpoint to offer discounts or custom pricing by creating a variant of an existing paylink.
 
       consumes:
       - application/json
@@ -272,7 +278,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **List Events for an Organization** endpoint allows you to retrieve a list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review key actions such as subscription management, payment transactions, and plan creation.
+        The **List Events for an Organization** endpoint allows you to retrieve a list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review actions such as subscription management, payment transactions, and plan creation.
         
       produces:
       - application/json
@@ -428,9 +434,11 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. This endpoint provides essential details for each payment, such as the amount, currency, status, and timestamps. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have a comprehensive overview of all financial activities within the BoomFi platform.
-
-        > **Tip:** Use pagination parameters to efficiently navigate through a large volume of payments.
+        The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have a comprehensive overview of all financial activities within the BoomFi platform.
+        
+        > 📘 Note:
+        > 
+        > Use pagination parameters to efficiently navigate through a large volume of payments.
         
       consumes:
       - application/json
@@ -529,9 +537,11 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **List Plans** endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes key details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
-
-        > **Important:** A plan is synonymous with a product in BoomFi. You can have multiple plans for different currencies or pricing structures for the same product.
+        The **List Plans** endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
+        
+        > 📘 Note:
+        > 
+        > A plan is synonymous with a product in BoomFi. You can have multiple plans for different currencies or pricing structures for the same product.
 
       consumes:
       - application/json
@@ -594,8 +604,10 @@ paths:
       - ApiKeyAuth: []
       description: |
         The **Create Plan** endpoint allows you to create a new subscription plan. It requires a payload containing the plan's details. Use this endpoint to create flexible and tailored subscription options that align with your business needs.
-
-        > **Tip:** When creating a plan, you automatically create a paylink associated with it. This allows you to offer the plan for immediate purchase.
+        
+        > 📘 Note:
+        > 
+        > When creating a plan, you automatically create a paylink associated with it. This allows you to offer the plan for immediate purchase.
 
       consumes:
       - application/json
@@ -629,7 +641,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |      
-        The **Get Plan by ID** endpoint allows you to retrieve detailed information about a specific subscription plan using its unique identifier. Use this endpoint to manage and review individual plans effectively.
+        The **Get Plan by ID** endpoint lets you retrieve detailed information about a specific subscription plan using its unique identifier. Use this endpoint to manage and review individual plans effectively.
         
       produces:
       - application/json
@@ -661,9 +673,11 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **List Subscriptions** endpoint allows you to retrieve a list of all active subscriptions within your organization. Use this endpoint to track and manage the ongoing subscriptions your organization maintains with its customers.
-
-        > **Important:** A subscription is created automatically when a customer makes a payment on a recurring plan. Use this endpoint to track all active subscriptions.
+        The **List Subscriptions** endpoint allows you to retrieve a list of all active subscriptions within your organization. Use this endpoint to track and manage your organization's ongoing subscriptions with its customers.
+        
+        > 📘 Note:
+        > 
+        > A subscription is created automatically when a customer makes a payment on a recurring plan. Use this endpoint to track all active subscriptions.
         
       consumes:
       - application/json
@@ -815,8 +829,10 @@ paths:
       - ApiKeyAuth: []
       description: |
         The **Create a Customer** endpoint allows you to create a new customer record within your organization. This endpoint requires a payload that includes key details about the customer, such as their email and wallet address.
-
-        > **Important:** If a customer makes a payment without being pre-registered, the system automatically creates a customer record during the checkout process.
+        
+        > 📘 Note:
+        > 
+        > If a customer makes a payment without being pre-registered, the system automatically creates a customer record during the checkout process.
                 
       consumes:
       - application/json

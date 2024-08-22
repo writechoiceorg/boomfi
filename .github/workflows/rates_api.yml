@@ -3,10 +3,12 @@ name: Sync API definition to ReadMe
 # Run workflow for every push to the rates_api.yml file
 on:
   push:
+    branches:
+      - main
     paths:
-      - 'openAPI/rates_api.yml'
+      - "openAPI/rates_api.yml"
 
-jobs:  
+jobs:
   sync-credit-core:
     runs-on: ubuntu-latest
     steps:

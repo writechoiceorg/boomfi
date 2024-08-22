@@ -3,10 +3,12 @@ name: Sync API definition to ReadMe
 # Run workflow for every push to the merchants_api.yml file
 on:
   push:
+    branches:
+      - main
     paths:
-      - 'openAPI/merchants_api.yml'
+      - "openAPI/merchants_api.yml"
 
-jobs:  
+jobs:
   sync-credit-core:
     runs-on: ubuntu-latest
     steps:

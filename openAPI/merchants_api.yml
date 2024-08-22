@@ -664,7 +664,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve details about a specific plan identified by the plan's unique identifier.
+      description: |      
+        The `Get Plan by ID` endpoint allows you to retrieve detailed information about a specific subscription plan using its unique identifier. Use this endpoint to manage and review individual plans effectively.
+        
+        **Usage Notes**
+        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
+        - **Plan Details:** This endpoint returns comprehensive information about the plan, including `amount`, `currency`, `interval`, and `metadata`, helping you to verify and manage the specifics of each plan.
+
       produces:
       - application/json
       tags:

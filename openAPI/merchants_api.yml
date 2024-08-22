@@ -114,7 +114,7 @@ paths:
       description: |
         The **List Paylinks** endpoint allows you to retrieve a comprehensive list of all pay links created within your organization on the BoomFi platform. Use this endpoint to efficiently manage and review all the payment links you have generated, ensuring they align with your business needs.
 
-        > 📘 Note:
+        > 📘 Note
         > 
         > Paylinks are created automatically when a plan is created. Each plan has a corresponding paylink that can be used to facilitate payments.
 
@@ -180,7 +180,7 @@ paths:
       description: |
         The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and description, making facilitating payments for a wide range of offerings easy. Use this endpoint to quickly create payment links you can share with customers to collect payments seamlessly.
         
-        > 📘 Note:
+        > 📘 Note
         > 
         > When creating a payment link, you can implicitly create a plan by providing details such as `amount` and `currency`.
 
@@ -218,7 +218,7 @@ paths:
       description: |
         The **Create Variant Pay Link URL** endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount, currency, and customer-specific details. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
 
-        > 📘 Note:
+        > 📘 Note
         > 
         > You can use this endpoint to offer discounts or custom pricing by creating a variant of an existing paylink.
 
@@ -436,7 +436,7 @@ paths:
       description: |
         The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have a comprehensive overview of all financial activities within the BoomFi platform.
         
-        > 📘 Note:
+        > 📘 Note
         > 
         > Use pagination parameters to efficiently navigate through a large volume of payments.
         
@@ -539,7 +539,7 @@ paths:
       description: |
         The **List Plans** endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
         
-        > 📘 Note:
+        > 📘 Note
         > 
         > A plan is synonymous with a product in BoomFi. You can have multiple plans for different currencies or pricing structures for the same product.
 
@@ -605,7 +605,7 @@ paths:
       description: |
         The **Create Plan** endpoint allows you to create a new subscription plan. It requires a payload containing the plan's details. Use this endpoint to create flexible and tailored subscription options that align with your business needs.
         
-        > 📘 Note:
+        > 📘 Note
         > 
         > When creating a plan, you automatically create a paylink associated with it. This allows you to offer the plan for immediate purchase.
 
@@ -675,7 +675,7 @@ paths:
       description: |
         The **List Subscriptions** endpoint allows you to retrieve a list of all active subscriptions within your organization. Use this endpoint to track and manage your organization's ongoing subscriptions with its customers.
         
-        > 📘 Note:
+        > 📘 Note
         > 
         > A subscription is created automatically when a customer makes a payment on a recurring plan. Use this endpoint to track all active subscriptions.
         
@@ -830,7 +830,7 @@ paths:
       description: |
         The **Create a Customer** endpoint allows you to create a new customer record within your organization. This endpoint requires a payload that includes key details about the customer, such as their email and wallet address.
         
-        > 📘 Note:
+        > 📘 Note
         > 
         > If a customer makes a payment without being pre-registered, the system automatically creates a customer record during the checkout process.
                 

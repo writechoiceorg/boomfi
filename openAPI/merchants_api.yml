@@ -178,7 +178,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and description, making facilitating payments for a wide range of offerings easy. Use this endpoint to quickly create payment links you can share with customers to collect payments seamlessly.
+        The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and description, facilitating payments for a wide range of offerings. Use this endpoint to quickly create payment links you can share with customers to collect payments seamlessly.
         
         > 📘 Note
         > 
@@ -434,7 +434,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have a comprehensive overview of all financial activities within the BoomFi platform.
+        The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have an overview of all financial activities within the BoomFi platform.
         
         > 📘 Note
         > 

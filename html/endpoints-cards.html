@@ -77,10 +77,14 @@
         }
 
         .link {
-          color: #000000;
+          color: #5F00E7;
           font-size: 14px;
           font-weight: 500;
           line-height: 18px;
+
+          svg {
+            fill: #5F00E7;
+          }
         }
 
         .link:hover {
@@ -90,11 +94,11 @@
     }
 
     .card:hover {
-      border: 1px solid #000000;
+      border: 1px solid #5F00E7;
       box-shadow: 0px 0px 9.7px 0px rgba(0, 0, 0, 0.21);
 
       h3 {
-        color: #000000;
+        color: #5F00E7;
       }
     }
   }
@@ -102,6 +106,7 @@
   @media (prefers-color-scheme: dark) {
     [data-color-mode="system"] .card {
       border: 1px solid #556974;
+      background: #242E34;
 
       .card_content {
 
@@ -109,12 +114,20 @@
         p {
           color: #FFF;
         }
+
+        .link {
+          color: #842bff;
+
+          svg {
+            fill: #842bff;
+          }
+        }
       }
     }
 
     [data-color-mode="system"] .card:hover {
       h3 {
-        color: #000000;
+        color: #FFF;
       }
     }
   }
@@ -129,12 +142,20 @@
       p {
         color: #FFF;
       }
+
+      .link {
+        color: #842bff;
+
+        svg {
+          fill: #842bff;
+        }
+      }
     }
   }
 
   [data-color-mode="dark"] .card:hover {
     h3 {
-      color: #000000;
+      color: #FFF;
     }
   }
 </style>
@@ -143,102 +164,35 @@
 
   <div class="endpoint_card_container">
 
-    <a class="card" href="/reference/get-integrations">
+    <a class="card" href="/reference/get-organization">
       <div class="card_content">
-        <h3>Get All Integrations <span class="get">GET</span></h3>
-        <p>
-          Retrieve a list of all available integrations for your organization.
-        </p>
+        <h3>Get Organization <span class="get">GET</span></h3>
+        <p>Retrieve your Organization's current settings. You'll get information such as the Organization's name, logo
+          URL, and webhook URL.</p>
         <span class="link">
           Endpoint
           <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z"
-              fill="#000000" />
+              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z" />
             <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z"
-              fill="#000000" />
+              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z" />
           </svg>
         </span>
       </div>
     </a>
 
-    <a class="card" href="/reference/get-integration-templates">
+    <a class="card" href="/reference/update-organization">
       <div class="card_content">
-        <h3>Get All Integration Templates <span class="get">GET</span></h3>
-        <p>
-          Access a list of all available integration templates. Integration templates provide pre-configured setups for
-          common integrations.
-        </p>
+        <h3>Update Organization <span class="put">PUT</span></h3>
+        <p>Modify your Organization's details. You can update the Organization's name, change the logo, or configure a
+          new webhook URL.</p>
         <span class="link">
           Endpoint
           <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z"
-              fill="#000000" />
+              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z" />
             <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z"
-              fill="#000000" />
-          </svg>
-        </span>
-      </div>
-    </a>
-
-    <a class="card" href="/reference/enable-integration">
-      <div class="card_content">
-        <h3>Enable Integration <span class="post">POST</span></h3>
-        <p>
-          Use this endpoint to enable a specific integration identified by its unique ID.
-        </p>
-        <span class="link">
-          Endpoint
-          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z"
-              fill="#000000" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z"
-              fill="#000000" />
-          </svg>
-        </span>
-      </div>
-    </a>
-
-    <a class="card" href="/reference/disable-integration">
-      <div class="card_content">
-        <h3>Disable an Integration <span class="del">DELETE</span></h3>
-        <p>
-          Disable a specific integration identified by its unique ID.
-        </p>
-        <span class="link">
-          Endpoint
-          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z"
-              fill="#000000" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z"
-              fill="#000000" />
-          </svg>
-        </span>
-      </div>
-    </a>
-
-    <a class="card" href="/reference/create-webhook">
-      <div class="card_content">
-        <h3>Create Webhook <span class="post">POST</span></h3>
-        <p>
-          Create a new webhook. It requires a payload containing details about the webhook configuration.
-        </p>
-        <span class="link">
-          Endpoint
-          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M8.13897 9.49966C7.66344 9.49966 7.27795 9.11418 7.27795 8.63867V2.22199L0.861027 2.22199C0.385495 2.22199 3.30401e-07 1.83651 0 1.36099C2.50232e-07 0.88548 0.385495 0.5 0.861027 0.5L8.13897 0.500001C8.61451 0.500001 9 0.885481 9 1.361L9 8.63867C9 9.11418 8.61451 9.49966 8.13897 9.49966Z"
-              fill="#000000" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z"
-              fill="#000000" />
+              d="M7.83827 1.66222C8.17452 1.99846 8.17452 2.54362 7.83827 2.87986L1.47006 9.24782C1.13381 9.58406 0.588641 9.58406 0.252389 9.24782C-0.0838633 8.91158 -0.0838631 8.36643 0.252389 8.03019L6.62059 1.66222C6.95684 1.32599 7.50202 1.32599 7.83827 1.66222Z" />
           </svg>
         </span>
       </div>

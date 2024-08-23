@@ -6,9 +6,9 @@ on:
     branches:
       - main
     paths:
-      - 'openAPI/merchants_api.yml'
+      - "openAPI/merchants_api.yml"
 
-jobs:  
+jobs:
   sync-credit-core:
     runs-on: ubuntu-latest
     steps:

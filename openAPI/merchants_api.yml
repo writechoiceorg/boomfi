@@ -15,11 +15,8 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The `Get Organization` endpoint allows you to retrieve your organization's current settings and details. This includes key information such as the organization’s name, logo URL, and webhook URL. Use this endpoint to verify that your organization’s configuration in BoomFi is accurate and up to date.
-        
-        **Usage Notes**
-        - **Authorization:** Ensure your request includes a valid API key in the header for authentication.
-        - **Purpose:** This endpoint is particularly useful for confirming that your organization's settings, like the webhook URL, are correctly configured and reflect the latest information.
+        The **Get Organization** endpoint allows you to retrieve your organization's current settings and details. This includes key information such as the organization's `name`, `logo_url`, and `webhook_url`. Use this endpoint to verify that your organization's configuration in BoomFi is accurate and up to date.
+              
       consumes:
       - application/json
       produces:
@@ -48,7 +45,9 @@ paths:
     put:
       security:
       - ApiKeyAuth: []
-      description: This endpoint updates information about an organization.
+      description: |      
+        The **Update Organization** endpoint allows you to modify your organization's details, such as the `name`, `logo_url`, and `webhook_url`. This endpoint is useful for keeping your organization's information current and ensuring that your settings align with any changes in your operations or branding.  
+
       consumes:
       - application/json
       produces:
@@ -84,11 +83,9 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: >-
-        This endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. 
-        
-        
-        This endpoint provides essential information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
+      description: |
+        The **List Accounts** endpoint allows you to retrieve the configured settlement accounts for each supported blockchain network within the BoomFi platform. This endpoint provides information regarding the accounts established for receiving payments across various networks, along with the associated currencies enabled for each network.
+
       consumes:
       - application/json
       produces:
@@ -114,7 +111,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Retrieve a list of paylinks.
+      description: |
+        The **List Paylinks** endpoint allows you to retrieve a comprehensive list of all pay links created within your organization on the BoomFi platform. Use this endpoint to efficiently manage and review all the payment links you have generated, ensuring they align with your business needs.
+
+        > 📘 Note
+        > 
+        > Paylinks are created automatically when a plan is created. Each plan has a corresponding paylink that can be used to facilitate payments.
+
       consumes:
       - application/json
       produces:
@@ -174,7 +177,13 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Use this endpoint to create a new payment link in BoomFi.
+      description: |
+        The **Create Payment Link** endpoint enables you to generate a new payment link for a specific product or service within the BoomFi platform. This link can be customized with various parameters, such as the amount, currency, and description, facilitating payments for a wide range of offerings. Use this endpoint to quickly create payment links you can share with customers to collect payments seamlessly.
+        
+        > 📘 Note
+        > 
+        > When creating a payment link, you can implicitly create a plan by providing details such as `amount` and `currency`.
+
       consumes:
       - application/json
       produces:
@@ -206,15 +215,13 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: >-
-        This endpoint allows merchants to programmatically alter the amount and currency of an existing paylink identified by its unique identifier.
+      description: |
+        The **Create Variant Pay Link URL** endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount, currency, and customer-specific details. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
 
+        > 📘 Note
+        > 
+        > You can use this endpoint to offer discounts or custom pricing by creating a variant of an existing paylink.
 
-        It enables merchants to dynamically adjust payment links, allowing flexibility in charging different amounts and currencies based on specific scenarios. Merchants can programmatically modify existing paylinks to suit various use cases such as checkout amounts, account balance top-ups, donations, or tipping using cryptocurrency.
-
-        > 📘 Paylinks variants
-
-        > Learn more about this feature at the [Paylink](doc:pay-links-copy#changing-the-amount-and-currency-of-a-pay-link) page of this documentation.
       consumes:
       - application/json
       produces:
@@ -266,15 +273,665 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/payments":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **List Payments** endpoint allows you to retrieve a list of all payment transactions associated with your organization. It is a valuable tool for tracking and reviewing your organization’s payment history, ensuring that you have an overview of all financial activities within the BoomFi platform.
+        
+        > 📘 Note
+        > 
+        > Use pagination parameters to efficiently navigate through a large volume of payments.
+        
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Payments
+      summary: List Payments
+      operationId: list-payments
+      parameters:
+      - name: after
+        in: query
+        description: Retrieve payments after this timestamp.
+        type: string
+      - name: before
+        in: query
+        description: Retrieve payments before this timestamp.
+        type: string
+      - name: limit
+        in: query
+        description: The maximum number of payments to retrieve (default=100, maximum=100).
+        type: integer
+        minimum: 1
+        maximum: 100
+      - name: page
+        in: query
+        description: The page number of results to retrieve.
+        type: integer
+        minimum: 1
+      - name: since
+        in: query
+        description: Retrieve payments since this timestamp.
+        type: string
+      - name: sort
+        in: query
+        description: Sort order for payments (asc=ascending, desc=descending).
+        type: string
+        enum:
+          - asc
+          - desc
+      - name: until
+        in: query
+        description: Retrieve payments until this timestamp.
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-payments_PaymentResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/payments/{paymentId}":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Get Payment by ID** endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, currency, and associated metadata.        
+
+      produces:
+      - application/json
+      tags:
+      - Payments
+      summary: Get Payment by ID
+      operationId: get-payment-by-id
+      parameters:
+      - type: string
+        description: Unique identifier of a payment in the system.
+        name: paymentId
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-payments_PaymentResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '404':
+          description: Not Found
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/plan":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **List Plans** endpoint allows you to retrieve a list of all subscription plans available within your organization. This includes details such as the plan's `name`, `currency`, and `billing_scheme`, among others. Use this endpoint to review and manage the subscription options your organization offers.
+        
+        > 📘 Note
+        > 
+        > A plan is synonymous with a product in BoomFi. You can have multiple plans for different currencies or pricing structures for the same product.
+
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Plans
+      summary: List Plans
+      operationId: list-plans
+      parameters:
+      - type: string
+        name: after
+        description: Filters plans to include only those created after the specified timestamp. 
+        in: query
+      - type: string
+        name: before
+        description: Filters plans to include only those created before the specified timestamp. 
+        in: query
+      - maximum: 100
+        minimum: 1
+        type: integer
+        name: limit
+        description: Specifies the maximum number of plans to be included in the API response. 
+        in: query
+      - minimum: 1
+        type: integer
+        name: page
+        description: Indicates the page number of the results to be retrieved.
+        in: query
+      - type: string
+        name: since
+        description: Filters plans to include only those created on or after the specified timestamp. 
+        in: query
+      - enum:
+        - asc
+        - desc
+        type: string
+        name: sort
+        description: Specifies the sorting order for the returned plans.
+        in: query
+      - type: string
+        name: until
+        description: Filters plans to include only those created on or before the specified timestamp. 
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-plan_PlanResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Create Plan** endpoint allows you to create a new subscription plan. It requires a payload containing the plan's details. Use this endpoint to create flexible and tailored subscription options that align with your business needs.
+        
+        > 📘 Note
+        > 
+        > When creating a plan, you automatically create a paylink associated with it. This allows you to offer the plan for immediate purchase.
+
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Plans
+      summary: Create Plan
+      operationId: create-plan
+      parameters:
+      - name: request
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/plan.CreatePlanRequest"
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-plan_PlanResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/plan/{planId}":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |      
+        The **Get Plan by ID** endpoint lets you retrieve detailed information about a specific subscription plan using its unique identifier. Use this endpoint to manage and review individual plans effectively.
+        
+      produces:
+      - application/json
+      tags:
+      - Plans
+      summary: Get Plan by ID
+      operationId: get-plan-by-id
+      parameters:
+      - type: string
+        description: The unique identifier of the plan.
+        name: planId
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-plan_PlanResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/subscriptions":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **List Subscriptions** endpoint allows you to retrieve a list of all active subscriptions within your organization. Use this endpoint to track and manage your organization's ongoing subscriptions with its customers.
+        
+        > 📘 Note
+        > 
+        > A subscription is created automatically when a customer makes a payment on a recurring plan. Use this endpoint to track all active subscriptions.
+        
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Subscriptions
+      summary: List Subscriptions
+      operationId: list-subscriptions
+      parameters:
+      - type: string
+        name: customer_id
+        in: query
+        description: Retrieve a list of subscriptions for a particular customer.
+      - type: string
+        name: status
+        in: query
+        description: Retrieve subscriptions based on their respective status.
+        enum:
+        - Pending
+        - Future
+        - InTrial
+        - Active
+        - Paused
+        - Expired
+      - type: string
+        name: after
+        in: query
+        description: Retrieve subscriptions after this timestamp.
+      - type: string
+        name: before
+        in: query
+        description: Retrieve subscriptions before this timestamp.
+      - maximum: 100
+        minimum: 1
+        type: integer
+        name: limit
+        in: query
+        description: Maximum number of subscriptions to retrieve per page (default=100).
+      - minimum: 1
+        type: integer
+        name: page
+        in: query
+        description: Page number of the results to retrieve (default=1).
+      - type: string
+        name: since
+        in: query
+        description: Retrieve subscriptions since this timestamp.
+      - enum:
+          - asc
+          - desc
+        type: string
+        name: sort
+        in: query
+        description: Sort order for the retrieved subscriptions (ascending or descending).
+      - type: string
+        name: until
+        in: query
+        description: Retrieve subscriptions until this timestamp.
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-subscriptions_SubscriptionResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/subscriptions/{subscriptionID}":
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Cancel Subscription** endpoint allows you to cancel an active subscription within your organization. Upon cancellation, the subscription will either end immediately or continue until the end of the current billing cycle, depending on your specified preferences. Use this endpoint to manage and control the lifecycle of your subscriptions effectively.
+        
+      produces:
+      - application/json
+      tags:
+      - Subscriptions
+      summary: Cancel Subscription
+      operationId: cancel-subscription
+      parameters:
+      - type: string
+        description: The unique identifier of the subscription to be canceled.
+        name: subscriptionID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-subscriptions_SubscriptionResponse"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '404':
+          description: Not Found
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/customers":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **List Customers** endpoint allows you to retrieve a paginated list of customers associated with your organization. This endpoint provides optional parameters for sorting and filtering the results, enabling you to manage and review customer data efficiently.
+        
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: List Customers
+      operationId: list-customers
+      parameters:
+      - type: integer
+        name: itemsPerPage
+        description: The number of items to be included in each page of the API response. 
+        in: query
+      - type: integer
+        name: page
+        description: The page number of the results to be retrieved. 
+        in: query
+      - type: string
+        name: search
+        description: The search query or keyword that filters the results returned by the API. 
+        in: query
+      - enum:
+        - first-time
+        - repeat
+        type: string
+        description: Specifies a type or category for filtering the results.
+        name: type
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.PaginatedResponse-customers_ResponseCustomer"
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Create a Customer** endpoint allows you to create a new customer record within your organization. This endpoint requires a payload that includes key details about the customer, such as their email and wallet address.
+        
+        > 📘 Note
+        > 
+        > If a customer makes a payment without being pre-registered, the system automatically creates a customer record during the checkout process.
+                
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: Create a Customer
+      operationId: create-customer
+      parameters:
+      - description: Create Customer Request
+        name: request
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/customers.CreateCustomerRequest"
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/customers.ResponseCustomer"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/customers/{customerID}":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Get Customer by ID** endpoint allows you to retrieve detailed information about a specific customer using their unique identifier. Use this endpoint to access and manage individual customer records within your organization.
+                
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: Get Customer by ID
+      operationId: get-customer-by-id
+      parameters:
+      - type: string
+        description: Unique identifier of the customer. Supports either BoomFi's Customer ID or the unique reference identifier set in a paylink for the customer.
+        name: customerID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-customers_ResponseCustomer"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Delete Customer** endpoint allows you to remove a specific customer record from your organization. Use this endpoint with caution to manage your customer database effectively.
+        
+      produces:
+      - application/json
+      tags:
+      - Customers
+      summary: Delete Customer
+      operationId: delete-customer
+      parameters:
+      - type: string
+        description: Unique identifier of the customer.
+        name: customerID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/integrations":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Get All Integrations** endpoint allows you to retrieve a list of all integrations available within your organization.  Use this endpoint to review and manage the integrations that connect BoomFi with other platforms.
+                
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Get All Integrations
+      operationId: get-integrations
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/integrations/_templates":
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Get All Integration Templates** endpoint allows you to retrieve a list of all available integration templates within your organization. These templates provide pre-configured setups for common integrations, making it easier to quickly implement and manage connections between BoomFi and other services.
+
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Get All Integration Templates
+      operationId: get-integration-templates
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/integrations/{name}":
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Enable Integration** endpoint allows you to activate a specific integration within your organization identified by its unique `name`. Enabling an integration allows BoomFi to interact with the selected service, making its features available for use within your platform.
+
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Enable Integration
+      operationId: enable-integration
+      parameters:
+      - type: string
+        description: The name of the integration to be enabled. 
+        name: name
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Disable an Integration** endpoint allows you to deactivate a specific integration within your organization identified by its unique `name`. Disabling an integration stops its operation while retaining its configuration, allowing you to re-enable it later if needed.
+
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Disable an Integration
+      operationId: disable-integration
+      parameters:
+      - type: string
+        description: The name of the integration to be disabled.
+        name: name
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse"
+        '500':
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/integrations/{name}/{orgID}":
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: |
+        The **Create Webhook** endpoint allows you to set up a new webhook for your organization. Webhooks are used to receive real-time notifications from BoomFi about specific events, such as payment transactions or subscription updates. This endpoint requires a payload containing the webhook's configuration details.
+
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Integrations
+      summary: Create Webhook
+      operationId: create-webhook
+      parameters:
+      - type: string
+        description: The name of the integration to bea associated to the new webhook.
+        name: name
+        in: path
+        required: true
+      - type: string
+        description: The unique identifier of your organization in BoomFi.
+        name: orgID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
   "/v1/events":
     get:
       security:
       - ApiKeyAuth: []
-      description: >-
-        This endpoint allows you to retrieve a paginated list of events associated with a given organization. 
+      description: |
+        The **List Events for an Organization** endpoint allows you to retrieve a list of events associated with your organization. These events correspond to the same data received via webhooks, providing you with access to historical event records. This is useful for auditing purposes or in case of connection loss, ensuring you can always review actions such as subscription management, payment transactions, and plan creation.
         
-        
-        These events correspond to the same data that is received via webhooks, which means that users can access the historical events in case of any connection loss or for any other purposes.
       produces:
       - application/json
       tags:
@@ -424,606 +1081,6 @@ paths:
                       trial_period: ''
                       type: OneTime
                       updated_at: '2023-08-16T08:41:18.406389167Z'
-  "/v1/payments":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve a list of payments.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Payments
-      summary: List Payments
-      operationId: list-payments
-      parameters:
-      - name: after
-        in: query
-        description: Retrieve payments after this timestamp.
-        type: string
-      - name: before
-        in: query
-        description: Retrieve payments before this timestamp.
-        type: string
-      - name: limit
-        in: query
-        description: The maximum number of payments to retrieve (default=100, maximum=100).
-        type: integer
-        minimum: 1
-        maximum: 100
-      - name: page
-        in: query
-        description: The page number of results to retrieve.
-        type: integer
-        minimum: 1
-      - name: since
-        in: query
-        description: Retrieve payments since this timestamp.
-        type: string
-      - name: sort
-        in: query
-        description: Sort order for payments (asc=ascending, desc=descending).
-        type: string
-        enum:
-          - asc
-          - desc
-      - name: until
-        in: query
-        description: Retrieve payments until this timestamp.
-        type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-payments_PaymentResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/payments/{paymentId}":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve the details of a payment using its unique identifier.
-      produces:
-      - application/json
-      tags:
-      - Payments
-      summary: Get Payment by ID
-      operationId: get-payment-by-id
-      parameters:
-      - type: string
-        description: Unique identifier of a payment in the system.
-        name: paymentId
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-payments_PaymentResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '404':
-          description: Not Found
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/plan":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieves a list of plans available in the system.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Plans
-      summary: List Plans
-      operationId: list-plans
-      parameters:
-      - type: string
-        name: after
-        description: Filters plans to include only those created after the specified timestamp. 
-        in: query
-      - type: string
-        name: before
-        description: Filters plans to include only those created before the specified timestamp. 
-        in: query
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        description: Specifies the maximum number of plans to be included in the API response. 
-        in: query
-      - minimum: 1
-        type: integer
-        name: page
-        description: Indicates the page number of the results to be retrieved.
-        in: query
-      - type: string
-        name: since
-        description: Filters plans to include only those created on or after the specified timestamp. 
-        in: query
-      - enum:
-        - asc
-        - desc
-        type: string
-        name: sort
-        description: Specifies the sorting order for the returned plans.
-        in: query
-      - type: string
-        name: until
-        description: Filters plans to include only those created on or before the specified timestamp. 
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-plan_PlanResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to create a new plan. It requires a payload containing the details of the plan.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Plans
-      summary: Create Plan
-      operationId: create-plan
-      parameters:
-      - name: request
-        in: body
-        required: true
-        schema:
-          "$ref": "#/definitions/plan.CreatePlanRequest"
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-plan_PlanResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/plan/{planId}":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve details about a specific plan identified by the plan's unique identifier.
-      produces:
-      - application/json
-      tags:
-      - Plans
-      summary: Get Plan by ID
-      operationId: get-plan-by-id
-      parameters:
-      - type: string
-        description: The unique identifier of the plan.
-        name: planId
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-plan_PlanResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/subscriptions":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve all subscriptions currently in the system.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Subscriptions
-      summary: List Subscriptions
-      operationId: list-subscriptions
-      parameters:
-      - type: string
-        name: customer_id
-        in: query
-        description: Retrieve a list of subscriptions for a particular customer.
-      - type: string
-        name: status
-        in: query
-        description: Retrieve subscriptions based on their respective status.
-        enum:
-        - Pending
-        - Future
-        - InTrial
-        - Active
-        - Paused
-        - Expired
-      - type: string
-        name: after
-        in: query
-        description: Retrieve subscriptions after this timestamp.
-      - type: string
-        name: before
-        in: query
-        description: Retrieve subscriptions before this timestamp.
-      - maximum: 100
-        minimum: 1
-        type: integer
-        name: limit
-        in: query
-        description: Maximum number of subscriptions to retrieve per page (default=100).
-      - minimum: 1
-        type: integer
-        name: page
-        in: query
-        description: Page number of the results to retrieve (default=1).
-      - type: string
-        name: since
-        in: query
-        description: Retrieve subscriptions since this timestamp.
-      - enum:
-          - asc
-          - desc
-        type: string
-        name: sort
-        in: query
-        description: Sort order for the retrieved subscriptions (ascending or descending).
-      - type: string
-        name: until
-        in: query
-        description: Retrieve subscriptions until this timestamp.
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-subscriptions_SubscriptionResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/subscriptions/{subscriptionID}":
-    delete:
-      security:
-      - ApiKeyAuth: []
-      description: Cancels the subscription identified by the provided subscription unique identifier.
-      produces:
-      - application/json
-      tags:
-      - Subscriptions
-      summary: Cancel Subscription
-      operationId: cancel-subscription
-      parameters:
-      - type: string
-        description: The unique identifier of the subscription to be canceled.
-        name: subscriptionID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-subscriptions_SubscriptionResponse"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '404':
-          description: Not Found
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/customers":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve a paginated list of customers for a given organization, with optional sorting and filtering parameters.
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: List Customers
-      operationId: list-customers
-      parameters:
-      - type: integer
-        name: itemsPerPage
-        description: The number of items to be included in each page of the API response. 
-        in: query
-      - type: integer
-        name: page
-        description: The page number of the results to be retrieved. 
-        in: query
-      - type: string
-        name: search
-        description: The search query or keyword that filters the results returned by the API. 
-        in: query
-      - enum:
-        - first-time
-        - repeat
-        type: string
-        description: Specifies a type or category for filtering the results.
-        name: type
-        in: query
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.PaginatedResponse-customers_ResponseCustomer"
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to create a new customer. It requires a payload containing details about the customer.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: Create a Customer
-      operationId: create-customer
-      parameters:
-      - description: Create Customer Request
-        name: request
-        in: body
-        required: true
-        schema:
-          "$ref": "#/definitions/customers.CreateCustomerRequest"
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/customers.ResponseCustomer"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/customers/{customerID}":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve a specific customer identified by its unique identifier. 
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: Get Customer by ID
-      operationId: get-customer-by-id
-      parameters:
-      - type: string
-        description: Unique identifier of the customer. Supports either BoomFi's Customer ID or the unique reference identifier set in a paylink for the customer.
-        name: customerID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            "$ref": "#/definitions/internal.Response-customers_ResponseCustomer"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-    delete:
-      security:
-      - ApiKeyAuth: []
-      description: Delete a specific customer by its unique identifier. 
-      produces:
-      - application/json
-      tags:
-      - Customers
-      summary: Delete Customer
-      operationId: delete-customer
-      parameters:
-      - type: string
-        description: Unique identifier of the customer.
-        name: customerID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/integrations":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Retrieve a list of all integrations associated with your organization. 
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Get All Integrations
-      operationId: get-integrations
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/integrations/_templates":
-    get:
-      security:
-      - ApiKeyAuth: []
-      description: Rretrieve a list of all available integration templates. Integration templates serve as pre-configured setups for common integrations.
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Get All Integration Templates
-      operationId: get-integration-templates
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/integrations.IntegrationsResponseItem"
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/integrations/{name}":
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to enable a specific integration identified by its unique `name`.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Enable Integration
-      operationId: enable-integration
-      parameters:
-      - type: string
-        description: The name of the integration to be enabled. 
-        name: name
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '400':
-          description: Bad Request
-          schema:
-            type: string
-        '500':
-          description: Internal Server Error
-          schema:
-            type: string
-    delete:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to disable a specific integration identified by its unique `name`.
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Disable an Integration
-      operationId: disable-integration
-      parameters:
-      - type: string
-        description: The name of the integration to be disabled.
-        name: name
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse"
-        '500':
-          description: Internal Server Error
-          schema:
-            "$ref": "#/definitions/internal.ErrorResponse500"
-  "/v1/integrations/{name}/{orgID}":
-    post:
-      security:
-      - ApiKeyAuth: []
-      description: This endpoint is used to create a new webhook. It requires a payload containing details about the webhook.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      tags:
-      - Integrations
-      summary: Create Webhook
-      operationId: create-webhook
-      parameters:
-      - type: string
-        description: The name of the integration to bea associated to the new webhook.
-        name: name
-        in: path
-        required: true
-      - type: string
-        description: The unique identifier of your organization in BoomFi.
-        name: orgID
-        in: path
-        required: true
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '400':
-          description: Bad Request
-          schema:
-            type: string
-        '500':
-          description: Internal Server Error
-          schema:
-            type: string
   
 definitions:
   accounts.ChainResponse:

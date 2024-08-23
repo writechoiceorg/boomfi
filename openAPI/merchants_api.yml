@@ -216,7 +216,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **Create Variant Pay Link URL** endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount, currency, and customer-specific details. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
+        The **Create Variant Pay Link URL** endpoint enables you to create a customized version of an existing payment link, allowing you to modify key elements such as the amount and currency. This functionality is ideal for scenarios where you need to offer personalized payment options, such as discounts, special pricing, or promotions, while maintaining the original plan’s integrity.
 
         > 📘 Note
         > 
@@ -345,7 +345,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **Get Payment by ID** endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, currency, and associated metadata.        
+        The **Get Payment by ID** endpoint allows you to retrieve information about a specific payment transaction using its unique identifier. This endpoint provides comprehensive data on the payment, including its status, method, amount, and currency.        
 
       produces:
       - application/json
@@ -599,7 +599,7 @@ paths:
       security:
       - ApiKeyAuth: []
       description: |
-        The **Cancel Subscription** endpoint allows you to cancel an active subscription within your organization. Upon cancellation, the subscription will either end immediately or continue until the end of the current billing cycle, depending on your specified preferences. Use this endpoint to manage and control the lifecycle of your subscriptions effectively.
+        The **Cancel Subscription** endpoint allows you to cancel an active subscription within your organization. Use this endpoint to manage and control the lifecycle of your subscriptions effectively.
         
       produces:
       - application/json

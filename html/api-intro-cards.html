@@ -1,0 +1,235 @@
+<style>
+  .card_shelf1 {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    .card {
+      display: flex;
+      padding: 30px 18px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      border-radius: 6px;
+      border: 1px solid #DCDCDC;
+      background: #FFF;
+      text-decoration: none !important;
+      transition: all 0.3s ease, border 0.1s ease;
+
+      .card_content {
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-style: normal;
+        line-height: 18px;
+
+        h3 {
+          display: flex;
+          color: #383838;
+          font-size: 17.5px;
+          font-weight: 700;
+          margin-top: 0;
+
+          span {
+            display: flex;
+            align-items: center;
+            align-self: center;
+            justify-content: center;
+            justify-self: center;
+            flex-shrink: 0;
+            color: #FFF !important;
+            text-align: center;
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            width: 40px;
+            height: 16px;
+            flex-shrink: 0;
+            border-radius: var(--border-radius-lg);
+            margin: 0 0 0 15px;
+          }
+
+          .get {
+            background: #0e9b71;
+            text-shadow: 1px 1px 0 #0d8d67, 0 1px 0 #0d8d67, 1px 0 0 #0d8d67;
+          }
+
+          .post {
+            background: #0171c2;
+            text-shadow: 1px 1px 0 #0168b3, 0 1px 0 #0168b3, 1px 0 0 #0168b3;
+          }
+
+          .put {
+            background: #674ead;
+            text-shadow: 1px 1px 0 #604aa2, 0 1px 0 #604aa2, 1px 0 0 #604aa2;
+          }
+
+          .del {
+            background: #c71b29;
+            text-shadow: 1px 1px 0 #b91926, 0 1px 0 #b91926, 1px 0 0 #b91926;
+          }
+        }
+
+        p {
+          color: #676767;
+          font-size: 14px;
+          font-weight: 400;
+          margin-bottom: 5px;
+        }
+
+        .link {
+          color: #5F00E7;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 18px;
+
+          svg {
+            fill: #5F00E7;
+          }
+        }
+
+        .link:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .card:hover {
+      border: 1px solid #5F00E7;
+      box-shadow: 0px 0px 9.7px 0px rgba(0, 0, 0, 0.21);
+
+      h3 {
+        color: #5F00E7;
+      }
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="system"] .card {
+      border: 1px solid #556974;
+      background: #242E34;
+
+      .card_content {
+
+        h3,
+        p {
+          color: #FFF;
+        }
+
+        .link {
+          color: #842bff;
+
+          svg {
+            fill: #842bff;
+          }
+        }
+      }
+    }
+
+    [data-color-mode="system"] .card:hover {
+      h3 {
+        color: #FFF;
+      }
+    }
+  }
+
+  [data-color-mode="dark"] .card {
+    border: 1px solid #556974;
+    background: #242E34;
+
+    .card_content {
+
+      h3,
+      p {
+        color: #FFF;
+      }
+
+      .link {
+        color: #842bff;
+
+        svg {
+          fill: #842bff;
+        }
+      }
+    }
+  }
+
+  [data-color-mode="dark"] .card:hover {
+    h3 {
+      color: #FFF;
+    }
+  }
+</style>
+
+<body>
+  <div class="card_shelf1">
+    <a class="card" href="/reference/organization">
+      <div class="card_content">
+        <h3>Organization</h3>
+        <p>Manage your organization’s settings, including retrieving and updating details such as name, logo, and
+          webhook configurations.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/accounts">
+      <div class="card_content">
+        <h3>Accounts</h3>
+        <p>Retrieve and manage settlement accounts configured for each supported blockchain network within the BoomFi
+          platform.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/paylinks">
+      <div class="card_content">
+        <h3>Paylinks</h3>
+        <p>Create, manage, and modify payment links, including listing all pay links and generating variants with custom
+          pricing.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/payments">
+      <div class="card_content">
+        <h3>Payments</h3>
+        <p>Retrieve and manage payment transactions, including listing all payments and accessing details of specific
+          transactions.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/plans">
+      <div class="card_content">
+        <h3>Plans</h3>
+        <p>Manage subscription plans, including creating, listing, and retrieving details for specific plans.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/subscriptions">
+      <div class="card_content">
+        <h3>Subscriptions</h3>
+        <p>Retrieve and manage active subscriptions, including listing subscriptions and canceling specific ones.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/customers">
+      <div class="card_content">
+        <h3>Customers</h3>
+        <p>Manage customer data, including creating, listing, retrieving, and deleting customer records.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/integrations">
+      <div class="card_content">
+        <h3>Integrations</h3>
+        <p>Access and manage integrations, including enabling, disabling, and setting up webhooks for real-time
+          notifications.</p>
+      </div>
+    </a>
+
+    <a class="card" href="/reference/events">
+      <div class="card_content">
+        <h3>Events</h3>
+        <p>Retrieve a list of events associated with your organization, such as subscription updates and payment
+          transactions.</p>
+      </div>
+    </a>
+
+  </div>
+</body>

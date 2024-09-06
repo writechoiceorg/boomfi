@@ -645,7 +645,7 @@ paths:
       operationId: list-customers
       parameters:
       - type: integer
-        name: itemsPerPage
+        name: limit
         description: The number of items to be included in each page of the API response. 
         in: query
       - type: integer

@@ -2280,6 +2280,10 @@ definitions:
   paylinks.CreatePaymentLinkRequest:
     type: object
     properties:
+      name:
+        type: string
+        description: The name of the payment link.
+        example: "New Paylink"
       amount:
         type: string
         description: The amount associated with the payment link.
@@ -2288,6 +2292,9 @@ definitions:
         type: string
         description: The currency of the payment link.
         example: USD
+      reference:
+        type: string
+        description: The reference for the payment link.
       description:
         type: string
         description: A description of the payment link.
@@ -2300,17 +2307,6 @@ definitions:
         type: integer
         description: The number of intervals for the recurring payment link.
         example: 1
-      metadata:
-        type: object
-        additionalProperties: true
-        description: Additional metadata associated with the payment link.
-      name:
-        type: string
-        description: The name of the payment link.
-        example: "New Paylink"
-      reference:
-        type: string
-        description: The reference for the payment link.
       trial_period:
         type: string
         description: The trial period for the payment link in a valid duration format. For example, for 1 day use 24h.
@@ -2319,6 +2315,59 @@ definitions:
         $ref: "#/definitions/models.PlanType"
         description: The type of the payment link.
         example: '2'
+      image_url:
+        type: string
+        description: An URL to a image to be used as the cover image for the payment link at checkout.
+      metadata:
+        type: object
+        additionalProperties: true
+        description: Additional metadata associated with the payment link.
+        $ref: "#/definitions/paylinks.CreatePaymentLinkRequestMetadata"
+  paylinks.CreatePaymentLinkRequestMetadata:
+    type: object
+    properties:
+      payment_method_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - MerchantContract
+            - ProxyWallet
+            - Card
+        description: |
+          Specifies the payment methods available at checkout. Accepts an array with any or all of these values: 
+          - `MerchantContract`
+          - `ProxyWallet`
+          - `Card` 
+          By default, the system applies payment methods based on the merchant’s settlement account settings. 
+          If `Card` is included, the card payment option appears only if the merchant has a Card settlement account configured.
+      after_completion:
+        type: object
+        description: Defines post-checkout behavior. The configuration allows either a custom success message or a redirect to a specified URL upon payment completion.
+        properties:
+          type:
+            type: string
+            enum:
+              - hosted
+              - redirect
+            description: |
+              Sets the post-checkout behavior.:
+              - `hosted`: Displays a success message, customizable with `custom_message`. 
+              - `redirect`: Sends the user to a specified URL via `redirect_url`.
+          custom_message:
+            type: string
+            description: A custom success message shown after payment completion if `type` is set to "hosted". If not provided, a default success message will be displayed.
+          redirect_url:
+            type: string
+            format: uri
+            description: URL to which the user is redirected after successful payment if `type` is set to "redirect". A valid URL is required for this type.
+      omit_possible_duplicate_acknowledgement:
+        type: boolean
+        description: |
+          Determines if users should be notified when attempting multiple one-time payments. 
+          - `true`: A prompt will notify users of prior payments to the link, but they can proceed with an additional payment.
+          - `false`: No prompt will be shown for repeated payments.
+
   paylinks.GenerateVariantURLResponse:
     type: object
     properties:

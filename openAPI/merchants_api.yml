@@ -2317,7 +2317,7 @@ definitions:
         example: '2'
       image_url:
         type: string
-        description: An URL to a image to be used as the cover image for the payment link at checkout.
+        description: An image URL to be used as the cover image for the payment link at the checkout.
       metadata:
         type: object
         additionalProperties: true
@@ -2335,12 +2335,13 @@ definitions:
             - ProxyWallet
             - Card
         description: |
-          Specifies the payment methods available at checkout. Accepts an array with any or all of these values: 
+          Specifies the payment methods available at checkout. By default, the system applies payment methods based on the merchant’s settlement account settings. If `Card` is included, the card payment option appears only if the merchant has a Card settlement account configured.
+          
+          Accepts an array with any or all of these values: 
           - `MerchantContract`
           - `ProxyWallet`
           - `Card` 
-          By default, the system applies payment methods based on the merchant’s settlement account settings. 
-          If `Card` is included, the card payment option appears only if the merchant has a Card settlement account configured.
+          
       after_completion:
         type: object
         description: Defines post-checkout behavior. The configuration allows either a custom success message or a redirect to a specified URL upon payment completion.
@@ -2351,16 +2352,16 @@ definitions:
               - hosted
               - redirect
             description: |
-              Sets the post-checkout behavior.:
-              - `hosted`: Displays a success message, customizable with `custom_message`. 
-              - `redirect`: Sends the user to a specified URL via `redirect_url`.
+              Sets the post-checkout behavior:
+              - `hosted`: Displays a success message, customizable with **custom_message**. 
+              - `redirect`: Sends the user to a specified URL via **redirect_url**.
           custom_message:
             type: string
-            description: A custom success message shown after payment completion if `type` is set to "hosted". If not provided, a default success message will be displayed.
+            description: A custom success message shown after payment completion if `type` is set to **hosted**. If not provided, a default success message will be displayed.
           redirect_url:
             type: string
             format: uri
-            description: URL to which the user is redirected after successful payment if `type` is set to "redirect". A valid URL is required for this type.
+            description: URL to which the user is redirected after successful payment if `type` is set to **redirect**. A valid URL is required for this type.
       omit_possible_duplicate_acknowledgement:
         type: boolean
         description: |

@@ -2112,11 +2112,11 @@ definitions:
     description: >-
       The type of the plan:
 
-      - 1 = Unknown
+      - **1** = Unknown
 
-      - 2 = Onetime
+      - **2** = Onetime
 
-      - 3 = Recurring
+      - **3** = Recurring
     type: string
     enum:
     - '1'
@@ -2128,14 +2128,11 @@ definitions:
     - PlanTypeRecurring
   models.RecurringInterval:
     type: string
-    description: >-
+    description: |
           The recurring interval for the payment link:
-          
-          - Week
-          
-          - Month
-          
-          - Year
+          - **Week**
+          - **Month**
+          - **Year**
     enum:
     - Week
     - Month
@@ -2338,9 +2335,9 @@ definitions:
           Specifies the payment methods available at checkout. By default, the system applies payment methods based on the merchant’s settlement account settings. If `Card` is included, the card payment option appears only if the merchant has a Card settlement account configured.
           
           Accepts an array with any or all of these values: 
-          - `MerchantContract`
-          - `ProxyWallet`
-          - `Card` 
+          - **MerchantContract**
+          - **ProxyWallet**
+          - **Card** 
           
       after_completion:
         type: object
@@ -2353,22 +2350,21 @@ definitions:
               - redirect
             description: |
               Sets the post-checkout behavior:
-              - `hosted`: Displays a success message, customizable with **custom_message**. 
-              - `redirect`: Sends the user to a specified URL via **redirect_url**.
+              - **hosted**: Displays a success message, customizable with `custom_message`. 
+              - **redirect**: Sends the user to a specified URL via `redirect_url`.
           custom_message:
             type: string
-            description: A custom success message shown after payment completion if `type` is set to **hosted**. If not provided, a default success message will be displayed.
+            description: A custom success message shown after payment completion if `type` is set to `hosted`. If not provided, a default success message will be displayed.
           redirect_url:
             type: string
             format: uri
-            description: URL to which the user is redirected after successful payment if `type` is set to **redirect**. A valid URL is required for this type.
+            description: URL to which the user is redirected after successful payment if `type` is set to `redirect`. A valid URL is required for this type.
       omit_possible_duplicate_acknowledgement:
         type: boolean
         description: |
           Determines if users should be notified when attempting multiple one-time payments. 
-          - `true`: A prompt will notify users of prior payments to the link, but they can proceed with an additional payment.
-          - `false`: No prompt will be shown for repeated payments.
-
+          - **true**: A prompt will notify users of prior payments to the link, but they can proceed with an additional payment.
+          - **false**: No prompt will be shown for repeated payments.
   paylinks.GenerateVariantURLResponse:
     type: object
     properties:

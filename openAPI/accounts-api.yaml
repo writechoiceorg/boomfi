@@ -1,0 +1,385 @@
+openapi: 3.0.3
+info:
+  title: Accounts API
+  version: "1.0"
+  description: |-
+    Merchant settlement account endpoints. These set of API can be used to list, create, update and delete
+    merchant settlement accounts. There will be uniqueness checking performed during the creation API call
+    where (org_id, reference, chain_id, currency) has to be unique. The user could not create multiple 
+    merchant settlement accounts with the same reference and chain_id having duplicated currencies
+servers:
+  - url: https://mapi-test.boomfi.xyz
+  - url: https://mapi.boomfi.xyz
+tags:
+  - name: Settlement Accounts
+    description: Merchant settlemement accounts
+paths:
+  /v1/accounts:
+    get:
+      tags:
+        - Settlement Accounts
+      summary: List Merchant Settlement Accounts
+      description: |
+        The **List Merchant Settlement Accounts** endpoint allows you to retrieve all merchant settlement accounts associated with your organization. This includes detailed information such as account IDs, types, supported currencies, and blockchain network details. Use this endpoint to view and manage your merchant settlement accounts, ensuring they are configured correctly in BoomFi.
+      operationId: list-settlement-accounts
+      parameters:
+        - name: reference
+          in: query
+          description: An optional reference identifier to filter the merchant settlement accounts.
+          required: false
+          schema:
+            type: string
+            format: string
+            description: The reference identifier of the merchant settlement account.
+      responses:
+        '200':
+          description: Successfully retrieves a list of the merchant settlement accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'          
+        '404':
+          description: No merchant settlement accounts found for the provided criteria.
+      security:
+        - api_key: []
+    post:
+      tags:
+        - Settlement Accounts
+      summary: Create a Merchant Settlement Account
+      description: |
+        The **Create a Merchant Settlement Account** endpoint allows you to add a new settlement account to your organization. Provide necessary details such as account type, supported currencies, and blockchain network information. Uniqueness checks will be performed to ensure that the combination of `org_id`, `reference`, `chain_id`, and `currency` is unique. Use this endpoint to expand your settlement options and manage payouts effectively.
+      operationId: create-settlement-account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+        required: true
+      responses:
+        '200':
+          description: Successfully creates merchant settlement account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      security:
+        - api_key: []
+  /v1/accounts/{accountId}:
+    get:
+      tags:
+        - Settlement Accounts
+      summary: Retrieve a Merchant Settlement Account by ID
+      description: |
+        The **Retrieve a Merchant Settlement Account** endpoint allows you to fetch details of an existing merchant settlement account using the account's unique ID. This includes all account information such as account type, supported currencies, blockchain details, and status. Use this endpoint to view specific account configurations and verify account details within BoomFi.
+      operationId: get-settlement-account-by-id
+      parameters:
+        - name: accountId
+          in: path
+          description: The unique identifier of the merchant settlement account to retrieve.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successfully retrieves the merchant settlement account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'          
+        '404':
+          description: The specified merchant settlement account does not exist.
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - Settlement Accounts
+      summary: Update a Merchant Settlement Account
+      description: |
+        The **Update a Merchant Settlement Account** endpoint allows you to modify the details of an existing merchant settlement account identified by its unique ID. You can update fields such as the account name, wallet address, supported currencies, and enable or disable the account. Use this endpoint to keep your account information current and to manage account settings.
+      operationId: update-settlement-account
+      parameters:
+        - name: accountId
+          in: path
+          description: The unique identifier of the merchant settlement account to update.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountRequest'
+        required: true
+      responses:
+        '200':
+          description: Successfully updates the merchant settlement account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'          
+        '400':
+          description: Bad Request
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - Settlement Accounts
+      summary: Delete a Merchant Settlement Account
+      description: |
+        The **Delete a Merchant Settlement Account** endpoint allows you to remove an existing merchant settlement account from your organization using the account's unique ID. This action is irreversible. Use this endpoint when you need to decommission an account that is no longer in use.
+      operationId: delete-settlement-account
+      parameters:
+        - name: accountId
+          in: path
+          description: The unique identifier of the merchant settlement account to delete.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successfully deletes the merchant settlement account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'          
+        '404':
+          description: The specified merchant settlement account does not exist.
+      security:
+        - api_key: []
+components:
+  schemas:
+    Accounts:
+      type: array
+      items:
+        $ref: '#/components/schemas/Account'
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          nullable: false
+          description: A unique identifier for the merchant settlement account.
+        org_id:
+          type: string
+          format: KSUID
+          nullable: false
+          description: The unique identifier of your organization.
+        parent_id:
+          type: integer
+          format: int64
+          nullable: true
+          description: The identifier of the parent merchant settlement account.
+        reference:
+          type: string
+          format: string
+          nullable: false
+          description: A reference string to bundle and identify the merchant settlement account.
+        account_type:
+          type: string
+          default: CryptoPayIn
+          enum:
+            - CryptoPayIn
+            # - CryptoPayOut
+            # - FiatPayIn
+            # - FiatPayOut
+            # - Crypto
+            # - Bank
+            # - Card
+            # - MPCVault
+            # - GooglePay
+            # - ApplePay
+          nullable: false
+          description: The type of merchant settlement account, indicating the settlement method.
+        name:
+          type: string
+          format: string
+          nullable: false
+          description: The name assigned to this merchant settlement account.
+        chain_id:
+          type: integer
+          format: int64
+          description: The blockchain network identifier. Find the identifier for each network in the [Network & Currencies guide](/docs/networks-and-currencies).
+        address:
+          type: string
+          format: string
+          nullable: false
+          description: The wallet address associated with the merchant settlement account.
+        currencies:
+          type: array
+          items:
+            type: string
+          nullable: false
+          description: A list of currency codes that the account supports.
+        account_number:
+          type: string
+          format: string
+          description: The account number for fiat settlement account types.
+        sort_code:
+          type: string
+          format: string
+          description: The bank sort code for fiat settlement account types.
+        enabled:
+          type: boolean
+          description: Indicates whether this merchant settlement account is currently enabled.
+        provider:
+          type: string
+          format: string
+          nullable: true
+          description: The service provider managing the account, applicable for managed accounts.
+        state:
+          type: string
+          enum:
+            - Unknown
+            - Pending
+            - Ready
+          nullable: false
+          description: The current state of the merchant settlement account in the setup process.
+        properties:
+          type: object
+          description: Additional properties or metadata for the merchant settlement account.
+        chain:
+          type: object
+          nullable: true
+          description: |
+            Details of the blockchain network associated with the merchant settlement account, applicable for crypto settlements. This includes network code, name, category, whether it's a testnet, and its native currency symbol.
+          properties:
+            code:
+              type: string
+              format: string
+              nullable: false
+              description: The code representing the blockchain network (e.g., "ETH" for Ethereum).
+            name:
+              type: string
+              format: string
+              nullable: false
+              description: The full name of the blockchain network.
+            category:
+              type: string
+              format: string
+              nullable: false
+              description: The category or type of blockchain network (e.g., "Mainnet", "Testnet").
+            is_testnet:
+              type: boolean
+              nullable: false
+              description: Indicates if the blockchain network is a test network.
+            native_currency_symbol:
+              type: string
+              format: string
+              nullable: false
+              description: The symbol of the blockchain's native currency (e.g., "ETH" for Ethereum).
+        created_by:
+          type: string
+          format: KSUID
+          nullable: true
+          description: The identifier of the user who created this account, if created via the UI.
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+          description: The timestamp when the merchant settlement account was created.
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+          description: The timestamp when the merchant settlement account was last updated.
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp when the merchant settlement account was deleted, if applicable.
+    CreateAccountRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          description: |
+            The name assigned to the merchant settlement account. This name will help you identify the account within your organization.
+        reference:
+          type: string
+          format: string
+          description: |
+            A reference code used to group and manage multiple merchant settlement accounts. This helps in bundling accounts for organizational purposes.
+        type:
+          type: string
+          enum:
+            - CryptoPayIn
+            - CryptoPayOut
+            - FiatPayIn
+            - FiatPayOut
+            - Crypto
+            - Bank
+            - Card
+            - MPCVault
+            - GooglePay
+            - ApplePay
+          description: |
+            The type of merchant settlement account, indicating the settlement method. Currently, only **CryptoPayIn** is supported. This defines how transactions will be processed for the account.
+        chain_id:
+          type: number
+          format: int64
+          description: |
+            The blockchain network identifier for the merchant settlement account. This specifies the network on which the account operates. Find the identifier for each network in the [Network & Currencies guide](/docs/networks-and-currencies).
+        address:
+          type: string
+          format: string
+          description: |
+            The wallet address associated with the merchant settlement account. Ensure that this address is accurate to facilitate proper transaction settlements.
+        currencies:
+          type: array
+          items:
+            type: string
+          description: |
+            A list of currency codes that the account supports. Provide the currency codes (e.g., "ETH", "USDC") that the account can accept or transact with.
+    UpdateAccountRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          nullable: true
+          description: |
+            The new name for the merchant settlement account. If provided, this value will update the account's existing name.
+        address:
+          type: string
+          format: string
+          nullable: true
+          description: |
+            The new wallet address for the merchant settlement account. If provided, this value will update the account's existing address.
+        currencies:
+          type: array
+          items:
+            type: string
+          description: |
+            A list of currency codes to update the supported currencies of the account. This list will replace the account's current supported currencies.
+        enabled:
+          type: boolean
+          format: boolean
+          description: |
+            A flag to enable or disable the merchant settlement account. Set to `true` to enable the account or `false` to disable it.
+  requestBodies:
+    CreateAccountRequest:
+      description: Merchant settlement account fields to for creation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAccountRequest'
+    UpdateAccountRequest:
+      description: Merchant settlement account fields to be updated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAccountRequest'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header

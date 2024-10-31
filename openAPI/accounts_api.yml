@@ -353,7 +353,7 @@ components:
               - DAI
               - SOL
           description: |
-            A list of currency codes that the account supports. Provide the currency codes (e.g., "ETH", "USDC") that the account can accept or transact with.
+            A list of currency codes supported by this account. Please provide the currency codes that the settlement account can accept.
     UpdateAccountRequest:
       type: object
       properties:

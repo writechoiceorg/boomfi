@@ -196,8 +196,8 @@ components:
             # - MPCVault
             # - GooglePay
             # - ApplePay
-          nullable: false
           description: The type of merchant settlement account, indicating the settlement method.
+          nullable: false
         name:
           type: string
           format: string

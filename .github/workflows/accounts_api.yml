@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "openAPI/accounts-api.yml"
+      - "openAPI/accounts_api.yml"
 
 jobs:
   sync-credit-core:
@@ -21,4 +21,4 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi ./openAPI/accounts-api.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.DEFINITION_ID_ACCOUNTS }}
+          rdme: openapi ./openAPI/accounts_api.yml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.DEFINITION_ID_ACCOUNTS }}

@@ -9,7 +9,7 @@ on:
       - "openAPI/accounts_api.yml"
 
 jobs:
-  sync-credit-core:
+  sync-accounts-api:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo

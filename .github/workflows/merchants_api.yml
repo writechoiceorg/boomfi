@@ -9,7 +9,7 @@ on:
       - "openAPI/merchants_api.yml"
 
 jobs:
-  sync-credit-core:
+  sync-merchant-api:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo

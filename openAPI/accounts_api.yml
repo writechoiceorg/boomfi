@@ -187,15 +187,6 @@ components:
           default: CryptoPayIn
           enum:
             - CryptoPayIn
-            # - CryptoPayOut
-            # - FiatPayIn
-            # - FiatPayOut
-            # - Crypto
-            # - Bank
-            # - Card
-            # - MPCVault
-            # - GooglePay
-            # - ApplePay
           description: The type of merchant settlement account, indicating the settlement method.
           nullable: false
         name:

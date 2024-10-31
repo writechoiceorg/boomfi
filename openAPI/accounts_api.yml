@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Accounts'
+                $ref: '#/components/schemas/Account'
         '400':
           description: Bad Request
         '500':
@@ -156,35 +156,46 @@ paths:
 components:
   schemas:
     Accounts:
-      type: array
-      items:
-        $ref: '#/components/schemas/Account'
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountDetails'
+              description: A list of merchant settlement accounts.
+          description: The data container for the list of accounts.
+      description: The response schema for listing multiple merchant settlement accounts.
     Account:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AccountDetails'
+        message:
+          type: string
+          description: A message indicating the result of the operation.
+    AccountDetails:
       type: object
       properties:
         id:
           type: integer
           format: int64
-          nullable: false
           description: A unique identifier for the merchant settlement account.
         org_id:
           type: string
-          format: KSUID
-          nullable: false
           description: The unique identifier of your organization.
         parent_id:
           type: integer
           format: int64
           nullable: true
-          description: The identifier of the parent merchant settlement account.
+          description: The identifier of the parent merchant settlement account, if applicable.
         reference:
           type: string
-          format: string
-          nullable: false
-          description: A reference string to bundle and identify the merchant settlement account.
+          description: A reference code to group and manage multiple merchant settlement accounts.
         account_type:
           type: string
-          default: CryptoPayIn
           enum:
             - CryptoPayIn
             - CryptoPayOut
@@ -197,104 +208,70 @@ components:
             - GooglePay
             - ApplePay
           description: The type of merchant settlement account, indicating the settlement method.
-          nullable: false
         name:
           type: string
-          format: string
-          nullable: false
-          description: The name assigned to this merchant settlement account.
+          description: The name assigned to the merchant settlement account.
         chain_id:
           type: integer
           format: int64
-          description: The blockchain network identifier. Find the identifier for each network in the [Network & Currencies guide](/docs/networks-and-currencies).
+          description: The blockchain network identifier (e.g., 1 for Ethereum Mainnet, 8453 for Base Mainnet).
         address:
           type: string
-          format: string
-          nullable: false
           description: The wallet address associated with the merchant settlement account.
         currencies:
           type: array
           items:
             type: string
-          nullable: false
-          description: A list of currency codes that the account supports.
+            enum:
+              - ETH
+              - USDC
+              - USDT
+              - WETH
+              - DAI
+              - SOL
+          description: |
+            A list of currency codes that the account supports. Possible values are:
+            - **ETH**: Ethereum
+            - **USDC**: USD Coin
+            - **USDT**: Tether
+            - **WETH**: Wrapped Ether
+            - **DAI**: Dai Stablecoin
+            - **SOL**: Solana
+
+            Ensure that the currencies listed are supported by the account's blockchain network and are relevant to your transaction needs.
         account_number:
           type: string
-          format: string
-          description: The account number for fiat settlement account types.
+          description: The account number for fiat settlement accounts. Empty if not applicable.
         sort_code:
           type: string
-          format: string
-          description: The bank sort code for fiat settlement account types.
+          description: The bank sort code for fiat settlement accounts. Empty if not applicable.
         enabled:
           type: boolean
           description: Indicates whether this merchant settlement account is currently enabled.
-        provider:
-          type: string
-          format: string
-          nullable: true
-          description: The service provider managing the account, applicable for managed accounts.
         state:
           type: string
           enum:
             - Unknown
             - Pending
             - Ready
-          nullable: false
-          description: The current state of the merchant settlement account in the setup process.
-        properties:
-          type: object
-          description: Additional properties or metadata for the merchant settlement account.
-        chain:
-          type: object
-          nullable: true
-          description: |
-            Details of the blockchain network associated with the merchant settlement account, applicable for crypto settlements. This includes network code, name, category, whether it's a testnet, and its native currency symbol.
-          properties:
-            code:
-              type: string
-              format: string
-              nullable: false
-              description: The code representing the blockchain network (e.g., "ETH" for Ethereum).
-            name:
-              type: string
-              format: string
-              nullable: false
-              description: The full name of the blockchain network.
-            category:
-              type: string
-              format: string
-              nullable: false
-              description: The category or type of blockchain network (e.g., "Mainnet", "Testnet").
-            is_testnet:
-              type: boolean
-              nullable: false
-              description: Indicates if the blockchain network is a test network.
-            native_currency_symbol:
-              type: string
-              format: string
-              nullable: false
-              description: The symbol of the blockchain's native currency (e.g., "ETH" for Ethereum).
+          description: The current state of the merchant settlement account.
         created_by:
           type: string
-          format: KSUID
-          nullable: true
-          description: The identifier of the user who created this account, if created via the UI.
+          description: The identifier of the user who created this account.
         created_at:
           type: string
           format: date-time
-          nullable: false
           description: The timestamp when the merchant settlement account was created.
         updated_at:
           type: string
           format: date-time
-          nullable: false
           description: The timestamp when the merchant settlement account was last updated.
         deleted_at:
           type: string
           format: date-time
           nullable: true
           description: The timestamp when the merchant settlement account was deleted, if applicable.
+ 
     CreateAccountRequest:
       type: object
       required:

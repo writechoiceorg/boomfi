@@ -297,6 +297,13 @@ components:
           description: The timestamp when the merchant settlement account was deleted, if applicable.
     CreateAccountRequest:
       type: object
+      required:
+        - name
+        # - reference
+        - type
+        - chain_id
+        - address
+        - currencies
       properties:
         name:
           type: string
@@ -310,7 +317,7 @@ components:
             A reference code used to group and manage multiple merchant settlement accounts. This helps in bundling accounts for organizational purposes.
         type:
           type: string
-          default: CryptoPayIn
+          example: CryptoPayIn
           enum:
             - CryptoPayIn
             # - CryptoPayOut
@@ -338,6 +345,13 @@ components:
           type: array
           items:
             type: string
+            enum:
+              - ETH
+              - USDC
+              - USDT
+              - WETH
+              - DAI
+              - SOL
           description: |
             A list of currency codes that the account supports. Provide the currency codes (e.g., "ETH", "USDC") that the account can accept or transact with.
     UpdateAccountRequest:

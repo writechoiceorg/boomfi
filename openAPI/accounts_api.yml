@@ -299,7 +299,7 @@ components:
       type: object
       required:
         - name
-        # - reference
+        - reference
         - type
         - chain_id
         - address

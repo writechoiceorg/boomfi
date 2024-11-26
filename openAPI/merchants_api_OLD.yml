@@ -184,9 +184,6 @@ paths:
         > 
         > When creating a payment link, you can implicitly create a plan by providing details such as `amount` and `currency`.
 
-        > 🚧  Account-specific Paylinks 
-        >
-        > Create an account-specific paylink by adding either `account_ref` or `account_ids`. Its important to note that you cannot add both.
       consumes:
       - application/json
       produces:
@@ -2278,24 +2275,8 @@ definitions:
         example: https://webhook.site/b09eec23-3f7a-4f0c-aec6-84c277c5eb78
 
   paylinks.CreatePaymentLinkRequest:
-    required:
-      - name
-      - amount
-      - currency
     type: object
     properties:
-      account_ids:
-        items:
-          type: integer
-        type: array
-        description: |
-          A list of account IDs to associate with the payment link. Use this to attach specific accounts to the payment link, making it account-specific.
-          <small>⚠️ Either `account_ids` or `account_ref` should be used, not both. ⚠️</small>
-      account_ref:
-        type: string
-        description: |
-          An account reference to associate with the payment link. Use this to attach accounts with the specified account reference to the payment link, making it account-specific. 
-          <small>⚠️ Either `account_ids` or `account_ref` should be used, not both. ⚠️</small>
       name:
         type: string
         description: The name of the payment link.

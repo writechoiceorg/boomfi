@@ -1,80 +1,250 @@
 definitions:
   accounts.ChainResponse:
+    type: object
     properties:
       category:
         type: string
+        description: The category or classification of the chain.
       code:
         type: string
+        description: The code or abbreviation associated with the chain.
       is_testnet:
         type: boolean
+        description: Indicates whether the chain is a testnet (true) or not (false).
       name:
         type: string
+        description: The name or title associated with the chain.
       native_currency_symbol:
         type: string
-    type: object
+        description: The symbol representing the native currency of the chain.
   accounts.OrgSettlementAccountResponse:
+    type: object
     properties:
       account_number:
-        description: account_number
+        description: The account number.
         type: string
+        example: "123456789"
       account_type:
+        description: The type of the account.
         allOf:
-        - $ref: '#/definitions/models.AccountType'
-        description: account_type
+          - "$ref": "#/definitions/models.AccountType"
       address:
-        description: address
+        description: The cryptocurrency wallet address associated with a specific account.
         type: string
+        example: "0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520"
       chain:
-        $ref: '#/definitions/accounts.ChainResponse'
+        "$ref": "#/definitions/accounts.ChainResponse"
       chain_id:
-        description: chain_id
+        description: The unique identifier representing a blockchain network or chain.
         type: integer
+        example: 1
       created_at:
-        description: created_at
+        description: The timestamp indicating when the entity was created.
         type: string
+        example: '2023-01-01T12:00:00Z'
       created_by:
+        description: Information about the user or entity that created the entry.
         type: string
+        example: "user123"
       currencies:
-        description: currencies
+        description: An array containing the names or symbols of the currencies supported.
+        type: array
         items:
           type: string
-        type: array
-      deleted_at: {}
+        example: ["BTC", "ETH", "USD"]
+      deleted_at:
+        description: The timestamp indicating when the account was deleted.
+        type: string
+        example: '2023-01-02T08:30:00Z'
       enabled:
-        description: enabled
+        description: Indicates whether the account is currently enabled.
         type: boolean
+        example: true
       id:
-        description: id
+        description: The unique identifier for the account.
         type: integer
+        example: 123456
       name:
-        description: name
+        description: The name or title associated with the account.
         type: string
+        example: "Primary Account"
       org_id:
-        description: org_id
+        description: The identifier representing the organization associated with the account.
         type: string
-      parent:
-        $ref: '#/definitions/accounts.OrgSettlementAccountResponse'
-      parent_id:
-        type: integer
+        example: "org123"
       properties:
-        additionalProperties: {}
         type: object
+        additionalProperties: {}
       provider:
-        $ref: '#/definitions/models.AccountProvider'
-      reference:
-        description: reference
-        type: string
+        description: The account provider associated with the account.
+        "$ref": "#/definitions/models.AccountProvider"
       sort_code:
-        description: sort_code
+        description: The sort code associated with the account.
         type: string
-      state:
-        allOf:
-        - $ref: '#/definitions/models.AccountState'
-        description: state
+        example: "123456"
       updated_at:
-        description: updated_at
+        description: The timestamp indicating when the entity was last updated.
         type: string
+        example: '2023-01-03T10:45:00Z'
+  customers.CreateCustomerRequest:
     type: object
+    required:
+      - email
+    properties:
+      customer_ident:
+        type: string
+        description: Unique identifier for a customer.
+      discord:
+        type: string
+        description: Discord username or identifier associated with a customer, allowing for communication and linkage to Discord-based interactions.
+      email:
+        type: string
+        description: Customer's email address.
+      name:
+        type: string
+        description: Customer's name.
+      number:
+        type: string
+        description: Numeric identifier or contact number associated with the customer.
+      twitter:
+        type: string
+        description: Twitter handle associated with the customer.
+      wallet_address:
+        type: string
+        description: Unique address associated with a customer's wallet.
+  customers.CustomerResponse:
+    type: object
+    properties:
+      created_at:
+        description: The timestamp indicating when the customer was created.
+        type: string
+        example: '2023-01-01T12:00:00Z'
+      deleted_at:
+        description: The timestamp indicating when the customer was deleted, if applicable.
+        type: string
+        example: '2023-01-05T10:00:00Z'
+      email:
+        description: The email address of the customer.
+        type: string
+        example: customer@example.com
+      id:
+        description: The unique identifier of the customer.
+        type: string
+        example: customer123
+      metadata:
+        type: object
+        additionalProperties: {}
+      name:
+        description: The name of the customer.
+        type: string
+        example: John Doe
+      org_id:
+        description: The identifier representing the organization associated with the customer.
+        type: string
+        example: org123
+      phone:
+        description: The phone number of the customer.
+        type: string
+        example: +1234567890
+      properties:
+        description: Additional properties associated with the customer.
+        type: object
+        additionalProperties: {}
+      reference:
+        description: The reference associated with the customer.
+        type: string
+        example: REF-123456
+      updated_at:
+        description: The timestamp indicating when the customer was last updated.
+        type: string
+        example: '2023-01-02T09:00:00Z'
+      v1: {}
+      wallet_address:
+        description: The wallet address associated with the customer.
+        type: string
+        example: 0x0123456789abcdef0123456789abcdef0123456
+  customers.ResponseCustomer:
+    type: object
+    properties:
+      created_at:
+        type: string
+        description: The timestamp indicating when the customer record was created.
+        example: '2023-03-15T08:30:00Z'
+      customer_ident:
+        type: string
+        description: The unique identifier for the customer.
+        example: "CUST123"
+      email:
+        type: string
+        description: The email address associated with the customer.
+        example: example@email.com
+      guest:
+        type: boolean
+        description: Indicates whether the customer is a guest (true) or not (false).
+        example: false
+      id:
+        type: string
+        description: The unique identifier for the customer.
+        example: "123456789"
+      is_deleted:
+        type: boolean
+        description: Indicates whether the customer has been deleted (true) or not (false).
+        example: false
+      last_payment_date:
+        type: string
+        description: The timestamp indicating the date of the last payment made by the customer.
+        example: '2023-03-20T12:00:00Z'
+      metadata:
+        type: object
+        description: Additional metadata associated with the customer.
+        additionalProperties: {}
+      name:
+        type: string
+        description: The name of the customer.
+        example: John Doe
+      organisation_id:
+        type: string
+        description: The identifier of the organization to which the customer belongs.
+        example: "ORG123"
+      payments_count:
+        type: integer
+        description: The total count of payments made by the customer.
+        example: 5
+      phone:
+        type: string
+        description: The phone number associated with the customer.
+        example: +1234567890
+      properties:
+        type: object
+        description: Additional custom properties associated with the customer.
+        additionalProperties: {}
+      updated_at:
+        type: string
+        description: The timestamp indicating when the customer record was last updated.
+        example: '2023-03-25T10:45:00Z'
+      wallet_address:
+        type: string
+        description: The wallet address associated with the customer for cryptocurrency transactions.
+        example: "0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520"
+  events.Event:
+    type: object
+    properties:
+      type:
+        type: string
+        description: The type or category of the event.
+      action:
+        type: string
+        description: The action associated with the event.
+      data:
+        type: object
+        additionalProperties: {}
+        description: Additional data associated with the event.
+      id:
+        type: string
+        description: The unique identifier of the event.
+      timestamp:
+        type: string
+        description: The timestamp indicating when the event occurred.
   boomfi_api_merchants_events.Event:
     properties:
       action:
@@ -89,199 +259,1586 @@ definitions:
       type:
         type: string
     type: object
-  customers.CreateCustomerRequest:
+  integrations.IntegrationsResponseItem:
+    type: object
     properties:
-      customer_ident:
+      created_at:
         type: string
-      discord:
+        description: The timestamp indicating when the integration was created.
+        example: '2023-01-01T12:00:00Z'
+      created_by:
         type: string
-      email:
+        description: The user or entity that created the integration.
+        example: "user123"
+      description:
         type: string
+        description: The description of the integration.
+        example: "Integration for data synchronization"
+      enabled:
+        type: boolean
+        description: Indicates whether the integration is enabled.
+        example: true
+      id:
+        type: integer
+        description: The unique identifier of the integration.
+        example: 123456
+      last_error:
+        type: string
+        description: The last error message encountered during synchronization.
+        example: "Connection timeout"
+      last_sync_time:
+        type: string
+        description: The timestamp indicating when the last synchronization occurred.
+        example: '2023-01-02T08:30:00Z'
       name:
         type: string
-      number:
+        description: The name of the integration.
+        example: "Data Sync"
+      org_id:
         type: string
-      twitter:
+        description: The identifier of the organization associated with the integration.
+        example: "org123"
+      properties:
+        type: object
+        additionalProperties: {}
+        description: Additional properties associated with the integration.
+      schema:
+        type: object
+        additionalProperties: {}
+        description: The schema of the integration.
+      status:
+        "$ref": "#/definitions/models.OrgIntegrationStatus"
+        description: The status of the integration.
+      template_name:
         type: string
-      wallet_address:
+        description: The template name of the integration.
+        example: "Data Sync Template"
+      type:
+        allOf:
+          - "$ref": "#/definitions/models.OrgIntegrationType"
+        description: The type of the integration.
+      updated_at:
         type: string
+        description: The timestamp indicating when the integration was last updated.
+        example: '2023-01-03T10:45:00Z'
+  internal.ErrorResponse:
     type: object
-  customers.CustomerResponse:
+    properties:
+      error:
+        "$ref": "#/definitions/internal.ErrorStruct"
+  internal.ErrorResponse500:
+    type: object
+    properties:
+      error:
+        "$ref": "#/definitions/internal.ErrorStruct500"
+  internal.ErrorStruct:
+    type: object
+    properties:
+      code:
+        description: |-
+          The error code returned by the server.
+          Example: 400
+        type: integer
+        example: 400
+      errors:
+        description: A list of detailed error objects.
+        type: array
+        items:
+          "$ref": "#/definitions/internal.SingleError"
+      message:
+        description: |-
+          A descriptive message explaining the error.
+          Example: Insufficient quantity
+        type: string
+        example: Insufficient quantity
+  internal.ErrorStruct500:
+    type: object
+    properties:
+      code:
+        description: |-
+          The error code returned by the server.
+          Example: 500
+        type: integer
+        example: 500
+      errors:
+        description: A list of detailed error objects.
+        type: array
+        items:
+          "$ref": "#/definitions/internal.SingleError500"
+      message:
+        description: |-
+          A descriptive message explaining the error.
+          Example: Internal server error
+        type: string
+        example: Internal server error
+  internal.PaginatedItems-accounts_OrgSettlementAccountResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: The unique identifier for the account
+        example: 307
+      org_id:
+        type: string
+        description: The organization ID associated with the account
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+      account_type:
+        type: string
+        description: The type of account (e.g., Crypto, Card)
+        example: "Crypto"
+      name:
+        type: string
+        description: The name of the account
+        example: "metamask"
+      chain_id:
+        type: integer
+        description: The identifier of the blockchain chain associated with the account
+        example: 1
+      address:
+        type: string
+        description: The address of the account
+        example: "0xE1c92E9A0f5f61739289e1CE5825038a68d8e580"
+      currencies:
+        type: array
+        description: The list of supported currencies for the account
+        items:
+          type: string
+        example:
+          - "USDC"
+          - "USDT"
+          - "DAI"
+          - "WETH"
+          - "ETH"
+      account_number:
+        type: string
+        description: The account number (if applicable)
+        example: ""
+      sort_code:
+        type: string
+        description: The sort code (if applicable)
+        example: ""
+      enabled:
+        type: boolean
+        description: Indicates if the account is enabled
+        example: true
+      created_by:
+        type: string
+        description: The ID of the user who created the account
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when the account was created
+        example: "2023-06-08T13:15:23.307Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: The timestamp when the account was last updated
+        example: "2023-06-08T13:15:23.307Z"
+      deleted_at:
+        type: string
+        format: date-time
+        description: The timestamp when the account was deleted (if applicable)
+        example: null
+      chain:
+        type: object
+        properties:
+          code:
+            type: string
+            description: The code representing the blockchain chain
+            example: "eth-mainnet"
+          name:
+            type: string
+            description: The name of the blockchain chain
+            example: "Ethereum"
+          category:
+            type: string
+            description: The category of the blockchain chain
+            example: "Ethereum"
+          is_testnet:
+            type: boolean
+            description: Indicates if the blockchain chain is a testnet
+            example: false
+          native_currency_symbol:
+            type: string
+            description: The native currency symbol of the blockchain chain
+            example: "ETH"
+  internal.PaginatedItems-customers_ResponseCustomer:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          "$ref": "#/definitions/customers.ResponseCustomer"
+      last_update:
+        type: string
+        description: The timestamp indicating when the data was last updated.
+        example: '2021-01-01T00:00:00Z'
+      next:
+        type: integer
+        description: The index indicating the next page of items.
+        example: 10
+      total:
+        type: integer
+        description: The total number of items across all pages.
+        example: 10
+  internal.PaginatedItems-events_Event:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          "$ref": "#/definitions/events.Event"
+      last_update:
+        type: string
+        description: The timestamp indicating when the data was last updated.
+      next:
+        type: integer
+        description: The index indicating the next page of items.
+      total:
+        type: integer
+        description: The total number of items across all pages.
+  internal.PaginatedItems-paylinks_PaymentLinkResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+      last_update:
+        type: string
+        description: The timestamp indicating when the data was last updated.
+        example: '2021-01-01T00:00:00Z'
+      next:
+        type: integer
+        description: The index of the next page of paylinks. 
+        example: 10
+      total:
+        type: integer
+        description: The total number of paylinks available.
+        example: 10
+  internal.PaginatedItems-payments_PaymentResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          "$ref": "#/definitions/payments.PaymentResponse"
+      last_update:
+        type: string
+        description: The timestamp indicating the last update time.
+        example: '2021-01-01T00:00:00Z'
+      next:
+        type: integer
+        description: The number of the next page of results.
+        example: 10
+      total:
+        type: integer
+        description: The total number of items in the response.
+        example: 10
+  internal.PaginatedItems-plan_PlanResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          "$ref": "#/definitions/plan.PlanResponse"
+      last_update:
+        type: string
+        example: '2021-01-01T00:00:00Z'
+      next:
+        type: integer
+        example: 10
+      total:
+        type: integer
+        example: 10
+  internal.PaginatedItems-subscriptions_SubscriptionResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          "$ref": "#/definitions/subscriptions.SubscriptionResponse"
+      last_update:
+        type: string
+        example: '2021-01-01T00:00:00Z'
+        description: Timestamp of the last update in the subscription list.
+      next:
+        type: integer
+        example: 10
+        description: Index of the next page of subscriptions.
+      total:
+        type: integer
+        example: 10
+        description: Total number of subscriptions in the system.
+  internal.PaginatedResponse-accounts_OrgSettlementAccountResponse:
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: "#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse"
+  internal.PaginatedResponse-customers_ResponseCustomer:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/internal.PaginatedItems-customers_ResponseCustomer"
+      error:
+        type: boolean
+  internal.PaginatedResponse-events_Event:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/internal.PaginatedItems-events_Event"
+      error:
+        type: boolean
+  internal.PaginatedResponse-paylinks_PaymentLinkResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/internal.PaginatedItems-paylinks_PaymentLinkResponse"
+      error:
+        type: boolean
+  internal.PaginatedResponse-payments_PaymentResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/internal.PaginatedItems-payments_PaymentResponse"
+      error:
+        type: boolean
+  internal.PaginatedResponse-plan_PlanResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/internal.PaginatedItems-plan_PlanResponse"
+      error:
+        type: boolean
+  internal.PaginatedResponse-subscriptions_SubscriptionResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/internal.PaginatedItems-subscriptions_SubscriptionResponse"
+      error:
+        type: boolean
+  internal.Response-customers_ResponseCustomer:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/customers.ResponseCustomer"
+      error:
+        type: boolean
+  internal.Response-paylinks_PaymentLinkResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+      error:
+        type: boolean
+  internal.Response-payments_PaymentResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/payments.PaymentResponse"
+      error:
+        type: boolean
+  internal.Response-plan_PlanResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/plan.PlanResponse"
+      error:
+        type: boolean
+  internal.Response-subscriptions_SubscriptionResponse:
+    type: object
+    properties:
+      data:
+        "$ref": "#/definitions/subscriptions.SubscriptionResponse"
+      error:
+        type: boolean
+  internal.SingleError:
+    type: object
+    properties:
+      domain:
+        description: |-
+          The domain associated with the error.
+          Example: orders
+        type: string
+        example: orders
+      reason:
+        description: |-
+          The reason for the error.
+          Example: InsufficientQuantity
+        type: string
+        example: InsufficientQuantity
+  internal.SingleError500:
+    type: object
+    properties:
+      domain:
+        description: |-
+          The domain associated with the error.
+          Example: orders
+        type: string
+        example: orders
+      reason:
+        description: |-
+          The reason for the error.
+          Example: Internal
+        type: string
+        example: Internal
+  models.AccountProvider:
+    description: >-
+      The account provider.
+
+      - 1 = Spreedly
+    type: integer
+    enum:
+    - 1
+    x-enum-varnames:
+    - AccountProviderSpreedly
+  models.AccountType:
+    description: >-
+      The type of the current account.
+
+      - 1 = Crypto
+      - 2 = Bank
+      - 3 = Card
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    x-enum-varnames:
+    - AccountTypeCrypto
+    - AccountTypeBank
+    - AccountTypeCard
+  models.BillingScheme:
+    description: >- 
+      The billing scheme determines how the charges are calculated for the subscription.
+
+      - 1 = Flatfee
+      - 2 = Perunit
+      - 3 = Graduated
+      - 4 = Volume
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    x-enum-varnames:
+    - BillingSchemeFlatfee
+    - BillingSchemePerunit
+    - BillingSchemeGraduated
+    - BillingSchemeVolume
+  models.BillingSource:
+    description: >-
+      The source  of this billing information. Can be one of the following:
+
+      - 1 = Lago
+
+      - 2 = Boomfi
+
+      - 3 = Stripe
+
+      - 4 = Chargebee
+
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    x-enum-varnames:
+    - BillingSourceLago
+    - BillingSourceBoomfi
+    - BillingSourceStripe
+    - BillingSourceChargebee
+  models.CryptoTransaction:
+    type: object
+    properties:
+      chain_id:
+        description: The unique identifier representing a blockchain network or chain.
+        type: integer
+        example: 1
+      created_at:
+        description: The timestamp indicating when the crypto transaction was created.
+        type: string
+        example: '2023-01-01T12:00:00Z'
+      id:
+        description: The unique identifier of the crypto transaction.
+        type: integer
+      payment_id:
+        description: The ID of the payment associated with the crypto transaction.
+        allOf:
+        - "$ref": "#/definitions/sql.NullString"
+      raw:
+        description: Additional raw data associated with the crypto transaction.
+        type: array
+        items:
+          type: integer
+      sequence:
+        description: The sequence number of the crypto transaction.
+        type: string
+        example: "123456789"
+      source:
+        description: Details of the source of the crypto transaction.
+        allOf:
+        - "$ref": "#/definitions/models.PaymentMethod"
+      status:
+        description: The status of the crypto transaction.
+        allOf:
+        - "$ref": "#/definitions/models.TransactionStatus"
+      transaction_hash:
+        description: The transaction hash of the crypto transaction.
+        type: string
+        example: "0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      type:
+        description: The type of the crypto transaction.
+        allOf:
+        - "$ref": "#/definitions/models.TransactionType"
+      updated_at:
+        description: The timestamp indicating when the crypto transaction was last updated.
+        type: string
+        example: '2023-01-01T12:30:00Z'
+  models.NullAccountProvider:
+    type: object
+    properties:
+      accountProvider:
+        "$ref": "#/definitions/models.AccountProvider"
+      valid:
+        description: Valid is true if [AccountProvider] is not null.
+        type: boolean
+  models.Org:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The unique identifier for BoomFi
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+      name:
+        type: string
+        description: The name of the BoomFi service
+        example: "BoomFi"
+      owner_user_id:
+        type: string
+        description: The user ID of the owner
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+      webhook_url:
+        type: string
+        format: uri
+        description: The URL for webhook notifications
+        example: "https://webhook.site/b09eec23-3f7a-4f0c-aec6-84c277c5eb78"
+      logo_url:
+        type: string
+        format: uri
+        description: The URL for the logo of BoomFi
+        example: "https://boomfi-test-addonsstack-ipj55n-merchantdatabucket-11rcw286tjikp.s3.eu-west-2.amazonaws.com/7403e69d-71c7-4ab4-8b19-7130ecd0bb3e/merchant-logos/57da50bd-857a-4658-8916-7f4a5f9ad9ad.png"
+      offramp_fee_pct:
+        type: number
+        description: The offramp fee percentage
+        example: 1
+      payment_fee_pct:
+        type: number
+        description: The payment fee percentage
+        example: 1
+      swap_fee_pct:
+        type: number
+        description: The swap fee percentage
+        example: 1
+      credits_usd:
+        type: number
+        description: The credits in USD
+        example: 0
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when BoomFi was created
+        example: "2023-08-11T10:09:25.679Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: The timestamp when BoomFi was last updated
+        example: "2024-03-29T13:59:55.003Z"
+      properties:
+        type: object
+        properties:
+          ramp:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                description: Indicates if Ramp is enabled
+                example: true
+          spreedly:
+            type: object
+            properties:
+              merchant_profile_id:
+                type: string
+                description: The merchant profile ID for Spreedly
+                example: "65oxw5ZZ2lE4siMz618v4HQqD2X"
+              sca_authentication_enabled:
+                type: boolean
+                description: Indicates if SCA authentication is enabled
+                example: true
+              sca_provider_id:
+                type: string
+                description: The SCA provider ID for Spreedly
+                example: "YN8LHxRK9ysWlKfdWZdDCtUM2TI"
+              sub_merchant_data:
+                type: string
+                description: Sub-merchant data for Spreedly
+                example: "eyJ0b2tlbiI6Ik5zVkUyV1E0eWZmUklBaDRSMENzalRXYU5naSIsIm5hbWUiOiJDcmV3IiwiZW52aXJvbm1lbnRfa2V5IjoiM0I1TkFGWTlBTTkyODlGWDZROTVOM1g4RFciLCJtZXJjaGFudF9kZWZpbmVkX3VpZCI6IjJUcG1ubWg2R0hKWHVtS04xb0J5MnU1NkltYSIsImFkZHJlc3MiOnsiYWRkcmVzczEiOiIiLCJjaXR5IjoiIiwic3RhdGUiOiIiLCJ6aXAiOiIiLCJjb3VudHJ5IjoiIn0sIm1ldGFkYXRhIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNlQxNDo0OToyM1oiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wMi0xNlQxNDo0OToyM1oifQ=="
+              sub_merchant_id:
+                type: string
+                description: The sub-merchant ID for Spreedly
+                example: "NsVE2WQ4yffRIAh4R0CsjTWaNgi"
+  models.OrgIntegrationStatus:
+    description: >-
+      The current status of the organization integration:
+
+      - 1 = Unknown
+
+      - 2 = Updating
+
+      - 3 = Ready
+
+      - 4 = Disabling
+
+      - 5 = Disabled
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    x-enum-varnames:
+    - OrgIntegrationStatusUnknown
+    - OrgIntegrationStatusUpdating
+    - OrgIntegrationStatusReady
+    - OrgIntegrationStatusDisabling
+    - OrgIntegrationStatusDisabled
+  models.OrgIntegrationType:
+    description: >-
+      The integration type of the organization:
+
+      - 1 = TypeUnknown
+
+      - 2 = TypeBilling
+
+      - 3 = TypeEcommerce
+
+      - 4 = TypeAccounting
+
+      - 5 = TypeWorkflow
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    x-enum-varnames:
+    - OrgIntegrationTypeUnknown
+    - OrgIntegrationTypeBilling
+    - OrgIntegrationTypeEcommerce
+    - OrgIntegrationTypeAccounting
+    - OrgIntegrationTypeWorkflow
+  models.PaymentMethod:
+    description: >-
+      The payment method:
+
+      - 1 = Unknown
+
+      - 2 = Merchantcontract
+
+      - 3 = Proxywallet
+
+      - 4 = Unblock
+
+      - 5 = Card
+
+      - 6 = Googlepay
+
+      - 7 = Applepay
+
+      - 8 = Paypal
+
+      - 9 = Directdebit
+
+      - 10 = Ramp
+
+      - 11 = Rampcryptosettlement
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    x-enum-varnames:
+    - PaymentMethodUnknown
+    - PaymentMethodMerchantcontract
+    - PaymentMethodProxywallet
+    - PaymentMethodUnblock
+    - PaymentMethodCard
+    - PaymentMethodGooglepay
+    - PaymentMethodApplepay
+    - PaymentMethodPaypal
+    - PaymentMethodDirectdebit
+    - PaymentMethodRamp
+    - PaymentMethodRampcryptosettlement
+  models.PaymentStatus:
+    description: >-
+      The current status of the payment_id:
+
+      - 1 = Unknown
+
+      - 2 = Requirespaymentmethod
+
+      - 3 = Requiresconfirmation
+
+      - 4 = Requiresaction
+
+      - 5 = Processing
+
+      - 6 = Succeeded
+
+      - 7 = Canceled
+
+      - 8 = Failed
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    x-enum-varnames:
+    - PaymentStatusUnknown
+    - PaymentStatusRequirespaymentmethod
+    - PaymentStatusRequiresconfirmation
+    - PaymentStatusRequiresaction
+    - PaymentStatusProcessing
+    - PaymentStatusSucceeded
+    - PaymentStatusCanceled
+    - PaymentStatusFailed
+  models.PlanType:
+    description: >-
+      The type of the plan:
+
+      - **1** = Unknown
+
+      - **2** = Onetime
+
+      - **3** = Recurring
+    type: string
+    enum:
+    - '1'
+    - '2'
+    - '3'
+    x-enum-varnames:
+    - PlanTypeUnknown
+    - PlanTypeOnetime
+    - PlanTypeRecurring
+  models.RecurringInterval:
+    type: string
+    description: |
+          The recurring interval for the payment link:
+          - **Week**
+          - **Month**
+          - **Year**
+    enum:
+    - Week
+    - Month
+    - Year
+    x-enum-varnames:
+    - RecurringIntervalWeek
+    - RecurringIntervalMonth
+    - RecurringIntervalYear
+  models.RecurringUsageType:
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    x-enum-varnames:
+    - RecurringUsageTypeUnknown
+    - RecurringUsageTypeLicensed
+    - RecurringUsageTypeMetered
+  models.SubscriptionStatus:
+    description: >-
+      The current status of the subscription.
+
+      - 1 = Unknown
+      
+      - 2 = Pending
+      
+      - 3 = Future
+      
+      - 4 = Intrial
+      
+      - 5 = Active
+      
+      - 6 = Paused
+      
+      - 7 = Expired
+      
+      - 8 = Canceled
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    x-enum-varnames:
+    - SubscriptionStatusUnknown
+    - SubscriptionStatusPending
+    - SubscriptionStatusFuture
+    - SubscriptionStatusIntrial
+    - SubscriptionStatusActive
+    - SubscriptionStatusPaused
+    - SubscriptionStatusExpired
+    - SubscriptionStatusCanceled
+  models.TransactionStatus:
+    description: >-
+      The transaction's current models.PaymentStatus:
+
+      - 1 = Pending
+
+      - 2 = Success
+
+      - 3 = Failed
+
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    x-enum-varnames:
+    - TransactionStatusPending
+    - TransactionStatusSuccess
+    - TransactionStatusFailed
+  models.TransactionType:
+    description: >-
+      The type of the transaction:
+
+      - 1 = Unknown
+
+      - 2 = Approval
+
+      - 3 = Deposit
+
+      - 4 = Withdraw
+
+      - 5 = Payment
+
+      - 6 = Refund
+
+      - 7 = Subscribe
+
+      - 8 = Unsubscribe
+
+      - 9 = Internal
+
+      - 10 = Swap
+    type: integer
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    x-enum-varnames:
+    - TransactionTypeUnknown
+    - TransactionTypeApproval
+    - TransactionTypeDeposit
+    - TransactionTypeWithdraw
+    - TransactionTypePayment
+    - TransactionTypeRefund
+    - TransactionTypeSubscribe
+    - TransactionTypeUnsubscribe
+    - TransactionTypeInternal
+    - TransactionTypeSwap
+  orgs.UpdateOrgRequest:
+    type: object
+    required:
+      - logo_url
+      - name
+      - webhook_url
+    properties:
+      logo_url:
+        type: string
+        description: The URL of the organization's logo.
+        example: https://boomfi-test-addonsstack-ipj55n-merchantdatabucket-11rcw286tjikp.s3.eu-west-2.amazonaws.com/7403e69d-71c7-4ab4-8b19-7130ecd0bb3e/merchant-logos/57da50bd-857a-4658-8916-7f4a5f9ad9ad.png
+      name:
+        type: string
+        description: The updated name of the organization.
+        example: BoomFi
+      webhook_url:
+        type: string
+        description: The updated webhook URL for the organization.
+        example: https://webhook.site/b09eec23-3f7a-4f0c-aec6-84c277c5eb78
+  paylinks.CreatePaymentLinkRequest:
+    required:
+      - name
+      - amount
+      - currency
+    type: object
+    properties:
+      account_ids:
+        items:
+          type: integer
+        type: array
+        description: |
+          A list of account IDs to associate with the payment link. Use this to attach specific accounts to the payment link, making it account-specific.
+          <small>⚠️ Either `account_ids` or `account_ref` should be used, not both. ⚠️</small>
+      account_ref:
+        type: string
+        description: |
+          An account reference to associate with the payment link. Use this to attach accounts with the specified account reference to the payment link, making it account-specific. 
+          <small>⚠️ Either `account_ids` or `account_ref` should be used, not both. ⚠️</small>
+      name:
+        type: string
+        description: The name of the payment link.
+        example: "New Paylink"
+      amount:
+        type: string
+        description: The amount associated with the payment link.
+        example: '1000'
+      currency:
+        type: string
+        description: The currency of the payment link.
+        example: USD
+      reference:
+        type: string
+        description: The reference for the payment link.
+      description:
+        type: string
+        description: A description of the payment link.
+      interval:
+        $ref: "#/definitions/models.RecurringInterval"
+        description: >-
+          The recurring interval for the payment link.
+        example: Day
+      intervalCount:
+        type: integer
+        description: The number of intervals for the recurring payment link.
+        example: 1
+      trial_period:
+        type: string
+        description: The trial period for the payment link in a valid duration format. For example, for 1 day use 24h.
+        example: 24h
+      type:
+        $ref: "#/definitions/models.PlanType"
+        description: The type of the payment link.
+        example: '2'
+      image_url:
+        type: string
+        description: An image URL to be used as the cover image for the payment link at the checkout.
+      metadata:
+        type: object
+        additionalProperties: true
+        description: Additional metadata associated with the payment link.
+        $ref: "#/definitions/paylinks.CreatePaymentLinkRequestMetadata"
+  paylinks.CreatePaymentLinkRequestMetadata:
+    type: object
+    properties:
+      payment_method_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - MerchantContract
+            - ProxyWallet
+            - Card
+        description: |
+          Specifies the payment methods available at checkout. By default, the system applies payment methods based on the merchant’s settlement account settings. If `Card` is included, the card payment option appears only if the merchant has a Card settlement account configured.
+          
+          Accepts an array with any or all of these values: 
+          - **MerchantContract**
+          - **ProxyWallet**
+          - **Card** 
+          
+      after_completion:
+        type: object
+        description: Defines post-checkout behavior. The configuration allows either a custom success message or a redirect to a specified URL upon payment completion.
+        properties:
+          type:
+            type: string
+            enum:
+              - hosted
+              - redirect
+            description: |
+              Sets the post-checkout behavior:
+              - **hosted**: Displays a success message, customizable with `custom_message`. 
+              - **redirect**: Sends the user to a specified URL via `redirect_url`.
+          custom_message:
+            type: string
+            description: A custom success message shown after payment completion if `type` is set to `hosted`. If not provided, a default success message will be displayed.
+          redirect_url:
+            type: string
+            format: uri
+            description: URL to which the user is redirected after successful payment if `type` is set to `redirect`. A valid URL is required for this type.
+      omit_possible_duplicate_acknowledgement:
+        type: boolean
+        description: |
+          Determines if users should be notified when attempting multiple one-time payments. 
+          - **true**: A prompt will notify users of prior payments to the link, but they can proceed with an additional payment.
+          - **false**: No prompt will be shown for repeated payments.
+  paylinks.GenerateVariantURLResponse:
+    type: object
+    properties:
+      url:
+        type: string
+        description: The URL of the paylink variant
+        example: "https://pay-test.boomfi.xyz/2Z4zsnmp37AF3WKM6N2j4wmeakr?amount=101&currency=EUR&signature=7a3043f809aa4aab4ca68694f9394c6fe4deb82c745347a4fc4ae33f6716c22e"
+      created_by:
+        type: string
+        description: The ID of the user who created the paylink variant
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+      payment_link:
+        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+      plan:
+        "$ref": "#/definitions/plan.PlanResponse"
+  paylinks.PaymentLinkResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The unique identifier for the paylink
+        example: "2Z4zsnmp37AF3WKM6N2j4wmeakr"
+      plan_id:
+        type: string
+        description: The ID of the associated plan
+        example: "2Z4zspFMhs2pMYjcR3l6JpJaWdA"
+      invoice_id:
+        type: string
+        description: The ID of the associated invoice
+        example: ""
+      source:
+        type: string
+        description: The source of the paylink
+        example: "BoomFi"
+      customer_ident_collection:
+        type: boolean
+        description: Indicates if customer identification collection is enabled
+        example: false
+      shipping_address_collection:
+        type: boolean
+        description: Indicates if shipping address collection is enabled
+        example: false
+      tax_ident_collection:
+        type: boolean
+        description: Indicates if tax identification collection is enabled
+        example: false
+      enabled:
+        type: boolean
+        description: Indicates if the paylink is enabled
+        example: true
+      deleted_at:
+        type: string
+        format: date-time
+        description: The timestamp when the paylink was deleted
+        example: "2023-12-04T13:25:48.499Z"
+      created_by:
+        type: string
+        description: The ID of the user who created the paylink
+        example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+      updated_by:
+        type: string
+        description: The ID of the user who last updated the paylink
+        example: ""
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when the paylink was created
+        example: "2023-12-04T13:25:48.496Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: The timestamp when the paylink was last updated
+        example: "2023-12-04T13:25:48.499Z"
+      metadata:
+        type: object
+        description: Additional metadata associated with the paylink
+        example: {}
+      properties:
+        type: object
+        description: Additional properties associated with the paylink
+        properties:
+          short_code:
+            type: string
+            description: The short code associated with the paylink
+            example: "AANj9Dm7Zl"
+      plan:
+        type: object
+        description: The details of the associated plan
+        properties:
+          id:
+            type: string
+            description: The unique identifier for the plan
+            example: "2Z4zspFMhs2pMYjcR3l6JpJaWdA"
+          org_id:
+            type: string
+            description: The organization ID associated with the plan
+            example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+          source:
+            type: string
+            description: The source of the plan
+            example: "Lago"
+          name:
+            type: string
+            description: The name of the plan
+            example: "test paylink 12 04"
+          type:
+            type: string
+            description: The type of the plan
+            example: "OneTime"
+          billing_scheme:
+            type: string
+            description: The billing scheme of the plan
+            example: "FlatFee"
+          price:
+            type: string
+            description: The price of the plan
+            example: "1"
+          currency:
+            type: string
+            description: The currency of the plan
+            example: "USD"
+          available_quantity:
+            type: integer
+            description: The available quantity of the plan
+            example: 0
+          trial_period:
+            type: string
+            description: The trial period of the plan
+            example: ""
+          recurring_interval:
+            type: string
+            description: The recurring interval of the plan
+            example: "Unknown"
+          recurring_interval_count:
+            type: integer
+            description: The recurring interval count of the plan
+            example: 1
+          recurring_usage_type:
+            type: string
+            description: The recurring usage type of the plan
+            example: "Unknown"
+          reference:
+            type: string
+            description: The reference of the plan
+            example: ""
+          enabled:
+            type: boolean
+            description: Indicates if the plan is enabled
+            example: true
+          v1:
+            type: string
+            description: Additional information about the plan
+            example: "eyJwbGFucyI6IHsiaWQiOiAiYWE1ZmI5MjQtMmMzZi00NzcwLTkyZDEtMjFjYmY3ODc3ODc2IiwgIm5hbWUiOiAidGVzdCBwYXlsaW5rIDEyIDA0IiwgInN0YXR1cyI6ICJhY3RpdmUiLCAiaW50ZXJ2YWwiOiBudWxsLCAicmVmZXJlbmNlIjogIiIsICJhbW91bnRfd2VpIjogIjEwMCIsICJjcmVhdGVkX2F0IjogIjIwMjMtMTI..."
+          created_by:
+            type: string
+            description: The ID of the user who created the plan
+            example: "2TzGhPCAfFWLPBjtc6h52Aao2S6"
+          created_at:
+            type: string
+            format: date-time
+            description: The timestamp when the plan was created
+            example: "2023-12-04T13:25:47.656Z"
+          updated_at:
+            type: string
+            format: date-time
+            description: The timestamp when the plan was last updated
+            example: "2023-12-04T13:25:48.491Z"
+          deleted_at:
+            type: string
+            format: date-time
+            description: The timestamp when the plan was deleted
+            example: null
+          metadata:
+            type: object
+            description: Additional metadata associated with the plan
+            example: {}
+  payments.PaymentResponse:
+    type: object
+    properties:
+      amount:
+        description: The amount associated with the payment.
+        type: string
+        example: "100.00"
+      created_at:
+        description: The timestamp indicating when the payment was created.
+        type: string
+        example: "2023-01-01T12:00:00Z"
+      crypto_transaction:
+        "$ref": "#/definitions/models.CryptoTransaction"
+      currency:
+        description: The currency of the payment.
+        type: string
+        example: "USD"
+      customer:
+        "$ref": "#/definitions/customers.CustomerResponse"
+      customer_id:
+        description: The ID of the customer associated with the payment.
+        type: string
+        example: "customer123"
+      id:
+        description: The unique identifier of the payment.
+        type: string
+        example: "payment123"
+      invoice_id:
+        description: The ID of the invoice associated with the payment.
+        type: string
+        example: "invoice123"
+      next_action:
+        description: The next action related to the payment.
+        type: string
+        example: "verify_payment"
+      org_id:
+        description: The ID of the organization associated with the payment.
+        type: string
+        example: "org123"
+      parent_id:
+        description: The ID of the parent payment if this payment is a part of a larger transaction.
+        type: string
+        example: "parent_payment123"
+      payment_link:
+        "$ref": "#/definitions/paylinks.PaymentLinkResponse"
+      payment_method:
+        description: Details of the payment method used for the payment.
+        allOf:
+        - "$ref": "#/definitions/models.PaymentMethod"
+      properties:
+        description: Additional properties associated with the payment.
+        type: object
+        additionalProperties: {}
+      scheduled_time:
+        description: The scheduled time for the payment.
+        type: integer
+        example: 1643712000
+      source:
+        description: Details of the billing source associated with the payment.
+        allOf:
+        - "$ref": "#/definitions/models.BillingSource"
+      status:
+        description: The status of the payment.
+        allOf:
+        - "$ref": "#/definitions/models.PaymentStatus"
+      updated_at:
+        description: The timestamp indicating when the payment was last updated.
+        type: string
+      v1:
+        description: v1
+        type: array
+        items:
+          type: integer
+  plan.CreatePlanRequest:
+    type: object
+    properties:
+      amount:
+        type: string
+        description: The amount associated with the plan, specified as a string. This parameter represents the cost or price of the plan.
+      currency:
+        type: string
+        description: The currency in which the plan amount is expressed. 
+      description:
+        type: string
+        description:  A brief description or summary of the plan. This parameter provides additional information about the purpose or features of the plan.
+      interval:
+        "$ref": "#/definitions/models.RecurringInterval"
+      intervalCount:
+        type: integer
+        description: The number of intervals between each billing cycle. This parameter determines how often the plan is billed within the specified interval.
+      metadata:
+        type: object
+        description: An object containing additional metadata associated with the plan. 
+        additionalProperties: {}
+      name:
+        type: string
+        description: A name or label associated with the plan. This parameter represents a identifier or title for the plan.
+      reference:
+        type: string
+        description: A reference identifier associated with the plan. This parameter allows for linking the plan to external identifiers.
+      trial_period:
+        type: string
+        description: Specifies the trial period duration for the plan, if applicable. This parameter represents the duration of any trial period associated with the plan.
+  plan.PaymentLinkResponse:
+    type: object
     properties:
       created_at:
         description: created_at
         type: string
+      created_by:
+        description: created_by
+        type: string
+      customer_ident_collection:
+        description: customer_ident_collection
+        type: boolean
       deleted_at:
         description: deleted_at
         type: string
-      email:
-        description: email
-        type: string
+      enabled:
+        description: enabled
+        type: boolean
       id:
         description: id
         type: string
+      invoice_id:
+        description: invoice_id
+        type: string
       metadata:
-        additionalProperties: {}
         type: object
-      name:
-        description: name
-        type: string
-      org_id:
-        description: org_id
-        type: string
-      phone:
-        description: phone
+        additionalProperties: {}
+      plan_id:
+        description: plan_id
         type: string
       properties:
-        additionalProperties: {}
         type: object
-      reference:
-        description: reference
-        type: string
+        additionalProperties: {}
+      shipping_address_collection:
+        description: shipping_address_collection
+        type: boolean
+      source:
+        description: source
+        allOf:
+        - "$ref": "#/definitions/models.BillingSource"
+      tax_ident_collection:
+        description: tax_ident_collection
+        type: boolean
       updated_at:
         description: updated_at
         type: string
-      v1: {}
-      wallet_address:
-        description: wallet_address
+      updated_by:
+        description: updated_by
         type: string
+  plan.PlanResponse:
     type: object
-  customers.ResponseCustomer:
     properties:
-      created_at:
-        type: string
-      customer_ident:
-        type: string
-      email:
-        type: string
-      guest:
-        type: boolean
       id:
         type: string
-      is_deleted:
-        type: boolean
-      last_payment_date:
-        type: string
-      metadata:
-        additionalProperties: {}
-        type: object
-      name:
-        type: string
-      organisation_id:
-        type: string
-      payments_count:
-        type: integer
-      phone:
-        type: string
-      properties:
-        additionalProperties: {}
-        type: object
-      updated_at:
-        type: string
-      wallet_address:
-        type: string
-    type: object
-  integrations.IntegrationsResponseItem:
-    properties:
-      created_at:
-        type: string
-      created_by:
-        type: string
-      description:
-        description: description
-        type: string
-      enabled:
-        type: boolean
-      id:
-        type: integer
-      last_error:
-        type: string
-      last_sync_time:
-        type: string
-      name:
-        description: name
-        type: string
+        description: The unique identifier of the plan.
+        example: "2eJh1L1rDrCZxTyE6vwGhck7LWI"
       org_id:
         type: string
-      properties:
-        additionalProperties: {}
-        type: object
-      schema:
-        additionalProperties: {}
-        type: object
-      status:
-        $ref: '#/definitions/models.OrgIntegrationStatus'
-      template_name:
+        description: The identifier of the organization associated with the plan.
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+      source:
         type: string
-      type:
+        description: The source of the plan.
         allOf:
-        - $ref: '#/definitions/models.OrgIntegrationType'
-        description: type
+          - "$ref": "#/definitions/models.BillingSource"
+      name:
+        type: string
+        description: The name of the plan.
+        allOf:
+          - "$ref": "#/definitions/models.PlanType"
+      type:
+        type: string
+        description: The type of the plan.
+      billing_scheme:
+        type: string
+        description: The billing scheme of the plan.
+        allOf:
+          - "$ref": "#/definitions/models.BillingScheme"
+      price:
+        type: string
+        description: The price of the plan.
+      currency:
+        type: string
+        description: The currency of the plan.
+      available_quantity:
+        type: integer
+        description: The available quantity of the plan.
+      trial_period:
+        type: string
+        description: The trial period of the plan.
+      recurring_interval:
+        type: string
+        description: The recurring interval of the plan.
+        allOf:
+          - "$ref": "#/definitions/models.RecurringInterval"
+      recurring_interval_count:
+        type: integer
+        description: The count of recurring intervals for the plan.
+      recurring_usage_type:
+        type: string
+        description: The recurring usage type of the plan.
+        allOf:
+          - "$ref": "#/definitions/models.RecurringUsageType"
+      reference:
+        type: string
+        description: The reference of the plan.
+      enabled:
+        type: boolean
+        description: Indicates whether the plan is enabled or not.
+      v1:
+        type: string
+        description: Additional information about the plan.
+      created_by:
+        type: string
+        description: The identifier of the user who created the plan.
+      created_at:
+        type: string
+        format: date-time
+        description: The timestamp when the plan was created.
       updated_at:
         type: string
-    type: object
-  internal.ErrorResponse:
-    properties:
-      error:
-        $ref: '#/definitions/internal.ErrorStruct'
-    type: object
-  internal.ErrorStruct:
-    properties:
-      code:
-        description: |-
-          Error code
-          Example: 400
-        example: 400
-        type: integer
-      errors:
-        description: List of errors
-        items:
-          $ref: '#/definitions/internal.SingleError'
-        type: array
-      message:
-        description: |-
-          Error message
-          Example: Insufficient quantity
-        example: Insufficient quantity
+        format: date-time
+        description: The timestamp when the plan was last updated.
+      deleted_at:
         type: string
+        format: date-time
+        description: The timestamp when the plan was deleted, if applicable.
+      metadata:
+        type: object
+        description: Additional metadata associated with the plan.
+        additionalProperties: true
+        example: {"key": "value"}
+      properties:
+        type: object
+        description: Additional properties of the plan.
+        additionalProperties: true
+        example: {"key": "value"}
+      # payment_link:
+      #   description: The details of the associated payment link.
+      #   "$ref": "#/definitions/plan.PaymentLinkResponse"  
+  sql.NullString:
     type: object
-  internal.PaginatedItems-accounts_OrgSettlementAccountResponse:
     properties:
+      string:
+        type: string
+      valid:
+        description: Valid is true if String is not NULL
+        type: boolean
+  subscriptions.SubscriptionItem:
+    type: object
+    properties:
+      created_at:
+        description: The timestamp indicating when the subscription item was created.
+        type: string
+        example: '2023-01-01T12:00:00Z'
+      id:
+        description: The unique identifier of the subscription item.
+        type: string
+        example: item123
+      plan_id:
+        description: The unique identifier of the plan associated with the subscription item.
+        type: string
+        example: plan456
+      properties:
+        type: object
+        additionalProperties: {}
+      subscription_id:
+        description: The unique identifier of the subscription associated with the subscription item.
+        type: string
+        example: sub123
+      updated_at:
+        description: The timestamp indicating when the subscription item was last updated.
+        type: string
+        example: '2023-01-02T09:00:00Z'
+  subscriptions.SubscriptionResponse:
+    type: object
+    properties:
+      cancel_at_period_end:
+        description: Indicates whether the subscription will be canceled at the end of the current period.
+        type: boolean
+        example: false
+      created_at:
+        description: The timestamp indicating when the subscription was created.
+        type: string
+        example: '2023-01-01T12:00:00Z'
+      currency:
+        description: The currency of the subscription.
+        type: string
+        example: USD
+      customer:
+        description: Information about the customer associated with the subscription.
+        "$ref": "#/definitions/customers.CustomerResponse"
+      customer_id:
+        description: The unique identifier of the customer associated with the subscription.
+        type: string
+        example: customer123
+      id:
+        description: The unique identifier of the subscription.
+        type: string
+        example: sub123
       items:
-        items:
-          $ref: '#/definitions/accounts.OrgSettlementAccountResponse'
         type: array
-      last_update:
-        example: "2021-01-01T00:00:00Z"
+        description: List of subscription items included in the subscription.
+        items:
+          "$ref": "#/definitions/subscriptions.SubscriptionItem"
+      metadata:
+        description: Additional metadata associated with the subscription.
+        type: array
+        items:
+          type: integer
+      org_id:
+        description: The identifier representing the organization associated with the subscription.
         type: string
-      next:
-        example: 10
-        type: integer
-      total:
-        example: 10
-        type: integer
-    type: object
+        example: org123
+      payment_method:
+        description: payment_method
+        allOf:
+        - "$ref": "#/definitions/models.PaymentMethod"
+      properties:
+        type: object
+        additionalProperties: {}
+      reference:
+        description: The reference associated with the subscription.
+        type: string
+        example: REF-123456
+      source:
+        description: The source of the subscription.
+        allOf:
+        - "$ref": "#/definitions/models.BillingSource"
+      start_at:
+        description: The timestamp indicating when the subscription starts.
+        type: string
+        example: '2023-01-05T10:00:00Z'
+      status:
+        description: The status of the subscription.
+        allOf:
+        - "$ref": "#/definitions/models.SubscriptionStatus"
+      updated_at:
+        description: The timestamp indicating when the subscription was last updated.
+        type: string
+        example: '2023-01-02T09:00:00Z'
+      v1:
+        description: v1
+        type: array
+        items:
+          type: integer
+
+  
   internal.PaginatedItems-boomfi_api_merchants_events_Event:
     properties:
       items:
         items:
           $ref: '#/definitions/boomfi_api_merchants_events.Event'
-        type: array
-      last_update:
-        example: "2021-01-01T00:00:00Z"
-        type: string
-      next:
-        example: 10
-        type: integer
-      total:
-        example: 10
-        type: integer
-    type: object
-  internal.PaginatedItems-customers_ResponseCustomer:
-    properties:
-      items:
-        items:
-          $ref: '#/definitions/customers.ResponseCustomer'
         type: array
       last_update:
         example: "2021-01-01T00:00:00Z"
@@ -309,88 +1866,10 @@ definitions:
         example: 10
         type: integer
     type: object
-  internal.PaginatedItems-paylinks_PaymentLinkResponse:
-    properties:
-      items:
-        items:
-          $ref: '#/definitions/paylinks.PaymentLinkResponse'
-        type: array
-      last_update:
-        example: "2021-01-01T00:00:00Z"
-        type: string
-      next:
-        example: 10
-        type: integer
-      total:
-        example: 10
-        type: integer
-    type: object
-  internal.PaginatedItems-payments_PaymentResponse:
-    properties:
-      items:
-        items:
-          $ref: '#/definitions/payments.PaymentResponse'
-        type: array
-      last_update:
-        example: "2021-01-01T00:00:00Z"
-        type: string
-      next:
-        example: 10
-        type: integer
-      total:
-        example: 10
-        type: integer
-    type: object
-  internal.PaginatedItems-plan_PlanResponse:
-    properties:
-      items:
-        items:
-          $ref: '#/definitions/plan.PlanResponse'
-        type: array
-      last_update:
-        example: "2021-01-01T00:00:00Z"
-        type: string
-      next:
-        example: 10
-        type: integer
-      total:
-        example: 10
-        type: integer
-    type: object
-  internal.PaginatedItems-subscriptions_SubscriptionResponse:
-    properties:
-      items:
-        items:
-          $ref: '#/definitions/subscriptions.SubscriptionResponse'
-        type: array
-      last_update:
-        example: "2021-01-01T00:00:00Z"
-        type: string
-      next:
-        example: 10
-        type: integer
-      total:
-        example: 10
-        type: integer
-    type: object
-  internal.PaginatedResponse-accounts_OrgSettlementAccountResponse:
-    properties:
-      data:
-        $ref: '#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse'
-      error:
-        type: boolean
-    type: object
   internal.PaginatedResponse-boomfi_api_merchants_events_Event:
     properties:
       data:
         $ref: '#/definitions/internal.PaginatedItems-boomfi_api_merchants_events_Event'
-      error:
-        type: boolean
-    type: object
-  internal.PaginatedResponse-customers_ResponseCustomer:
-    properties:
-      data:
-        $ref: '#/definitions/internal.PaginatedItems-customers_ResponseCustomer'
       error:
         type: boolean
     type: object
@@ -401,47 +1880,10 @@ definitions:
       error:
         type: boolean
     type: object
-  internal.PaginatedResponse-paylinks_PaymentLinkResponse:
-    properties:
-      data:
-        $ref: '#/definitions/internal.PaginatedItems-paylinks_PaymentLinkResponse'
-      error:
-        type: boolean
-    type: object
-  internal.PaginatedResponse-payments_PaymentResponse:
-    properties:
-      data:
-        $ref: '#/definitions/internal.PaginatedItems-payments_PaymentResponse'
-      error:
-        type: boolean
-    type: object
-  internal.PaginatedResponse-plan_PlanResponse:
-    properties:
-      data:
-        $ref: '#/definitions/internal.PaginatedItems-plan_PlanResponse'
-      error:
-        type: boolean
-    type: object
-  internal.PaginatedResponse-subscriptions_SubscriptionResponse:
-    properties:
-      data:
-        $ref: '#/definitions/internal.PaginatedItems-subscriptions_SubscriptionResponse'
-      error:
-        type: boolean
-    type: object
   internal.Response-accounts_OrgSettlementAccountResponse:
     properties:
       data:
         $ref: '#/definitions/accounts.OrgSettlementAccountResponse'
-      error:
-        type: boolean
-      message:
-        type: string
-    type: object
-  internal.Response-customers_ResponseCustomer:
-    properties:
-      data:
-        $ref: '#/definitions/customers.ResponseCustomer'
       error:
         type: boolean
       message:
@@ -463,57 +1905,6 @@ definitions:
       error:
         type: boolean
       message:
-        type: string
-    type: object
-  internal.Response-paylinks_PaymentLinkResponse:
-    properties:
-      data:
-        $ref: '#/definitions/paylinks.PaymentLinkResponse'
-      error:
-        type: boolean
-      message:
-        type: string
-    type: object
-  internal.Response-payments_PaymentResponse:
-    properties:
-      data:
-        $ref: '#/definitions/payments.PaymentResponse'
-      error:
-        type: boolean
-      message:
-        type: string
-    type: object
-  internal.Response-plan_PlanResponse:
-    properties:
-      data:
-        $ref: '#/definitions/plan.PlanResponse'
-      error:
-        type: boolean
-      message:
-        type: string
-    type: object
-  internal.Response-subscriptions_SubscriptionResponse:
-    properties:
-      data:
-        $ref: '#/definitions/subscriptions.SubscriptionResponse'
-      error:
-        type: boolean
-      message:
-        type: string
-    type: object
-  internal.SingleError:
-    properties:
-      domain:
-        description: |-
-          Domain
-          Example: orders
-        example: orders
-        type: string
-      reason:
-        description: |-
-          Error Reason
-          Example: InsufficientQuantity
-        example: InsufficientQuantity
         type: string
     type: object
   invoices.CustomerResponse:
@@ -612,24 +2003,6 @@ definitions:
       type:
         type: string
     type: object
-  models.AccountProvider:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    type: integer
-    x-enum-varnames:
-    - AccountProviderBoomfi
-    - AccountProviderSpreedly
-    - AccountProviderBridge
-    - AccountProviderMpcvault
-    - AccountProviderDfns
-    - AccountProviderFireblocks
-    - AccountProviderAxiome
   models.AccountState:
     enum:
     - 1
@@ -640,98 +2013,6 @@ definitions:
     - AccountStateUnknown
     - AccountStatePending
     - AccountStateReady
-  models.AccountType:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    type: integer
-    x-enum-varnames:
-    - AccountTypeCryptopayin
-    - AccountTypeCryptopayout
-    - AccountTypeFiatpayin
-    - AccountTypeFiatpayout
-    - AccountTypeVirtual
-    - AccountTypeCrypto
-    - AccountTypeBank
-    - AccountTypeCard
-    - AccountTypeMpcvault
-    - AccountTypeGooglepay
-    - AccountTypeApplepay
-  models.BillingScheme:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    type: integer
-    x-enum-varnames:
-    - BillingSchemeFlatfee
-    - BillingSchemePerunit
-    - BillingSchemeGraduated
-    - BillingSchemeVolume
-  models.BillingSource:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    type: integer
-    x-enum-varnames:
-    - BillingSourceLago
-    - BillingSourceBoomfi
-    - BillingSourceStripe
-    - BillingSourceChargebee
-  models.CryptoTransaction:
-    properties:
-      chain_id:
-        description: chain_id
-        type: integer
-      created_at:
-        description: created_at
-        type: string
-      id:
-        description: id
-        type: integer
-      payment_id:
-        allOf:
-        - $ref: '#/definitions/sql.NullString'
-        description: payment_id
-      raw:
-        description: raw
-        items:
-          type: integer
-        type: array
-      sequence:
-        description: sequence
-        type: string
-      source:
-        allOf:
-        - $ref: '#/definitions/models.PaymentMethod'
-        description: source
-      status:
-        allOf:
-        - $ref: '#/definitions/models.TransactionStatus'
-        description: status
-      transaction_hash:
-        description: transaction_hash
-        type: string
-      type:
-        allOf:
-        - $ref: '#/definitions/models.TransactionType'
-        description: type
-      updated_at:
-        description: updated_at
-        type: string
-    type: object
   models.Customer:
     properties:
       created_at:
@@ -846,99 +2127,6 @@ definitions:
     - InvoiceStatusPaid
     - InvoiceStatusVoid
     - InvoiceStatusUncollectible
-  models.NullAccountProvider:
-    properties:
-      accountProvider:
-        $ref: '#/definitions/models.AccountProvider'
-      valid:
-        description: Valid is true if [AccountProvider] is not null.
-        type: boolean
-    type: object
-  models.Org:
-    properties:
-      created_at:
-        description: created_at
-        type: string
-      credits_usd:
-        description: credits_usd
-        type: number
-      id:
-        description: id
-        type: string
-      logo_url:
-        description: logo_url
-        type: string
-      name:
-        description: name
-        type: string
-      offramp_fee_pct:
-        description: offramp_fee_pct
-        type: number
-      owner_user_id:
-        description: owner_user_id
-        type: string
-      partner_id:
-        description: partner_id
-        type: string
-      payment_fee_pct:
-        description: payment_fee_pct
-        type: number
-      properties:
-        description: properties
-        items:
-          type: integer
-        type: array
-      refund_fee_usd:
-        description: refund_fee_usd
-        type: number
-      signing_secret:
-        description: signing_secret
-        items:
-          type: integer
-        type: array
-      swap_fee_pct:
-        description: swap_fee_pct
-        type: number
-      updated_at:
-        description: updated_at
-        type: string
-      webhook_secret:
-        description: webhook_secret
-        items:
-          type: integer
-        type: array
-      webhook_url:
-        description: webhook_url
-        type: string
-    type: object
-  models.OrgIntegrationStatus:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    type: integer
-    x-enum-varnames:
-    - OrgIntegrationStatusUnknown
-    - OrgIntegrationStatusUpdating
-    - OrgIntegrationStatusReady
-    - OrgIntegrationStatusDisabling
-    - OrgIntegrationStatusDisabled
-  models.OrgIntegrationType:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    type: integer
-    x-enum-varnames:
-    - OrgIntegrationTypeUnknown
-    - OrgIntegrationTypeBilling
-    - OrgIntegrationTypeEcommerce
-    - OrgIntegrationTypeAccounting
-    - OrgIntegrationTypeWorkflow
   models.PaymentLink:
     properties:
       created_at:
@@ -991,169 +2179,6 @@ definitions:
       updated_by:
         description: updated_by
         type: string
-    type: object
-  models.PaymentMethod:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    - 14
-    type: integer
-    x-enum-varnames:
-    - PaymentMethodUnknown
-    - PaymentMethodMerchantcontract
-    - PaymentMethodProxywallet
-    - PaymentMethodUnblock
-    - PaymentMethodPayout
-    - PaymentMethodCard
-    - PaymentMethodGooglepay
-    - PaymentMethodApplepay
-    - PaymentMethodPaypal
-    - PaymentMethodDirectdebit
-    - PaymentMethodRamp
-    - PaymentMethodRampcryptosettlement
-    - PaymentMethodRefund
-    - PaymentMethodDeposit
-  models.PaymentStatus:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    type: integer
-    x-enum-varnames:
-    - PaymentStatusUnknown
-    - PaymentStatusRequirespaymentmethod
-    - PaymentStatusRequiresconfirmation
-    - PaymentStatusRequiresaction
-    - PaymentStatusProcessing
-    - PaymentStatusSucceeded
-    - PaymentStatusCanceled
-    - PaymentStatusFailed
-  models.PlanType:
-    enum:
-    - 1
-    - 2
-    - 3
-    type: integer
-    x-enum-varnames:
-    - PlanTypeUnknown
-    - PlanTypeOnetime
-    - PlanTypeRecurring
-  models.RecurringInterval:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    type: integer
-    x-enum-varnames:
-    - RecurringIntervalUnknown
-    - RecurringIntervalMinute
-    - RecurringIntervalHour
-    - RecurringIntervalDay
-    - RecurringIntervalWeek
-    - RecurringIntervalMonth
-    - RecurringIntervalYear
-  models.RecurringUsageType:
-    enum:
-    - 1
-    - 2
-    - 3
-    type: integer
-    x-enum-varnames:
-    - RecurringUsageTypeUnknown
-    - RecurringUsageTypeLicensed
-    - RecurringUsageTypeMetered
-  models.SubscriptionStatus:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    type: integer
-    x-enum-varnames:
-    - SubscriptionStatusUnknown
-    - SubscriptionStatusPending
-    - SubscriptionStatusFuture
-    - SubscriptionStatusIntrial
-    - SubscriptionStatusActive
-    - SubscriptionStatusPaused
-    - SubscriptionStatusExpired
-    - SubscriptionStatusCanceled
-  models.TransactionStatus:
-    enum:
-    - 1
-    - 2
-    - 3
-    type: integer
-    x-enum-varnames:
-    - TransactionStatusPending
-    - TransactionStatusSuccess
-    - TransactionStatusFailed
-  models.TransactionType:
-    enum:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    type: integer
-    x-enum-varnames:
-    - TransactionTypeUnknown
-    - TransactionTypeApproval
-    - TransactionTypeDeposit
-    - TransactionTypeWithdraw
-    - TransactionTypePayment
-    - TransactionTypeRefund
-    - TransactionTypeSubscribe
-    - TransactionTypeUnsubscribe
-    - TransactionTypeInternal
-    - TransactionTypeSwap
-    - TransactionTypeRedact
-    - TransactionTypeRetain
-    - TransactionTypeVerify
-  orgs.UpdateOrgRequest:
-    properties:
-      fee_payer:
-        type: string
-      logo_url:
-        type: string
-      name:
-        type: string
-      webhook_url:
-        type: string
-    required:
-    - name
     type: object
   partners.BalanceResponse:
     properties:
@@ -1348,101 +2373,6 @@ definitions:
         description: updated_at
         type: string
     type: object
-  paylinks.CreatePaymentLinkRequest:
-    properties:
-      account_ids:
-        items:
-          type: integer
-        type: array
-      account_ref:
-        type: string
-      amount:
-        type: string
-      currency:
-        type: string
-      description:
-        type: string
-      image_url:
-        type: string
-      interval:
-        $ref: '#/definitions/models.RecurringInterval'
-      intervalCount:
-        type: integer
-      metadata:
-        additionalProperties: {}
-        description: Plan Metadata
-        type: object
-      name:
-        type: string
-      reference:
-        type: string
-      trial_period:
-        type: string
-      type:
-        type: string
-    type: object
-  paylinks.GenerateVariantURLResponse:
-    properties:
-      created_by:
-        type: string
-      payment_link:
-        $ref: '#/definitions/paylinks.PaymentLinkResponse'
-      plan:
-        $ref: '#/definitions/plan.PlanResponse'
-      url:
-        type: string
-    type: object
-  paylinks.PaymentLinkResponse:
-    properties:
-      created_at:
-        description: created_at
-        type: string
-      created_by:
-        description: created_by
-        type: string
-      customer_ident_collection:
-        description: customer_ident_collection
-        type: boolean
-      deleted_at:
-        description: deleted_at
-        type: string
-      enabled:
-        description: enabled
-        type: boolean
-      id:
-        description: id
-        type: string
-      invoice_id:
-        description: invoice_id
-        type: string
-      metadata:
-        additionalProperties: {}
-        type: object
-      plan:
-        $ref: '#/definitions/plan.PlanResponse'
-      plan_id:
-        description: plan_id
-        type: string
-      properties:
-        additionalProperties: {}
-        type: object
-      shipping_address_collection:
-        description: shipping_address_collection
-        type: boolean
-      source:
-        allOf:
-        - $ref: '#/definitions/models.BillingSource'
-        description: source
-      tax_ident_collection:
-        description: tax_ident_collection
-        type: boolean
-      updated_at:
-        description: updated_at
-        type: string
-      updated_by:
-        description: updated_by
-        type: string
-    type: object
   payment.CryptoTransaction:
     properties:
       chain_id:
@@ -1497,213 +2427,6 @@ definitions:
       value:
         type: string
     type: object
-  payments.PaymentResponse:
-    properties:
-      amount:
-        description: amount
-        type: string
-      created_at:
-        description: created_at
-        type: string
-      crypto_transaction:
-        $ref: '#/definitions/models.CryptoTransaction'
-      crypto_transactions:
-        description: used when polling crypto refund
-        items:
-          $ref: '#/definitions/payment.CryptoTransaction'
-        type: array
-      currency:
-        description: currency
-        type: string
-      customer:
-        $ref: '#/definitions/customers.CustomerResponse'
-      customer_id:
-        description: customer_id
-        type: string
-      id:
-        description: id
-        type: string
-      invoice_id:
-        description: invoice_id
-        type: string
-      next_action:
-        description: next_action
-        type: string
-      org_id:
-        description: org_id
-        type: string
-      parent_id:
-        description: parent_id
-        type: string
-      payment_link:
-        $ref: '#/definitions/paylinks.PaymentLinkResponse'
-      payment_method:
-        allOf:
-        - $ref: '#/definitions/models.PaymentMethod'
-        description: payment_method
-      properties:
-        additionalProperties: {}
-        type: object
-      scheduled_time:
-        description: scheduled_time
-        type: integer
-      source:
-        allOf:
-        - $ref: '#/definitions/models.BillingSource'
-        description: source
-      status:
-        allOf:
-        - $ref: '#/definitions/models.PaymentStatus'
-        description: status
-      updated_at:
-        description: updated_at
-        type: string
-    type: object
-  plan.CreatePlanRequest:
-    properties:
-      amount:
-        type: string
-      currency:
-        type: string
-      description:
-        type: string
-      interval:
-        $ref: '#/definitions/models.RecurringInterval'
-      intervalCount:
-        type: integer
-      metadata:
-        additionalProperties: {}
-        type: object
-      name:
-        type: string
-      reference:
-        type: string
-      trial_period:
-        type: string
-    type: object
-  plan.PaymentLinkResponse:
-    properties:
-      created_at:
-        description: created_at
-        type: string
-      created_by:
-        description: created_by
-        type: string
-      customer_ident_collection:
-        description: customer_ident_collection
-        type: boolean
-      deleted_at:
-        description: deleted_at
-        type: string
-      enabled:
-        description: enabled
-        type: boolean
-      id:
-        description: id
-        type: string
-      invoice_id:
-        description: invoice_id
-        type: string
-      metadata:
-        additionalProperties: {}
-        type: object
-      plan_id:
-        description: plan_id
-        type: string
-      properties:
-        additionalProperties: {}
-        type: object
-      shipping_address_collection:
-        description: shipping_address_collection
-        type: boolean
-      source:
-        allOf:
-        - $ref: '#/definitions/models.BillingSource'
-        description: source
-      tax_ident_collection:
-        description: tax_ident_collection
-        type: boolean
-      updated_at:
-        description: updated_at
-        type: string
-      updated_by:
-        description: updated_by
-        type: string
-    type: object
-  plan.PlanResponse:
-    properties:
-      available_quantity:
-        description: available_quantity
-        type: integer
-      billing_scheme:
-        allOf:
-        - $ref: '#/definitions/models.BillingScheme'
-        description: billing_scheme
-      created_at:
-        description: created_at
-        type: string
-      created_by:
-        description: created_by
-        type: string
-      currency:
-        description: currency
-        type: string
-      deleted_at:
-        description: deleted_at
-        type: string
-      enabled:
-        description: enabled
-        type: boolean
-      id:
-        description: id
-        type: string
-      metadata:
-        additionalProperties: {}
-        type: object
-      name:
-        description: name
-        type: string
-      org_id:
-        description: org_id
-        type: string
-      payment_link:
-        $ref: '#/definitions/plan.PaymentLinkResponse'
-      price:
-        description: price
-        type: string
-      properties:
-        additionalProperties: {}
-        type: object
-      recurring_interval:
-        allOf:
-        - $ref: '#/definitions/models.RecurringInterval'
-        description: recurring_interval
-      recurring_interval_count:
-        description: recurring_interval_count
-        type: integer
-      recurring_usage_type:
-        allOf:
-        - $ref: '#/definitions/models.RecurringUsageType'
-        description: recurring_usage_type
-      reference:
-        description: reference
-        type: string
-      source:
-        allOf:
-        - $ref: '#/definitions/models.BillingSource'
-        description: source
-      trial_period:
-        description: trial_period
-        type: string
-      type:
-        allOf:
-        - $ref: '#/definitions/models.PlanType'
-        description: type
-      updated_at:
-        description: updated_at
-        type: string
-      v1: {}
-    type: object
   sql.NullInt64:
     properties:
       int64:
@@ -1711,95 +2434,6 @@ definitions:
       valid:
         description: Valid is true if Int64 is not NULL
         type: boolean
-    type: object
-  sql.NullString:
-    properties:
-      string:
-        type: string
-      valid:
-        description: Valid is true if String is not NULL
-        type: boolean
-    type: object
-  subscriptions.SubscriptionItem:
-    properties:
-      created_at:
-        description: created_at
-        type: string
-      id:
-        description: id
-        type: string
-      plan:
-        $ref: '#/definitions/plan.PlanResponse'
-      plan_id:
-        description: plan_id
-        type: string
-      properties:
-        additionalProperties: {}
-        type: object
-      subscription_id:
-        description: subscription_id
-        type: string
-      updated_at:
-        description: updated_at
-        type: string
-      v1: {}
-    type: object
-  subscriptions.SubscriptionResponse:
-    properties:
-      cancel_at_period_end:
-        description: cancel_at_period_end
-        type: boolean
-      created_at:
-        description: created_at
-        type: string
-      currency:
-        description: currency
-        type: string
-      customer:
-        $ref: '#/definitions/customers.CustomerResponse'
-      customer_id:
-        description: customer_id
-        type: string
-      id:
-        description: id
-        type: string
-      is_overdue:
-        type: boolean
-      items:
-        items:
-          $ref: '#/definitions/subscriptions.SubscriptionItem'
-        type: array
-      metadata:
-        additionalProperties: {}
-        type: object
-      org_id:
-        description: org_id
-        type: string
-      payment_method:
-        allOf:
-        - $ref: '#/definitions/models.PaymentMethod'
-        description: payment_method
-      properties:
-        additionalProperties: {}
-        type: object
-      reference:
-        description: reference
-        type: string
-      source:
-        allOf:
-        - $ref: '#/definitions/models.BillingSource'
-        description: source
-      start_at:
-        description: start_at
-        type: string
-      status:
-        allOf:
-        - $ref: '#/definitions/models.SubscriptionStatus'
-        description: status
-      updated_at:
-        description: updated_at
-        type: string
-      v1: {}
     type: object
 host: mapi.boomfi.xyz
 info:

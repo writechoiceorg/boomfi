@@ -1,0 +1,2029 @@
+definitions:
+  accounts.ChainResponse:
+    properties:
+      category:
+        type: string
+      code:
+        type: string
+      is_testnet:
+        type: boolean
+      name:
+        type: string
+      native_currency_symbol:
+        type: string
+    type: object
+  accounts.OrgSettlementAccountResponse:
+    properties:
+      account_number:
+        description: account_number
+        type: string
+      account_type:
+        allOf:
+        - $ref: '#/definitions/models.AccountType'
+        description: account_type
+      address:
+        description: address
+        type: string
+      chain:
+        $ref: '#/definitions/accounts.ChainResponse'
+      chain_id:
+        description: chain_id
+        type: integer
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        type: string
+      currencies:
+        description: currencies
+        items:
+          type: string
+        type: array
+      deleted_at: {}
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: integer
+      name:
+        description: name
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      parent:
+        $ref: '#/definitions/accounts.OrgSettlementAccountResponse'
+      parent_id:
+        type: integer
+      properties:
+        additionalProperties: {}
+        type: object
+      provider:
+        $ref: '#/definitions/models.AccountProvider'
+      reference:
+        description: reference
+        type: string
+      sort_code:
+        description: sort_code
+        type: string
+      state:
+        allOf:
+        - $ref: '#/definitions/models.AccountState'
+        description: state
+      updated_at:
+        description: updated_at
+        type: string
+    type: object
+  boomfi_api_merchants_events.Event:
+    properties:
+      action:
+        type: string
+      data:
+        additionalProperties: {}
+        type: object
+      id:
+        type: string
+      timestamp:
+        type: string
+      type:
+        type: string
+    type: object
+  customers.CreateCustomerRequest:
+    properties:
+      customer_ident:
+        type: string
+      discord:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      number:
+        type: string
+      twitter:
+        type: string
+      wallet_address:
+        type: string
+    type: object
+  customers.CustomerResponse:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      deleted_at:
+        description: deleted_at
+        type: string
+      email:
+        description: email
+        type: string
+      id:
+        description: id
+        type: string
+      metadata:
+        additionalProperties: {}
+        type: object
+      name:
+        description: name
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      phone:
+        description: phone
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      reference:
+        description: reference
+        type: string
+      updated_at:
+        description: updated_at
+        type: string
+      v1: {}
+      wallet_address:
+        description: wallet_address
+        type: string
+    type: object
+  customers.ResponseCustomer:
+    properties:
+      created_at:
+        type: string
+      customer_ident:
+        type: string
+      email:
+        type: string
+      guest:
+        type: boolean
+      id:
+        type: string
+      is_deleted:
+        type: boolean
+      last_payment_date:
+        type: string
+      metadata:
+        additionalProperties: {}
+        type: object
+      name:
+        type: string
+      organisation_id:
+        type: string
+      payments_count:
+        type: integer
+      phone:
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      updated_at:
+        type: string
+      wallet_address:
+        type: string
+    type: object
+  integrations.IntegrationsResponseItem:
+    properties:
+      created_at:
+        type: string
+      created_by:
+        type: string
+      description:
+        description: description
+        type: string
+      enabled:
+        type: boolean
+      id:
+        type: integer
+      last_error:
+        type: string
+      last_sync_time:
+        type: string
+      name:
+        description: name
+        type: string
+      org_id:
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      schema:
+        additionalProperties: {}
+        type: object
+      status:
+        $ref: '#/definitions/models.OrgIntegrationStatus'
+      template_name:
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/models.OrgIntegrationType'
+        description: type
+      updated_at:
+        type: string
+    type: object
+  internal.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/internal.ErrorStruct'
+    type: object
+  internal.ErrorStruct:
+    properties:
+      code:
+        description: |-
+          Error code
+          Example: 400
+        example: 400
+        type: integer
+      errors:
+        description: List of errors
+        items:
+          $ref: '#/definitions/internal.SingleError'
+        type: array
+      message:
+        description: |-
+          Error message
+          Example: Insufficient quantity
+        example: Insufficient quantity
+        type: string
+    type: object
+  internal.PaginatedItems-accounts_OrgSettlementAccountResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/accounts.OrgSettlementAccountResponse'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-boomfi_api_merchants_events_Event:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/boomfi_api_merchants_events.Event'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-customers_ResponseCustomer:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/customers.ResponseCustomer'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-invoices_InvoiceResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/invoices.InvoiceResponse'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-paylinks_PaymentLinkResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/paylinks.PaymentLinkResponse'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-payments_PaymentResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/payments.PaymentResponse'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-plan_PlanResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/plan.PlanResponse'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedItems-subscriptions_SubscriptionResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/subscriptions.SubscriptionResponse'
+        type: array
+      last_update:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      next:
+        example: 10
+        type: integer
+      total:
+        example: 10
+        type: integer
+    type: object
+  internal.PaginatedResponse-accounts_OrgSettlementAccountResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-accounts_OrgSettlementAccountResponse'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-boomfi_api_merchants_events_Event:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-boomfi_api_merchants_events_Event'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-customers_ResponseCustomer:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-customers_ResponseCustomer'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-invoices_InvoiceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-invoices_InvoiceResponse'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-paylinks_PaymentLinkResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-paylinks_PaymentLinkResponse'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-payments_PaymentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-payments_PaymentResponse'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-plan_PlanResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-plan_PlanResponse'
+      error:
+        type: boolean
+    type: object
+  internal.PaginatedResponse-subscriptions_SubscriptionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal.PaginatedItems-subscriptions_SubscriptionResponse'
+      error:
+        type: boolean
+    type: object
+  internal.Response-accounts_OrgSettlementAccountResponse:
+    properties:
+      data:
+        $ref: '#/definitions/accounts.OrgSettlementAccountResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-customers_ResponseCustomer:
+    properties:
+      data:
+        $ref: '#/definitions/customers.ResponseCustomer'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-invoices_InvoiceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/invoices.InvoiceResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-partners_GetDepositAddressResponse:
+    properties:
+      data:
+        $ref: '#/definitions/partners.GetDepositAddressResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-paylinks_PaymentLinkResponse:
+    properties:
+      data:
+        $ref: '#/definitions/paylinks.PaymentLinkResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-payments_PaymentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/payments.PaymentResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-plan_PlanResponse:
+    properties:
+      data:
+        $ref: '#/definitions/plan.PlanResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.Response-subscriptions_SubscriptionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/subscriptions.SubscriptionResponse'
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+  internal.SingleError:
+    properties:
+      domain:
+        description: |-
+          Domain
+          Example: orders
+        example: orders
+        type: string
+      reason:
+        description: |-
+          Error Reason
+          Example: InsufficientQuantity
+        example: InsufficientQuantity
+        type: string
+    type: object
+  invoices.CustomerResponse:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+      wallet_address:
+        type: string
+    type: object
+  invoices.InvoiceResponse:
+    properties:
+      amount:
+        description: amount
+        type: string
+      created_at:
+        description: created_at
+        type: string
+      currency:
+        description: currency
+        type: string
+      customer:
+        $ref: '#/definitions/invoices.CustomerResponse'
+      customer_id:
+        description: customer_id
+        type: string
+      due_at:
+        description: due_at
+        type: string
+      dunning_status:
+        allOf:
+        - $ref: '#/definitions/models.DunningStatus'
+        description: dunning_status
+      id:
+        description: id
+        type: string
+      invoice_item:
+        allOf:
+        - $ref: '#/definitions/models.InvoiceItem'
+        description: Assuming there is only one item per invoice
+      issuing_at:
+        description: issuing_at
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      pay_link:
+        $ref: '#/definitions/models.PaymentLink'
+      payment_status:
+        allOf:
+        - $ref: '#/definitions/models.PaymentStatus'
+        description: payment_status
+      plan:
+        $ref: '#/definitions/invoices.PlanResponse'
+      properties:
+        description: properties
+        items:
+          type: integer
+        type: array
+      reference:
+        description: reference
+        type: string
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      status:
+        allOf:
+        - $ref: '#/definitions/models.InvoiceStatus'
+        description: status
+      updated_at:
+        description: updated_at
+        type: string
+    type: object
+  invoices.PlanResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      org_id:
+        type: string
+      recurring_interval:
+        type: string
+      type:
+        type: string
+    type: object
+  models.AccountProvider:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    type: integer
+    x-enum-varnames:
+    - AccountProviderBoomfi
+    - AccountProviderSpreedly
+    - AccountProviderBridge
+    - AccountProviderMpcvault
+    - AccountProviderDfns
+    - AccountProviderFireblocks
+    - AccountProviderAxiome
+  models.AccountState:
+    enum:
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - AccountStateUnknown
+    - AccountStatePending
+    - AccountStateReady
+  models.AccountType:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    type: integer
+    x-enum-varnames:
+    - AccountTypeCryptopayin
+    - AccountTypeCryptopayout
+    - AccountTypeFiatpayin
+    - AccountTypeFiatpayout
+    - AccountTypeVirtual
+    - AccountTypeCrypto
+    - AccountTypeBank
+    - AccountTypeCard
+    - AccountTypeMpcvault
+    - AccountTypeGooglepay
+    - AccountTypeApplepay
+  models.BillingScheme:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    type: integer
+    x-enum-varnames:
+    - BillingSchemeFlatfee
+    - BillingSchemePerunit
+    - BillingSchemeGraduated
+    - BillingSchemeVolume
+  models.BillingSource:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    type: integer
+    x-enum-varnames:
+    - BillingSourceLago
+    - BillingSourceBoomfi
+    - BillingSourceStripe
+    - BillingSourceChargebee
+  models.CryptoTransaction:
+    properties:
+      chain_id:
+        description: chain_id
+        type: integer
+      created_at:
+        description: created_at
+        type: string
+      id:
+        description: id
+        type: integer
+      payment_id:
+        allOf:
+        - $ref: '#/definitions/sql.NullString'
+        description: payment_id
+      raw:
+        description: raw
+        items:
+          type: integer
+        type: array
+      sequence:
+        description: sequence
+        type: string
+      source:
+        allOf:
+        - $ref: '#/definitions/models.PaymentMethod'
+        description: source
+      status:
+        allOf:
+        - $ref: '#/definitions/models.TransactionStatus'
+        description: status
+      transaction_hash:
+        description: transaction_hash
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/models.TransactionType'
+        description: type
+      updated_at:
+        description: updated_at
+        type: string
+    type: object
+  models.Customer:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      deleted_at:
+        description: deleted_at
+        type: string
+      email:
+        description: email
+        type: string
+      id:
+        description: id
+        type: string
+      metadata:
+        description: metadata
+        items:
+          type: integer
+        type: array
+      name:
+        description: name
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      phone:
+        description: phone
+        type: string
+      properties:
+        description: properties
+        items:
+          type: integer
+        type: array
+      reference:
+        description: reference
+        type: string
+      updated_at:
+        description: updated_at
+        type: string
+      wallet_address:
+        description: wallet_address
+        type: string
+    type: object
+  models.DunningStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    type: integer
+    x-enum-varnames:
+    - DunningStatusUnknown
+    - DunningStatusInprogress
+    - DunningStatusExhausted
+    - DunningStatusStopped
+    - DunningStatusSucceeded
+  models.InvoiceItem:
+    properties:
+      amount:
+        description: amount
+        type: string
+      created_at:
+        description: created_at
+        type: string
+      currency:
+        description: currency
+        type: string
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      period_end_at:
+        description: period_end_at
+        type: string
+      period_start_at:
+        description: period_start_at
+        type: string
+      plan_id:
+        description: plan_id
+        type: string
+      properties:
+        description: properties
+        items:
+          type: integer
+        type: array
+      quantity:
+        description: quantity
+        type: integer
+      subscription_item_id:
+        description: subscription_item_id
+        type: string
+      updated_at:
+        description: updated_at
+        type: string
+    type: object
+  models.InvoiceStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    type: integer
+    x-enum-varnames:
+    - InvoiceStatusUnknown
+    - InvoiceStatusDraft
+    - InvoiceStatusOpen
+    - InvoiceStatusPaid
+    - InvoiceStatusVoid
+    - InvoiceStatusUncollectible
+  models.NullAccountProvider:
+    properties:
+      accountProvider:
+        $ref: '#/definitions/models.AccountProvider'
+      valid:
+        description: Valid is true if [AccountProvider] is not null.
+        type: boolean
+    type: object
+  models.Org:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      credits_usd:
+        description: credits_usd
+        type: number
+      id:
+        description: id
+        type: string
+      logo_url:
+        description: logo_url
+        type: string
+      name:
+        description: name
+        type: string
+      offramp_fee_pct:
+        description: offramp_fee_pct
+        type: number
+      owner_user_id:
+        description: owner_user_id
+        type: string
+      partner_id:
+        description: partner_id
+        type: string
+      payment_fee_pct:
+        description: payment_fee_pct
+        type: number
+      properties:
+        description: properties
+        items:
+          type: integer
+        type: array
+      refund_fee_usd:
+        description: refund_fee_usd
+        type: number
+      signing_secret:
+        description: signing_secret
+        items:
+          type: integer
+        type: array
+      swap_fee_pct:
+        description: swap_fee_pct
+        type: number
+      updated_at:
+        description: updated_at
+        type: string
+      webhook_secret:
+        description: webhook_secret
+        items:
+          type: integer
+        type: array
+      webhook_url:
+        description: webhook_url
+        type: string
+    type: object
+  models.OrgIntegrationStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    type: integer
+    x-enum-varnames:
+    - OrgIntegrationStatusUnknown
+    - OrgIntegrationStatusUpdating
+    - OrgIntegrationStatusReady
+    - OrgIntegrationStatusDisabling
+    - OrgIntegrationStatusDisabled
+  models.OrgIntegrationType:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    type: integer
+    x-enum-varnames:
+    - OrgIntegrationTypeUnknown
+    - OrgIntegrationTypeBilling
+    - OrgIntegrationTypeEcommerce
+    - OrgIntegrationTypeAccounting
+    - OrgIntegrationTypeWorkflow
+  models.PaymentLink:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        description: created_by
+        type: string
+      customer_ident_collection:
+        description: customer_ident_collection
+        type: boolean
+      deleted_at:
+        description: deleted_at
+        type: string
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      metadata:
+        description: metadata
+        items:
+          type: integer
+        type: array
+      plan_id:
+        description: plan_id
+        type: string
+      properties:
+        description: properties
+        items:
+          type: integer
+        type: array
+      shipping_address_collection:
+        description: shipping_address_collection
+        type: boolean
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      tax_ident_collection:
+        description: tax_ident_collection
+        type: boolean
+      updated_at:
+        description: updated_at
+        type: string
+      updated_by:
+        description: updated_by
+        type: string
+    type: object
+  models.PaymentMethod:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    type: integer
+    x-enum-varnames:
+    - PaymentMethodUnknown
+    - PaymentMethodMerchantcontract
+    - PaymentMethodProxywallet
+    - PaymentMethodUnblock
+    - PaymentMethodPayout
+    - PaymentMethodCard
+    - PaymentMethodGooglepay
+    - PaymentMethodApplepay
+    - PaymentMethodPaypal
+    - PaymentMethodDirectdebit
+    - PaymentMethodRamp
+    - PaymentMethodRampcryptosettlement
+    - PaymentMethodRefund
+    - PaymentMethodDeposit
+  models.PaymentStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    type: integer
+    x-enum-varnames:
+    - PaymentStatusUnknown
+    - PaymentStatusRequirespaymentmethod
+    - PaymentStatusRequiresconfirmation
+    - PaymentStatusRequiresaction
+    - PaymentStatusProcessing
+    - PaymentStatusSucceeded
+    - PaymentStatusCanceled
+    - PaymentStatusFailed
+  models.PlanType:
+    enum:
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - PlanTypeUnknown
+    - PlanTypeOnetime
+    - PlanTypeRecurring
+  models.RecurringInterval:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    type: integer
+    x-enum-varnames:
+    - RecurringIntervalUnknown
+    - RecurringIntervalMinute
+    - RecurringIntervalHour
+    - RecurringIntervalDay
+    - RecurringIntervalWeek
+    - RecurringIntervalMonth
+    - RecurringIntervalYear
+  models.RecurringUsageType:
+    enum:
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - RecurringUsageTypeUnknown
+    - RecurringUsageTypeLicensed
+    - RecurringUsageTypeMetered
+  models.SubscriptionStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    type: integer
+    x-enum-varnames:
+    - SubscriptionStatusUnknown
+    - SubscriptionStatusPending
+    - SubscriptionStatusFuture
+    - SubscriptionStatusIntrial
+    - SubscriptionStatusActive
+    - SubscriptionStatusPaused
+    - SubscriptionStatusExpired
+    - SubscriptionStatusCanceled
+  models.TransactionStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - TransactionStatusPending
+    - TransactionStatusSuccess
+    - TransactionStatusFailed
+  models.TransactionType:
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    type: integer
+    x-enum-varnames:
+    - TransactionTypeUnknown
+    - TransactionTypeApproval
+    - TransactionTypeDeposit
+    - TransactionTypeWithdraw
+    - TransactionTypePayment
+    - TransactionTypeRefund
+    - TransactionTypeSubscribe
+    - TransactionTypeUnsubscribe
+    - TransactionTypeInternal
+    - TransactionTypeSwap
+    - TransactionTypeRedact
+    - TransactionTypeRetain
+    - TransactionTypeVerify
+  orgs.UpdateOrgRequest:
+    properties:
+      fee_payer:
+        type: string
+      logo_url:
+        type: string
+      name:
+        type: string
+      webhook_url:
+        type: string
+    required:
+    - name
+    type: object
+  partners.BalanceResponse:
+    properties:
+      account_id:
+        type: integer
+      account_reference:
+        type: string
+      amount:
+        type: string
+      amount_usd:
+        type: string
+      chain:
+        $ref: '#/definitions/accounts.ChainResponse'
+      currency:
+        type: string
+      token_address:
+        type: string
+    type: object
+  partners.GetAccountByReferenceSuccess:
+    description: Successfully retrieved the account details.
+    properties:
+      id:
+        type: integer
+        description: Unique identifier for the account.
+        example: 3758
+      org_id:
+        type: string
+        description: Organization ID associated with the account.
+        example: "2Tpmnmh6GHJXumKN1oBy2u56Ima"
+      reference:
+        type: string
+        description: Reference identifier for the account.
+        example: "operator-1"
+      account_type:
+        type: string
+        description: Type of the account.
+        example: "CryptoPayIn"
+      name:
+        type: string
+        description: Name of the account.
+        example: "operator-1"
+      chain_id:
+        type: integer
+        description: Blockchain chain ID for the account.
+        example: 0
+      address:
+        type: string
+        description: Address associated with the account (if applicable).
+        example: ""
+      currencies:
+        type: array
+        description: List of supported currencies for the account.
+        items:
+          type: string
+        example: ["USDC", "DAI", "USDT"]
+      account_number:
+        type: string
+        description: Account number (if applicable).
+        example: ""
+      sort_code:
+        type: string
+        description: Sort code (if applicable).
+        example: ""
+      enabled:
+        type: boolean
+        description: Indicates whether the account is active.
+        example: true
+      state:
+        type: string
+        description: Current state of the account.
+        example: "Ready"
+      created_at:
+        type: string
+        format: date-time
+        description: Timestamp of when the account was created.
+        example: "2024-12-27T10:28:18.599Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: Timestamp of the last update to the account.
+        example: "2024-12-27T10:28:18.599Z"
+      provider:
+        type: string
+        description: Provider managing the account.
+        example: "BoomFi"
+  partners.CreatePayoutToWalletAddressRequest:
+    properties:
+      amount:
+        type: string
+      ccy:
+        type: string
+      chain_id:
+        type: integer
+      reference:
+        type: string
+      token_address:
+        type: string
+      wallet_address:
+        type: string
+    required:
+    - amount
+    - ccy
+    - chain_id
+    - wallet_address
+    type: object
+  partners.CreateVirtualAccountRequest:
+    properties:
+      name:
+        type: string
+      reference:
+        description: will be used to bundle up multiple accounts, one chain_id per
+          account per reference
+        type: string
+    type: object
+  partners.GetDepositAddressRequest:
+    properties:
+      chain_id:
+        type: integer
+      currency:
+        type: string
+      reference:
+        description: Typically a customer reference
+        type: string
+    type: object
+  partners.GetDepositAddressResponse:
+    properties:
+      account_id:
+        type: integer
+      address:
+        type: string
+      chain_id:
+        type: integer
+      currency:
+        type: string
+      enabled:
+        type: boolean
+      reference:
+        type: string
+      status:
+        $ref: '#/definitions/models.AccountState'
+    type: object
+  partners.PaymentResponse:
+    properties:
+      amount:
+        description: amount
+        type: string
+      created_at:
+        description: created_at
+        type: string
+      currency:
+        description: currency
+        type: string
+      customer:
+        $ref: '#/definitions/models.Customer'
+      customer_id:
+        description: customer_id
+        type: string
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      next_action:
+        description: next_action
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      parent_id:
+        description: parent_id
+        type: string
+      payment_method:
+        allOf:
+        - $ref: '#/definitions/models.PaymentMethod'
+        description: payment_method
+      properties:
+        additionalProperties: {}
+        type: object
+      scheduled_time:
+        description: scheduled_time
+        type: integer
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      status:
+        allOf:
+        - $ref: '#/definitions/models.PaymentStatus'
+        description: status
+      updated_at:
+        description: updated_at
+        type: string
+    type: object
+  paylinks.CreatePaymentLinkRequest:
+    properties:
+      account_ids:
+        items:
+          type: integer
+        type: array
+      account_ref:
+        type: string
+      amount:
+        type: string
+      currency:
+        type: string
+      description:
+        type: string
+      image_url:
+        type: string
+      interval:
+        $ref: '#/definitions/models.RecurringInterval'
+      intervalCount:
+        type: integer
+      metadata:
+        additionalProperties: {}
+        description: Plan Metadata
+        type: object
+      name:
+        type: string
+      reference:
+        type: string
+      trial_period:
+        type: string
+      type:
+        type: string
+    type: object
+  paylinks.GenerateVariantURLResponse:
+    properties:
+      created_by:
+        type: string
+      payment_link:
+        $ref: '#/definitions/paylinks.PaymentLinkResponse'
+      plan:
+        $ref: '#/definitions/plan.PlanResponse'
+      url:
+        type: string
+    type: object
+  paylinks.PaymentLinkResponse:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        description: created_by
+        type: string
+      customer_ident_collection:
+        description: customer_ident_collection
+        type: boolean
+      deleted_at:
+        description: deleted_at
+        type: string
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      metadata:
+        additionalProperties: {}
+        type: object
+      plan:
+        $ref: '#/definitions/plan.PlanResponse'
+      plan_id:
+        description: plan_id
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      shipping_address_collection:
+        description: shipping_address_collection
+        type: boolean
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      tax_ident_collection:
+        description: tax_ident_collection
+        type: boolean
+      updated_at:
+        description: updated_at
+        type: string
+      updated_by:
+        description: updated_by
+        type: string
+    type: object
+  payment.CryptoTransaction:
+    properties:
+      chain_id:
+        description: chain_id
+        type: integer
+      created_at:
+        description: created_at
+        type: string
+      from:
+        type: string
+      id:
+        description: id
+        type: integer
+      payment_id: {}
+      raw:
+        description: raw
+      sequence:
+        description: sequence
+        type: string
+      source:
+        allOf:
+        - $ref: '#/definitions/models.PaymentMethod'
+        description: source
+      status:
+        allOf:
+        - $ref: '#/definitions/models.TransactionStatus'
+        description: status
+      transaction_hash:
+        description: transaction_hash
+        type: string
+      transfer_logs:
+        items:
+          $ref: '#/definitions/payment.TransferLog'
+        type: array
+      type:
+        allOf:
+        - $ref: '#/definitions/models.TransactionType'
+        description: type
+      updated_at:
+        description: updated_at
+      value:
+        type: string
+    type: object
+  payment.TransferLog:
+    properties:
+      address:
+        type: string
+      recipient:
+        type: string
+      sender:
+        type: string
+      value:
+        type: string
+    type: object
+  payments.PaymentResponse:
+    properties:
+      amount:
+        description: amount
+        type: string
+      created_at:
+        description: created_at
+        type: string
+      crypto_transaction:
+        $ref: '#/definitions/models.CryptoTransaction'
+      crypto_transactions:
+        description: used when polling crypto refund
+        items:
+          $ref: '#/definitions/payment.CryptoTransaction'
+        type: array
+      currency:
+        description: currency
+        type: string
+      customer:
+        $ref: '#/definitions/customers.CustomerResponse'
+      customer_id:
+        description: customer_id
+        type: string
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      next_action:
+        description: next_action
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      parent_id:
+        description: parent_id
+        type: string
+      payment_link:
+        $ref: '#/definitions/paylinks.PaymentLinkResponse'
+      payment_method:
+        allOf:
+        - $ref: '#/definitions/models.PaymentMethod'
+        description: payment_method
+      properties:
+        additionalProperties: {}
+        type: object
+      scheduled_time:
+        description: scheduled_time
+        type: integer
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      status:
+        allOf:
+        - $ref: '#/definitions/models.PaymentStatus'
+        description: status
+      updated_at:
+        description: updated_at
+        type: string
+    type: object
+  plan.CreatePlanRequest:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      description:
+        type: string
+      interval:
+        $ref: '#/definitions/models.RecurringInterval'
+      intervalCount:
+        type: integer
+      metadata:
+        additionalProperties: {}
+        type: object
+      name:
+        type: string
+      reference:
+        type: string
+      trial_period:
+        type: string
+    type: object
+  plan.PaymentLinkResponse:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        description: created_by
+        type: string
+      customer_ident_collection:
+        description: customer_ident_collection
+        type: boolean
+      deleted_at:
+        description: deleted_at
+        type: string
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: string
+      invoice_id:
+        description: invoice_id
+        type: string
+      metadata:
+        additionalProperties: {}
+        type: object
+      plan_id:
+        description: plan_id
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      shipping_address_collection:
+        description: shipping_address_collection
+        type: boolean
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      tax_ident_collection:
+        description: tax_ident_collection
+        type: boolean
+      updated_at:
+        description: updated_at
+        type: string
+      updated_by:
+        description: updated_by
+        type: string
+    type: object
+  plan.PlanResponse:
+    properties:
+      available_quantity:
+        description: available_quantity
+        type: integer
+      billing_scheme:
+        allOf:
+        - $ref: '#/definitions/models.BillingScheme'
+        description: billing_scheme
+      created_at:
+        description: created_at
+        type: string
+      created_by:
+        description: created_by
+        type: string
+      currency:
+        description: currency
+        type: string
+      deleted_at:
+        description: deleted_at
+        type: string
+      enabled:
+        description: enabled
+        type: boolean
+      id:
+        description: id
+        type: string
+      metadata:
+        additionalProperties: {}
+        type: object
+      name:
+        description: name
+        type: string
+      org_id:
+        description: org_id
+        type: string
+      payment_link:
+        $ref: '#/definitions/plan.PaymentLinkResponse'
+      price:
+        description: price
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      recurring_interval:
+        allOf:
+        - $ref: '#/definitions/models.RecurringInterval'
+        description: recurring_interval
+      recurring_interval_count:
+        description: recurring_interval_count
+        type: integer
+      recurring_usage_type:
+        allOf:
+        - $ref: '#/definitions/models.RecurringUsageType'
+        description: recurring_usage_type
+      reference:
+        description: reference
+        type: string
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      trial_period:
+        description: trial_period
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/models.PlanType'
+        description: type
+      updated_at:
+        description: updated_at
+        type: string
+      v1: {}
+    type: object
+  sql.NullInt64:
+    properties:
+      int64:
+        type: integer
+      valid:
+        description: Valid is true if Int64 is not NULL
+        type: boolean
+    type: object
+  sql.NullString:
+    properties:
+      string:
+        type: string
+      valid:
+        description: Valid is true if String is not NULL
+        type: boolean
+    type: object
+  subscriptions.SubscriptionItem:
+    properties:
+      created_at:
+        description: created_at
+        type: string
+      id:
+        description: id
+        type: string
+      plan:
+        $ref: '#/definitions/plan.PlanResponse'
+      plan_id:
+        description: plan_id
+        type: string
+      properties:
+        additionalProperties: {}
+        type: object
+      subscription_id:
+        description: subscription_id
+        type: string
+      updated_at:
+        description: updated_at
+        type: string
+      v1: {}
+    type: object
+  subscriptions.SubscriptionResponse:
+    properties:
+      cancel_at_period_end:
+        description: cancel_at_period_end
+        type: boolean
+      created_at:
+        description: created_at
+        type: string
+      currency:
+        description: currency
+        type: string
+      customer:
+        $ref: '#/definitions/customers.CustomerResponse'
+      customer_id:
+        description: customer_id
+        type: string
+      id:
+        description: id
+        type: string
+      is_overdue:
+        type: boolean
+      items:
+        items:
+          $ref: '#/definitions/subscriptions.SubscriptionItem'
+        type: array
+      metadata:
+        additionalProperties: {}
+        type: object
+      org_id:
+        description: org_id
+        type: string
+      payment_method:
+        allOf:
+        - $ref: '#/definitions/models.PaymentMethod'
+        description: payment_method
+      properties:
+        additionalProperties: {}
+        type: object
+      reference:
+        description: reference
+        type: string
+      source:
+        allOf:
+        - $ref: '#/definitions/models.BillingSource'
+        description: source
+      start_at:
+        description: start_at
+        type: string
+      status:
+        allOf:
+        - $ref: '#/definitions/models.SubscriptionStatus'
+        description: status
+      updated_at:
+        description: updated_at
+        type: string
+      v1: {}
+    type: object
+host: mapi.boomfi.xyz
+info:
+  contact:
+    email: support@boomfi.xyz
+    name: API Support
+  description: The BoomFi Partners API provides a set of endpoints for patners
+    to manage their accounts, transactions, and more.
+  title: BoomFi Partners API
+  version: "1.0"
+paths:
+  /partners/accounts/{account_ref}:
+    get:
+      consumes:
+      - application/json
+      tags: 
+        - Partners
+      summary: Get Account by Reference
+      description: Retrieve details for a specific account using its reference. Fetch detailed information about an account, including its status and associated metadata, using the provided account reference. This endpoint is useful for verifying account existence and retrieving essential details.
+      operationId: get-account-by-reference
+      parameters:
+      - description: account reference
+        in: path
+        name: account_ref
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/partners.GetAccountByReferenceSuccess'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      - ApiSignature: []
+      - ApiNonce: []
+  /partners/accounts/{account_ref}/balances:
+    get:
+      consumes:
+      - application/json
+      tags: 
+      - Partners
+      summary: List Account Balances by Reference
+      description: Retrieve the balances associated with a specific account. Obtain the list of all balances for a given account reference. Balances include details on available funds, locked funds, and asset types. This is essential for monitoring account liquidity and financial activity.
+      operationId: list-account-balances-by-reference
+      parameters:
+      - description: account reference
+        in: path
+        name: account_ref
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/partners.BalanceResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      - ApiSignature: []
+      - ApiNonce: []
+  /partners/accounts/{account_ref}/payin/address:
+    post:
+      consumes:
+      - application/json
+      tags: 
+      - Partners
+      summary: Create Permanent Pay-In Deposit Wallet for Account
+      description: Generate a permanent deposit wallet for account pay-ins. Create a dedicated pay-in wallet for an account. Funds deposited to this wallet are automatically swept into the main account. This enables seamless fund aggregation and reduces manual processing.
+      operationId: create-pay-in-deposit-wallet
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/partners.GetDepositAddressRequest'
+      - description: account reference
+        in: path
+        name: account_ref
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal.Response-partners_GetDepositAddressResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      - ApiSignature: []
+      - ApiNonce: []
+  /partners/accounts/{account_ref}/payout/address:
+    post:
+      consumes:
+      - application/json
+      tags: 
+      - Partners
+      summary: Create Payout to a Crypto Wallet Address
+      description: Execute a payout to a specified crypto wallet address. Create a transaction to transfer funds from the account to an external crypto wallet address. This endpoint facilitates outbound payments in supported cryptocurrencies while maintaining transaction security and tracking.
+      operationId: create-crypto-payout
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/partners.CreatePayoutToWalletAddressRequest'
+      - description: account reference
+        in: path
+        name: account_ref
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/partners.PaymentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      - ApiSignature: []
+      - ApiNonce: []
+  /partners/accounts/create-virtual-account:
+    post:
+      consumes:
+      - application/json
+      tags: 
+      - Partners
+      summary: Create Virtual Account
+      description: Set up a virtual account with managed crypto wallets. Create a virtual account that includes managed cryptocurrency wallets across supported networks. Virtual accounts allow streamlined management of crypto assets under the partner's control and are suitable for complex account hierarchies.
+      operationId: create-virtual-account
+      parameters:
+      - description: Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/partners.CreateVirtualAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal.Response-accounts_OrgSettlementAccountResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      - ApiSignature: []
+      - ApiNonce: []
+
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: X-API-KEY
+    type: apiKey
+  ApiNonce:
+    in: header
+    name: X-API-Nonce
+    type: apiKey
+  ApiSignature:
+    in: header
+    name: X-API-Signature
+    type: apiKey
+swagger: "2.0"

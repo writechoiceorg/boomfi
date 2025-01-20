@@ -1262,10 +1262,10 @@ definitions:
   partners.CreateVirtualAccountRequest:
     properties:
       name:
+        description: A descriptive name to identify the account.
         type: string
       reference:
-        description: will be used to bundle up multiple accounts, one chain_id per
-          account per reference
+        description: The account reference unique identifier. This will be used to bundle up multiple accounts. One `chain_id` per `account` per `reference`.
         type: string
     type: object
   partners.GetDepositAddressRequest:
@@ -1821,7 +1821,7 @@ paths:
       description: Retrieve details for a specific account using its reference. Fetch detailed information about an account, including its status and associated metadata, using the provided account reference. This endpoint is useful for verifying account existence and retrieving essential details.
       operationId: get-account-by-reference
       parameters:
-      - description: account reference
+      - description: The account reference unique identifier.
         in: path
         name: account_ref
         required: true
@@ -1859,7 +1859,7 @@ paths:
       description: Retrieve the balances associated with a specific account. Obtain the list of all balances for a given account reference. Balances include details on available funds, locked funds, and asset types. This is essential for monitoring account liquidity and financial activity.
       operationId: list-account-balances-by-reference
       parameters:
-      - description: account reference
+      - description: The account reference unique identifier.
         in: path
         name: account_ref
         required: true
@@ -1905,7 +1905,7 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/partners.GetDepositAddressRequest'
-      - description: account reference
+      - description: The account reference unique identifier.
         in: path
         name: account_ref
         required: true
@@ -1949,7 +1949,7 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/partners.CreatePayoutToWalletAddressRequest'
-      - description: account reference
+      - description: The account reference unique identifier.
         in: path
         name: account_ref
         required: true

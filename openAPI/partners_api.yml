@@ -2290,7 +2290,7 @@ definitions:
         description: A descriptive name to identify the account.
         type: string
       reference:
-        description: The account reference unique identifier. This will be used to bundle up multiple accounts. One `chain_id` per `account` per `reference`.
+        description: Your own account reference identifier. Must be URL-safe, containing only alphanumeric characters, hyphens, and underscores (no spaces or special characters).
         type: string
     type: object
   partners.GetDepositAddressRequest:
@@ -2445,6 +2445,41 @@ info:
   title: BoomFi Partners API
   version: "1.0"
 paths:
+  /partners/accounts/create-virtual-account:
+    post:
+      consumes:
+      - application/json
+      tags: 
+      - Partners
+      summary: Create Virtual Account
+      description: Set up a virtual account with managed crypto wallets. Create a virtual account that includes managed cryptocurrency wallets across supported networks. Virtual accounts allow streamlined management of crypto assets under the partner's control and are suitable for complex account hierarchies.
+      operationId: create-virtual-account
+      parameters:
+      - description: Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/partners.CreateVirtualAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal.Response-accounts_OrgSettlementAccountResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      - ApiSignature: []
+      - ApiNonce: []
   /partners/accounts/{account_ref}:
     get:
       consumes:
@@ -2455,7 +2490,7 @@ paths:
       description: Retrieve details for a specific account using its reference. Fetch detailed information about an account, including its status and associated metadata, using the provided account reference. This endpoint is useful for verifying account existence and retrieving essential details.
       operationId: get-account-by-reference
       parameters:
-      - description: The account reference unique identifier.
+      - description: Your own account reference identifier.
         in: path
         name: account_ref
         required: true
@@ -2493,7 +2528,7 @@ paths:
       description: Retrieve the balances associated with a specific account. Obtain the list of all balances for a given account reference. Balances include details on available funds, locked funds, and asset types. This is essential for monitoring account liquidity and financial activity.
       operationId: list-account-balances-by-reference
       parameters:
-      - description: The account reference unique identifier.
+      - description: Your own account reference identifier.
         in: path
         name: account_ref
         required: true
@@ -2539,7 +2574,7 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/partners.GetDepositAddressRequest'
-      - description: The account reference unique identifier.
+      - description: Your own account reference identifier.
         in: path
         name: account_ref
         required: true
@@ -2583,7 +2618,7 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/partners.CreatePayoutToWalletAddressRequest'
-      - description: The account reference unique identifier.
+      - description: Your own account reference identifier.
         in: path
         name: account_ref
         required: true
@@ -2611,42 +2646,7 @@ paths:
       - ApiKeyAuth: []
       - ApiSignature: []
       - ApiNonce: []
-  /partners/accounts/create-virtual-account:
-    post:
-      consumes:
-      - application/json
-      tags: 
-      - Partners
-      summary: Create Virtual Account
-      description: Set up a virtual account with managed crypto wallets. Create a virtual account that includes managed cryptocurrency wallets across supported networks. Virtual accounts allow streamlined management of crypto assets under the partner's control and are suitable for complex account hierarchies.
-      operationId: create-virtual-account
-      parameters:
-      - description: Request
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/partners.CreateVirtualAccountRequest'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/internal.Response-accounts_OrgSettlementAccountResponse'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/internal.ErrorResponse'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/internal.ErrorResponse'
-      security:
-      - ApiKeyAuth: []
-      - ApiSignature: []
-      - ApiNonce: []
-
+  
 securityDefinitions:
   ApiKeyAuth:
     in: header

@@ -296,6 +296,10 @@ paths:
       summary: List Payments
       operationId: list-payments
       parameters:
+      - type: string
+        name: customer_id
+        in: query
+        description: Retrieve a list of payments from a particular customer.
       - name: after
         in: query
         description: Retrieve payments after this timestamp.
@@ -357,6 +361,10 @@ paths:
       summary: Get Payment by ID
       operationId: get-payment-by-id
       parameters:
+      - type: string
+        name: customer_id
+        in: query
+        description: Retrieve a payment from a particular customer.
       - type: string
         description: Unique identifier of a payment in the system.
         name: paymentId

@@ -1,4 +1,4 @@
-name: Sync API definition to ReadMe
+name: Sync Accounts API
 
 # Run workflow for every push to the merchants_api.yml file
 on:

@@ -1,4 +1,4 @@
-name: Sync API definition to ReadMe
+name: Sync Rates API
 
 # Run workflow for every push to the rates_api.yml file
 on:

@@ -2331,10 +2331,10 @@ definitions:
         type: string
         description: The trial period for the payment link in a valid duration format. For example, for 1 day use 24h.
         example: 24h
-      type:
-        $ref: "#/definitions/models.PlanType"
-        description: The type of the payment link.
-        example: '2'
+      # type:
+      #   $ref: "#/definitions/models.PlanType"
+      #   description: The type of the payment link.
+      #   example: '2'
       image_url:
         type: string
         description: An image URL to be used as the cover image for the payment link at the checkout.

@@ -214,6 +214,38 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/internal.ErrorResponse500"
+  "/v1/paylinks/{paylinkId}":
+    patch:
+      security:
+      - ApiKeyAuth: []
+      summary: Enable or Disable a Paylink
+      description: Update the status of a specific paylink by setting the `enabled` field to `true` or `false`.
+      operationId: enable-disable-paylink
+      tags:
+      - Paylinks
+      parameters:
+        - name: paylinkId
+          in: path
+          required: true
+          type: string
+          description: The unique identifier of the paylink to update.
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                description: Set to `false` to disable the paylink or `true` to enable it.
+            required:
+              - enabled
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/internal.Response-paylinks_PaymentLinkResponse"
+
   "/v1/paylinks/generate-variant/{paylinkId}":
     get:
       security:

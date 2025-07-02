@@ -581,11 +581,12 @@ paths:
         description: Retrieve subscriptions based on their respective status.
         enum:
         - Pending
-        - Future
-        - InTrial
+        # - Future
         - Active
-        - Paused
-        - Expired
+        - Canceled
+        - InTrial
+        # - Paused
+        # - Expired
       - type: string
         name: after
         in: query

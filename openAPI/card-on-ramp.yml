@@ -1,0 +1,525 @@
+openapi: 3.0.3
+info:
+  title: Card On-Ramp API
+  version: 1.0.0
+servers:
+  - url: https://capi.boomfi.xyz/v1
+paths:
+  /ramp/currencies:
+    get:
+      summary: List supported currencies for card on-ramp
+      tags:
+        - Ramp
+      description: Currencies are grouped by symbol and categorized as either “Fiat” or “Digital”.
+      operationId: list-currencies
+      responses:
+        '200':
+          description: A map of currency symbols to their metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrenciesResponse'
+              example:
+                data:
+                  ARB:
+                    symbol: "ARB"
+                    name: "Arbitrum"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "42161"
+                        address: "0x912CE59144191C1204E64559FE8253a0e49E6548"
+                        name: "Arbitrum"
+                        logo_url: "https://arbitrum.foundation/logo.png"
+                        hidden_by_default: false
+                  AXM:
+                    symbol: "AXM"
+                    name: "Axiome"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "-124915135"
+                        name: "Axiome"
+                        logo_url: ""
+                        hidden_by_default: true
+                  BNB:
+                    symbol: "BNB"
+                    name: "BNB"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "56"
+                        name: "BNB"
+                        logo_url: ""
+                        hidden_by_default: false
+                  ETH:
+                    symbol: "ETH"
+                    name: "Ethereum"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "42161"
+                        name: "Arbitrum Ethereum"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "1"
+                        name: "Ethereum"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "8453"
+                        name: "Base Ethereum"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                        hidden_by_default: false
+                  EUR:
+                    symbol: "EUR"
+                    name: "Euro"
+                    type: "Fiat"
+                    payment_methods:
+                      ApplePay: {}
+                      Card: {}
+                      GooglePay: {}
+                  GBP:
+                    symbol: "GBP"
+                    name: "British Pound Sterling"
+                    type: "Fiat"
+                    payment_methods:
+                      ApplePay: {}
+                      Card: {}
+                      GooglePay: {}
+                  MATIC:
+                    symbol: "MATIC"
+                    name: "Polygon"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "137"
+                        name: "MATIC"
+                        logo_url: "https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912"
+                        hidden_by_default: false
+                  SOL:
+                    symbol: "SOL"
+                    name: "Solana"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "1399811149"
+                        name: "SOL"
+                        logo_url: "https://assets.coingecko.com/coins/images/22876/thumb/SOL_wh_small.png?1644224316"
+                        hidden_by_default: false
+                  TRX:
+                    symbol: "TRX"
+                    name: "TRON"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "-200"
+                        name: "TRON"
+                        logo_url: ""
+                        hidden_by_default: false
+                  USD:
+                    symbol: "USD"
+                    name: "US Dollar"
+                    type: "Fiat"
+                    payment_methods:
+                      ApplePay: {}
+                      Card: {}
+                      GooglePay: {}
+                  USDC:
+                    symbol: "USDC"
+                    name: "USDC"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "42161"
+                        address: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+                        name: "USDC"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "42161"
+                        address: "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8"
+                        name: "USD Coin Bridged"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "1"
+                        address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+                        name: "USDC"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "8453"
+                        address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+                        name: "USD Coin"
+                        logo_url: "https://ethereum-optimism.github.io/data/USDC/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "137"
+                        address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+                        name: "USDCoin"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "137"
+                        address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
+                        name: "USD Coin Bridged"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "56"
+                        address: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"
+                        name: "USDC"
+                        logo_url: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                        hidden_by_default: false
+                      - chain_id: "1399811149"
+                        address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+                        name: "USDC"
+                        logo_url: "https://coin-images.coingecko.com/coins/images/6319/large/usdc.png?1696506694"
+                        hidden_by_default: false
+                  ZBCN:
+                    symbol: "ZBCN"
+                    name: "Zebec Network"
+                    type: "Digital"
+                    tokens:
+                      - chain_id: "1399811149"
+                        address: "ZBCNpuD7YMXzTHB2fhGkGi78MNsHGLRXUhRewNRm9RU"
+                        name: "Zebec Network"
+                        logo_url: "https://s2.coinmarketcap.com/static/img/coins/64x64/30636.png"
+                        hidden_by_default: true
+  /ramp/quote:
+    get:
+      summary: Get a quote for exchanging fiat to crypto
+      description: >
+        Returns price, fee breakdown, and a session token. Exactly one of
+        `sell_amount` or `buy_amount` must be provided.
+      operationId: get-quote
+      tags:
+        - Ramp
+      parameters:
+        - name: sell_currency
+          in: query
+          description: Fiat currency the user is paying with (symbol, e.g. “EUR”).
+          required: true
+          schema:
+            type: string
+        - name: buy_token
+          in: query
+          description: Token contract address to buy (must be from a Digital currency).
+          required: true
+          schema:
+            type: string
+        - name: buy_currency
+          in: query
+          description: Currency symbol you want to buy (must be Digital).
+          required: true
+          schema:
+            type: string
+        - name: chain_id
+          in: query
+          description: Blockchain chain ID for the selected token.
+          required: true
+          schema:
+            type: integer
+        - name: payment_method
+          in: query
+          description: Payment method to use.
+          required: true
+          schema:
+            type: string
+            enum: [Card]
+        - name: sell_amount
+          in: query
+          description: |
+            The exact amount of fiat currency to sell.  
+            Provide **either** `sell_amount` (to specify how much fiat you’re spending) **or** `buy_amount` (to specify how much crypto you want), but **not both**.
+          required: false
+          schema:
+            type: number
+        - name: buy_amount
+          in: query
+          description: |
+            The exact amount of cryptocurrency to buy.  
+            Provide **either** `buy_amount` (to specify how much crypto you want) **or** `sell_amount` (to specify how much fiat you’re spending), but **not both**.
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Quote successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RampQuoteResponse'
+              example:
+                data:
+                  buy_currency: "USDC"
+                  buy_amount: "110.84"
+                  sell_currency: "EUR"
+                  sell_amount: "100"
+                  payment_method: "Card"
+                  quote_time: "2025-07-11T13:20:55.794211464Z"
+                  expiry: "2025-07-11T13:21:05.794211464Z"
+                  rate: "1.1196"
+                  fees:
+                    fee_ccy: "EUR"
+                    network_fee: "0.0007989174315845597256856473529684499022042"
+                    boomfi_fee: "1"
+                    total_fee: "1.0007989174315845597256856473529684499022042"
+                  quote_amount: "100"
+                  settlement_ccy: "USDC"
+                  settlement_chain_id: 137
+                  settlement_token_address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+                  session: "+HFfNCti3PpecyiJsNDv1EodhXjRky8Cfsh1PNOYwPQRCLz2cRUtHuMezCjAH9+qzDoF2o29mgA7QZXAco6rcRcjAWJutMxpX9edfYyvOXKoIhjo2VLoVNJ2uE5SzE1k5gvOrf3XHN6LDzkWe7o1CuPOxuN8WUi4MD5E+CcttC8GI7Dh/vHyZjZp/kKTn1WodqZImWDCGzm2IRV4RV4f8feqW2Rdu02pFtGsSqTaJ1jtZ1COk1SGJIjTM1qnRIEnyx8KSRJJ7dIfjvbuV7uzt+06i/BKpNRrt4iu75LJ7XAbG6dAaCDX1aJwMbTLkMDyOUm4QqfZa3WI6VNVHIKNeebyfuOMaHDOEp7wjfmprYRLJev0K/oGESz1hwe6j9wZZwkCRJkRi+MUweKEY7sJdEZzxW/KTQkD84GKD2jDcsfsHhATD8tCjws+cPMn28+ei1imTlUPM0LSod/tXmGlPlJFKhYpqiMCRUSe9ldZFD8X+BsDfS0dttjpvbMU3i43QuNKrjlitGMlWWbJc6bOb/g4JZ3ClJlJmcbQSWskmNyd33Z6KKMOHzuegc0Lqb6ibptIWuQmXXY4Ans8uEMaEDT6Jsg9RFJcfhTVv5Xx64jPbk1K5k6E2qY0OLOBv4O1WL+MmaM+0mfOiIr7DsJGvaYfrurNmtzDZd1d/3dDInhaId7tBtmmH6VFp42nkuGLoMwN0EUtBgDCvnZgPmfO+wPG1Qkne3zjTbuUf/w9gGB8DbOBW5Fbjq4MgHfDp6fr9NeqLf+PpSBSkXsjgfluMjaIBf6NHNBXiWM3SoTt3S0J6wFp5xM+ZbmFrs94thcQL9TLyB/QQ02GUk0MkytAObkzjghkkKovYPrghbthUWteEAIHzZ01y8BcITVKMr3nxUlq+7bGussRAMVaJMMekldgVso35eU1EE6/yl4JXqg="
+        '400':
+          description: Missing or invalid query parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RampQuoteError'
+              example:
+                error: >
+                  Key: 'RampQuoteRequest.ChainID' Error:Field validation for 'ChainID' failed on the 'required' tag
+                  Key: 'RampQuoteRequest.BuyCurrency' Error:Field validation for 'BuyCurrency' failed on the 'required' tag
+                  Key: 'RampQuoteRequest.SellCurrency' Error:Field validation for 'SellCurrency' failed on the 'required' tag
+                  Key: 'RampQuoteRequest.PaymentMethod' Error:Field validation for 'PaymentMethod' failed on the 'required' tag
+  /ramp/payment/{id}:
+    get:
+      summary: Retrieve a payment transaction by ID
+      tags:
+        - Ramp
+      description: Retrieves the status and details of a previously initiated payment.
+      operationId: get-payment-transaction
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of the payment.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment transaction details (schema to be defined).
+        '404':
+          description: Payment not found or invalid ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentError'
+              example:
+                error:
+                  code: 404
+                  message: "invalid payment id"
+                  errors:
+                    - domain: "ramp"
+
+components:
+  schemas:
+    Token:
+      description: A blockchain token entry, including its chain ID and optional contract address.
+      type: object
+      properties:
+        chain_id:
+          type: string
+          description: Blockchain chain ID (as a string).
+        address:
+          type: string
+          description: Optional on-chain contract address for the token.
+        name:
+          type: string
+          description: Human-readable token name.
+        logo_url:
+          type: string
+          description: URL to the token’s logo image.
+        hidden_by_default:
+          type: boolean
+          description: Whether the token should be hidden by default in UIs.
+      required:
+        - chain_id
+        - name
+        - logo_url
+        - hidden_by_default
+
+    PaymentMethods:
+      description: Available fiat payment methods.
+      type: object
+      properties:
+        ApplePay:
+          type: object
+          description: Configuration object for Apple Pay.
+        Card:
+          type: object
+          description: Configuration object for card payments.
+        GooglePay:
+          type: object
+          description: Configuration object for Google Pay.
+      additionalProperties: false
+
+    CurrencyItem:
+      description: Details for a supported currency, either fiat or digital.
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Currency symbol (e.g., “USD”, “ETH”).
+        name:
+          type: string
+          description: Full name of the currency.
+        type:
+          type: string
+          description: "Category of currency: “Digital” or “Fiat”."
+          enum:
+            - Digital
+            - Fiat
+        tokens:
+          type: array
+          description: List of associated blockchain tokens (for Digital currencies).
+          items:
+            $ref: '#/components/schemas/Token'
+        payment_methods:
+          $ref: '#/components/schemas/PaymentMethods'
+          description: Supported payment methods (for Fiat currencies).
+      required:
+        - symbol
+        - name
+        - type
+      additionalProperties: false
+
+    CurrenciesResponse:
+      description: Response containing all supported currencies, keyed by symbol.
+      type: object
+      properties:
+        data:
+          description: Map of currency symbols to their details.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/CurrencyItem'
+      required:
+        - data
+
+    RampQuoteResponse:
+      description: A quote for exchanging fiat to crypto.
+      type: object
+      properties:
+        data:
+          description: Quote details.
+          $ref: '#/components/schemas/RampQuoteData'
+      required:
+        - data
+
+    RampQuoteData:
+      type: object
+      description: Detailed quote information.
+      properties:
+        buy_currency:
+          type: string
+          description: Symbol of the cryptocurrency to buy.
+        buy_amount:
+          type: string
+          description: Amount of crypto the user will receive.
+        sell_currency:
+          type: string
+          description: Symbol of the fiat currency being sold.
+        sell_amount:
+          type: string
+          description: Amount of fiat currency being sold.
+        payment_method:
+          type: string
+          description: Payment method used.
+        quote_time:
+          type: string
+          format: date-time
+          description: Timestamp when the quote was generated.
+        expiry:
+          type: string
+          format: date-time
+          description: Expiration timestamp for this quote.
+        rate:
+          type: string
+          description: Exchange rate used (buy per sell).
+        fees:
+          $ref: '#/components/schemas/QuoteFees'
+          description: Breakdown of fees.
+        quote_amount:
+          type: string
+          description: Amount on which fees were calculated.
+        settlement_ccy:
+          type: string
+          description: Settlement currency symbol.
+        settlement_chain_id:
+          type: integer
+          description: Chain ID where settlement will occur.
+        settlement_token_address:
+          type: string
+          description: Token contract address for settlement.
+        session:
+          type: string
+          description: Session token to be used for completing the transaction.
+      required:
+        - buy_currency
+        - buy_amount
+        - sell_currency
+        - sell_amount
+        - payment_method
+        - quote_time
+        - expiry
+        - rate
+        - fees
+        - quote_amount
+        - settlement_ccy
+        - settlement_chain_id
+        - settlement_token_address
+        - session
+
+    QuoteFees:
+      type: object
+      description: Fee structure for the quote.
+      properties:
+        fee_ccy:
+          type: string
+          description: Currency in which fees are denominated.
+        network_fee:
+          type: string
+          description: Network (blockchain) fee.
+        boomfi_fee:
+          type: string
+          description: Boomfi service fee.
+        total_fee:
+          type: string
+          description: Sum of network_fee and boomfi_fee.
+      required:
+        - fee_ccy
+        - network_fee
+        - boomfi_fee
+        - total_fee
+
+    RampQuoteError:
+      type: object
+      description: Error response when required parameters are missing or invalid.
+      properties:
+        error:
+          type: string
+          description: Detailed validation error message.
+      required:
+        - error
+    
+    PaymentErrorDetail:
+      type: object
+      description: Additional information about the error.
+      properties:
+        domain:
+          type: string
+          description: Domain or category of the error.
+      required:
+        - domain
+
+    PaymentError:
+      type: object
+      description: Error response when fetching a payment fails.
+      properties:
+        error:
+          type: object
+          description: Top-level error envelope.
+          properties:
+            code:
+              type: integer
+              description: HTTP-style error code.
+            message:
+              type: string
+              description: Human-readable error message.
+            errors:
+              type: array
+              description: List of detailed error objects.
+              items:
+                $ref: '#/components/schemas/PaymentErrorDetail'
+          required:
+            - code
+            - message
+            - errors
+      required:
+        - error

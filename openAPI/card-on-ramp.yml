@@ -271,9 +271,9 @@ paths:
   /ramp/payment/{id}:
     get:
       summary: Retrieve a payment transaction by ID
+      description: Retrieves the status and details of a previously initiated payment.
       tags:
         - Ramp
-      description: Retrieves the status and details of a previously initiated payment.
       operationId: get-payment-transaction
       parameters:
         - name: id

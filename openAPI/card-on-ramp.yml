@@ -186,16 +186,19 @@ paths:
           in: query
           description: Fiat currency the user is paying with (symbol, e.g. “EUR”).
           required: true
+          example: EUR
           schema:
             type: string
         - name: buy_token
           in: query
+          example: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
           description: Token contract address to buy (must be from a Digital currency).
           required: true
           schema:
             type: string
         - name: buy_currency
           in: query
+          example: USDC
           description: Currency symbol you want to buy (must be Digital).
           required: true
           schema:
@@ -204,6 +207,7 @@ paths:
           in: query
           description: Blockchain chain ID for the selected token.
           required: true
+          example: 137
           schema:
             type: integer
         - name: payment_method
@@ -215,6 +219,7 @@ paths:
             enum: [Card]
         - name: sell_amount
           in: query
+          example: 100
           description: |
             The exact amount of fiat currency to sell.  
             Provide **either** `sell_amount` (to specify how much fiat you’re spending) **or** `buy_amount` (to specify how much crypto you want), but **not both**.

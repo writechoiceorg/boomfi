@@ -1,0 +1,20 @@
+name: Sync Card on ramp API
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "openAPI/card-on-ramp.yml"
+
+jobs:
+  rdme-openapi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo 📚
+        uses: actions/checkout@v4
+
+      - name: Run `openapi` command 🚀
+        uses: readmeio/rdme@v9
+        with:
+          rdme: openapi openAPI\card-on-ramp.yml --key=${{ secrets.README_API_KEY }} --id=68711166da9cd4b3c71c82bb

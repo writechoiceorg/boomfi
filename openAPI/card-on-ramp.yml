@@ -289,7 +289,100 @@ paths:
             type: string
       responses:
         '200':
-          description: Payment transaction details (schema to be defined).
+          description: Payment transaction details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentTransactionResponse'
+              example:
+                data:
+                  id: "2zgzAKLlsoUCogarraDNa7WIPTS"
+                  parent_id: ""
+                  reference: ""
+                  org_id: "2flp63KO7hTVDLshgzDiNmCKbGM"
+                  amount: "20"
+                  currency: "USD"
+                  invoice_id: ""
+                  source: "BoomFi"
+                  payment_method: "Ramp"
+                  customer_id: "2zgzANJ6icAjECyK23GNZqoMYVe"
+                  status: "Failed"
+                  next_action: ""
+                  scheduled_time: 0
+                  created_at: "2025-07-10T17:09:19.855Z"
+                  updated_at: "2025-07-10T17:11:56.695Z"
+                  customer:
+                    id: "2zgzANJ6icAjECyK23GNZqoMYVe"
+                    org_id: "2flp63KO7hTVDLshgzDiNmCKbGM"
+                    name: "Jonathan Tang"
+                    email: "jonathan@boomfi.xyz"
+                    phone: ""
+                    wallet_address: ""
+                    deleted_at: null
+                    reference: "user-live-f4485075-d944-4358-9500-9058385ac20f"
+                    metadata: "e30="
+                    properties: "e30="
+                    created_at: "2025-07-10T17:09:19.858Z"
+                    updated_at: "2025-07-10T17:09:19.858Z"
+                  properties:
+                    amount_usd: "20"
+                    card:
+                      type: "visa"
+                      last_four_digits: "4281"
+                      first_six_digits: "465944"
+                      transaction_id: "ZdgBVkS9S2KAudbXbph8LWPExoH"
+                    ramp:
+                      buy_currency: "USDC"
+                      buy_currency_amount: "13.82"
+                      buy_token: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+                      buy_token_chain_id: 1
+                      customer_payment_method: "Card"
+                      customer_settlement_address: "0x7c8011687d49F10b8CD8dD5D404d8072Ec5e2Ab6"
+                      fees:
+                        fee_ccy: "USD"
+                        network_fee: "5.2194834583410052075374171"
+                        boomfi_fee: "0.2"
+                        total_fee: "5.4194834583410052075374171"
+                      rate: "0.9475"
+                      sell_currency: "USD"
+                      sell_currency_amount: "20"
+                  children:
+                    - id: "2zgzALWpSBcUkxAmDIpRPq6tAdc"
+                      parent_id: "2zgzAKLlsoUCogarraDNa7WIPTS"
+                      reference: ""
+                      org_id: "2flp63KO7hTVDLshgzDiNmCKbGM"
+                      amount: "20"
+                      currency: "USD"
+                      invoice_id: ""
+                      source: "BoomFi"
+                      payment_method: "Card"
+                      customer_id: "2zgzANJ6icAjECyK23GNZqoMYVe"
+                      status: "Succeeded"
+                      next_action: ""
+                      scheduled_time: 0
+                      created_at: "2025-07-10T17:09:19.864Z"
+                      updated_at: "2025-07-10T17:11:56.366Z"
+                      customer:
+                        id: "2zgzANJ6icAjECyK23GNZqoMYVe"
+                        org_id: "2flp63KO7hTVDLshgzDiNmCKbGM"
+                        name: "Jonathan Tang"
+                        email: "jonathan@boomfi.xyz"
+                        phone: ""
+                        wallet_address: ""
+                        deleted_at: null
+                        reference: "user-live-f4485075-d944-4358-9500-9058385ac20f"
+                        metadata: "e30="
+                        properties: "e30="
+                        created_at: "2025-07-10T17:09:19.858Z"
+                        updated_at: "2025-07-10T17:09:19.858Z"
+                      properties:
+                        card:
+                          type: "visa"
+                          last_four_digits: "4281"
+                          first_six_digits: "465944"
+                          transaction_id: "ZdgBVkS9S2KAudbXbph8LWPExoH"
+                        provider:
+                          provider: "Spreedly"
         '404':
           description: Payment not found or invalid ID.
           content:
@@ -528,3 +621,330 @@ components:
             - errors
       required:
         - error
+
+    PaymentTransactionResponse:
+      type: object
+      description: Wrapper for a single payment transaction.
+      properties:
+        data:
+          $ref: '#/components/schemas/PaymentTransaction'
+      required:
+        - data
+
+    PaymentTransaction:
+      type: object
+      description: A payment transaction record.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the transaction.
+        parent_id:
+          type: string
+          description: Identifier of the parent transaction, if any.
+        reference:
+          type: string
+          description: External reference or tracking code.
+        org_id:
+          type: string
+          description: Identifier of the organization that owns this transaction.
+        amount:
+          type: string
+          description: Amount of the transaction in its original currency.
+        currency:
+          type: string
+          description: Currency code of the transaction amount (ISO 4217).
+        invoice_id:
+          type: string
+          description: Associated invoice ID, if applicable.
+        source:
+          type: string
+          description: Origin system of the transaction.
+        payment_method:
+          type: string
+          description: Method used to process the payment.
+        customer_id:
+          type: string
+          description: Identifier of the customer who made the payment.
+        status:
+          type: string
+          description: Current status of the transaction (e.g., Failed, Succeeded).
+        next_action:
+          type: string
+          description: Next required action, if any.
+        scheduled_time:
+          type: integer
+          format: int64
+          description: Unix timestamp when the transaction is scheduled.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the transaction was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the transaction was last updated.
+        customer:
+          $ref: '#/components/schemas/Customer'
+        properties:
+          $ref: '#/components/schemas/TransactionProperties'
+        children:
+          type: array
+          description: Child transactions related to this parent.
+          items:
+            $ref: '#/components/schemas/ChildTransaction'
+      required:
+        - id
+        - amount
+        - currency
+        - source
+        - payment_method
+        - customer_id
+        - status
+        - created_at
+        - updated_at
+        - customer
+        - properties
+
+    Customer:
+      type: object
+      description: A customer’s profile data.
+      properties:
+        id:
+          type: string
+          description: Unique customer identifier.
+        org_id:
+          type: string
+          description: Organization that the customer belongs to.
+        name:
+          type: string
+          description: Full name of the customer.
+        email:
+          type: string
+          format: email
+          description: Customer’s email address.
+        phone:
+          type: string
+          description: Customer’s phone number, if provided.
+        wallet_address:
+          type: string
+          description: On‑chain wallet address, if used.
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when the customer was deleted, if applicable.
+        reference:
+          type: string
+          description: External reference ID for the customer.
+        metadata:
+          type: string
+          description: Base64‑encoded JSON blob of arbitrary metadata.
+        properties:
+          type: string
+          description: Base64‑encoded JSON blob of customer properties.
+        created_at:
+          type: string
+          format: date-time
+          description: When the customer record was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the customer record was last updated.
+      required:
+        - id
+        - name
+        - email
+        - created_at
+        - updated_at
+
+    TransactionProperties:
+      type: object
+      description: Additional data specific to the payment source.
+      properties:
+        amount_usd:
+          type: string
+          description: Transaction amount converted to USD.
+        card:
+          $ref: '#/components/schemas/CardDetails'
+        ramp:
+          $ref: '#/components/schemas/RampDetails'
+      required:
+        - amount_usd
+        - card
+        - ramp
+
+    CardDetails:
+      type: object
+      description: Metadata for card‑based payments.
+      properties:
+        type:
+          type: string
+          description: Card network or brand, e.g. “visa”.
+        last_four_digits:
+          type: string
+          description: Last four digits of the card.
+        first_six_digits:
+          type: string
+          description: First six digits (BIN) of the card.
+        transaction_id:
+          type: string
+          description: Provider’s transaction identifier.
+      required:
+        - type
+        - last_four_digits
+        - first_six_digits
+        - transaction_id
+
+    RampDetails:
+      type: object
+      description: Details specific to a Ramp payment.
+      properties:
+        buy_currency:
+          type: string
+          description: Currency code purchased (token symbol or ISO 4217).
+        buy_currency_amount:
+          type: string
+          description: Amount of currency purchased.
+        buy_token:
+          type: string
+          description: Blockchain token address.
+        buy_token_chain_id:
+          type: integer
+          description: Chain ID for the purchased token.
+        customer_payment_method:
+          type: string
+          description: Payment method used within Ramp.
+        customer_settlement_address:
+          type: string
+          description: On‑chain address where funds are settled.
+        fees:
+          $ref: '#/components/schemas/Fees'
+        rate:
+          type: string
+          description: Exchange rate applied.
+        sell_currency:
+          type: string
+          description: Currency code sold (ISO 4217).
+        sell_currency_amount:
+          type: string
+          description: Amount of currency sold.
+      required:
+        - buy_currency
+        - buy_currency_amount
+        - buy_token
+        - buy_token_chain_id
+        - fees
+        - rate
+        - sell_currency
+        - sell_currency_amount
+
+    Fees:
+      type: object
+      description: Breakdown of fees for a Ramp transaction.
+      properties:
+        fee_ccy:
+          type: string
+          description: Currency code of the fees.
+        network_fee:
+          type: string
+          description: On‑chain network fee amount.
+        boomfi_fee:
+          type: string
+          description: BoomFi service fee amount.
+        total_fee:
+          type: string
+          description: Sum of all fees charged.
+      required:
+        - fee_ccy
+        - network_fee
+        - boomfi_fee
+        - total_fee
+
+    ChildTransaction:
+      type: object
+      description: A child record spawned by a parent transaction.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the child transaction.
+        parent_id:
+          type: string
+          description: Identifier of the parent transaction.
+        reference:
+          type: string
+          description: External reference if any.
+        org_id:
+          type: string
+          description: Organization that owns this child transaction.
+        amount:
+          type: string
+          description: Amount for this child transaction.
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+        invoice_id:
+          type: string
+          description: Invoice ID, if applicable.
+        source:
+          type: string
+          description: Origin system (e.g., “BoomFi”).
+        payment_method:
+          type: string
+          description: Payment method used.
+        customer_id:
+          type: string
+          description: Customer who made this payment.
+        status:
+          type: string
+          description: Status of the child transaction.
+        next_action:
+          type: string
+          description: Next required action, if any.
+        scheduled_time:
+          type: integer
+          format: int64
+          description: Scheduled Unix timestamp, if any.
+        created_at:
+          type: string
+          format: date-time
+          description: When the child transaction was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the child transaction was last updated.
+        customer:
+          $ref: '#/components/schemas/Customer'
+        properties:
+          type: object
+          description: Child‑specific properties.
+          properties:
+            card:
+              $ref: '#/components/schemas/CardDetails'
+            provider:
+              $ref: '#/components/schemas/ProviderDetails'
+          required:
+            - card
+            - provider
+      required:
+        - id
+        - parent_id
+        - amount
+        - currency
+        - source
+        - payment_method
+        - customer_id
+        - status
+        - created_at
+        - updated_at
+        - customer
+        - properties
+
+    ProviderDetails:
+      type: object
+      description: Provider metadata for a child transaction.
+      properties:
+        provider:
+          type: string
+          description: Name of the payment provider (e.g., Spreedly).
+      required:
+        - provider

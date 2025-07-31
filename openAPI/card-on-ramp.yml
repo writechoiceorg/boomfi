@@ -234,6 +234,13 @@ paths:
           required: false
           schema:
             type: number
+        - name: partner_id
+          in: query
+          description: |
+            Allows the affiliate to add their organisation ID to get an affiliate fee.
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Quote successfully retrieved.
